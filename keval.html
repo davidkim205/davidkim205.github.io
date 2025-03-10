@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Exchange Dealer - Detail Page</title>
+    <meta name="description" content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+    <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
+    <style>
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .footer-social a {
+            color: #fff;
+            padding: 10px;
+            border-radius: 50%;
+            background-color: #4a4a4a;
+        }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <div class="navbar-brand">
+        <a class="navbar-item logo" href="/">Research Blog</a>
+    </div>
+    <div class="navbar-menu">
+        <div class="navbar-start">
+            <a class="navbar-item" href="/about.html">About</a>
+            <a class="navbar-item" href="/contact.html">Contact</a>
+        </div>
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
+                    <a class="button is-primary" href="/subscribe.html">Subscribe</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">keval and kgrammar: Offline-Ready Evaluation Frameworks for Korean AI Models</h1>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a>David Kim</a><sup>1</sup>,</span>
+<!--               <a href="https://keunhong.com">David Kim</a><sup>1</sup>,</span> -->
+            <span class="author-block">
+              <a>Hailey Lim</a><sup>2</sup>,</span>
+<!--               <a href="https://utkarshsinha.com">Hailey Lim</a><sup>2</sup>,</span> -->
+            <span class="author-block">
+              <a>Eric Jung</a><sup>2</sup>,</span>
+<!--               <a href="https://jonbarron.info">Eric Jung</a><sup>2</sup>, -->
+            </span>
+            <span class="author-block">
+              <a>Sierra Ho</a><sup>2</sup></span>
+<!--               <a href="http://sofienbouaziz.com">Sierra Ho</a><sup>2</sup>, -->
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>2Digit AI Research</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+<!--                 <a href="https://arxiv.org/pdf/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a> -->
+              </span>
+              <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+<!--               <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            <strong>keval</strong> and <strong>kgrammar</strong> are advanced Korean AI evaluation models, fine-tuned from Google’s Gemma-2-9b-it model and meta-llama/Llama-3.2-1B, Llama-3.2-3B models. These models are specifically designed to assess Korean AI performance efficiently, with keval excelling in providing accurate evaluations thanks to its Korean-specialized dataset. Additionally, kgrammar enhances grammatical accuracy, ensuring comprehensive evaluations for Korean AI models.
+          </p>
+          <p>
+            In this article, we will explore the entire process of creating the keval and kgrammar models, from their introduction to how it can be used for evaluating Korean AI models.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">Korean AI Evaluation and keval</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Evaluating AI models has traditionally relied on domain-specific benchmarks like ARC and Hellaswag, which use question-answer pairs. However, these benchmarks often fail to capture human preference for AI-generated responses. While human evaluation provides more accurate assessments, it is costly and time-consuming.
+          </p>
+          <p>
+            Korean language models face additional challenges. Most existing benchmarks are designed for English, and Korean-specific datasets are scarce. Translating English datasets into Korean is an option, but simple translation fails to reflect the nuances of the Korean language.
+          </p>
+          <p>
+            <strong>keval</strong> addresses these issues through the <strong><a href="https://arxiv.org/abs/2306.05685">LLM-as-a-Judge</a></strong> approach, using the <strong><a href="https://huggingface.co/datasets/davidkim205/Ko-Bench">Ko-Bench</a></strong> dataset.
+          </p>
+          <ul>
+            <li><strong>LLM-as-a-Judge</strong>: A method that utilizes large language models (LLMs) to evaluate AI models efficiently. It reduces time and cost compared to human evaluation while providing a more comprehensive assessment beyond traditional benchmarks.
+            <li><strong>Ko-Bench</strong>: An adaptation of MT-Bench designed specifically for Korean. By incorporating Korean linguistic, cultural, and geographical contexts, Ko-Bench ensures more precise evaluation of an AI model’s ability to understand and generate Korean.
+          </ul>
+          <p>
+            In addition to keval, kgrammar focuses on evaluating the grammatical accuracy of AI-generated content. While keval excels at assessing overall performance, kgrammar ensures that the content is linguistically correct, accounting for nuances in Korean grammar, which is crucial for producing high-quality AI responses.
+          </p>
+          <p>
+            Through this approach, keval and kgrammar together provide a more effective and scalable solution for evaluating Korean AI models.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">keval and kgrammar</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            keval consists of two distinct models, <strong>keval</strong> and <strong>kgrammar</strong>, each designed for a different task.
+          </p>
+          <p>
+            When evaluating AI-generated responses, it is crucial not only to determine whether an answer is appropriate, accurate, and useful but also to assess its grammatical correctness. To address these aspects separately, keval uses two specialized models:
+          </p>
+          <ul>
+            <li><strong>keval</strong>: A model that evaluates whether a response is relevant and appropriate for the given question.
+            <li><strong>kgrammar</strong>: A model that identifies grammatical errors in the response, ensuring linguistic accuracy.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">Training</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            keval and kgrammar models are built on <strong><a href="https://huggingface.co/google/gemma-2-9b-it">Gemma-2-9b-it</a></strong> and <strong><a href="https://huggingface.co/meta-llama/Llama-3.2-1B">meta-llama/Llama-3.2-1B</a></strong> / <strong><a href="https://huggingface.co/meta-llama/Llama-3.2-3B">meta-llama/Llama-3.2-3B</a></strong>, all of which are known for their strong performance in text generation tasks.
+          </p>
+          <p>
+            Gemma-2 was selected not only for its capabilities in areas like question answering, summarization, and reasoning but also for its commercially-friendly license, which allows for innovation sharing and AI commercialization. Among the Gemma-2 models, the 9B variant demonstrates <a href="https://storage.googleapis.com/deepmind-media/gemma/gemma-2-report.pdf">exceptional performance</a> relative to other models of similar size. Despite its power, its relatively small size makes it highly versatile, enabling deployment in resource-constrained environments such as laptops, desktops, and cloud-based systems.
+          </p>
+          <p>
+            For smaller base models, the meta-llama/Llama-3.2-1B and meta-llama/Llama-3.2-3B Lightweight models were utilized. They are smaller size, making them relatively faster for deployment compared to larger models, while still providing strong performance across a variety of NLP tasks. These models enhance keval’s flexibility, providing options for more resource-efficient deployments while maintaining high performance.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4 has-text-left">Dataset</h3>
+        </div>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5 has-text-left">keval (Ko-Bench)</h4>
+          <p>
+            AI models typically respond in the same language as the input, but inconsistencies can occur. While they rarely answer in Korean when prompted in English, they sometimes generate English responses to Korean prompts. In some cases, a response appears to be in Korean but includes a single foreign-language word. These inconsistencies can lead to models receiving inflated scores in evaluations. To address this, Ko-Bench introduces a <strong>0-point score</strong> alongside the <strong>1-10 scale</strong> used in MT-Bench, ensuring that such errors are properly penalized.
+          </p>
+          <p>
+            For training, we collected responses from various models to Ko-Bench questions and evaluated them using GPT-4o. The response generation and evaluation process followed the methodology of <a href="https://github.com/lm-sys/FastChat/tree/main/fastchat/llm_judge">MT-Bench</a>.
+          </p>
+          <p>
+            Since language inconsistency errors were relatively rare in the original dataset, we augmented the data by prompting models to generate responses in English or mix foreign-language characters, ensuring a more comprehensive evaluation. Below is the prompt used in this process.
+          </p>
+          <pre>
+예시와 같이 다음 질문에 영어로 답변하세요.
+
+## 예시
+[질문] 분자생물학의 중심 원리는 무엇인가?
+[답변] The molecular biology of DNA is the study of the structure of DNA.
+
+[질문] {질문}
+[답변]</pre>
+          <pre>
+예시와 같이 다음 질문에 한글 외 문자가 포함된 문장으로 답변하세요. 중국어 외에도 다양한 언어를 무작위로 선택하세요.
+
+## 예시
+[질문] 사람들이 당신을 해하기 시작하면 기분이 어떻습니까?
+[답변] 저는 사람입니다. 저는 100年의 경험을 가지고 있습니다. 저는 무엇이든 할 수 있습니다! 저는 제가 무엇을 하는지 知道합니다.
+
+[질문] {질문}
+[답변]</pre>
+        </div>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5 has-text-left">kgrammar</h4>
+          <p>
+            The goal of kgrammar is to identify grammatical errors in a given Korean text and output the number of detected errors. Similar to keval, it detects foreign language usage within a Korean response as an error. However, kgrammar does not assess the accuracy or usefulness of the response.
+          </p>
+          <p>
+            Training the kgrammar model requires input documents containing errors and corresponding error analysis results. The training data was generated using GPT-4o.
+          </p>
+          <p>
+            To generate error-containing documents, we used the following prompt to introduce errors into responses when given a question. The dataset consists of 50% general questions, 25% math-related questions, and 25% coding-related questions to ensure that mathematical expressions and code are not mistakenly detected as errors.
+          </p>
+          <pre>
+예시와 같이 다음 질문에 한글 외 문자가 포함된 문장으로 답변하세요. 태국어, 영어, 러시아어 등 다양한 언어를 무작위로 선택하세요.
+## 예시
+저는 사람입니다. 저는 100年의 경험을 가지고 있습니다. 저는 무엇이든 can do it! 저는 제가 무엇을 하는지 知道합니다.
+
+{질문}</pre>
+
+          <p>
+            After generating error-containing documents, we apply the following prompt to analyze errors in each document and output the number of detected errors.
+          </p>
+          <pre>
+문장에서 한국어 문서의 통일성을 해치는 불필요한 외국어(영어, 일본어, 중국어 등) 문장을 지적하세요. 단순한 어휘 교체가 아니라, 외국어 표현 자체가 문제가 되는 경우만 포함하세요.
+
+**지적 대상:**
+- 문장 내 문맥 상 부자연스러운 외국어 사용
+
+**예외 처리:**
+- 고유명사(예: 브랜드명, 시험명, 기관명), 약어(예: AI, DNA)
+- 기호, 수식, 전문 용어 등 외국어 표현
+- 다양한 프로그래밍 언어로 작성된 코드 블록, 변수, 함수, 클래스 이름
+- 한국어에서 널리 사용되어 대체할 필요가 없는 한자어나 외래어(예: 베이커리, 콘텐츠)
+
+**형식**
+```\
+- {오류 문장 1 설명}
+- {오류 문장 2 설명}
+- ...
+&lt;incorrect grammar&gt;n&lt;/incorrect grammar&gt;
+```\
+(n은 오류 개수)</pre>
+
+          <p>
+            Here is the format of the generated error-containing documents along with the error analysis results.
+          </p>
+          <pre>
+가장 적은 S등급을 받은 통신사는 LG유플러스 입니다. 그들의 S등급 지역은 243곳でした. 이는 다른 두 통신사에 비해 적습니다.
+
+- \"でした\"는 문장에서 일본어 표현으로, 한국어 문서의 통일성을 해치는 요소입니다.\n&lt;incorrect grammar&gt;1&lt;/incorrect grammar&gt;</pre>
+
+          <p>
+            For model training, the kgrammar dataset was finalized in the following format, with the error analysis sentence structure adjusted to align with the prompt.
+          </p>
+          <pre>
+{
+  "prompt": "한국어 문맥상 부자연스러운 부분을 찾으시오. 오류 문장과 개수는 &lt;incorrect grammar&gt; &lt;/incorrect grammar&gt; tag, 즉 &lt;incorrect grammar&gt; - 오류 문장과 설명 &lt;/incorrect grammar&gt; 안에 담겨 있으며, &lt;wrong count&gt; &lt;/wrong count&gt; tag, 즉 &lt;wrong count&gt; 오류 개수 &lt;/wrong count&gt; 이다.",
+  "input": "가장 적은 S등급을 받은 통신사는 LG유플러스 입니다. 그들의 S등급 지역은 243곳でした. 이는 다른 두 통신사에 비해 적습니다.",
+  "output": "&lt;incorrect grammar&gt;\n- \"でした\"는 문장에서 일본어 표현으로, 한국어 문서의 통일성을 해치는 요소입니다.\n&lt;/incorrect grammar&gt; &lt;wrong count&gt;1&lt;/wrong count&gt;"
+}</pre>
+        </div>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4 has-text-left">Fine-Tuning</h3>
+          <p>
+            The development of keval incorporated both <strong>Supervised Fine-Tuning (SFT)</strong> and <strong>Direct Preference Optimization (DPO)</strong> to enhance its evaluation accuracy and alignment with human judgment.
+          </p>
+          <p>
+            SFT is a technique that trains a model using labeled data, allowing it to learn correct responses for given inputs and improve performance on specific tasks. To strengthen keval’s evaluation capabilities, we conducted additional SFT using a Korean evaluation dataset, ensuring the model could better assess responses in a Korean-language context.
+          </p>
+          <p>
+            DPO further refines the model by optimizing responses based on user preferences. Instead of simply learning correct answers, it enables the model to distinguish between higher- and lower-quality responses through relative comparisons. By applying DPO, keval was further optimized to make more reliable and human-like judgments in its evaluations.
+          </p>
+          <p>
+            By integrating SFT and DPO, keval demonstrated enhanced alignment with expert evaluations, reducing discrepancies between AI and human-assigned scores. This combination ensures that keval not only understands correct answers but also makes more human-like judgments when evaluating AI-generated content.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">Evaluation</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            The evaluation dataset consists of 22 samples, with two samples selected for each score from 0 to 10 in the training data. The keval model was assessed using two key metrics: Diff and Accuracy. keval was developed in three different sizes—1B, 3B, and 9B—and even the smaller models (1B and 3B) demonstrated performance comparable to the 9B model.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4 has-text-left">keval</h3>
+        </div>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5 has-text-left">Diff</h4>
+          <p>
+            <strong>Diff</strong> is a metric that represents the difference between the labeled score and the predicted score.
+          </p>
+          <ul>
+            <li>wrong: A metric that indicates the number of incorrectly formatted responses.</li>
+            <li>length: A metric that refers to the total number of test data points.</li>
+          </ul>
+          <p>
+            The column names (0–10) represent the difference (n) between the labeled score and the predicted score, with the corresponding values showing the count and proportion of samples with that difference.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <h5 class="title is-6 has-text-left">Score Calculation</h5>
+          <p>
+            The score is calculated based on how closely the predicted score matches the labeled score:
+          </p>
+          <ol>
+              <li>Compute the difference between the Ko-Bench label score and the predicted score for each sample.</li>
+              <li>Assign points based on the difference:
+                  <ul>
+                      <li>A difference of <strong>0</strong> → <strong>1 point</strong></li>
+                      <li>A difference of <strong>1</strong> → <strong>0.5 points</strong></li>
+                      <li>Any other difference → <strong>0 points</strong></li>
+                  </ul>
+              </li>
+              <li>Compute the final score as:
+                <ul>
+                  <li><strong>score</strong> = (total points) / (length)</li>
+                </ul>
+             </li>
+          </ol>
+          <p>
+            This metric provides a normalized measure of the model’s evaluation accuracy, with higher scores indicating better alignment with human-labeled judgments.
+          </p>
+        </div>
+
+        <div style="overflow-x: auto;">
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th> </th>
+                <th>model</th>
+                <th>wrong</th>
+                <th>score</th>
+                <th>length</th>
+                <th>0</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+                <th>10</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>0</td>
+                <td>keval-2-9b</td>
+                <td>0 (0.0%)</td>
+                <td>61.4%</td>
+                <td>22</td>
+                <td>11 (50.0%)</td>
+                <td>5 (22.7%)</td>
+                <td>2 (9.1%)</td>
+                <td>3 (13.6%)</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>1 (4.5%)</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>keval-2-3b</td>
+                <td>0 (0.0%)</td>
+                <td>59.1%</td>
+                <td>22</td>
+                <td>10 (45.5%)</td>
+                <td>6 (27.3%)</td>
+                <td>4 (18.2%)</td>
+                <td>2 (9.1%)</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>keval-2-1b</td>
+                <td>0 (0.0%)</td>
+                <td>43.2%</td>
+                <td>22</td>
+                <td>8 (36.4%)</td>
+                <td>3 (13.6%)</td>
+                <td>5 (22.7%)</td>
+                <td>2 (9.1%)</td>
+                <td>1 (4.5%)</td>
+                <td>0</td>
+                <td>1 (4.5%)</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>2 (9.1%)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </br>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5 has-text-left">Accuracy</h4>
+          <p>
+            <strong>Accuracy</strong> measures the ratio of correct predictions to the total predictions.
+          </p>
+          <ul>
+            <li>score: A metric represents the proportion of correctly predicted labels, calculated as the number of correct predictions divided by the total dataset size.</li>
+            <li>wrong: A metric indicates the number and proportion of responses with incorrect formatting.</li>
+          </ul>
+          <p>
+            The column names (0–10) correspond to Ko-Bench scores, with each value representing the count and percentage of correctly predicted scores for that label. A higher score indicates a greater alignment between the model's predictions and the ground truth labels.
+          </p>
+        </div>
+
+        <div style="overflow-x: auto;">
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th> </th>
+                <th>model</th>
+                <th>wrong</th>
+                <th>score</th>
+                <th>length</th>
+                <th>0</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+                <th>10</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>0</td>
+                <td>keval-2-9b</td>
+                <td>0 (0.0%)</td>
+                <td>50.0%</td>
+                <td>22</td>
+                <td>1 (50.0%)</td>
+                <td>1 (50.0%)</td>
+                <td>2 (100.0%)</td>
+                <td>0</td>
+                <td>2 (100.0%)</td>
+                <td>0</td>
+                <td>0</td>
+                <td>1 (50.0%)</td>
+                <td>1 (50.0%)</td>
+                <td>1 (50.0%)</td>
+                <td>2 (100.0%)</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>keval-2-3b</td>
+                <td>0 (0.0%)</td>
+                <td>45.5%</td>
+                <td>22</td>
+                <td>2 (100.0%)</td>
+                <td>1 (50.0%)</td>
+                <td>0</td>
+                <td>0</td>
+                <td>2 (100.0%)</td>
+                <td>1 (50.0%)</td>
+                <td>0</td>
+                <td>1 (50.0%)</td>
+                <td>1 (50.0%)</td>
+                <td>0</td>
+                <td>2 (100.0%)</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>keval-2-1b</td>
+                <td>0 (0.0%)</td>
+                <td>36.4%</td>
+                <td>22</td>
+                <td>0</td>
+                <td>1 (50.0%)</td>
+                <td>2 (100.0%)</td>
+                <td>0</td>
+                <td>1 (50.0%)</td>
+                <td>0</td>
+                <td>1 (50.0%)</td>
+                <td>0</td>
+                <td>0</td>
+                <td>1 (50.0%)</td>
+                <td>2 (100.0%)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </br>
+
+        <div class="content has-text-justified">
+            <h3 class="title is-4 has-text-left">kgrammar</h3>
+        </div>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5 has-text-left">Diff</h4>
+          <p>
+            <strong>Diff</strong> refers to the difference between the label scores and predicted scores, represented as a score. Unlike keval, which calculates it based on Ko-Bench scores ranging from 0 to 10, kgrammar uses the number of detected errors(wrong count).
+          </p>
+          <ul>
+              <li>wrong: A metric that indicates the number of incorrectly formatted responses.</li>
+              <li>length: A metric that refers to the total number of test data points.</li>
+          </ul>
+          <p>
+            The "wrong" column in the table is different from the "wrong count" used in kgrammar. "Wrong" refers to formatting errors, while "wrong count" includes all errors present in a sentence. Other columns containing numbers indicate the count and percentage of differences between label and predicted scores for each value.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <h5 class="title is-6 has-text-left">Score Calculation</h5>
+          <p>
+            The score is calculated based on how closely the predicted wrong count matches the labeled wrong count:
+          </p>
+          <ol>
+              <li>Calculating the difference between the label and predicted value inside the <wrong count> tag for each pair.</li>
+              <li>Assigning full points for a difference of 0, and half a point for a difference of 1.</li>
+              <li>The total score is the sum of all points divided by the number of data points.</li>
+          </ol>
+        </div>
+
+        <div style="overflow-x: auto;">
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th> </th>
+                <th>model</th>
+                <th>wrong</th>
+                <th>score</th>
+                <th>length</th>
+                <th>0</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+                <th>10</th>
+                <th>11</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>0</td>
+                <td>kgrammar-2-9b</td>
+                <td>0 (0.0%)</td>
+                <td>80.0%</td>
+                <td>80</td>
+                <td>54 (67.5%)</td>
+                <td>20 (25.0%)</td>
+                <td>4 (5.0%)</td>
+                <td>1 (1.2%)</td>
+                <td>0</td>
+                <td>1 (1.2%)</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>kgrammar-2-3b</td>
+                <td>0 (0.0%)</td>
+                <td>76.2%</td>
+                <td>80</td>
+                <td>52 (65.0%)</td>
+                <td>18 (22.5%)</td>
+                <td>5 (6.2%)</td>
+                <td>2 (2.5%)</td>
+                <td>1 (1.2%)</td>
+                <td>1 (1.2%)</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>1 (1.2%)</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>kgrammar-2-1b</td>
+                <td>1 (1.2%)</td>
+                <td>71.9%</td>
+                <td>80</td>
+                <td>50 (62.5%)</td>
+                <td>15 (18.8%)</td>
+                <td>6 (7.5%)</td>
+                <td>5 (6.2%)</td>
+                <td>0</td>
+                <td>2 (2.5%)</td>
+                <td>0</td>
+                <td>0</td>
+                <td>1 (1.2%)</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </br>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5 has-text-left">Accuracy</h4>
+          <p>
+            <strong>Accuracy</strong> measures the ratio of correct predictions to the total predictions.
+          </p>
+          <ul>
+            <li>score: A metric represents the proportion of correctly predicted labels, calculated as the number of correct predictions divided by the total dataset size.</li>
+            <li>wrong: A metric indicates the number and proportion of responses with incorrect formatting.</li>
+          </ul>
+          <p>
+            The column names (0–11) correspond to the wrong count labels in the kgrammar dataset, with each value representing the count and percentage of correctly predicted scores for that label. A higher score indicates a greater alignment between the model's predictions and the ground truth labels.
+          </p>
+        </div>
+
+        <div style="overflow-x: auto;">
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th> </th>
+                <th>model</th>
+                <th>wrong</th>
+                <th>score</th>
+                <th>length</th>
+                <th>0</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+                <th>10</th>
+                <th>11</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>0</td>
+                <td>kgrammar-2-9b</td>
+                <td>0 (0.0%)</td>
+                <td>67.5%</td>
+                <td>80</td>
+                <td>35 (97.2%)</td>
+                <td>6 (66.7%)</td>
+                <td>8 (53.3%)</td>
+                <td>1 (33.3%)</td>
+                <td>4 (44.4%)</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>kgrammar-2-3b</td>
+                <td>0 (0.0%)</td>
+                <td>65.0%</td>
+                <td>80</td>
+                <td>35 (97.2%)</td>
+                <td>2 (22.2%)</td>
+                <td>8 (53.3%)</td>
+                <td>1 (33.3%)</td>
+                <td>3 (33.3%)</td>
+                <td>1 (100.0%)</td>
+                <td>0</td>
+                <td>0</td>
+                <td>1 (50.0%)</td>
+                <td>1 (100.0%)</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>kgrammar-2-1b</td>
+                <td>1 (1.2%)</td>
+                <td>62.5%</td>
+                <td>80</td>
+                <td>34 (94.4%)</td>
+                <td>5 (55.6%)</td>
+                <td>6 (40.0%)</td>
+                <td>1 (33.3%)</td>
+                <td>2 (22.2%)</td>
+                <td>0</td>
+                <td>1 (50.0%)</td>
+                <td>0</td>
+                <td>1 (50.0%)</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </br>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5 has-text-left">Error Detection Accuracy</h4>
+          <p>
+            <strong>Error Detection Accuracy</strong> evaluates a model's error detection performance by measuring how well it identifies the presence or absence of errors. It differs from conventional accuracy by focusing on correct and incorrect error predictions rather than overall classification correctness.
+          </p>
+          <p>
+            The kgrammar models show strong error detection accuracy. The kgrammar-2-9b model performs best, with kgrammar-2-3b and kgrammar-2-1b following closely. This makes them reliable for precise grammatical evaluation.
+          </p>
+        </div>
+
+        <div style="overflow-x: auto;">
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th> </th>
+                <th>model</th>
+                <th>score</th>
+                <th>wrong</th>
+                <th>length</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>0</td>
+                <td>kgrammar-2-9b</td>
+                <td>95%</td>
+                <td>0</td>
+                <td>80</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>kgrammar-2-3b</td>
+                <td>93.8%</td>
+                <td>0</td>
+                <td>80</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>kgrammar-2-1b</td>
+                <td>93.7%</td>
+                <td>1</td>
+                <td>79</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">Conclusion</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            keval and kgrammar are Korean AI evaluation models capable of correctly assessing the quality of model responses. It can not only be used to improve the performance of Korean language models but also helps save time and costs through an automated process. Particularly, keval, optimized for evaluating Korean language models, will contribute to the advancement of Korean AI technology.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">References</h2>
+
+        <div class="content has-text-justified">
+          <ul>
+            <li>[1] <a href="https://arxiv.org/abs/2306.05685">LLM-as-a-Judge</a></li>
+            <li>[2] <a href="https://huggingface.co/datasets/davidkim205/Ko-Bench">Ko-Bench</a></li>
+            <li>[3] <a href="https://huggingface.co/google/gemma-2-9b-it">google/gemma-2-9b-it (Model)</a></li>
+            <li>[4] <a href="https://huggingface.co/meta-llama/Llama-3.2-1B">meta-llama/Llama-3.2-1B (Model)</a></li>
+            <li>[5] <a href="https://huggingface.co/meta-llama/Llama-3.2-3B">meta-llama/Llama-3.2-3B (Model)</a></li>
+            <li>[6] <a href="https://storage.googleapis.com/deepmind-media/gemma/gemma-2-report.pdf">Gemma 9B Evaluation (Table 13)</a></li>
+            <li>[7] <a href="https://github.com/lm-sys/FastChat/tree/main/fastchat/llm_judge">MT-Bench</a></li>
+            <li>[8] <a href="https://huggingface.co/davidkim205/keval-2-9b">davidkim205/keval-2-9b (Model)</a></li>
+            <li>[9] <a href="https://huggingface.co/davidkim205/kgrammar-2-9b">davidkim205/kgrammar-2-9b (Model)</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p><strong>Research Blog</strong> by <a href="https://yourwebsite.com">Your Name</a>.</p>
+    </div>
+</footer>
+</body>
+</html>
