@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Exchange Dealer - Detail Page</title>
+    <meta name="description" content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+    <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
+    <style>
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .footer-social a {
+            color: #fff;
+            padding: 10px;
+            border-radius: 50%;
+            background-color: #4a4a4a;
+        }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <div class="navbar-brand">
+        <a class="navbar-item logo" href="/">Research Blog</a>
+    </div>
+</header>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">AI Exchange Dealer</h1>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a>David Kim</a><sup>1</sup>,</span>
+<!--               <a href="https://keunhong.com">David Kim</a><sup>1</sup>,</span> -->
+            <span class="author-block">
+              <a>Hailey Lim</a><sup>2</sup>,</span>
+<!--               <a href="https://utkarshsinha.com">Hailey Lim</a><sup>2</sup>,</span> -->
+            <span class="author-block">
+              <a>Eric Jung</a><sup>2</sup>,</span>
+<!--               <a href="https://jonbarron.info">Eric Jung</a><sup>2</sup>, -->
+            </span>
+            <span class="author-block">
+              <a>Sierra Ho</a><sup>2</sup></span>
+<!--               <a href="http://sofienbouaziz.com">Sierra Ho</a><sup>2</sup>, -->
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>2Digit AI Research</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+<!--                 <a href="https://arxiv.org/pdf/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a> -->
+              </span>
+              <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+<!--               <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+<!--               <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+              </span> -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            This report introduces the <strong>Exchange</strong> and <strong>Exchange-Price</strong> models, developed as LLM-based forex trader models utilizing Llama 3.1 8B to enhance financial market predictions. It examines the training process, performance, and potential benefits of these models in financial market applications.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">Functionality of Generative AI and Its Application in the Financial Market</h2>
+<!--         <h2 class="title is-3">Functionality of Generative AI and Its Application in the Financial Market</h2> -->
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4">Advantages of Generative AI</h3>
+          <p>
+            Generative AI is an artificial intelligence technology that learns from large datasets to create new content.
+            It can process various types of data, such as text, images, and audio. In particular, it can be a powerful tool for analyzing data and predicting future trends in the financial and economic sectors.
+            The main advantages of Generative AI include.
+          </p>
+          <ul>
+            <li><strong>Pattern recognition ability</strong> to detect meaningful patterns in complex financial data.</li>
+            <li><strong>Automated analysis features</strong> that quickly analyze vast amounts of data and provide insights, reducing data interpretation time.</li>
+            <li>The ability to <strong>improve prediction accuracy</strong> by performing more precise analysis compared to traditional statistical prediction models.</li>
+            <li><strong>User-friendly interfaces</strong> based on natural language processing analysis, making it accessible for non-experts.</li>
+          </ul>
+        </div>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4">Role of Generative AI in the Financial Market</h3>
+          <p>
+            The foreign exchange market is one of the most volatile financial markets, where precise predictions through data analysis are essential.
+            In the past, forex predictions relied on the experience of experts and statistical models, but Generative AI can analyze large-scale market data in real-time and learn complex volatility patterns, allowing for more precise predictions.
+            Generative AI can play the following roles in the financial market.
+          </p>
+          <ul>
+            <li><strong>Market trend analysis</strong>: Analyzes various economic data and news to summarize major economic trends.</li>
+            <li><strong>Currency exchange rate prediction</strong>: Uses time-series data and economic indicators to predict future exchange rates.</li>
+            <li><strong>Risk management</strong>: Analyzes market volatility to detect potential risk factors in advance.</li>
+            <li><strong>Automated financial report generation</strong>: AI organizes analysis results into natural language and provides reports.</li>
+          </ul>
+          <p>
+            Based on these capabilities, we developed AI models optimized for foreign exchange market prediction, namely <strong>Exchange</strong> and <strong>Exchange-Price</strong>.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">Performance of the Llama Model and Reasons for Choosing Llama 3.1 8B</h2>
+<!--         <h2 class="title is-3">Functionality of Generative AI and Its Application in the Financial Market</h2> -->
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4">Performance of the Llama 3.1 8B Model</h3>
+          <p>
+            There are various Generative AI models, but to build a model optimized for exchange rate analysis and prediction, we chose Meta's <strong>Llama 3.1 8B</strong> model. The Llama model is optimized for learning large-scale data and excels in financial data analysis and time-series prediction.
+          </p>
+          <p>
+            The key performance features of the Llama 3.1 8B model are as follows.
+          </p>
+          <ul>
+            <li><strong>Strong natural language processing performance</strong>, allowing effective analysis of text data such as economic news and market reports.</li>
+            <li><strong>Excellent scalability</strong>, enabling the model to evolve by combining with various financial market data.</li>
+            <li><strong>Optimized learning structure</strong>, which allows for the precise reflection of complex variables in the financial market.</li>
+            <li><strong>High-performance natural language comprehension</strong>, enabling more accurate analysis of financial news, economic reports, and market data.</li>
+            <li><strong>Efficient computational structure</strong>, providing high performance with relatively low computational cost.</li>
+            <li><strong>High adaptability</strong>, allowing for more precise predictions through supervised learning (SFT) and user feedback-based optimization (DPO).</li>
+          </ul>
+        </div>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4">Reasons for Choosing the Llama 3.1 8B Model</h3>
+          <p>
+            The foreign exchange market is a complex market that cannot be easily analyzed with simple time-series predictions. Various factors such as economic news, policy changes, and global financial flows influence exchange rate fluctuations, so a model that can effectively process this unstructured data is needed.
+          </p>
+          <p>
+            The Llama 3.1 8B model has a <strong>strength in natural language-based data processing</strong> and is optimized for understanding context and meaning. This allows it to perform various functions beyond simple numerical predictions, such as <strong>market analysis report generation, summarizing economic trends, and explaining risk factors</strong>.
+          </p>
+          <p>
+            Thanks to these characteristics, the Llama 3.1 8B model can provide more precise and reliable results than traditional financial prediction models and can be effectively applied in the uncertain foreign exchange market.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">Exchange and Exchange-Price Models</h2>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4">Model Overview</h3>
+          <p>
+            The Exchange and Exchange-Price models, built on the Llama 3.1 8B model, are AI systems that analyze financial market data and predict exchange rate fluctuations.
+          </p>
+          <p>
+            The Exchange model receives financial market data, analyzes key factors influencing exchange rate fluctuations, predicts market trends, and generates analysis reports based on this information. It focuses on explaining market volatility by considering various data, such as financial news, economic indicators, and policy changes.
+          </p>
+          <p>
+            The Exchange-Price model is focused on exchange rate prediction, using the natural language processing capabilities of the LLM to analyze market volatility and predict the exchange rates of major global currencies (USD, JPY, EUR, etc.). It is specialized in quantitatively performing exchange rate predictions and provides more precise prediction results by learning from various input data.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4">Training Process and Optimization Techniques</h3>
+          <p>
+            The Exchange and Exchange-Price models are built on Meta's Llama 3.1 8B architecture and were developed using SFT (Supervised Fine-Tuning) and DPO (Direct Preference Optimization) techniques to maximize exchange rate prediction performance.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5">(1) SFT Application</h4>
+          <p>
+            SFT (Supervised Fine-Tuning) is a process that utilizes supervised learning to improve the model's prediction accuracy. It is a critical technique for optimizing the model to better reflect the complex patterns of the financial market and to consider unstructured data such as news and economic indicators, beyond simple statistical predictions.
+          </p>
+          <p>
+            During the SFT process, a variety of training data were used. Text-based data such as financial news, economic indicators, and central bank announcements, along with exchange rate time-series data for currencies like USD, EUR, and JPY, were incorporated to comprehensively capture exchange rate fluctuation patterns. In addition, exchange rate response patterns to major policy changes were analyzed to increase the reliability of the prediction model.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5">(2) DPO Application</h4>
+          <p>
+            DPO (Direct Preference Optimization) is a process that optimizes the model by incorporating user feedback to enhance its practical usability. Since learning only from past data does not fully reflect real market conditions, feedback from financial experts was integrated to enable more practical predictions.
+          </p>
+          <p>
+            The DPO technique was applied by having the AI generate multiple prediction scenarios, which were then evaluated and feedback provided by financial experts. This process not only increased the reliability of the predictions but also <strong>encouraged the model to prioritize providing more interpretable analysis results</strong>. This allowed users to make better decisions based not only on numerical predictions but also on the interpretations and analyses provided by the model.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4">Differences Between Exchange & Exchange-Price</h3>
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>Key Features</th>
+                <th>Training Data</th>
+                <th>Application Method</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Exchange</td>
+                <td>Market analysis + exchange rate prediction</td>
+                <td>Exchange rate time-series data, key economic indicator time-series data, financial news</td>
+                <td>Analysis reports (explaining correlations between specific indicators and exchange rates, analyzing the potential impact of major news on exchange rate fluctuations, short-term exchange rate trend forecasts, etc.), exchange rate prediction for major currencies</td>
+              </tr>
+              <tr>
+                <td>Exchange-Price</td>
+                <td>Specialized in exchange rate prediction</td>
+                <td>Exchange rate time-series data, key economic indicator time-series data, financial news</td>
+                <td>Exchange rate prediction for major currencies</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">Evaluation Metrics</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Here, we will explain the methods used to evaluate the Exchange and Exchange-Price models.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4">Ranking Evaluation</h3>
+          <p>
+            Ranking evaluation is a process that compares multiple prediction values to measure their relative accuracy. To evaluate the accuracy of the predictions, MAPE (Mean Absolute Percentage Error) was calculated to determine the ranking. This method was used to assess the exchange rate prediction performance of financial institutions and the Exchange model.
+          </p>
+          <p>
+            MAPE is a metric that expresses the average error between predicted and actual values as a percentage, where a lower value indicates higher prediction accuracy. The MAPE for the highest (High) and lowest (Low) predicted values of the USD exchange rate during February 2025 was calculated, and the ranking was based on these values.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5">USD Currency</h4>
+          <p>
+            The table below shows the ranking determined by calculating the MAPE for the USD exchange rate predictions.
+          </p>
+          <ul>
+            <li><strong>Rank</strong> refers to the accuracy ranking based on the MAPE values of <strong>Site</strong> (banks or financial institutions).</li>
+            <li><strong>Site</strong> includes the names of various banks and financial institutions that provide exchange rate predictions.</li>
+            <li><strong>Time</strong> indicates the period during which the predictions were made and serves as the evaluation criterion for the exchange rate prediction performance during that period. If no prediction time is provided, the column remains empty.</li>
+            <li><strong>USD MAPE(high, low)</strong> represents the average MAPE value for February 2025, calculated by averaging the MAPE values for both High and Low predictions.</li>
+<!--             <li>The individual date columns contain the MAPE values calculated for each specific date, and the final <strong>USD MAPE(high, low)</strong> value is derived by averaging these values.</li> -->
+          </ul>
+
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Site</th>
+                <th>Time</th>
+                <th>USD MAPE(high,low)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Shinhan Bank</td>
+                <td>-</td>
+                <td>0.23</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><strong>Exchange-Price</strong></td>
+                <td>00-24</td>
+                <td>0.26</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>KEB Hana Bank</td>
+                <td>-</td>
+                <td>0.26</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Korea Trade Insurance Corp.</td>
+                <td>-</td>
+                <td>0.26</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>iM Bank</td>
+                <td>-</td>
+                <td>0.27</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td><strong>Exchange</strong></td>
+                <td>00-24</td>
+                <td>0.28</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>KOOKMIN BANK</td>
+                <td>-</td>
+                <td>0.29</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>Woori Bank</td>
+                <td>-</td>
+                <td>0.29</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>
+            The plot below shows the predicted high and low values for USD for each day in February 2025. By comparing these predictions to the actual USD values, we can observe how each site/model performed and the differences in their predictions.
+          </p>
+          <img src="./static/images/ai_exchange_dealer/usd_lowhigh_plot(1)_2025FEB.jpg"/>
+          <img src="./static/images/ai_exchange_dealer/usd_lowhigh_plot(2)_2025FEB.jpg"/>
+        </div>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5">Global Currencies</h4>
+          <p>
+            The global currency ranking was determined by calculating the MAPE (Mean Absolute Percentage Error) for the exchange rate predictions of EUR (Euro) and JPY (Japanese Yen), excluding USD.
+          </p>
+          <p>
+            However, there were challenges in calculating the global currency rankings. Among the existing banks, only one provided exchange rate predictions for global currencies based on KRW (South Korean Won), while most banks either did not provide predictions for global currencies or only provided exchange rate predictions based on USD. This made it difficult to calculate the MAPE for global currencies.
+          </p>
+          <p>
+            To address this issue and evaluate KRW-based exchange rate predictions, a method was applied where the exchange rates were converted based on the previous trading day's closing price, and the collected prediction values were compared. The following formula was used for the exchange rate conversion.
+          </p>
+          <img src="./static/images/ai_exchange_dealer/calculate_global_currencies.jpg"/>
+<!--                class="interpolation-image"
+               alt="Interpolate start reference image."/> -->
+          <ul>
+            <li><strong>Rank</strong> indicates the prediction accuracy ranking of each `Site` (bank or financial institution) based on the MAPE value.</li>
+            <li><strong>Site</strong> lists the names of various banks and financial institutions that provide exchange rate predictions.</li>
+            <li><strong>Time</strong> represents the period during which the predictions were made and serves as the evaluation criterion for exchange rate predictions during that period. If no prediction time is provided, the column remains empty.</li>
+            <li><strong>EUR MAPE(high, low)</strong> represents the average MAPE value for EUR (Euro) exchange rate predictions in February 2025, calculated by averaging the MAPE values for both High and Low predictions.</li>
+            <li><strong>JPY MAPE(high, low)</strong> represents the average MAPE value for JPY (Japanese Yen) exchange rate predictions in February 2025, calculated by averaging the MAPE values for both High and Low predictions.</li>
+          </ul>
+
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Site</th>
+                <th>Time</th>
+                <th>EUR MAPE(high,low)</th>
+                <th>JPY MAPE(high,low)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td><strong>Exchange-Price</strong></td>
+                <td>00-24</td>
+                <td>0.23</td>
+                <td>0.34</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>iM Bank</td>
+                <td>-</td>
+                <td>0.29</td>
+                <td>0.33</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>KOOKMIN BANK</td>
+                <td>-</td>
+                <td>0.30</td>
+                <td>0.43</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Shinhan Bank</td>
+                <td>-</td>
+                <td>0.32</td>
+                <td>0.36</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td><strong>Exchange</strong></td>
+                <td>00-24</td>
+                <td>0.34</td>
+                <td>0.44</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>KEB Hana Bank</td>
+                <td>-</td>
+                <td>0.38</td>
+                <td>0.40</td>
+              </tr>
+              <tr>
+                <td>-</td>
+                <td>Woori Bank</td>
+                <td>-</td>
+                <td>Not provided</td>
+                <td>Not provided</td>
+              </tr>
+              <tr>
+                <td>-</td>
+                <td>Korea Trade Insurance Corp.</td>
+                <td>-</td>
+                <td>Not provided</td>
+                <td>Not provided</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+
+       <div class="content has-text-justified">
+          <h3 class="title is-4">Accuracy Evaluation</h3>
+          <p>
+            Accuracy evaluation is a metric that measures how close the predicted values are to the actual values. To assess the prediction accuracy, MAPE (Mean Absolute Percentage Error) was calculated.
+          </p>
+          <p>
+            In general, the exchange rate predictions provided by financial institutions focus on High (maximum) and Low (minimum) values, and predictions for the Close value are often not provided. Therefore, direct comparisons with other banks and financial institutions are difficult. As a result, the prediction results of the Exchange and Exchange-Price models were used to calculate the MAPE for the High, Low, and Close values of each currency and evaluate the accuracy.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5">USD Currency</h4>
+        </div>
+
+        <div style="overflow-x: auto;">
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>Time</th>
+                <th>USD MAPE(high,low,close)</th>
+<!--                 <th>02/03</th>
+                <th>02/04</th>
+                <th>02/05</th>
+                <th>02/06</th>
+                <th>02/07</th>
+                <th>02/10</th>
+                <th>02/11</th>
+                <th>02/12</th>
+                <th>02/13</th>
+                <th>02/14</th>
+                <th>02/17</th>
+                <th>02/18</th>
+                <th>02/19</th>
+                <th>02/20</th>
+                <th>02/21</th>
+                <th>02/24</th>
+                <th>02/25</th>
+                <th>02/26</th>
+                <th>02/27</th>
+                <th>02/28</th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Exchange-Price</td>
+                <td>00-24</td>
+                <td>0.34</td>
+<!--                 <td>0.33</td>
+                <td>0.63</td>
+                <td>0.45</td>
+                <td>0.04</td>
+                <td>0.40</td>
+                <td>0.45</td>
+                <td>0.25</td>
+                <td>0.18</td>
+                <td>0.80</td>
+                <td>0.21</td>
+                <td>0.18</td>
+                <td>0.18</td>
+                <td>0.22</td>
+                <td>0.39</td>
+                <td>0.18</td>
+                <td>0.58</td>
+                <td>0.06</td>
+                <td>0.27</td>
+                <td>0.58</td>
+                <td>0.51</td> -->
+              </tr>
+              <tr>
+                <td>Exchange</td>
+                <td>00-24</td>
+                <td>0.34</td>
+<!--                 <td>0.48</td>
+                <td>0.26</td>
+                <td>0.22</td>
+                <td>0.40</td>
+                <td>0.52</td>
+                <td>0.16</td>
+                <td>0.32</td>
+                <td>0.13</td>
+                <td>0.15</td>
+                <td>0.19</td>
+                <td>0.16</td>
+                <td>0.13</td>
+                <td>0.42</td>
+                <td>0.30</td>
+                <td>0.29</td>
+                <td>0.80</td>
+                <td>0.56</td>
+                <td>0.30</td>
+                <td>0.52</td>
+                <td>0.50</td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </br>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5">Global Currencies</h4>
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th>Site</th>
+                <th>Time</th>
+                <th>EUR MAPE(high,low,close)</th>
+                <th>JPY MAPE(high,low,close)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Exchange-Price</td>
+                <td>00-24</td>
+                <td>0.26</td>
+                <td>0.57</td>
+              </tr>
+              <tr>
+                <td>Exchange</td>
+                <td>00-24</td>
+                <td>0.40</td>
+                <td>0.54</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4">Robustness Evaluation</h3>
+          <p>
+            Robustness evaluation is the process of verifying whether a system or model operates reliably in the face of various environmental changes or exceptional situations. It tests whether the developed model can maintain performance without being affected by data uncertainties, noise, errors, or unexpected changes.
+          </p>
+          <p>
+            To evaluate the robustness of the Exchange and Exchange-Price models, various data transformation methods were applied to the exchange rate predictions in February 2025. By analyzing how MAPE (Mean Absolute Percentage Error) changes depending on the input data transformation methods, the robustness of the models was assessed.
+          </p>
+          <ul>
+            <li><strong>Task</strong>: Represents the applied input data transformation methods. The impact of data transformation on exchange rate prediction performance was analyzed using three methods.</li>
+            <ul>
+              <li><strong>Normal</strong>: The model is trained and evaluated using data from a fixed period (default: 7 days).</li>
+              <li><strong>Random date</strong>: The model is trained and evaluated by randomly setting the input data period (3–7 days).</li>
+              <li><strong>Masking</strong>: The model is trained and evaluated by randomly excluding items from certain categories of input data. However, at least one item from each category (e.g., products, economic indicators) is guaranteed to be included.</li>
+            </ul>
+            <li><strong>MAPE(high, low)</strong>: Represents the average MAPE for high and low predictions.</li>
+            <li><strong>MAPE(high, low, close)</strong>: Represents the average MAPE for high, low, and close predictions.</li>
+            <li><strong>high</strong>: MAPE for high predictions.</li>
+            <li><strong>low</strong>: MAPE for low predictions.</li>
+            <li><strong>close</strong>: MAPE for close predictions.</li>
+          </ul>
+        </div>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5">USD Currency</h4>
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>Task</th>
+                <th>MAPE(high,low)</th>
+                <th>MAPE(high,low,close)</th>
+                <th>high</th>
+                <th>low</th>
+                <th>close</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Exchange-Price</td>
+                <td>Normal</td>
+                <td>0.26</td>
+                <td>0.34</td>
+                <td>0.28</td>
+                <td>0.24</td>
+                <td>0.51</td>
+              </tr>
+              <tr>
+                <td>Exchange-Price</td>
+                <td>Random date</td>
+                <td>0.29</td>
+                <td>0.37</td>
+                <td>0.29</td>
+                <td>0.29</td>
+                <td>0.53</td>
+              </tr>
+              <tr>
+                <td>Exchange-Price</td>
+                <td>Masking</td>
+                <td>0.31</td>
+                <td>0.41</td>
+                <td>0.38</td>
+                <td>0.24</td>
+                <td>0.60</td>
+              </tr>
+              <tr>
+                <td>Exchange</td>
+                <td>Normal</td>
+                <td>0.28</td>
+                <td>0.34</td>
+                <td>0.31</td>
+                <td>0.25</td>
+                <td>0.46</td>
+              </tr>
+              <tr>
+                <td>Exchange</td>
+                <td>Random date</td>
+                <td>0.23</td>
+                <td>0.32</td>
+                <td>0.28</td>
+                <td>0.19</td>
+                <td>0.50</td>
+              </tr>
+              <tr>
+                <td>Exchange</td>
+                <td>Masking</td>
+                <td>0.28</td>
+                <td>0.34</td>
+                <td>0.20</td>
+                <td>0.37</td>
+                <td>0.46</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5">EUR Currency</h4>
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>Task</th>
+                <th>MAPE(high,low)</th>
+                <th>MAPE(high,low,close)</th>
+                <th>high</th>
+                <th>low</th>
+                <th>close</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Exchange-Price</td>
+                <td>Normal</td>
+                <td>0.23</td>
+                <td>0.26</td>
+                <td>0.27</td>
+                <td>0.19</td>
+                <td>0.33</td>
+              </tr>
+              <tr>
+                <td>Exchange-Price</td>
+                <td>Random date</td>
+                <td>0.26</td>
+                <td>0.29</td>
+                <td>0.30</td>
+                <td>0.23</td>
+                <td>0.34</td>
+              </tr>
+              <tr>
+                <td>Exchange-Price</td>
+                <td>Masking</td>
+                <td>0.32</td>
+                <td>0.38</td>
+                <td>0.39</td>
+                <td>0.24</td>
+                <td>0.51</td>
+              </tr>
+              <tr>
+                <td>Exchange</td>
+                <td>Normal</td>
+                <td>0.34</td>
+                <td>0.40</td>
+                <td>0.34</td>
+                <td>0.33</td>
+                <td>0.54</td>
+              </tr>
+              <tr>
+                <td>Exchange</td>
+                <td>Random date</td>
+                <td>0.29</td>
+                <td>0.35</td>
+                <td>0.31</td>
+                <td>0.26</td>
+                <td>0.47</td>
+              </tr>
+              <tr>
+                <td>Exchange</td>
+                <td>Masking</td>
+                <td>0.29</td>
+                <td>0.34</td>
+                <td>0.31</td>
+                <td>0.26</td>
+                <td>0.45</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5">JPY Currency</h4>
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>Task</th>
+                <th>MAPE(high,low)</th>
+                <th>MAPE(high,low,close)</th>
+                <th>high</th>
+                <th>low</th>
+                <th>close</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Exchange-Price</td>
+                <td>Normal</td>
+                <td>0.34</td>
+                <td>0.42</td>
+                <td>0.29</td>
+                <td>0.40</td>
+                <td>0.58</td>
+              </tr>
+              <tr>
+                <td>Exchange-Price</td>
+                <td>Random date</td>
+                <td>0.36</td>
+                <td>0.44</td>
+                <td>0.33</td>
+                <td>0.38</td>
+                <td>0.62</td>
+              </tr>
+              <tr>
+                <td>Exchange-Price</td>
+                <td>Masking</td>
+                <td>0.31</td>
+                <td>0.40</td>
+                <td>0.31</td>
+                <td>0.31</td>
+                <td>0.57</td>
+              </tr>
+              <tr>
+                <td>Exchange</td>
+                <td>Normal</td>
+                <td>0.44</td>
+                <td>0.54</td>
+                <td>0.42</td>
+                <td>0.46</td>
+                <td>0.75</td>
+              </tr>
+              <tr>
+                <td>Exchange</td>
+                <td>Random date</td>
+                <td>0.47</td>
+                <td>0.58</td>
+                <td>0.48</td>
+                <td>0.46</td>
+                <td>0.80</td>
+              </tr>
+              <tr>
+                <td>Exchange</td>
+                <td>Masking</td>
+                <td>0.38</td>
+                <td>0.47</td>
+                <td>0.36</td>
+                <td>0.39</td>
+                <td>0.65</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <h2 class="title is-3 has-text-left">Model Outputs</h2>
+          <p>
+            When the <strong>prompt</strong>, <strong>exchange rate data</strong>, <strong>key forex market-related data</strong>, and <strong>summarized daily forex market and global economic news</strong> are input into the models, the <strong>Exchange model</strong> outputs a report that includes market analysis explanations and exchange rate predictions, while the <strong>Exchange-Price model</strong> outputs the exchange rate prediction results. Below, you can see the actual output results from the models.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5">Exchange Model</h4>
+          <img src="./static/images/ai_exchange_dealer/exchange_output.jpg"/>
+        </div>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5">Exchange-Price Model</h4>
+          <img src="./static/images/ai_exchange_dealer/exchange-price_output.jpg"/>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">Conclusion</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            The Exchange and Exchange-Price models, built on the generative AI model Llama 3.1 8B, would bring a highly innovative introduction of Generative AI to the financial market if applied to the real-world financial industry. Since the models use integrated time-series datasets during training, it maximizes the efficiency of model training and inference, enabling fast learning and achieving the following effects.
+          </p>
+          <p>
+            Unlike traditional services that rely on past experiences and are limited in volatile environments, the LLM-based AI forex trader can analyze vast global data in real-time with high data analysis capabilities and make precise predictions. Furthermore, it provides user-friendly financial services by explaining predictions in a way that even non-experts can easily understand.
+          </p>
+          <p>
+            Being an AI-based service rather than human-based, it can be automated and operated 24/7, providing financial information whenever users need it, anywhere. The model can quickly adapt to market volatility by learning various patterns and swiftly capturing changes in real-time data regarding exchange rate fluctuations through multiple leading indicators.
+          </p>
+          <p>
+            The model has also demonstrated performance that surpasses traditional human-based predictions in evaluation metrics, making the <strong>Exchange</strong> and <strong>Exchange-Price</strong> models highly applicable and valuable.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">References</h2>
+
+        <div class="content has-text-justified">
+          <ul>
+            <li>[1] <a href="https://huggingface.co/meta-llama/Llama-3.1-8B">meta-llama/Llama-3.1-8B (Model)</a></li>
+            <li>[2] <a href="https://huggingface.co/davidkim205/exchange">davidkim205/exchange (Model)</a></li>
+            <li>[3] <a href="https://huggingface.co/davidkim205/exchange-price">davidkim205/exchange-price (Model)</a></li>
+          </ul>
+        </div>
+
+<!--         <div class="content has-text-justified">
+          <ul>
+            <li><strong>[1]</strong> meta-llama/Llama-3.1-8B(Model): <a href="https://huggingface.co/meta-llama/Llama-3.1-8B"></li>
+            <li><strong>[2]</strong> davidkim205/exchange(Model): https://huggingface.co/davidkim205/exchange</li>
+            <li><strong>[3]</strong> davidkim205/exchange-price(Model): https://huggingface.co/davidkim205/exchange-price</li>
+          </ul>
+        </div> -->
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>
+            <strong>Research Blog</strong> by <a href="https://github.com/davidkim205">davidkim205</a>.
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
