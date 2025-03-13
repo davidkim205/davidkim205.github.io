@@ -1,88 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="description"
-        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
-  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>keval: Korean AI Evaluation Model</title>
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];c
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', 'G-PYVRSFMDRL');
-  </script>
-
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
-
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon">
-  <!--   <link rel="icon" href="./static/images/favicon.svg"> -->
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Exchange Dealer - Detail Page</title>
+    <meta name="description" content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+    <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .footer-social a {
+            color: #fff;
+            padding: 10px;
+            border-radius: 50%;
+            background-color: #4a4a4a;
+        }
+    </style>
 </head>
 <body>
-
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://hoysu.github.io/2digitblog.github.io/">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
-      </a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
-        </a>
-        <div class="navbar-dropdown">
-<!--           <a class="navbar-item" href="https://hypernerf.github.io">
-            HyperNeRF
-          </a>
-          <a class="navbar-item" href="https://nerfies.github.io">
-            Nerfies
-          </a>
-          <a class="navbar-item" href="https://latentfusion.github.io">
-            LatentFusion
-          </a>
-          <a class="navbar-item" href="https://photoshape.github.io">
-            PhotoShape
-          </a> -->
-        </div>
-      </div>
-      
+<header class="navbar">
+    <div class="navbar-brand">
+        <a class="navbar-item logo" href="/">Research Blog</a>
     </div>
-  </div>
-</nav>
+</header>
 
 
 <section class="hero">
@@ -91,32 +41,33 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">keval and kgrammar: Offline-Ready Evaluation Frameworks for Korean AI Models</h1>
+
+          <div class="column has-text-centered">
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a>ChangYeon Kim</a><sup>1</sup>,</span>
+    <!--               <a href="https://keunhong.com">David Kim</a><sup>1</sup>,</span> -->
+                <span class="author-block">
+                  <a>Yehee Lim</a><sup>2</sup>,</span>
+    <!--               <a href="https://utkarshsinha.com">Hailey Lim</a><sup>2</sup>,</span> -->
+                <span class="author-block">
+                  <a>BumSu Jung</a><sup>2</sup>,</span>
+    <!--               <a href="https://jonbarron.info">Eric Jung</a><sup>2</sup>, -->
+                </span>
+                <span class="author-block">
+                  <a>YeonSu Ho</a><sup>2</sup></span>
+    <!--               <a href="http://sofienbouaziz.com">Sierra Ho</a><sup>2</sup>, -->
+                </span>
+                <span class="author-block">
+                  <a>YoungJun Hwang</a><sup></sup></span>
+                </span>
+              </div>
+              
+              <div class="is-size-5 publication-authors">
+                  <span class="author-block"><sup>1</sup>2Digit AI Research</span>
+              </div>
+          </div>
           
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a>Changyeon Kim</a><sup>1</sup>,</span>
-<!--               <a href="https://keunhong.com">Changyeon Kim</a><sup>1</sup>,</span> -->
-            <span class="author-block">
-              <a>Yehee Lim</a><sup>2</sup>,</span>
-<!--               <a href="https://utkarshsinha.com">Yehee Lim</a><sup>2</sup>,</span> -->
-            <span class="author-block">
-              <a>Bumsu Jung</a><sup>2</sup>,</span>
-<!--               <a href="https://jonbarron.info">Bumsu Jung</a><sup>2</sup>, -->
-            </span>
-            <span class="author-block">
-              <a>Yeonsu Ho</a><sup>2</sup></span>
-<!--               <a href="http://sofienbouaziz.com">Yeonsu Ho</a><sup>2</sup>, -->
-            </span>
-            <span class="author-block">
-              <a>Yeongjun Hwang</a><sup></sup></span>
-<!--               <a href="http://sofienbouaziz.com">Yeonsu Ho</a><sup>2</sup>, -->
-            </span>
-          </div>
-
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>2Digit AI Research</span>
-          </div>
-
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- Model Link. -->
@@ -149,16 +100,10 @@
                   <span>Code</span>
                   </a>
               </span>
-<!--               <span class="link-block">
-                <a class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span> -->
-            </div>
+            </div>   
+          </div>
 
+          <div class="column has-text-centered">
             <div class="publication-links">
               <!-- Space Link. -->
               <span class="link-block">
@@ -193,15 +138,15 @@
                   </a>
               </span>
             </div>
-          </div>
-          
+          </div>   
+
         </div>
       </div>
     </div>
   </div>
 </section>
 
-  
+
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
@@ -255,7 +200,6 @@
     </div>
   </div>
 </section>
-
 
 <section class="section">
   <div class="container is-max-desktop">
@@ -424,7 +368,7 @@
   </div>
 </section>
 
-    
+
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
@@ -1251,37 +1195,11 @@ Rating: [[2]] </pre>
 
   
 <footer class="footer">
-  <div class="container">
     <div class="content has-text-centered">
-      <a class="icon-link"
-         href="./static/videos/nerfies_paper.pdf">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
-        <i class="fab fa-github"></i>
-      </a>
+        <p>
+            <strong>Research Blog</strong> by <a href="https://github.com/davidkim205">davidkim205</a>.
+        </p>
     </div>
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-          <p>
-            This means you are free to borrow the <a
-              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
-            we just ask that you link back to this page in the footer.
-            Please remember to remove the analytics code included in the header of the website which
-            you do not want on your website.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
 </footer>
-
-
 </body>
 </html>
