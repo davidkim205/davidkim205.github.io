@@ -1,37 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AI Exchange Dealer - Detail Page</title>
-    <meta name="description" content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
-    <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
-    <style>
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        .footer-social {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-        .footer-social a {
-            color: #fff;
-            padding: 10px;
-            border-radius: 50%;
-            background-color: #4a4a4a;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>keval: Korean AI Evaluation Model</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];c
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon">
+  <!--   <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
 </head>
 <body>
-<header class="navbar">
-    <div class="navbar-brand">
-        <a class="navbar-item logo" href="/">Research Blog</a>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://hoysu.github.io/2digitblog.github.io/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+<!--           <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a> -->
+        </div>
+      </div>
+      
     </div>
-</header>
+  </div>
+</nav>
 
 
 <section class="hero">
@@ -40,21 +91,21 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">keval and kgrammar: Offline-Ready Evaluation Frameworks for Korean AI Models</h1>
-
+          
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a>David Kim</a><sup>1</sup>,</span>
-<!--               <a href="https://keunhong.com">David Kim</a><sup>1</sup>,</span> -->
+              <a>Changyeon Kim</a><sup>1</sup>,</span>
+<!--               <a href="https://keunhong.com">Changyeon Kim</a><sup>1</sup>,</span> -->
             <span class="author-block">
-              <a>Hailey Lim</a><sup>2</sup>,</span>
-<!--               <a href="https://utkarshsinha.com">Hailey Lim</a><sup>2</sup>,</span> -->
+              <a>Yehee Lim</a><sup>2</sup>,</span>
+<!--               <a href="https://utkarshsinha.com">Yehee Lim</a><sup>2</sup>,</span> -->
             <span class="author-block">
-              <a>Eric Jung</a><sup>2</sup>,</span>
-<!--               <a href="https://jonbarron.info">Eric Jung</a><sup>2</sup>, -->
+              <a>Bumsu Jung</a><sup>2</sup>,</span>
+<!--               <a href="https://jonbarron.info">Bumsu Jung</a><sup>2</sup>, -->
             </span>
             <span class="author-block">
-              <a>Sierra Ho</a><sup>2</sup></span>
-<!--               <a href="http://sofienbouaziz.com">Sierra Ho</a><sup>2</sup>, -->
+              <a>Yeonsu Ho</a><sup>2</sup></span>
+<!--               <a href="http://sofienbouaziz.com">Yeonsu Ho</a><sup>2</sup>, -->
             </span>
           </div>
 
@@ -64,67 +115,89 @@
 
           <div class="column has-text-centered">
             <div class="publication-links">
-              <!-- PDF Link. -->
+              <!-- Model Link. -->
               <span class="link-block">
-                <a class="external-link button is-normal is-rounded is-dark">
+                <a href="https://huggingface.co/collections/davidkim205/keval-2-67ac5400f5eef4984cc5dbbb"
+                  class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
+                      <i class="far fa-images"></i>
                   </span>
-                  <span>Paper</span>
-                </a>
-<!--                 <a href="https://arxiv.org/pdf/2011.12948"
+                  <span>Model</span>
+                  </a>
+              </span>
+              <!-- Paper Link. -->
+              <span class="link-block">
+                <a href="https://github.com/davidkim205/keval/blob/master/docs/technical_report.md"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
                   </span>
                   <span>Paper</span>
-                </a> -->
-              </span>
-              <span class="link-block">
-                <a class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
                 </a>
               </span>
-              <!-- Video Link. -->
-<!--               <span class="link-block">
-                <a class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
-                </a>
-              </span> -->
-              <!-- Code Link. -->
+             <!-- Code Link. -->
               <span class="link-block">
-                <a class="external-link button is-normal is-rounded is-dark">
+                <a href="https://github.com/davidkim205/keval"
+                  class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
                   </span>
                   <span>Code</span>
                   </a>
               </span>
+<!--               <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> -->
+            </div>
+
+            <div class="publication-links">
+              <!-- Space Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/spaces/davidkim205/keval-2"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span>Space(keval)</span>
+                  </a>
+              </span>
+              <span class="link-block">
+                <a href="https://huggingface.co/spaces/davidkim205/kgrammar-2"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span>Space(kgrammar)</span>
+                  </a>
+              </span>
               <!-- Dataset Link. -->
               <span class="link-block">
-                <a class="external-link button is-normal is-rounded is-dark">
+                <a href="https://huggingface.co/datasets/davidkim205/keval-testset"
+                  class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="far fa-images"></i>
                   </span>
-                  <span>Data</span>
+                  <span>Dataset(keval)</span>
+                  </a>
+              </span>
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/davidkim205/kgrammar-testset"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Dataset(kgrammar)</span>
                   </a>
               </span>
             </div>
           </div>
-
+          
         </div>
       </div>
     </div>
   </div>
 </section>
 
-
+  
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
@@ -132,6 +205,9 @@
         <div class="content has-text-justified">
           <p>
             <strong>keval</strong> and <strong>kgrammar</strong> are advanced Korean AI evaluation models, fine-tuned from Google’s Gemma-2-9b-it model and meta-llama/Llama-3.2-1B, Llama-3.2-3B models. These models are specifically designed to assess Korean AI performance efficiently, with keval excelling in providing accurate evaluations thanks to its Korean-specialized dataset. Additionally, kgrammar enhances grammatical accuracy, ensuring comprehensive evaluations for Korean AI models.
+          </p>
+          <p>
+            One of the key advantages of keval and kgrammar is their offline-ready capability, allowing users to conduct evaluations without requiring an internet connection. This makes them particularly useful in environments where data privacy is a concern or when working with restricted networks, ensuring consistent and secure AI assessments.
           </p>
           <p>
             In this article, we will explore the entire process of creating the keval and kgrammar models, from their introduction to how it can be used for evaluating Korean AI models.
@@ -148,7 +224,7 @@
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3 has-text-left">Korean AI Evaluation and keval</h2>
-
+        
         <div class="content has-text-justified">
           <p>
             Evaluating AI models has traditionally relied on domain-specific benchmarks like ARC and Hellaswag, which use question-answer pairs. However, these benchmarks often fail to capture human preference for AI-generated responses. While human evaluation provides more accurate assessments, it is costly and time-consuming.
@@ -160,8 +236,8 @@
             <strong>keval</strong> addresses these issues through the <strong><a href="https://arxiv.org/abs/2306.05685">LLM-as-a-Judge</a></strong> approach, using the <strong><a href="https://huggingface.co/datasets/davidkim205/Ko-Bench">Ko-Bench</a></strong> dataset.
           </p>
           <ul>
-            <li><strong>LLM-as-a-Judge</strong>: A method that utilizes large language models (LLMs) to evaluate AI models efficiently. It reduces time and cost compared to human evaluation while providing a more comprehensive assessment beyond traditional benchmarks.
-            <li><strong>Ko-Bench</strong>: An adaptation of MT-Bench designed specifically for Korean. By incorporating Korean linguistic, cultural, and geographical contexts, Ko-Bench ensures more precise evaluation of an AI model’s ability to understand and generate Korean.
+            <li><strong>LLM-as-a-Judge</strong>: A method that utilizes large language models (LLMs) to evaluate AI models efficiently. It reduces time and cost compared to human evaluation while providing a more comprehensive assessment beyond traditional benchmarks. </li>
+            <li><strong>Ko-Bench</strong>: An adaptation of MT-Bench designed specifically for Korean. By incorporating Korean linguistic, cultural, and geographical contexts, Ko-Bench ensures more precise evaluation of an AI model’s ability to understand and generate Korean. </li>
           </ul>
           <p>
             In addition to keval, kgrammar focuses on evaluating the grammatical accuracy of AI-generated content. While keval excels at assessing overall performance, kgrammar ensures that the content is linguistically correct, accounting for nuances in Korean grammar, which is crucial for producing high-quality AI responses.
@@ -170,7 +246,7 @@
             Through this approach, keval and kgrammar together provide a more effective and scalable solution for evaluating Korean AI models.
           </p>
         </div>
-
+        
       </div>
     </div>
   </div>
@@ -182,7 +258,7 @@
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3 has-text-left">keval and kgrammar</h2>
-
+        
         <div class="content has-text-justified">
           <p>
             keval consists of two distinct models, <strong>keval</strong> and <strong>kgrammar</strong>, each designed for a different task.
@@ -191,7 +267,7 @@
             When evaluating AI-generated responses, it is crucial not only to determine whether an answer is appropriate, accurate, and useful but also to assess its grammatical correctness. To address these aspects separately, keval uses two specialized models:
           </p>
           <ul>
-            <li><strong>keval</strong>: A model that evaluates whether a response is relevant and appropriate for the given question.
+            <li><strong>keval</strong>: A model that evaluates whether a response is relevant and appropriate for the given question. </li>
             <li><strong>kgrammar</strong>: A model that identifies grammatical errors in the response, ensuring linguistic accuracy.</li>
           </ul>
         </div>
@@ -207,7 +283,7 @@
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3 has-text-left">Training</h2>
-
+        
         <div class="content has-text-justified">
           <p>
             keval and kgrammar models are built on <strong><a href="https://huggingface.co/google/gemma-2-9b-it">Gemma-2-9b-it</a></strong> and <strong><a href="https://huggingface.co/meta-llama/Llama-3.2-1B">meta-llama/Llama-3.2-1B</a></strong> / <strong><a href="https://huggingface.co/meta-llama/Llama-3.2-3B">meta-llama/Llama-3.2-3B</a></strong>, all of which are known for their strong performance in text generation tasks.
@@ -253,6 +329,15 @@
 
 [질문] {질문}
 [답변]</pre>
+          <p>
+            For model training, we ultimately used the following dataset format, which includes questions input into a Korean AI model, the corresponding answers, and prompts for evaluating those answers.
+          </p>
+          <pre>
+{
+  "prompt": "당신은 도움이 되는 어시스턴트입니다.",
+  "input": "[지시]\n 공정한 심판으로서 아래에 표시된 사용자 질문에 대한 AI 어시스턴트의 응답 품질을 평가해주세요. 질문과 대답의 언어가 동일하지 않으면 무조건 0점입니다. 평가에서는 응답의 유용성, 관련성, 정확성, 깊이, 창의성, 상세함 등의 요소를 고려해야 합니다. 평가를 시작하기 전에 짧은 설명을 제공하세요. 가능한 한 객관적으로 평가하세요. 설명을 제공한 후 다음 형식을 엄격히 따라 1에서 10점 사이로 평가해야 합니다: \"[[rating]]\", 예를 들어: \"Rating: [[5]]\".\n\n[Question]\n다음과 같은 주가 기록을 바탕으로 2022년 매월 최고 및 최저 종가를 추출합니다. 결과를 각 월에 한 줄이 할당된 CSV 문자열로 반환합니다.\n 날짜, 시가, 고가, 저가, 종가, 거래량\n2022-01-01,150.02,155.28,148.50,153.80,15678900\n2022-01-02,154.32,157.25,153.48,156.25,19874500\n2022-02-01,160.50,163.28,159.50,161.80,14326700\n2022-02-02,161.80,164.25,161.30,163.90,17689200\n2022-03-01,165.40,168.35,163.10,166.80,16253400\n2022-03-02,167.00,169.85,165.50,168.20,19 568100\n\n[어시스턴트 답변의 시작]\nBased on the provided data, below is the CSV string with the highest and lowest closing prices for each month:\n\n```\n날짜,최고종가,최저종가\n2022-01,156.25,153.80\n2022-02,163.90,161.80\n2022-03,168.20,166.80\n```\n\nThis CSV string shows the highest and lowest closing prices for each month in 2022. The first column represents the month, the second column represents the highest closing price, and the third column represents the lowest closing price.\n[어시스턴트 답변의 끝]",
+  "output": "이 평가에서는 AI 어시스턴트의 응답이 사용자의 질문에 얼마나 잘 부합하는지를 살펴봅니다. 사용자는 2022년의 매월 최고 및 최저 종가를 추출하여 CSV 문자열로 반환해달라고 요청했습니다. AI 어시스턴트는 주어진 데이터를 바탕으로 각 월의 최고 및 최저 종가를 정확히 계산하여 CSV 형식으로 제공했습니다. 응답은 사용자의 요구에 맞게 구성되었으며, 데이터의 분석과 결과의 표현이 정확합니다. 또한, 응답은 명확하고 이해하기 쉽게 설명되어 있습니다. 다만, 질문과 응답의 언어가 다르므로 평가 기준에 따라 점수를 낮출 수밖에 없습니다.\n\nRating: [[0]]"
+} </pre>
         </div>
 
         <div class="content has-text-justified">
@@ -271,8 +356,7 @@
 ## 예시
 저는 사람입니다. 저는 100年의 경험을 가지고 있습니다. 저는 무엇이든 can do it! 저는 제가 무엇을 하는지 知道합니다.
 
-{질문}</pre>
-
+{질문}</pre>        
           <p>
             After generating error-containing documents, we apply the following prompt to analyze errors in each document and output the number of detected errors.
           </p>
@@ -296,13 +380,12 @@
 &lt;incorrect grammar&gt;n&lt;/incorrect grammar&gt;
 ```\
 (n은 오류 개수)</pre>
-
           <p>
             Here is the format of the generated error-containing documents along with the error analysis results.
           </p>
           <pre>
 가장 적은 S등급을 받은 통신사는 LG유플러스 입니다. 그들의 S등급 지역은 243곳でした. 이는 다른 두 통신사에 비해 적습니다.
-
+            
 - \"でした\"는 문장에서 일본어 표현으로, 한국어 문서의 통일성을 해치는 요소입니다.\n&lt;incorrect grammar&gt;1&lt;/incorrect grammar&gt;</pre>
 
           <p>
@@ -337,21 +420,18 @@
   </div>
 </section>
 
-
+    
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3 has-text-left">Evaluation</h2>
-
-        <div class="content has-text-justified">
-          <p>
-            The evaluation dataset consists of 22 samples, with two samples selected for each score from 0 to 10 in the training data. The keval model was assessed using two key metrics: Diff and Accuracy. keval was developed in three different sizes—1B, 3B, and 9B—and even the smaller models (1B and 3B) demonstrated performance comparable to the 9B model.
-          </p>
-        </div>
-
+        
         <div class="content has-text-justified">
           <h3 class="title is-4 has-text-left">keval</h3>
+          <p>
+            The evaluation dataset consists of 22 samples, with two samples selected for each score from 0 to 10 in the training data. The keval model was assessed using two key metrics: Diff and Accuracy. keval was developed in three different sizes—1B, 3B, and 9B—and even the smaller models (1B and 3B) demonstrated performance comparable to the 9B model. For the baseline comparison in evaluating keval, we used GPT-4o and GPT-4o-mini.
+          </p>
         </div>
 
         <div class="content has-text-justified">
@@ -392,7 +472,7 @@
             This metric provides a normalized measure of the model’s evaluation accuracy, with higher scores indicating better alignment with human-labeled judgments.
           </p>
         </div>
-
+          
         <div style="overflow-x: auto;">
           <table class="table is-bordered is-striped is-hoverable">
             <thead>
@@ -454,6 +534,24 @@
               </tr>
               <tr>
                 <td>2</td>
+                <td>gpt-4o</td>
+                <td>0 (0.0%)</td>
+                <td>54.5%</td>
+                <td>22</td>
+                <td>7 (31.8%)</td>
+                <td>10 (45.5%)</td>
+                <td>2 (9.1%)</td>
+                <td>2 (9.1%)</td>
+                <td>1 (4.5%)</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>3</td>
                 <td>keval-2-1b</td>
                 <td>0 (0.0%)</td>
                 <td>43.2%</td>
@@ -469,6 +567,24 @@
                 <td>0</td>
                 <td>0</td>
                 <td>2 (9.1%)</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>gpt-4o-mini</td>
+                <td>1 (4.5%)</td>
+                <td>36.4%</td>
+                <td>22</td>
+                <td>4 (18.2%)</td>
+                <td>8 (36.4%)</td>
+                <td>4 (18.2%)</td>
+                <td>3 (13.6%)</td>
+                <td>0</td>
+                <td>1 (4.5%)</td>
+                <td>0</td>
+                <td>1 (4.5%)</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
               </tr>
             </tbody>
           </table>
@@ -566,13 +682,146 @@
                 <td>1 (50.0%)</td>
                 <td>2 (100.0%)</td>
               </tr>
+              <tr>
+                <td>3</td>
+                <td>gpt-4o</td>
+                <td>0 (0.0%)</td>
+                <td>31.8%</td>
+                <td>22</td>
+                <td>2 (100.0%)</td>
+                <td>0</td>
+                <td>0</td>
+                <td>1 (50.0%)</td>
+                <td>0</td>
+                <td>1 (50.0%)</td>
+                <td>0</td>
+                <td>0</td>
+                <td>1 (50.0%)</td>
+                <td>0</td>
+                <td>2 (100.0%)</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>gpt-4o-mini</td>
+                <td>1 (4.5%)</td>
+                <td>18.2%</td>
+                <td>22</td>
+                <td>2 (100.0%)</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>1 (50.0%)</td>
+                <td>0</td>
+                <td>1 (50.0%)</td>
+              </tr>
             </tbody>
           </table>
         </div>
         </br>
 
         <div class="content has-text-justified">
-            <h3 class="title is-4 has-text-left">kgrammar</h3>
+          <h4 class="title is-5 has-text-left">Comparison of GPT and keval Evaluation Results</h4>
+          <p>
+            GPT performs well in evaluating the accuracy and usefulness of model responses in terms of content. However, when the input text includes code or mathematical expressions that cannot be properly represented in Korean, it tends to mistakenly identify them as errors.
+          </p>
+          <p>
+            The following is an actual test result. Although the response from the Korean AI model contains no English expressions except for code, GPT-4o incorrectly evaluated it as being written in English and assigned a score of zero due to a mismatch in response language.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5 has-text-left">Response from the Korean AI Model</h4>
+          <pre>
+[어시스턴트 답변의 시작]
+네, 이 함수에는 몇 가지 버그가 있습니다:
+
+1. 인덱싱이 잘못되었습니다: `str1[i - 1]`과 `str2[j - 1]`은 문자열의 마지막 요소가 아닌 첫 번째 요소에 대해 계산됩니다. 올바른 인덱싱은 `str1[i - 1]`과 `str2[j - 1]`이 되어야 합니다.
+
+2. 초기화가 잘못되었습니다: `dp` 테이블의 첫 번째 행과 첫 번째 열은 0이 아닌 1로 초기화되어야 합니다. 이는 첫 번째 문자열 또는 두 번째 문자열의 첫 번째 문자와 비교할 때 공통 부분 수열의 길이가 1이기 때문입니다.
+
+3. 최대값을 찾는 방법이 잘못되었습니다: 현재 구현에서는 `dp[i - 1][j]`와 `dp[i][j - 1]` 중 최대값을 찾습니다. 하지만 이 경우 `dp[i - 1][j]`와 `dp[i][j - 1]`가 아닌 `dp[i - 1][j - 1]`의 값이 이전 비교에서 업데이트되었을 수 있으므로 올바른 값이 아닙니다.
+
+다음은 수정된 버전의 함수입니다:
+
+\```python
+def longest_common_subsequence_length(str1, str2):
+ m = len(str1)
+ n = len(str2)
+
+ dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+ for i in range(1, m + 1):
+  dp[i][0] = dp[i - 1][0]
+
+ for j in range(1, n + 1):
+  dp[0][j] = dp[0][j - 1]
+
+ for i in range(1, m + 1):
+  for j in range(1, n + 1):
+   if str1[i - 1] == str2[j - 1]:
+    dp[i][j] = dp[i - 1][j - 1] + 1
+   else:
+    dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+
+ return dp[m][n]
+\```
+
+이 수정된 버전은 올바른 인덱싱, 초기화 및 최대값을 찾는 방법을 사용합니다. 이제 함수는 두 입력 문자열의 가장 긴 공통 부분 수열의 길이를 올바르게 계산합니다.
+[어시스턴트 답변의 끝] </pre>
+        </div>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5 has-text-left">GPT-4o Evaluation of the Korean AI Model's Response</h4>
+          <pre>
+### 평가
+사용자 질문에서 요구한 사항은 "**함수에서 버그를 식별할 수 있나요?**"입니다. 이와 관련하여 어시스턴트의 응답과 참조 답변을 비교한 결과, 아래와 같은 관찰이 있습니다:
+
+1. **언어 일치 문제**  
+   질문과 참조 답변 모두 한국어로 작성되어 있지만, 어시스턴트의 답변은 영어로 작성되어 있습니다. 이로 인해 응답 언어가 일치하지 않아 평가 기준에 의해 점수가 0점이 됩니다.
+
+2. **정확성 문제**  
+   - 참조 답변은 함수에 버그가 없으며 코드가 올바르게 작성되었다고 명시하고 있습니다. 따라서, 오직 들여쓰기를 수정하는 것만으로 충분하며 다른 로직적 수정은 필요하지 않습니다.
+   - 하지만 어시스턴트는 여러 비합리적인 "버그"를 만들어냈습니다. 예를 들어:
+     - `dp` 테이블의 초기화에 대한 코멘트: 처음 열과 행이 `0`으로 초기화된 것이 버그라며 `1`로 초기화해야 한다고 주장했습니다. 이는 잘못된 수정입니다. LCS 알고리즘에서는 첫 번째 열과 첫 번째 행을 `0`으로 유지하는 것이 맞습니다.
+     - 잘못된 최대값 계산 주장: 현재 코드는 동적 프로그래밍 알고리즘의 원리를 따르며, 이미 `dp[i][j] = max(dp[i-1][j], dp[i][j-1])`로 정확하게 구현되어 있습니다. 그러나 어시스턴트는 이 코드가 버그라고 잘못 진술했습니다.
+     - 불필요한 추가 작업 (`dp[i][0]` 및 `dp[0][j]`의 재초기화 부분)는 실제로 코드를 덜 효율적이게 만듭니다.
+
+3. **유용성 문제**  
+   어시스턴트의 수정된 코드는 불필요한 초기화 루프와 잘못된 논리를 포함하고 있어, 사용자가 혼란스러워할 가능성이 큽니다. 결과적으로, 어시스턴트의 답변은 문제 해결에서 유용하지 않았습니다.
+
+---
+
+### 최종 평가
+어시스턴트의 답변은 질문에 대한 요구사항과 참조 답변의 설명에 크게 벗어났으며, 추가로 언어가 일치하지 않는 문제가 있었습니다. 올바른 평가 기준에 따라 점수는:
+
+Rating: [[0]] </pre>
+        </div>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5 has-text-left">keval-2-9b Evaluation of the Korean AI Model's Response</h4>
+          <pre>
+어시스턴트의 답변은 주어진 함수에 문제가 있다고 주장하고 있습니다. 그러나 주어진 함수는 실제로 두 입력 문자열의 가장 긴 공통 부분 수열의 길이를 찾는 데 사용되는 동적 프로그래밍 접근 방식으로, 전반적으로 올바르게 구현되었습니다. 어시스턴트의 지적은 잘못된 부분이 있습니다.
+
+1. 인덱싱 문제: 어시스턴트는 인덱싱이 잘못되었다고 주장하지만, 주어진 함수에서 `str1[i - 1]`과 `str2[j - 1]`은 올바르게 사용되고 있습니다. 이는 동적 프로그래밍 테이블을 채우는 데 필요한 인덱싱입니다.
+
+2. 초기화 문제: 어시스턴트는 `dp` 테이블의 첫 번째 행과 열이 1로 초기화되어야 한다고 주장하지만, 이는 잘못된 지적입니다. LCS 문제에서 첫 번째 행과 열은 0으로 초기화되어야 하며, 이는 주어진 코드에서 올바르게 구현되었습니다.
+
+3. 최대값 찾기 문제: 어시스턴트는 최대값을 찾는 방법이 잘못되었다고 주장하지만, 주어진 코드에서 `dp[i - 1][j]`와 `dp[i][j - 1]` 중 최대값을 찾는 것은 올바른 접근 방식입니다. 이는 LCS 문제에서 현재 요소를 채울 때 이전 요소들과 비교하여 최대값을 선택하는 방식입니다.
+
+따라서 어시스턴트의 답변은 잘못된 지적을 포함하고 있으며, 주어진 함수는 올바르게 작동합니다.
+
+Rating: [[2]] </pre>
+        </div>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4 has-text-left">kgrammar</h3>
+          <p>
+            The evaluation dataset includes 80 examples: 40 general, 20 coding-related, and 20 math-related questions. For the baseline comparison in evaluating kgrammar, we used GPT-4o and GPT-4o-mini.
+          </p>
         </div>
 
         <div class="content has-text-justified">
@@ -601,7 +850,7 @@
           </ol>
         </div>
 
-        <div style="overflow-x: auto;">
+        <div style="overflow-x: auto;">    
           <table class="table is-bordered is-striped is-hoverable">
             <thead>
               <tr>
@@ -622,6 +871,7 @@
                 <th>9</th>
                 <th>10</th>
                 <th>11</th>
+                <th>12</th>
               </tr>
             </thead>
             <tbody>
@@ -629,11 +879,12 @@
                 <td>0</td>
                 <td>kgrammar-2-9b</td>
                 <td>0 (0.0%)</td>
-                <td>80.0%</td>
+                <td>77.5%</td>
                 <td>80</td>
-                <td>54 (67.5%)</td>
+                <td>52 (65.0%)</td>
                 <td>20 (25.0%)</td>
-                <td>4 (5.0%)</td>
+                <td>5 (6.2%)</td>
+                <td>1 (1.2%)</td>
                 <td>1 (1.2%)</td>
                 <td>0</td>
                 <td>1 (1.2%)</td>
@@ -648,18 +899,19 @@
                 <td>1</td>
                 <td>kgrammar-2-3b</td>
                 <td>0 (0.0%)</td>
-                <td>76.2%</td>
+                <td>74.4%</td>
                 <td>80</td>
-                <td>52 (65.0%)</td>
-                <td>18 (22.5%)</td>
-                <td>5 (6.2%)</td>
-                <td>2 (2.5%)</td>
+                <td>51 (63.7%)</td>
+                <td>17 (21.2%)</td>
+                <td>8 (10.0%)</td>
+                <td>1 (1.2%)</td>
+                <td>1 (1.2%)</td>
+                <td>0</td>
                 <td>1 (1.2%)</td>
                 <td>1 (1.2%)</td>
                 <td>0</td>
                 <td>0</td>
                 <td>0</td>
-                <td>1 (1.2%)</td>
                 <td>0</td>
                 <td>0</td>
               </tr>
@@ -667,18 +919,59 @@
                 <td>2</td>
                 <td>kgrammar-2-1b</td>
                 <td>1 (1.2%)</td>
-                <td>71.9%</td>
+                <td>67.5%</td>
                 <td>80</td>
-                <td>50 (62.5%)</td>
-                <td>15 (18.8%)</td>
-                <td>6 (7.5%)</td>
-                <td>5 (6.2%)</td>
+                <td>44 (55.0%)</td>
+                <td>20 (25.0%)</td>
+                <td>8 (10.0%)</td>
+                <td>2 (2.5%)</td>
+                <td>2 (2.5%)</td>
+                <td>1 (1.2%)</td>
                 <td>0</td>
                 <td>2 (2.5%)</td>
                 <td>0</td>
                 <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>gpt-4o</td>
+                <td>1 (1.2%)</td>
+                <td>56.9%</td>
+                <td>80</td>
+                <td>34 (42.5%)</td>
+                <td>23 (28.7%)</td>
+                <td>14 (17.5%)</td>
+                <td>3 (3.8%)</td>
+                <td>2 (2.5%)</td>
+                <td>2 (2.5%)</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>1 (1.2%)</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>gpt-4o-mini</td>
+                <td>0 (0.0%)</td>
+                <td>44.4%</td>
+                <td>80</td>
+                <td>19 (23.8%)</td>
+                <td>33 (41.2%)</td>
+                <td>18 (22.5%)</td>
+                <td>3 (3.8%)</td>
+                <td>1 (1.2%)</td>
+                <td>3 (3.8%)</td>
+                <td>0</td>
                 <td>1 (1.2%)</td>
                 <td>0</td>
+                <td>1 (1.2%)</td>
+                <td>1 (1.2%)</td>
                 <td>0</td>
                 <td>0</td>
               </tr>
@@ -700,8 +993,8 @@
             The column names (0–11) correspond to the wrong count labels in the kgrammar dataset, with each value representing the count and percentage of correctly predicted scores for that label. A higher score indicates a greater alignment between the model's predictions and the ground truth labels.
           </p>
         </div>
-
-        <div style="overflow-x: auto;">
+          
+        <div style="overflow-x: auto;">    
           <table class="table is-bordered is-striped is-hoverable">
             <thead>
               <tr>
@@ -722,6 +1015,7 @@
                 <th>9</th>
                 <th>10</th>
                 <th>11</th>
+                <th>12</th>
               </tr>
             </thead>
             <tbody>
@@ -729,13 +1023,14 @@
                 <td>0</td>
                 <td>kgrammar-2-9b</td>
                 <td>0 (0.0%)</td>
-                <td>67.5%</td>
+                <td>65.0%</td>
                 <td>80</td>
                 <td>35 (97.2%)</td>
-                <td>6 (66.7%)</td>
-                <td>8 (53.3%)</td>
-                <td>1 (33.3%)</td>
-                <td>4 (44.4%)</td>
+                <td>5 (71.4%)</td>
+                <td>7 (50.0%)</td>
+                <td>3 (37.5%)</td>
+                <td>2 (40.0%)</td>
+                <td>0</td>
                 <td>0</td>
                 <td>0</td>
                 <td>0</td>
@@ -748,18 +1043,19 @@
                 <td>1</td>
                 <td>kgrammar-2-3b</td>
                 <td>0 (0.0%)</td>
-                <td>65.0%</td>
+                <td>63.7%</td>
                 <td>80</td>
                 <td>35 (97.2%)</td>
-                <td>2 (22.2%)</td>
-                <td>8 (53.3%)</td>
-                <td>1 (33.3%)</td>
-                <td>3 (33.3%)</td>
-                <td>1 (100.0%)</td>
-                <td>0</td>
-                <td>0</td>
+                <td>2 (28.6%)</td>
+                <td>8 (57.1%)</td>
+                <td>3 (37.5%)</td>
+                <td>2 (40.0%)</td>
                 <td>1 (50.0%)</td>
-                <td>1 (100.0%)</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
                 <td>0</td>
                 <td>0</td>
               </tr>
@@ -767,17 +1063,58 @@
                 <td>2</td>
                 <td>kgrammar-2-1b</td>
                 <td>1 (1.2%)</td>
-                <td>62.5%</td>
+                <td>55.0%</td>
                 <td>80</td>
                 <td>34 (94.4%)</td>
-                <td>5 (55.6%)</td>
-                <td>6 (40.0%)</td>
-                <td>1 (33.3%)</td>
-                <td>2 (22.2%)</td>
+                <td>3 (42.9%)</td>
+                <td>4 (28.6%)</td>
+                <td>2 (25.0%)</td>
+                <td>0</td>
                 <td>0</td>
                 <td>1 (50.0%)</td>
                 <td>0</td>
-                <td>1 (50.0%)</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>gpt-4o</td>
+                <td>1 (1.2%)</td>
+                <td>42.5%</td>
+                <td>80</td>
+                <td>9 (25.0%)</td>
+                <td>6 (85.7%)</td>
+                <td>8 (57.1%)</td>
+                <td>7 (87.5%)</td>
+                <td>1 (20.0%)</td>
+                <td>2 (100.0%)</td>
+                <td>0</td>
+                <td>1 (100.0%)</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>gpt-4o-mini</td>
+                <td>0 (0.0%)</td>
+                <td>23.8%</td>
+                <td>80</td>
+                <td>1 (2.8%)</td>
+                <td>5 (71.4%)</td>
+                <td>8 (57.1%)</td>
+                <td>5 (62.5%)</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
                 <td>0</td>
                 <td>0</td>
                 <td>0</td>
@@ -796,8 +1133,8 @@
             The kgrammar models show strong error detection accuracy. The kgrammar-2-9b model performs best, with kgrammar-2-3b and kgrammar-2-1b following closely. This makes them reliable for precise grammatical evaluation.
           </p>
         </div>
-
-        <div style="overflow-x: auto;">
+          
+        <div style="overflow-x: auto;">    
           <table class="table is-bordered is-striped is-hoverable">
             <thead>
               <tr>
@@ -812,7 +1149,7 @@
               <tr>
                 <td>0</td>
                 <td>kgrammar-2-9b</td>
-                <td>95%</td>
+                <td>95.0%</td>
                 <td>0</td>
                 <td>80</td>
               </tr>
@@ -826,29 +1163,86 @@
               <tr>
                 <td>2</td>
                 <td>kgrammar-2-1b</td>
-                <td>93.7%</td>
+                <td>92.5%</td>
                 <td>1</td>
-                <td>79</td>
+                <td>80</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>gpt-4o</td>
+                <td>65.0%</td>
+                <td>1</td>
+                <td>80</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>gpt-4o-mini</td>
+                <td>55.0%</td>
+                <td>0</td>
+                <td>80</td>
               </tr>
             </tbody>
           </table>
+        </div>
+        </br>
+        
+        <div class="content has-text-justified">
+          <h4 class="title is-5 has-text-left">Comparison of GPT and kgrammar Evaluation Results</h4>
+          <p>
+            Unlike keval, which focuses on evaluating content accuracy, usefulness, and creativity, kgrammar specializes in identifying grammatical errors in Korean sentences. These errors include not only spelling and spacing mistakes but also the presence of foreign expressions in Korean documents. GPT focuses more on content evaluation, making it less effective in filtering Korean grammatical errors—the main purpose of kgrammar.
+          </p>
+          <p>
+            Below are the evaluation results of GPT-4o and kgrammar-2-9b for a document written entirely in Korean. While GPT replaces words with what it considers better expressions and counts the number of replacements rather than directly identifying errors, kgrammar-2-9b correctly determines that there are no incorrect Korean expressions in the text.
+          </p>
+        </div>
+        
+        <div class="content has-text-justified">
+          <h4 class="title is-5 has-text-left">Input Text</h4>
+          <pre>
+인보사 사건은 코오롱생명과학이 개발한 골관절염 유전자 치료제인 '인보사케이주'와 관련된 법적 문제를 일컫습니다. 이 사건은 처음에는 혁신적인 치료제로 주목받았으나, 나중에 임상시험 과정에서 성분 변경이 밝혀지며 논란이 촉발되었습니다.
+
+요약하자면, 인보사는 두 가지 성분을 혼합한 치료제인데, 그 중 하나가 예상치 못한 신장세포로 대체된 것이 드러났습니다. 이로 인해 암 발병 가능성 등 안전성 문제와 더불어 허가 과정에서의 자료 조작 및 은폐 혐의가 불거졌습니다. 한국 식약처와 미국 FDA의 조사 결과, 코오롱생명과학이 허위 자료를 제출한 정황이 밝혀졌습니다.
+
+이에 따라 관련 임원들이 기소되었으나, 최근 법원의 결정에 따라 상당수의 임원들이 보석금을 납부하고 석방된 상태입니다. 다만, 이우석 대표는 여전히 구속 상태로 남아 있으며 사건의 법적 절차는 아직 진행 중입니다. 이 사건은 의약품 허가 및 관리의 중요성을 다시 한번 환기시키며, 관련 규제와 법적 절차의 투명성에 대한 요구를 높입니다. </pre>
+        </div>
+        
+        <div class="content has-text-justified">
+          <h4 class="title is-5 has-text-left">GPT-4o Evaluation of the Input Text</h4>
+          <pre> &lt;incorrect grammar&gt; - "인보사는 두 가지 성분을 혼합한 치료제인데, 그 중 하나가 예상치 못한 신장세포로 대체된 것이 드러났습니다."  
+(문맥상 '예상치 못한'이라는 표현 대신 '제조 과정에서 신장세포로 대체된 것이 드러났다'와 같은 명확한 문장으로 수정하는 것이 문맥적으로 자연스러움) &lt;/incorrect grammar&gt;
+&lt;incorrect grammar&gt; - "한국 식약처와 미국 FDA의 조사 결과..."  
+('한국 식약처'라는 표현 대신 정확한 공식 명칭인 '식품의약품안전처'로 표기하는 것이 더 적절함) &lt;/incorrect grammar&gt;
+&lt;incorrect grammar&gt; - "이에 따라 관련 임원들이 기소되었으나, 최근 법원의 결정에 따라 상당수의 임원들이 보석금을 납부하고 석방된 상태입니다."  
+('석방된 상태입니다'라는 표현은 다소 행정적 문맥에 부적합해 보이며, '임시 석방된 상태에 있습니다'라고 수정하는 것이 더 자연스러움) &lt;/incorrect grammar&gt;
+
+&lt;wrong count&gt; 3 &lt;/wrong count&gt; </pre>
+        </div>
+        
+        <div class="content has-text-justified">
+          <h4 class="title is-5 has-text-left">kgrammar-2-9b Evaluation of the Input Text</h4>
+          <pre> &lt;incorrect grammar&gt;이 문서에는 문맥상 부자연스러운 외국어 사용이 없습니다. 모든 내용이 자연스럽고 일관되게 한국어로 작성되어 있습니다. &lt;/incorrect grammar&gt;
+            
+&lt;wrong count&gt;0&lt;/wrong count&gt; </pre>
         </div>
 
       </div>
     </div>
   </div>
 </section>
-
-
+  
+  
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3 has-text-left">Conclusion</h2>
-
+        
         <div class="content has-text-justified">
           <p>
-            keval and kgrammar are Korean AI evaluation models capable of correctly assessing the quality of model responses. It can not only be used to improve the performance of Korean language models but also helps save time and costs through an automated process. Particularly, keval, optimized for evaluating Korean language models, will contribute to the advancement of Korean AI technology.
+            keval and kgrammar are Korean AI evaluation models capable of correctly assessing the quality of model responses. They can not only be used to improve the performance of Korean language models but also help save time and costs through an automated process. Additionally, their offline-ready capability ensures reliable evaluations even in environments with limited internet access, enhancing data security and usability.
+          </p>
+          <p>
+            Particularly, keval and kgrammar, optimized for evaluating Korean language models, will contribute to the advancement of Korean AI technology by providing efficient and accurate assessments.
           </p>
         </div>
 
@@ -877,17 +1271,45 @@
             <li>[9] <a href="https://huggingface.co/davidkim205/kgrammar-2-9b">davidkim205/kgrammar-2-9b (Model)</a></li>
           </ul>
         </div>
-
+        
       </div>
     </div>
   </div>
 </section>
+
+  
 <footer class="footer">
+  <div class="container">
     <div class="content has-text-centered">
-        <p>
-            <strong>Research Blog</strong> by <a href="https://github.com/davidkim205">davidkim205</a>.
-        </p>
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
     </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </footer>
+
+
 </body>
 </html>
