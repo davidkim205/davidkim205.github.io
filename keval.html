@@ -127,7 +127,7 @@
               </span>
               <!-- Paper Link. -->
               <span class="link-block">
-                <a href="https://github.com/davidkim205/keval/blob/master/docs/technical_report.md"
+                <a href="https://davidkim205.github.io/keval.html"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -137,7 +137,7 @@
               </span>
              <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/davidkim205/keval"
+                <a href="https://github.com/davidkim205/simple-keval"
                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -441,7 +441,6 @@
           </p>
           <ul>
             <li>wrong: A metric that indicates the number of incorrectly formatted responses.</li>
-            <li>length: A metric that refers to the total number of test data points.</li>
           </ul>
           <p>
             The column names (0–10) represent the difference (n) between the labeled score and the predicted score, with the corresponding values showing the count and proportion of samples with that difference.
@@ -464,7 +463,7 @@
               </li>
               <li>Compute the final score as:
                 <ul>
-                  <li><strong>score</strong> = (total points) / (length)</li>
+                  <li><strong>score</strong> = average of total points</li>
                 </ul>
              </li>
           </ol>
@@ -481,7 +480,6 @@
                 <th>model</th>
                 <th>wrong</th>
                 <th>score</th>
-                <th>length</th>
                 <th>0</th>
                 <th>1</th>
                 <th>2</th>
@@ -501,7 +499,6 @@
                 <td>keval-2-9b</td>
                 <td>0 (0.0%)</td>
                 <td>61.4%</td>
-                <td>22</td>
                 <td>11 (50.0%)</td>
                 <td>5 (22.7%)</td>
                 <td>2 (9.1%)</td>
@@ -519,7 +516,6 @@
                 <td>keval-2-3b</td>
                 <td>0 (0.0%)</td>
                 <td>59.1%</td>
-                <td>22</td>
                 <td>10 (45.5%)</td>
                 <td>6 (27.3%)</td>
                 <td>4 (18.2%)</td>
@@ -537,7 +533,6 @@
                 <td>gpt-4o</td>
                 <td>0 (0.0%)</td>
                 <td>54.5%</td>
-                <td>22</td>
                 <td>7 (31.8%)</td>
                 <td>10 (45.5%)</td>
                 <td>2 (9.1%)</td>
@@ -555,7 +550,6 @@
                 <td>keval-2-1b</td>
                 <td>0 (0.0%)</td>
                 <td>43.2%</td>
-                <td>22</td>
                 <td>8 (36.4%)</td>
                 <td>3 (13.6%)</td>
                 <td>5 (22.7%)</td>
@@ -573,7 +567,6 @@
                 <td>gpt-4o-mini</td>
                 <td>1 (4.5%)</td>
                 <td>36.4%</td>
-                <td>22</td>
                 <td>4 (18.2%)</td>
                 <td>8 (36.4%)</td>
                 <td>4 (18.2%)</td>
@@ -613,7 +606,6 @@
                 <th>model</th>
                 <th>wrong</th>
                 <th>score</th>
-                <th>length</th>
                 <th>0</th>
                 <th>1</th>
                 <th>2</th>
@@ -633,7 +625,6 @@
                 <td>keval-2-9b</td>
                 <td>0 (0.0%)</td>
                 <td>50.0%</td>
-                <td>22</td>
                 <td>1 (50.0%)</td>
                 <td>1 (50.0%)</td>
                 <td>2 (100.0%)</td>
@@ -651,7 +642,6 @@
                 <td>keval-2-3b</td>
                 <td>0 (0.0%)</td>
                 <td>45.5%</td>
-                <td>22</td>
                 <td>2 (100.0%)</td>
                 <td>1 (50.0%)</td>
                 <td>0</td>
@@ -669,7 +659,6 @@
                 <td>keval-2-1b</td>
                 <td>0 (0.0%)</td>
                 <td>36.4%</td>
-                <td>22</td>
                 <td>0</td>
                 <td>1 (50.0%)</td>
                 <td>2 (100.0%)</td>
@@ -687,7 +676,6 @@
                 <td>gpt-4o</td>
                 <td>0 (0.0%)</td>
                 <td>31.8%</td>
-                <td>22</td>
                 <td>2 (100.0%)</td>
                 <td>0</td>
                 <td>0</td>
@@ -705,7 +693,6 @@
                 <td>gpt-4o-mini</td>
                 <td>1 (4.5%)</td>
                 <td>18.2%</td>
-                <td>22</td>
                 <td>2 (100.0%)</td>
                 <td>0</td>
                 <td>0</td>
@@ -831,7 +818,6 @@ Rating: [[2]] </pre>
           </p>
           <ul>
               <li>wrong: A metric that indicates the number of incorrectly formatted responses.</li>
-              <li>length: A metric that refers to the total number of test data points.</li>
           </ul>
           <p>
             The "wrong" column in the table is different from the "wrong count" used in kgrammar. "Wrong" refers to formatting errors, while "wrong count" includes all errors present in a sentence. Other columns containing numbers indicate the count and percentage of differences between label and predicted scores for each value.
@@ -858,7 +844,6 @@ Rating: [[2]] </pre>
                 <th>model</th>
                 <th>wrong</th>
                 <th>score</th>
-                <th>length</th>
                 <th>0</th>
                 <th>1</th>
                 <th>2</th>
@@ -880,7 +865,6 @@ Rating: [[2]] </pre>
                 <td>kgrammar-2-9b</td>
                 <td>0 (0.0%)</td>
                 <td>77.5%</td>
-                <td>80</td>
                 <td>52 (65.0%)</td>
                 <td>20 (25.0%)</td>
                 <td>5 (6.2%)</td>
@@ -900,7 +884,6 @@ Rating: [[2]] </pre>
                 <td>kgrammar-2-3b</td>
                 <td>0 (0.0%)</td>
                 <td>74.4%</td>
-                <td>80</td>
                 <td>51 (63.7%)</td>
                 <td>17 (21.2%)</td>
                 <td>8 (10.0%)</td>
@@ -920,7 +903,6 @@ Rating: [[2]] </pre>
                 <td>kgrammar-2-1b</td>
                 <td>1 (1.2%)</td>
                 <td>67.5%</td>
-                <td>80</td>
                 <td>44 (55.0%)</td>
                 <td>20 (25.0%)</td>
                 <td>8 (10.0%)</td>
@@ -940,7 +922,6 @@ Rating: [[2]] </pre>
                 <td>gpt-4o</td>
                 <td>1 (1.2%)</td>
                 <td>56.9%</td>
-                <td>80</td>
                 <td>34 (42.5%)</td>
                 <td>23 (28.7%)</td>
                 <td>14 (17.5%)</td>
@@ -960,7 +941,6 @@ Rating: [[2]] </pre>
                 <td>gpt-4o-mini</td>
                 <td>0 (0.0%)</td>
                 <td>44.4%</td>
-                <td>80</td>
                 <td>19 (23.8%)</td>
                 <td>33 (41.2%)</td>
                 <td>18 (22.5%)</td>
@@ -1002,7 +982,6 @@ Rating: [[2]] </pre>
                 <th>model</th>
                 <th>wrong</th>
                 <th>score</th>
-                <th>length</th>
                 <th>0</th>
                 <th>1</th>
                 <th>2</th>
@@ -1024,7 +1003,6 @@ Rating: [[2]] </pre>
                 <td>kgrammar-2-9b</td>
                 <td>0 (0.0%)</td>
                 <td>65.0%</td>
-                <td>80</td>
                 <td>35 (97.2%)</td>
                 <td>5 (71.4%)</td>
                 <td>7 (50.0%)</td>
@@ -1044,7 +1022,6 @@ Rating: [[2]] </pre>
                 <td>kgrammar-2-3b</td>
                 <td>0 (0.0%)</td>
                 <td>63.7%</td>
-                <td>80</td>
                 <td>35 (97.2%)</td>
                 <td>2 (28.6%)</td>
                 <td>8 (57.1%)</td>
@@ -1064,7 +1041,6 @@ Rating: [[2]] </pre>
                 <td>kgrammar-2-1b</td>
                 <td>1 (1.2%)</td>
                 <td>55.0%</td>
-                <td>80</td>
                 <td>34 (94.4%)</td>
                 <td>3 (42.9%)</td>
                 <td>4 (28.6%)</td>
@@ -1084,7 +1060,6 @@ Rating: [[2]] </pre>
                 <td>gpt-4o</td>
                 <td>1 (1.2%)</td>
                 <td>42.5%</td>
-                <td>80</td>
                 <td>9 (25.0%)</td>
                 <td>6 (85.7%)</td>
                 <td>8 (57.1%)</td>
@@ -1104,7 +1079,6 @@ Rating: [[2]] </pre>
                 <td>gpt-4o-mini</td>
                 <td>0 (0.0%)</td>
                 <td>23.8%</td>
-                <td>80</td>
                 <td>1 (2.8%)</td>
                 <td>5 (71.4%)</td>
                 <td>8 (57.1%)</td>
@@ -1142,7 +1116,6 @@ Rating: [[2]] </pre>
                 <th>model</th>
                 <th>score</th>
                 <th>wrong</th>
-                <th>length</th>
               </tr>
             </thead>
             <tbody>
@@ -1151,35 +1124,30 @@ Rating: [[2]] </pre>
                 <td>kgrammar-2-9b</td>
                 <td>95.0%</td>
                 <td>0</td>
-                <td>80</td>
               </tr>
               <tr>
                 <td>1</td>
                 <td>kgrammar-2-3b</td>
                 <td>93.8%</td>
                 <td>0</td>
-                <td>80</td>
               </tr>
               <tr>
                 <td>2</td>
                 <td>kgrammar-2-1b</td>
                 <td>92.5%</td>
                 <td>1</td>
-                <td>80</td>
               </tr>
               <tr>
                 <td>3</td>
                 <td>gpt-4o</td>
                 <td>65.0%</td>
                 <td>1</td>
-                <td>80</td>
               </tr>
               <tr>
                 <td>4</td>
                 <td>gpt-4o-mini</td>
                 <td>55.0%</td>
                 <td>0</td>
-                <td>80</td>
               </tr>
             </tbody>
           </table>
