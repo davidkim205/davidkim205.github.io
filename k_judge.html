@@ -40,7 +40,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">keval and kgrammar: Offline-Ready Evaluation Frameworks for Korean AI Models</h1>
+          <h1 class="title is-1 publication-title">K-judge: Offline-Ready Evaluation Frameworks for Korean AI Models</h1>
 
           <div class="column has-text-centered">
               <div class="is-size-5 publication-authors">
@@ -153,13 +153,14 @@
       <div class="column is-four-fifths">
         <div class="content has-text-justified">
           <p>
-            <strong>keval</strong> and <strong>kgrammar</strong> are advanced Korean AI evaluation models, fine-tuned from Google’s Gemma-2-9b-it model and meta-llama/Llama-3.2-1B, Llama-3.2-3B models. These models are specifically designed to assess Korean AI performance efficiently, with keval excelling in providing accurate evaluations thanks to its Korean-specialized dataset. Additionally, kgrammar enhances grammatical accuracy, ensuring comprehensive evaluations for Korean AI models.
+            <strong>K-judge</strong> is a comprehensive evaluation framework designed to assess the performance of Korean AI models efficiently. Built for offline usability, K-judge ensures secure and reliable AI evaluation in environments where internet access is limited or data privacy is a priority. It consists of two specialized models: keval and kgrammar, each optimized for different aspects of AI evaluation.
           </p>
+          <ul>
+            <li><strong>keval</strong> is designed to evaluate AI-generated responses based on their appropriateness, accuracy, and relevance to the given question. Fine-tuned on a Korean-specialized dataset, keval provides precise assessments tailored for Korean AI models.</li>
+            <li><strong>kgrammar</strong> focuses on detecting grammatical errors in AI responses. It ensures linguistic accuracy by identifying mistakes, making it a valuable tool for evaluating the language quality of Korean AI-generated text.</li>
+          </ul>
           <p>
-            One of the key advantages of keval and kgrammar is their offline-ready capability, allowing users to conduct evaluations without requiring an internet connection. This makes them particularly useful in environments where data privacy is a concern or when working with restricted networks, ensuring consistent and secure AI assessments.
-          </p>
-          <p>
-            In this article, we will explore the entire process of creating the keval and kgrammar models, from their introduction to how it can be used for evaluating Korean AI models.
+            In this article, we will explore the development and application of K-judge, detailing how keval and kgrammar contribute to the evaluation of Korean AI models.
           </p>
         </div>
       </div>
@@ -172,7 +173,7 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3 has-text-left">Korean AI Evaluation and keval</h2>
+        <h2 class="title is-3 has-text-left">Improving Korean AI Evaluation with K-judge</h2>
         
         <div class="content has-text-justified">
           <p>
@@ -181,45 +182,34 @@
           <p>
             Korean language models face additional challenges. Most existing benchmarks are designed for English, and Korean-specific datasets are scarce. Translating English datasets into Korean is an option, but simple translation fails to reflect the nuances of the Korean language.
           </p>
-          <p>
-            <strong>keval</strong> addresses these issues through the <strong><a href="https://arxiv.org/abs/2306.05685">LLM-as-a-Judge</a></strong> approach, using the <strong><a href="https://huggingface.co/datasets/davidkim205/Ko-Bench">Ko-Bench</a></strong> dataset.
-          </p>
-          <ul>
-            <li><strong>LLM-as-a-Judge</strong>: A method that utilizes large language models (LLMs) to evaluate AI models efficiently. It reduces time and cost compared to human evaluation while providing a more comprehensive assessment beyond traditional benchmarks. </li>
-            <li><strong>Ko-Bench</strong>: An adaptation of MT-Bench designed specifically for Korean. By incorporating Korean linguistic, cultural, and geographical contexts, Ko-Bench ensures more precise evaluation of an AI model’s ability to understand and generate Korean. </li>
-          </ul>
-          <p>
-            In addition to keval, kgrammar focuses on evaluating the grammatical accuracy of AI-generated content. While keval excels at assessing overall performance, kgrammar ensures that the content is linguistically correct, accounting for nuances in Korean grammar, which is crucial for producing high-quality AI responses.
-          </p>
-          <p>
-            Through this approach, keval and kgrammar together provide a more effective and scalable solution for evaluating Korean AI models.
-          </p>
         </div>
-        
-      </div>
-    </div>
-  </div>
-</section>
 
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3 has-text-left">keval and kgrammar</h2>
-        
+        <h3 class="title is-4 has-text-left">K-judge: A Comprehensive Korean AI Evaluation Framework</h3>
+
         <div class="content has-text-justified">
           <p>
-            keval consists of two distinct models, <strong>keval</strong> and <strong>kgrammar</strong>, each designed for a different task.
-          </p>
-          <p>
-            When evaluating AI-generated responses, it is crucial not only to determine whether an answer is appropriate, accurate, and useful but also to assess its grammatical correctness. To address these aspects separately, keval uses two specialized models:
+            <strong>K-judge</strong> addresses these challenges by leveraging the <strong><a href="https://arxiv.org/abs/2306.05685">LLM-as-a-Judge</a></strong> approach and the <strong><a href="https://huggingface.co/datasets/davidkim205/Ko-Bench">Ko-Bench</a></strong> dataset through its models.
           </p>
           <ul>
-            <li><strong>keval</strong>: A model that evaluates whether a response is relevant and appropriate for the given question. </li>
-            <li><strong>kgrammar</strong>: A model that identifies grammatical errors in the response, ensuring linguistic accuracy.</li>
+            <li><strong>LLM-as-a-Judge</strong>: A method that utilizes large language models (LLMs) to evaluate AI models efficiently. It reduces time and cost compared to human evaluation while providing a more comprehensive assessment beyond traditional benchmarks.</li>
+            <li><strong>Ko-Bench</strong>: An adaptation of MT-Bench designed specifically for Korean. By incorporating Korean linguistic, cultural, and geographical contexts, Ko-Bench ensures more precise evaluation of an AI model’s ability to understand and generate Korean.</li>
           </ul>
         </div>
 
+        <h3 class="title is-4 has-text-left">Components of K-judge: keval & kgrammar</h3>
+
+        <div class="content has-text-justified">
+          <p>
+            As part of K-judge, <strong>keval</strong> focuses on assessing the <strong>appropriateness, accuracy, and usefulness</strong> of AI-generated responses. By using a Korean-specialized dataset, keval ensures that responses align with human expectations and task requirements.
+          </p>
+          <p>
+            Complementing keval, <strong>kgrammar</strong> specializes in evaluating <strong>grammatical accuracy</strong>. It detects errors in AI-generated Korean text while ensuring linguistic correctness. Unlike keval, kgrammar does not assess response accuracy or usefulness but focuses solely on grammatical correctness.
+          </p>
+          <p>
+            By combining keval’s performance assessment with kgrammar’s grammatical evaluation, K-judge provides a more effective and scalable solution for evaluating Korean AI models. This offline-ready framework offers a secure, cost-effective, and high-quality approach to AI evaluation, making it ideal for privacy-sensitive or restricted environments.
+          </p>
+        </div>
+        
       </div>
     </div>
   </div>
@@ -234,13 +224,13 @@
         
         <div class="content has-text-justified">
           <p>
-            keval and kgrammar models are built on <strong><a href="https://huggingface.co/google/gemma-2-9b-it">Gemma-2-9b-it</a></strong> and <strong><a href="https://huggingface.co/meta-llama/Llama-3.2-1B">meta-llama/Llama-3.2-1B</a></strong> / <strong><a href="https://huggingface.co/meta-llama/Llama-3.2-3B">meta-llama/Llama-3.2-3B</a></strong>, all of which are known for their strong performance in text generation tasks.
+            The keval and kgrammar models are built on <strong><a href="https://huggingface.co/google/gemma-2-9b-it">Gemma-2-9b-it</a></strong> and <strong><a href="https://huggingface.co/meta-llama/Llama-3.2-1B">meta-llama/Llama-3.2-1B</a></strong> / <strong><a href="https://huggingface.co/meta-llama/Llama-3.2-3B">meta-llama/Llama-3.2-3B</a></strong>, all of which are known for their strong performance in text generation tasks.
           </p>
           <p>
             Gemma-2 was selected not only for its capabilities in areas like question answering, summarization, and reasoning but also for its commercially-friendly license, which allows for innovation sharing and AI commercialization. Among the Gemma-2 models, the 9B variant demonstrates <a href="https://storage.googleapis.com/deepmind-media/gemma/gemma-2-report.pdf">exceptional performance</a> relative to other models of similar size. Despite its power, its relatively small size makes it highly versatile, enabling deployment in resource-constrained environments such as laptops, desktops, and cloud-based systems.
           </p>
           <p>
-            For smaller base models, the meta-llama/Llama-3.2-1B and meta-llama/Llama-3.2-3B Lightweight models were utilized. They are smaller size, making them relatively faster for deployment compared to larger models, while still providing strong performance across a variety of NLP tasks. These models enhance keval’s flexibility, providing options for more resource-efficient deployments while maintaining high performance.
+            For smaller base models, the meta-llama/Llama-3.2-1B and meta-llama/Llama-3.2-3B Lightweight models were utilized. They are smaller size, making them relatively faster for deployment compared to larger models, while still providing strong performance across a variety of NLP tasks. These models enhance K-judge’s flexibility, providing options for more resource-efficient deployments while maintaining high performance.
           </p>
         </div>
 
@@ -291,13 +281,13 @@
         <div class="content has-text-justified">
           <h4 class="title is-5 has-text-left">kgrammar</h4>
           <p>
-            The goal of kgrammar is to identify grammatical errors in a given Korean text and output the number of detected errors. Similar to keval, it detects foreign language usage within a Korean response as an error. However, kgrammar does not assess the accuracy or usefulness of the response.
+            The goal of kgrammar is to identify grammatical errors in Korean text and quantify them. Like keval, it flags foreign words within Korean responses as errors. However, it does not evaluate the accuracy or relevance of the response.
           </p>
           <p>
-            Training the kgrammar model requires input documents containing errors and corresponding error analysis results. The training data was generated using GPT-4o.
+            Training kgrammar requires error-containing texts along with corresponding error analysis data. The training dataset was generated using GPT-4o.
           </p>
           <p>
-            To generate error-containing documents, we used the following prompt to introduce errors into responses when given a question. The dataset consists of 50% general questions, 25% math-related questions, and 25% coding-related questions to ensure that mathematical expressions and code are not mistakenly detected as errors.
+            To generate error-containing documents, we used the following prompt to introduce errors into responses when given a question. To prevent mathematical expressions and code from being misclassified as errors, the dataset includes 50% general questions, 25% math-related questions, and 25% coding-related questions.
           </p>
           <pre>
 예시와 같이 다음 질문에 한글 외 문자가 포함된 문장으로 답변하세요. 태국어, 영어, 러시아어 등 다양한 언어를 무작위로 선택하세요.
@@ -350,16 +340,16 @@
         <div class="content has-text-justified">
           <h3 class="title is-4 has-text-left">Fine-Tuning</h3>
           <p>
-            The development of keval incorporated both <strong>Supervised Fine-Tuning (SFT)</strong> and <strong>Direct Preference Optimization (DPO)</strong> to enhance its evaluation accuracy and alignment with human judgment.
+            The development of K-judge’s keval and kgrammar models incorporated both <strong>Supervised Fine-Tuning (SFT)</strong> and <strong>Direct Preference Optimization (DPO)</strong> to enhance its evaluation accuracy and alignment with human judgment.
           </p>
           <p>
-            SFT is a technique that trains a model using labeled data, allowing it to learn correct responses for given inputs and improve performance on specific tasks. To strengthen keval’s evaluation capabilities, we conducted additional SFT using a Korean evaluation dataset, ensuring the model could better assess responses in a Korean-language context.
+            SFT involves training a model with labeled data, enabling it to learn correct responses for specific inputs and improve its performance on evaluation tasks. To strengthen K-judge’s ability to assess Korean AI responses, we conducted additional SFT using a Korean-specific evaluation dataset, ensuring more accurate and context-aware assessments.
           </p>
           <p>
-            DPO further refines the model by optimizing responses based on user preferences. Instead of simply learning correct answers, it enables the model to distinguish between higher- and lower-quality responses through relative comparisons. By applying DPO, keval was further optimized to make more reliable and human-like judgments in its evaluations.
+            DPO further refines the models by optimizing responses based on user preferences. Instead of simply learning correct answers, DPO allows K-judge’s models to differentiate between higher- and lower-quality responses through comparative evaluation. By incorporating DPO, keval and kgrammar were fine-tuned to provide more consistent and human-like judgments.
           </p>
           <p>
-            By integrating SFT and DPO, keval demonstrated enhanced alignment with expert evaluations, reducing discrepancies between AI and human-assigned scores. This combination ensures that keval not only understands correct answers but also makes more human-like judgments when evaluating AI-generated content.
+            By integrating both SFT and DPO, K-judge achieved improved alignment with expert evaluations, minimizing discrepancies between AI-generated scores and human assessments. This combination ensures that keval and kgrammar not only recognize correct answers but also evaluate AI-generated content in a way that closely mirrors human judgment.
           </p>
         </div>
 
@@ -378,20 +368,20 @@
         <div class="content has-text-justified">
           <h3 class="title is-4 has-text-left">keval</h3>
           <p>
-            The evaluation dataset consists of 22 samples, with two samples selected for each score from 0 to 10 in the training data. The keval model was assessed using two key metrics: Diff and Accuracy. keval was developed in three different sizes—1B, 3B, and 9B—and even the smaller models (1B and 3B) demonstrated performance comparable to the 9B model. For the baseline comparison in evaluating keval, we used GPT-4o and GPT-4o-mini.
+            The evaluation dataset consists of 22 samples, with two samples selected for each score from 0 to 10 in the training data. The keval model was assessed using two key metrics: Diff and Accuracy. keval was developed in three sizes—1B, 3B, and 9B. Even the smaller models (1B and 3B) demonstrated performance comparable to the 9B model. For baseline evaluation, keval was compared against GPT-4o and GPT-4o-mini.
           </p>
         </div>
 
         <div class="content has-text-justified">
           <h4 class="title is-5 has-text-left">Diff</h4>
           <p>
-            <strong>Diff</strong> is a metric that represents the difference between the labeled score and the predicted score.
+            <strong>Diff</strong> measures the difference between the labeled and predicted scores.
           </p>
           <ul>
-            <li>wrong: A metric that indicates the number of incorrectly formatted responses.</li>
+            <li>wrong: The number of incorrectly formatted responses.</li>
           </ul>
           <p>
-            The column names (0–10) represent the difference (n) between the labeled score and the predicted score, with the corresponding values showing the count and proportion of samples with that difference.
+            The column (0–10) represent the difference (n) between the labeled and predicted score, with each value showing the count and proportion of samples for that difference.
           </p>
         </div>
 
@@ -538,11 +528,11 @@
             <strong>Accuracy</strong> measures the ratio of correct predictions to the total predictions.
           </p>
           <ul>
-            <li>score: A metric represents the proportion of correctly predicted labels, calculated as the number of correct predictions divided by the total dataset size.</li>
-            <li>wrong: A metric indicates the number and proportion of responses with incorrect formatting.</li>
+            <li>score: The percentage of correctly predicted labels, calculated as the number of correct predictions divided by the total dataset size.</li>
+            <li>wrong: The number and proportion of responses with incorrect formatting.</li>
           </ul>
           <p>
-            The column names (0–10) correspond to Ko-Bench scores, with each value representing the count and percentage of correctly predicted scores for that label. A higher score indicates a greater alignment between the model's predictions and the ground truth labels.
+            The column (0–10) correspond to Ko-Bench scores, with each value representing the count and percentage of correctly predicted scores for that label. A higher score indicates a greater alignment between the model's predictions and the ground truth labels.
           </p>
         </div>
 
@@ -661,10 +651,10 @@
         <div class="content has-text-justified">
           <h4 class="title is-5 has-text-left">Comparison of GPT and keval Evaluation Results</h4>
           <p>
-            GPT performs well in evaluating the accuracy and usefulness of model responses in terms of content. However, when the input text includes code or mathematical expressions that cannot be properly represented in Korean, it tends to mistakenly identify them as errors.
+            GPT excels at assessing the accuracy and usefulness of model responses. However, it struggles with Korean input containing code or mathematical expressions, often misclassifying them as errors.
           </p>
           <p>
-            The following is an actual test result. Although the response from the Korean AI model contains no English expressions except for code, GPT-4o incorrectly evaluated it as being written in English and assigned a score of zero due to a mismatch in response language.
+            The following is an actual test result. Although the Korean AI model's response contained no English expressions aside from code, GPT-4o incorrectly classified it as an English response and assigned a score of zero due to a language mismatch.
           </p>
         </div>
 
@@ -755,20 +745,20 @@ Rating: [[2]] </pre>
         <div class="content has-text-justified">
           <h3 class="title is-4 has-text-left">kgrammar</h3>
           <p>
-            The evaluation dataset includes 80 examples: 40 general, 20 coding-related, and 20 math-related questions. For the baseline comparison in evaluating kgrammar, we used GPT-4o and GPT-4o-mini.
+            The evaluation dataset consists of 80 samples: 40 general questions, 20 coding-related questions, and 20 math-related questions. To benchmark kgrammar’s performance, we compared it against GPT-4o and GPT-4o-mini.
           </p>
         </div>
 
         <div class="content has-text-justified">
           <h4 class="title is-5 has-text-left">Diff</h4>
           <p>
-            <strong>Diff</strong> refers to the difference between the label scores and predicted scores, represented as a score. Unlike keval, which calculates it based on Ko-Bench scores ranging from 0 to 10, kgrammar uses the number of detected errors(wrong count).
+            <strong>Diff</strong> refers to the difference between the label and predicted wrong count scores, represented as a score. Unlike keval, which calculates it based on Ko-Bench scores ranging from 0 to 10, kgrammar measures the number of detected grammatical errors.
           </p>
           <ul>
-              <li>wrong: A metric that indicates the number of incorrectly formatted responses.</li>
+              <li>wrong: The number of incorrectly formatted responses.</li>
           </ul>
           <p>
-            The "wrong" column in the table is different from the "wrong count" used in kgrammar. "Wrong" refers to formatting errors, while "wrong count" includes all errors present in a sentence. Other columns containing numbers indicate the count and percentage of differences between label and predicted scores for each value.
+            The wrong column in the table is different from the wrong count used in kgrammar. While <strong>wrong</strong> refers to formatting errors, <strong>wrong count</strong> indicates all grammatical errors found in a sentence. Other numeric columns represent the count and percentage of samples with each difference between the labeled and predicted wrong count.
           </p>
         </div>
 
@@ -778,9 +768,19 @@ Rating: [[2]] </pre>
             The score is calculated based on how closely the predicted wrong count matches the labeled wrong count:
           </p>
           <ol>
-              <li>Calculating the difference between the label and predicted value inside the <wrong count> tag for each pair.</li>
-              <li>Assigning full points for a difference of 0, and half a point for a difference of 1.</li>
-              <li>The total score is the sum of all points divided by the number of data points.</li>
+              <li>Calculate the difference between the labeled and predicted values in the tag for each sample.</li>
+              <li>Assign points based on the difference:
+                <ul>
+                  <li>A difference of <strong>0</strong> → <strong>1 point</strong></li>
+                  <li>A difference of <strong>1</strong> → <strong>0.5 points</strong></li>
+                  <li>Any other difference → <strong>0 points</strong></li>
+                </ul>
+              </li>
+              <li>Compute the final score as:
+                <ul>
+                  <li><strong>score</strong> = (total points) / (length)</li>
+                </ul>
+              </li>
           </ol>
         </div>
 
@@ -914,8 +914,8 @@ Rating: [[2]] </pre>
             <strong>Accuracy</strong> measures the ratio of correct predictions to the total predictions.
           </p>
           <ul>
-            <li>score: A metric represents the proportion of correctly predicted labels, calculated as the number of correct predictions divided by the total dataset size.</li>
-            <li>wrong: A metric indicates the number and proportion of responses with incorrect formatting.</li>
+            <li>score: The proportion of correctly predicted labels, calculated as the number of correct predictions divided by the total dataset size.</li>
+            <li>wrong: The number and proportion of responses with incorrect formatting.</li>
           </ul>
           <p>
             The column names (0–11) correspond to the wrong count labels in the kgrammar dataset, with each value representing the count and percentage of correctly predicted scores for that label. A higher score indicates a greater alignment between the model's predictions and the ground truth labels.
@@ -1049,10 +1049,10 @@ Rating: [[2]] </pre>
         <div class="content has-text-justified">
           <h4 class="title is-5 has-text-left">Error Detection Accuracy</h4>
           <p>
-            <strong>Error Detection Accuracy</strong> evaluates a model's error detection performance by measuring how well it identifies the presence or absence of errors. It differs from conventional accuracy by focusing on correct and incorrect error predictions rather than overall classification correctness.
+            <strong>Error Detection Accuracy</strong> measures a model's ability to correctly identify whether an error is present in a given text. Unlike conventional accuracy metrics that assess overall classification correctness, this metric specifically focuses on the precision of error predictions.
           </p>
           <p>
-            The kgrammar models show strong error detection accuracy. The kgrammar-2-9b model performs best, with kgrammar-2-3b and kgrammar-2-1b following closely. This makes them reliable for precise grammatical evaluation.
+            The kgrammar models demonstrate strong performance in detecting grammatical errors. Among them, kgrammar-2-9b achieves the highest accuracy, with kgrammar-2-3b and kgrammar-2-1b performing comparably well. Due to their strong performance in detecting grammatical errors, all kgrammar models serve as reliable tools for precise grammatical evaluation.
           </p>
         </div>
           
@@ -1105,10 +1105,10 @@ Rating: [[2]] </pre>
         <div class="content has-text-justified">
           <h4 class="title is-5 has-text-left">Comparison of GPT and kgrammar Evaluation Results</h4>
           <p>
-            Unlike keval, which focuses on evaluating content accuracy, usefulness, and creativity, kgrammar specializes in identifying grammatical errors in Korean sentences. These errors include not only spelling and spacing mistakes but also the presence of foreign expressions in Korean documents. GPT focuses more on content evaluation, making it less effective in filtering Korean grammatical errors—the main purpose of kgrammar.
+            Unlike keval, which focuses on evaluating content accuracy, usefulness, and creativity, kgrammar specializes in identifying grammatical errors in Korean sentences. These errors include not only spelling and spacing mistakes but also foreign expressions within Korean text. GPT focuses more on content evaluation, making it less effective in detecting Korean grammatical errors—the main purpose of kgrammar.
           </p>
           <p>
-            Below are the evaluation results of GPT-4o and kgrammar-2-9b for a document written entirely in Korean. While GPT replaces words with what it considers better expressions and counts the number of replacements rather than directly identifying errors, kgrammar-2-9b correctly determines that there are no incorrect Korean expressions in the text.
+            Below are the evaluation results of GPT-4o and kgrammar-2-9b for a document written entirely in Korean. While GPT replaces words with what it considers better expressions and counts the number of replacements rather than directly identifying errors, kgrammar-2-9b correctly determines that there are no grammatical errors in the text.
           </p>
         </div>
         
@@ -1155,10 +1155,19 @@ Rating: [[2]] </pre>
         
         <div class="content has-text-justified">
           <p>
-            keval and kgrammar are Korean AI evaluation models capable of correctly assessing the quality of model responses. They can not only be used to improve the performance of Korean language models but also help save time and costs through an automated process. Additionally, their offline-ready capability ensures reliable evaluations even in environments with limited internet access, enhancing data security and usability.
+            <strong>K-judge</strong> is an evaluation system that includes keval and kgrammar, designed for the accurate evaluation of Korean AI models. It not only enhances the quality and reliability of Korean language models but also reduces time and costs through an automated evaluation process. Additionally, its offline-ready capability ensures reliable evaluations even in environments with limited internet access, enhancing data security and usability.
           </p>
           <p>
-            Particularly, keval and kgrammar, optimized for evaluating Korean language models, will contribute to the advancement of Korean AI technology by providing efficient and accurate assessments.
+            K-judge contributes to the advancement of Korean AI technology in several ways:
+            <ul>
+              <li>Delivering automated feedback for fine-tuning AI models, enabling them to optimize their performance.</li>
+              <li>Identifying linguistic errors and inconsistencies in AI-generated text, aiding developers in debugging and refinement.</li>
+              <li>Facilitating deployment in resource-constrained environments, ensuring broader accessibility of AI evaluation.</li>
+              <li>Providing a reliable framework for evaluating Korean language models, enabling objective performance comparisons.</li>
+            </ul>
+          </p>
+          <p>
+            With these capabilities, K-judge is not just a tool for evaluating Korean AI models—it lays the foundation for future advancements, driving continuous innovation and excellence in Korean AI technology.
           </p>
         </div>
 
