@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Exchange Dealer - Detail Page</title>
+    <meta name="description" content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+    <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .footer-social a {
+            color: #fff;
+            padding: 10px;
+            border-radius: 50%;
+            background-color: #4a4a4a;
+        }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <div class="navbar-brand">
+        <a class="navbar-item logo" href="/">Research Blog</a>
+    </div>
+</header>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">KO-BENCH: A benchmark dataset designed to evaluate LLM's proficiency in the korean language</h1>
+
+          <div class="column has-text-centered">
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a href="https://github.com/davidkim205">ChangYeon Kim</a><sup>1</sup>
+                </span>
+                <span class="author-block">
+                  <a href="https://github.com/Doleeee">YeHee Lim</a><sup>1</sup>
+                </span>
+                <span class="author-block">
+                  <a href="https://github.com/sudog1">BumSu Jung</a><sup>1</sup>
+                </span>
+                <span class="author-block">
+                  <a href="https://github.com/hoysu">YeonSu Ho</a><sup>1</sup>
+                </span>
+                <span class="author-block">
+                  <a href="">YoungJun Hwang</a><sup>1</sup>
+                </span>
+              </div>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <sup>1</sup>2Digit AI Research
+                </span>
+              </div>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- Paper Link. -->
+              <span class="link-block">
+                <a href="https://davidkim205.github.io/ko_bench.html"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+             <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/davidkim205/ko-bench"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Space Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/spaces/davidkim205/ko-bench"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span>Leaderboard</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/davidkim205/ko-bench"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Dataset(keval)</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+              With the emergence of various large language models (LLMs) such as GPT, Gemma, and LLaMA, effectively leveraging these models has become crucial for improving work efficiency and other key aspects. However, to utilize LLMs for different tasks, it is necessary to have models optimized for specific requirements. As a result, evaluating and comparing the capabilities of LLMs across various categories has become an increasingly important issue.
+          </p>
+          <p>
+              This report introduces <strong>Ko-Bench</strong>, a benchmark dataset designed to evaluate different LLMs. Ko-Bench provides a new set of criteria for assessing LLMs' proficiency in the Korean language, enabling more objective and reliable evaluations in the context of the Korean language.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">Existing Datasets</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            To evaluate various LLMs, it is essential to present the same set of questions to all models for a fair comparison. This requires systematically curated benchmark datasets. Several well-established benchmark datasets are commonly used to evaluate LLM performance across various aspects. These benchmarks serve as valuable references for selecting models suitable for specific tasks. Below are some of the major existing benchmarks created for LLM evaluation.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4 has-text-left">1. MT-Bench (Multi-Turn Benchmark)</h3>
+          <p>
+            MT-Bench is a benchmark designed to evaluate the conversational capabilities of LLMs, with a focus on multi-turn dialogues. It assesses the logical consistency, creativity, and reasoning abilities of models in extended conversations. The multi-turn dialogue format is used to reflect real-world interactions more accurately, providing a more comprehensive evaluation of LLMs' capabilities.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4 has-text-left">2. MMLU (Massive Multitask Language Understanding)</h3>
+          <p>
+            MMLU is a benchmark that evaluates LLMs' knowledge and comprehension across a wide range of academic fields, including science, history, law, and mathematics. It consists of 57 diverse categories, covering both simple factual questions and complex problems requiring deep understanding, making it a widely used standard for general language model evaluation.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4 has-text-left">3. HELM (Holistic Evaluation of Language Models)</h3>
+          <p>
+            HELM is a benchmark that provides a comprehensive evaluation of LLMs, incorporating multiple key metrics such as accuracy, fairness, bias, and efficiency. Additionally, it assesses model performance across specific domains such as news, healthcare, and law, emphasizing real-world applicability.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4 has-text-left">4. Other Benchmarks</h3>
+          <ul>
+              <li>ARC (AI2 Reasoning Challenge): Evaluates the logical reasoning abilities of LLMs using elementary and middle school science problems.</li>
+              <li>TruthfulQA: Measures how well a model generates factually accurate responses.</li>
+              <li>BBQ (Bias Benchmark for Question Answering): Assesses biases present in LLMs' responses.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">Ko-Bench Dataset</h2>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4 has-text-left">What is Ko-Bench?</h3>
+          <p>
+            Ko-Bench is a benchmark designed to evaluate the performance of Korean language models. It was developed to address the limitations of existing LLM evaluation datasets, which often fail to provide accurate assessments in the Korean context. By establishing more objective and finely-tuned evaluation criteria for Korean LLMs, Ko-Bench enables more reliable performance comparisons. It is based on the <a href="https://github.com/lm-sys/FastChat/blob/main/fastchat/llm_judge/data/mt_bench/question.jsonl">MT-Bench</a> dataset, but has been translated into Korean and enhanced by modifying and adding questions to reflect the characteristics of the Korean language and culture. This makes it possible to more accurately evaluate LLMs in the Korean-language environment. Similar to MT-Bench, Ko-Bench consists of 8 categories, with 10 questions per category, totaling 80 questions. Each question follows a multi-turn format, meaning all interactions are structured in two consecutive turns, just like MT-Bench.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4 has-text-left">How Ko-Bench Was Created</h3>
+          <p>
+            Ko-Bench is based on MT-Bench but has been restructured with evaluation criteria optimized for the Korean language environment. To achieve this, the following modifications were applied.
+          </p>
+          <ol>
+              <li>Incorporating Geographical and Cultural Elements: Foreign place names, such as "Hawaii," were replaced with Korean landmarks like "Jeju Island" to ensure that Korean LLMs can naturally reflect geographical and cultural aspects in their responses.</li>
+              <li>Enhancing Linguistic Naturalness: Foreign words and expressions such as "casual" and "limerick" were adapted to better fit Korean linguistic conventions, ensuring that questions sound natural in a Korean-language context.</li>
+              <li>Localization of Roleplay Scenarios: Well-known international figures like "Elon Musk" and "Sheldon" were replaced with Korean celebrities such as "Cheon Song-yi" (from the drama My Love from the Star) and "Yoo Jae-suk", allowing the model to be evaluated on its ability to mimic Korean personalities' speech patterns and styles.</li>
+              <li>Applying Korean Standards: Elements such as currency units, names, variable names, company names, and job titles were adjusted to align with Korean conventions, ensuring that models generate contextually appropriate responses in a Korean setting.</li>
+          </ol>
+        </div>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4 has-text-left">Ko-Bench Examples</h3>
+          <p>
+            The following provides a description of each category along with example tasks from the Ko-Bench dataset.
+          </p>
+          <ol>
+              <li>Coding: Evaluates the LLM’s coding ability by requiring it to interpret Korean-language instructions and generate the corresponding code that aligns with the given intent.</li>
+              <li>Extraction: Assesses the LLM’s ability to extract and process data according to the given Korean-language prompt, ensuring that the output is correctly formatted.</li>
+              <li>Humanities: Tests the model’s comprehension of various humanities-related questions in Korean, requiring it to understand and provide detailed explanations.</li>
+              <li>Math: Measures the LLM’s ability to understand Korean-language math problems, explain the appropriate solution method, and provide the correct answer.</li>
+              <li>Reasoning: Evaluates the model’s logical reasoning skills by requiring it to infer hidden meanings and respond accordingly in Korean.</li>
+              <li>Roleplay: Assesses the model’s ability to accurately mimic well-known Korean personalities and their distinct speech styles, ensuring it can effectively engage in roleplay scenarios based on Korean linguistic and cultural characteristics.</li>
+              <li>STEM: Tests the model’s understanding of science, technology, engineering, and mathematics (STEM) topics, requiring it to provide clear and accurate explanations in Korean.</li>
+              <li>Writing: Examines the model’s ability to Utilize Korean grammar structures effectively in writing, Produce fact-based content related to Korea, Demonstrate creativity and wit in written responses using Korean.</li>
+          </ol>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">Evaluating LLMs Using the Ko-Bench Dataset</h2>
+
+        <div class="content has-text-justified">
+          <p>
+              Ko-Bench is a benchmark designed to evaluate the performance of Korean language models. It was developed to address the limitations of existing LLM evaluation datasets, which often fail to provide accurate assessments in the Korean context. By establishing more objective and finely-tuned evaluation criteria for Korean LLMs, Ko-Bench enables more reliable performance comparisons. It is based on the <a href="https://github.com/lm-sys/FastChat/blob/main/fastchat/llm_judge/data/mt_bench/question.jsonl">MT-Bench</a> dataset, but has been translated into Korean and enhanced by modifying and adding questions to reflect the characteristics of the Korean language and culture. This makes it possible to more accurately evaluate LLMs in the Korean-language environment. Similar to MT-Bench, Ko-Bench consists of 8 categories, with 10 questions per category, totaling 80 questions. Each question follows a multi-turn format, meaning all interactions are structured in two consecutive turns, just like MT-Bench.
+          </p>
+          <p>
+              Additionally, the leaderboard provides a detailed breakdown of category-wise scores, allowing for an in-depth comparison of each model's performance across different evaluation metrics.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">References</h2>
+
+        <div class="content has-text-justified">
+          <ul>
+            <li>[1] <a href="https://arxiv.org/abs/2306.05685">MT-Bench (Multi-Turn Benchmark)</a></li>
+            <li>[2] <a href="https://paperswithcode.com/dataset/mmlu">MMLU (Massive Multitask Language Understanding)</a></li>
+            <li>[3] <a href="https://crfm.stanford.edu/helm/lite/latest/">HELM (Holistic Evaluation of Language Models)</a></li>
+            <li>[4] <a href="https://allenai.org/data/arc">ARC (AI2 Reasoning Challenge)</a></li>
+            <li>[5] <a href="https://github.com/sylinrl/TruthfulQA">TruthfulQA</a></li>
+            <li>[6] <a href="https://github.com/nyu-mll/BBQ">BBQ (Bias Benchmark for Question Answering)</a></li>
+            <li>[7] <a href="https://huggingface.co/datasets/davidkim205/Ko-Bench">Ko-Bench dataset</a></li>
+            <li>[8] <a href="https://huggingface.co/spaces/davidkim205/ko-bench">Ko-Bench leaderboard</a></li>
+            <li>[9] <a href="https://github.com/davidkim205/Ko-Bench">Ko-Bench github</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>
+            <strong>Research Blog</strong> by <a href="https://github.com/davidkim205">davidkim205</a>.
+        </p>
+    </div>
+</footer>
+</body>
+</html>
