@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+      xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AI Exchange Dealer - Detail Page</title>
+    <title>AI Exchange Dealer</title>
     <meta name="description" content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
     <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
@@ -40,7 +41,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">AI Exchange Dealer</h1>
+          <h1 class="title is-1 publication-title">AI Exchange Dealer: Development of an LLM-Based Forex Trader Model for Enhanced Financial Market Predictions</h1>
 
           <div class="column has-text-centered">
               <div class="is-size-5 publication-authors">
@@ -70,7 +71,17 @@
 
           <div class="column has-text-centered">
             <div class="publication-links">
-              <!-- PDF Link. -->
+              <!-- Model Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/collections/davidkim205/exchange-67ac789257133f6cd9a7292d"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Model</span>
+                  </a>
+              </span>
+              <!-- Paper Link. -->
               <span class="link-block">
                 <a href="https://davidkim205.github.io/ai_exchange_dealer.html"
                    class="external-link button is-normal is-rounded is-dark">
@@ -80,15 +91,6 @@
                   <span>Paper</span>
                 </a>
               </span>
-              <!-- Video Link. -->
-<!--               <span class="link-block">
-                <a class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
-                </a>
-              </span> -->
               <!-- Code Link. -->
               <span class="link-block">
                 <a href="https://github.com/davidkim205/ai-exchange"
@@ -99,15 +101,6 @@
                   <span>Code</span>
                   </a>
               </span>
-              <!-- Dataset Link. -->
-<!--               <span class="link-block">
-                <a class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="far fa-images"></i>
-                  </span>
-                  <span>Data</span>
-                  </a>
-              </span> -->
             </div>
           </div>
 
@@ -124,7 +117,16 @@
       <div class="column is-four-fifths">
         <div class="content has-text-justified">
           <p>
-            This report introduces the <strong>Exchange</strong> and <strong>Exchange-Price</strong> models, developed as LLM-based forex trader models utilizing Llama 3.1 8B to enhance financial market predictions. It examines the training process, performance, and potential benefits of these models in financial market applications.
+            Exchange rate prediction is a crucial aspect of financial institutions and economic analysis, playing a vital role in market stability and investment strategy formulation. Traditional foreign exchange (FX) dealer forecasting methods often rely on empirical knowledge and conventional statistical models, which may have limitations in highly volatile market conditions.
+          </p>
+          <p>
+            This report introduces Exchange models developed using Meta’s Llama 3.1 (8B) and 3.2 (1B, 3B), along with Google’s Gemma 3 (12B), enhanced with SFT (Supervised Fine-Tuning) and DPO (Direct Preference Optimization) techniques. These models leverage large-scale language modeling to analyze and predict exchange rate fluctuations with high precision.
+          </p>
+          <ul>
+            <li><strong>Exchange Model</strong>: Focuses on exchange rate prediction using LLM capabilities to analyze market volatility and forecast USD/KRW exchange rates.</li>
+          </ul>
+          <p>
+            This report evaluates the performance of these models in comparison to traditional forecasting approaches, validating their practical applicability.
           </p>
         </div>
       </div>
@@ -137,472 +139,448 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3 has-text-left">Functionality of Generative AI and Its Application in the Financial Market</h2>
-<!--         <h2 class="title is-3">Functionality of Generative AI and Its Application in the Financial Market</h2> -->
+        <h2 class="title is-3 has-text-left">Model Architecture & Training</h2>
 
         <div class="content has-text-justified">
-          <h3 class="title is-4">Advantages of Generative AI</h3>
           <p>
-            Generative AI is an artificial intelligence technology that learns from large datasets to create new content.
-            It can process various types of data, such as text, images, and audio. In particular, it can be a powerful tool for analyzing data and predicting future trends in the financial and economic sectors.
-            The main advantages of Generative AI include.
-          </p>
-          <ul>
-            <li><strong>Pattern recognition ability</strong> to detect meaningful patterns in complex financial data.</li>
-            <li><strong>Automated analysis features</strong> that quickly analyze vast amounts of data and provide insights, reducing data interpretation time.</li>
-            <li>The ability to <strong>improve prediction accuracy</strong> by performing more precise analysis compared to traditional statistical prediction models.</li>
-            <li><strong>User-friendly interfaces</strong> based on natural language processing analysis, making it accessible for non-experts.</li>
-          </ul>
-        </div>
-
-        <div class="content has-text-justified">
-          <h3 class="title is-4">Role of Generative AI in the Financial Market</h3>
-          <p>
-            The foreign exchange market is one of the most volatile financial markets, where precise predictions through data analysis are essential.
-            In the past, forex predictions relied on the experience of experts and statistical models, but Generative AI can analyze large-scale market data in real-time and learn complex volatility patterns, allowing for more precise predictions.
-            Generative AI can play the following roles in the financial market.
-          </p>
-          <ul>
-            <li><strong>Market trend analysis</strong>: Analyzes various economic data and news to summarize major economic trends.</li>
-            <li><strong>Currency exchange rate prediction</strong>: Uses time-series data and economic indicators to predict future exchange rates.</li>
-            <li><strong>Risk management</strong>: Analyzes market volatility to detect potential risk factors in advance.</li>
-            <li><strong>Automated financial report generation</strong>: AI organizes analysis results into natural language and provides reports.</li>
-          </ul>
-          <p>
-            Based on these capabilities, we developed AI models optimized for foreign exchange market prediction, namely <strong>Exchange</strong> and <strong>Exchange-Price</strong>.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3 has-text-left">Performance of the Llama Model and Reasons for Choosing Llama 3.1 8B</h2>
-<!--         <h2 class="title is-3">Functionality of Generative AI and Its Application in the Financial Market</h2> -->
-
-        <div class="content has-text-justified">
-          <h3 class="title is-4">Performance of the Llama 3.1 8B Model</h3>
-          <p>
-            There are various Generative AI models, but to build a model optimized for exchange rate analysis and prediction, we chose Meta's <strong>Llama 3.1 8B</strong> model. The Llama model is optimized for learning large-scale data and excels in financial data analysis and time-series prediction.
-          </p>
-          <p>
-            The key performance features of the Llama 3.1 8B model are as follows.
-          </p>
-          <ul>
-            <li><strong>Strong natural language processing performance</strong>, allowing effective analysis of text data such as economic news and market reports.</li>
-            <li><strong>Excellent scalability</strong>, enabling the model to evolve by combining with various financial market data.</li>
-            <li><strong>Optimized learning structure</strong>, which allows for the precise reflection of complex variables in the financial market.</li>
-            <li><strong>High-performance natural language comprehension</strong>, enabling more accurate analysis of financial news, economic reports, and market data.</li>
-            <li><strong>Efficient computational structure</strong>, providing high performance with relatively low computational cost.</li>
-            <li><strong>High adaptability</strong>, allowing for more precise predictions through supervised learning (SFT) and user feedback-based optimization (DPO).</li>
-          </ul>
-        </div>
-
-        <div class="content has-text-justified">
-          <h3 class="title is-4">Reasons for Choosing the Llama 3.1 8B Model</h3>
-          <p>
-            The foreign exchange market is a complex market that cannot be easily analyzed with simple time-series predictions. Various factors such as economic news, policy changes, and global financial flows influence exchange rate fluctuations, so a model that can effectively process this unstructured data is needed.
-          </p>
-          <p>
-            The Llama 3.1 8B model has a <strong>strength in natural language-based data processing</strong> and is optimized for understanding context and meaning. This allows it to perform various functions beyond simple numerical predictions, such as <strong>market analysis report generation, summarizing economic trends, and explaining risk factors</strong>.
-          </p>
-          <p>
-            Thanks to these characteristics, the Llama 3.1 8B model can provide more precise and reliable results than traditional financial prediction models and can be effectively applied in the uncertain foreign exchange market.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3 has-text-left">Exchange and Exchange-Price Models</h2>
-
-        <div class="content has-text-justified">
-          <h3 class="title is-4">Model Overview</h3>
-          <p>
-            The Exchange and Exchange-Price models, built on the Llama 3.1 8B model, are AI systems that analyze financial market data and predict exchange rate fluctuations.
-          </p>
-          <p>
-            The Exchange model receives financial market data, analyzes key factors influencing exchange rate fluctuations, predicts market trends, and generates analysis reports based on this information. It focuses on explaining market volatility by considering various data, such as financial news, economic indicators, and policy changes.
-          </p>
-          <p>
-            The Exchange-Price model is focused on exchange rate prediction, using the natural language processing capabilities of the LLM to analyze market volatility and predict the exchange rates of major global currencies (USD, JPY, EUR, etc.). It is specialized in quantitatively performing exchange rate predictions and provides more precise prediction results by learning from various input data.
+            The Exchange models are built on Meta’s Llama 3.1, 3.2, and Google’s Gemma 3 architectures. SFT (Supervised Fine-Tuning) and DPO (Direct Preference Optimization) techniques were applied to maximize exchange rate prediction performance.
           </p>
         </div>
 
         <div class="content has-text-justified">
-          <h3 class="title is-4">Training Process and Optimization Techniques</h3>
-          <p>
-            The Exchange and Exchange-Price models are built on Meta's Llama 3.1 8B architecture and were developed using SFT (Supervised Fine-Tuning) and DPO (Direct Preference Optimization) techniques to maximize exchange rate prediction performance.
-          </p>
-        </div>
-
-        <div class="content has-text-justified">
-          <h4 class="title is-5">(1) SFT Application</h4>
-          <p>
-            SFT (Supervised Fine-Tuning) is a process that utilizes supervised learning to improve the model's prediction accuracy. It is a critical technique for optimizing the model to better reflect the complex patterns of the financial market and to consider unstructured data such as news and economic indicators, beyond simple statistical predictions.
-          </p>
-          <p>
-            During the SFT process, a variety of training data were used. Text-based data such as financial news, economic indicators, and central bank announcements, along with exchange rate time-series data for currencies like USD, EUR, and JPY, were incorporated to comprehensively capture exchange rate fluctuation patterns. In addition, exchange rate response patterns to major policy changes were analyzed to increase the reliability of the prediction model.
-          </p>
-        </div>
-
-        <div class="content has-text-justified">
-          <h4 class="title is-5">(2) DPO Application</h4>
-          <p>
-            DPO (Direct Preference Optimization) is a process that optimizes the model by incorporating user feedback to enhance its practical usability. Since learning only from past data does not fully reflect real market conditions, feedback from financial experts was integrated to enable more practical predictions.
-          </p>
-          <p>
-            The DPO technique was applied by having the AI generate multiple prediction scenarios, which were then evaluated and feedback provided by financial experts. This process not only increased the reliability of the predictions but also <strong>encouraged the model to prioritize providing more interpretable analysis results</strong>. This allowed users to make better decisions based not only on numerical predictions but also on the interpretations and analyses provided by the model.
-          </p>
-        </div>
-
-        <div class="content has-text-justified">
-          <h3 class="title is-4">Differences Between Exchange & Exchange-Price</h3>
-          <table class="table is-bordered is-striped is-hoverable">
-            <thead>
-              <tr>
-                <th>Model</th>
-                <th>Key Features</th>
-                <th>Training Data</th>
-                <th>Application Method</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Exchange</td>
-                <td>Market analysis + exchange rate prediction</td>
-                <td>Exchange rate time-series data, key economic indicator time-series data, financial news</td>
-                <td>Analysis reports (explaining correlations between specific indicators and exchange rates, analyzing the potential impact of major news on exchange rate fluctuations, short-term exchange rate trend forecasts, etc.), exchange rate prediction for major currencies</td>
-              </tr>
-              <tr>
-                <td>Exchange-Price</td>
-                <td>Specialized in exchange rate prediction</td>
-                <td>Exchange rate time-series data, key economic indicator time-series data, financial news</td>
-                <td>Exchange rate prediction for major currencies</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3 has-text-left">Evaluation Metrics</h2>
-
-        <div class="content has-text-justified">
-          <p>
-            Here, we will explain the methods used to evaluate the Exchange and Exchange-Price models.
-          </p>
-        </div>
-
-        <div class="content has-text-justified">
-          <h3 class="title is-4">Ranking Evaluation</h3>
-          <p>
-            Ranking evaluation is a process that compares multiple prediction values to measure their relative accuracy. To evaluate the accuracy of the predictions, MAPE (Mean Absolute Percentage Error) was calculated to determine the ranking. This method was used to assess the exchange rate prediction performance of financial institutions and the Exchange model.
-          </p>
-          <p>
-            MAPE is a metric that expresses the average error between predicted and actual values as a percentage, where a lower value indicates higher prediction accuracy. The MAPE for the highest (High) and lowest (Low) predicted values of the USD exchange rate during February 2025 was calculated, and the ranking was based on these values.
-          </p>
-        </div>
-
-        <div class="content has-text-justified">
-          <h4 class="title is-5">USD Currency</h4>
-          <p>
-            The table below shows the ranking determined by calculating the MAPE for the USD exchange rate predictions.
-          </p>
-          <ul>
-            <li><strong>Rank</strong> refers to the accuracy ranking based on the MAPE values of <strong>Site</strong> (banks or financial institutions).</li>
-            <li><strong>Site</strong> includes the names of various banks and financial institutions that provide exchange rate predictions.</li>
-            <li><strong>Time</strong> indicates the period during which the predictions were made and serves as the evaluation criterion for the exchange rate prediction performance during that period. If no prediction time is provided, the column remains empty.</li>
-            <li><strong>USD MAPE(high, low)</strong> represents the average MAPE value for February 2025, calculated by averaging the MAPE values for both High and Low predictions.</li>
-<!--             <li>The individual date columns contain the MAPE values calculated for each specific date, and the final <strong>USD MAPE(high, low)</strong> value is derived by averaging these values.</li> -->
-          </ul>
-
-          <table class="table is-bordered is-striped is-hoverable">
-            <thead>
-              <tr>
-                <th>Rank</th>
-                <th>Site</th>
-                <th>Time</th>
-                <th>USD MAPE(high,low)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Shinhan Bank</td>
-                <td>-</td>
-                <td>0.23</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td><strong>Exchange-Price</strong></td>
-                <td>00-24</td>
-                <td>0.26</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>KEB Hana Bank</td>
-                <td>-</td>
-                <td>0.26</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Korea Trade Insurance Corp.</td>
-                <td>-</td>
-                <td>0.26</td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>iM Bank</td>
-                <td>-</td>
-                <td>0.27</td>
-              </tr>
-              <tr>
-                <td>6</td>
-                <td><strong>Exchange</strong></td>
-                <td>00-24</td>
-                <td>0.28</td>
-              </tr>
-              <tr>
-                <td>7</td>
-                <td>KOOKMIN BANK</td>
-                <td>-</td>
-                <td>0.29</td>
-              </tr>
-              <tr>
-                <td>7</td>
-                <td>Woori Bank</td>
-                <td>-</td>
-                <td>0.29</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <p>
-            The plot below shows the predicted high and low values for USD for each day in February 2025. By comparing these predictions to the actual USD values, we can observe how each site/model performed and the differences in their predictions.
-          </p>
-          <img src="./static/images/ai_exchange_dealer/usd_lowhigh_plot(1)_2025FEB.jpg"/>
-          <img src="./static/images/ai_exchange_dealer/usd_lowhigh_plot(2)_2025FEB.jpg"/>
-        </div>
-
-        <div class="content has-text-justified">
-          <h4 class="title is-5">Global Currencies</h4>
-          <p>
-            The global currency ranking was determined by calculating the MAPE (Mean Absolute Percentage Error) for the exchange rate predictions of EUR (Euro) and JPY (Japanese Yen), excluding USD.
-          </p>
-          <p>
-            However, there were challenges in calculating the global currency rankings. Among the existing banks, only one provided exchange rate predictions for global currencies based on KRW (South Korean Won), while most banks either did not provide predictions for global currencies or only provided exchange rate predictions based on USD. This made it difficult to calculate the MAPE for global currencies.
-          </p>
-          <p>
-            To address this issue and evaluate KRW-based exchange rate predictions, a method was applied where the exchange rates were converted based on the previous trading day's closing price, and the collected prediction values were compared. The following formula was used for the exchange rate conversion.
-          </p>
-          <img src="./static/images/ai_exchange_dealer/calculate_global_currencies.jpg"/>
-<!--                class="interpolation-image"
-               alt="Interpolate start reference image."/> -->
-          <ul>
-            <li><strong>Rank</strong> indicates the prediction accuracy ranking of each `Site` (bank or financial institution) based on the MAPE value.</li>
-            <li><strong>Site</strong> lists the names of various banks and financial institutions that provide exchange rate predictions.</li>
-            <li><strong>Time</strong> represents the period during which the predictions were made and serves as the evaluation criterion for exchange rate predictions during that period. If no prediction time is provided, the column remains empty.</li>
-            <li><strong>EUR MAPE(high, low)</strong> represents the average MAPE value for EUR (Euro) exchange rate predictions in February 2025, calculated by averaging the MAPE values for both High and Low predictions.</li>
-            <li><strong>JPY MAPE(high, low)</strong> represents the average MAPE value for JPY (Japanese Yen) exchange rate predictions in February 2025, calculated by averaging the MAPE values for both High and Low predictions.</li>
-          </ul>
-
-          <table class="table is-bordered is-striped is-hoverable">
-            <thead>
-              <tr>
-                <th>Rank</th>
-                <th>Site</th>
-                <th>Time</th>
-                <th>EUR MAPE(high,low)</th>
-                <th>JPY MAPE(high,low)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td><strong>Exchange-Price</strong></td>
-                <td>00-24</td>
-                <td>0.23</td>
-                <td>0.34</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>iM Bank</td>
-                <td>-</td>
-                <td>0.29</td>
-                <td>0.33</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>KOOKMIN BANK</td>
-                <td>-</td>
-                <td>0.30</td>
-                <td>0.43</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>Shinhan Bank</td>
-                <td>-</td>
-                <td>0.32</td>
-                <td>0.36</td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td><strong>Exchange</strong></td>
-                <td>00-24</td>
-                <td>0.34</td>
-                <td>0.44</td>
-              </tr>
-              <tr>
-                <td>6</td>
-                <td>KEB Hana Bank</td>
-                <td>-</td>
-                <td>0.38</td>
-                <td>0.40</td>
-              </tr>
-              <tr>
-                <td>-</td>
-                <td>Woori Bank</td>
-                <td>-</td>
-                <td>Not provided</td>
-                <td>Not provided</td>
-              </tr>
-              <tr>
-                <td>-</td>
-                <td>Korea Trade Insurance Corp.</td>
-                <td>-</td>
-                <td>Not provided</td>
-                <td>Not provided</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-
-       <div class="content has-text-justified">
-          <h3 class="title is-4">Accuracy Evaluation</h3>
-          <p>
-            Accuracy evaluation is a metric that measures how close the predicted values are to the actual values. To assess the prediction accuracy, MAPE (Mean Absolute Percentage Error) was calculated.
-          </p>
-          <p>
-            In general, the exchange rate predictions provided by financial institutions focus on High (maximum) and Low (minimum) values, and predictions for the Close value are often not provided. Therefore, direct comparisons with other banks and financial institutions are difficult. As a result, the prediction results of the Exchange and Exchange-Price models were used to calculate the MAPE for the High, Low, and Close values of each currency and evaluate the accuracy.
-          </p>
-        </div>
-
-        <div class="content has-text-justified">
-          <h4 class="title is-5">USD Currency</h4>
+          <h3 class="title is-4">Model Information</h3>
         </div>
 
         <div style="overflow-x: auto;">
           <table class="table is-bordered is-striped is-hoverable">
             <thead>
+            <tr>
+            <th style="text-align: left;">Exchange Model</th>
+            <th style="text-align: left;">Base Model</th>
+            <th style="text-align: left;">Base Model Release Date</th>
+            <th style="text-align: left;">Context Length</th>
+            <th style="text-align: left;">License</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td style="text-align: left;"><a href="https://huggingface.co/davidkim205/exchange-1b">Exchange-1B</a></td>
+            <td style="text-align: left;"><a href="https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct">meta-llama/Llama-3.2-1B-Instruct</a></td>
+            <td style="text-align: left;">2024/09/25</td>
+            <td style="text-align: left;">128k</td>
+            <td style="text-align: left;"><a href="https://github.com/meta-llama/llama-models/blob/main/models/llama3_2/LICENSE">llama 3.2</a></td>
+            </tr>
+            <tr>
+            <td style="text-align: left;"><a href="https://huggingface.co/davidkim205/exchange-3b">Exchange-3B</a></td>
+            <td style="text-align: left;"><a href="https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct">meta-llama/Llama-3.2-3B-Instruct</a></td>
+            <td style="text-align: left;">2024/09/25</td>
+            <td style="text-align: left;">128k</td>
+            <td style="text-align: left;"><a href="https://github.com/meta-llama/llama-models/blob/main/models/llama3_2/LICENSE">llama 3.2</a></td>
+            </tr>
+            <tr>
+            <td style="text-align: left;"><a href="https://huggingface.co/davidkim205/exchange-8b">Exchange-8B</a></td>
+            <td style="text-align: left;"><a href="https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct">meta-llama/Llama-3.1-8B-Instruct</a></td>
+            <td style="text-align: left;">2024/07/23</td>
+            <td style="text-align: left;">128k</td>
+            <td style="text-align: left;"><a href="https://github.com/meta-llama/llama-models/blob/main/models/llama3_1/LICENSE">llama 3.1</a></td>
+            </tr>
+            <tr>
+            <td style="text-align: left;"><a href="https://huggingface.co/davidkim205/exchange-12b">Exchange-12B</a></td>
+            <td style="text-align: left;"><a href="https://huggingface.co/google/gemma-3-12b-it">google/gemma-3-12b-it</a></td>
+            <td style="text-align: left;">2025/03/12</td>
+            <td style="text-align: left;">128k</td>
+            <td style="text-align: left;"><a href="https://ai.google.dev/gemma/terms">gemma</a></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        </br>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4">Training Techniques</h3>
+            <ul>
+              <li><strong>SFT (Supervised Fine-Tuning)</strong>: Trained on diverse market data to improve the model's predictive accuracy, allowing for a more precise reflection of exchange rate fluctuation patterns.</li>
+              <li><strong>DPO (Direct Preference Optimization)</strong>: Optimized the model's predictions based on user preferences to enhance usability in practical scenarios.</li>
+            </ul>
+            <p>
+              By applying these techniques, Exchange models have evolved into highly reliable and precise exchange rate prediction models, outperforming traditional forecasting methods.
+            </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">Model Input & Output</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            The Exchange models predict the next day's exchange rates (High, Low, Close) based on financial data and economic news. By integrating diverse financial data sources, they enhance prediction accuracy and provide more reliable analytical results compared to traditional methods.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4">Input Data</h3>
+          <p>
+            The models utilize financial data and economic news from the past four days to predict exchange rates. By incorporating diverse data types, they improve prediction precision and analytical reliability.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5">Prompt</h4>
+          <p>
+            The Exchange models use a specific prompt format depending on the currency for which the prediction is desired. The prompt is designed to effectively utilize input data, including key economic indicators, exchange rate data, and financial news, enabling the model to make more accurate and reliable predictions.
+          </p>
+          <pre>
+주어진 다양한 금융 데이터와 뉴스 내용을 통해 24시간 USD 환율 데이터를 예측하시오. CSV 형식으로 Date,Name,Open,High,Low,Close으로 예측 결과를 제공하시오.</pre>
+        </div>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5">Exchange Rate Data</h4>
+          <p>
+            Exchange rate data is used as a fundamental input, and the model receives daily exchange rate information for USD/KRW from the past 4 days. The data is provided in CSV format, including the columns <code>Date</code>, <code>Name</code>, <code>Open</code>, <code>High</code>, <code>Low</code>, and <code>Close</code>, and is sorted in ascending order by the latest date.
+          </p>
+          <pre>
+## USD Data
+Date,Name,Open,High,Low,Close
+2025-02-24,USD,1433.0,1436.7,1423.8,1428.4
+2025-02-25,USD,1428.4,1435.0,1426.7,1433.1
+2025-02-26,USD,1433.1,1436.4,1428.9,1436.3
+2025-02-27,USD,1436.3,1447.3,1432.9,1446.3</pre>
+        </div>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5">Key Economic Indicator Data</h4>
+          <p>
+            The model utilizes various key economic indicator data related to the foreign exchange market, such as KOSDAQ, DOW. By integrating these additional data points along with exchange rate data during training, the model can make more precise predictions compared to using exchange rate data alone.
+          </p>
+          <p>
+            The data is categorized into groups such as KOSDAQ, DOW, and includes the price fluctuation information of key assets from the past 4 days. The data is provided in CSV format with the columns <code>Date</code>, <code>Name</code>, <code>Open</code>, <code>High</code>, <code>Low</code>, <code>Close</code>, and <code>Volume</code>, and is sorted in ascending order by the latest date.
+          </p>
+          <pre>
+## DOW Data
+Date,Name,Open,High,Low,Close
+2025-02-24,DOW,43493.1,43649.3,43343.7,43467.0
+2025-02-25,DOW,43467.0,43734.4,43302.6,43313.6
+2025-02-26,DOW,43313.6,43858.7,43283.0,43813.8
+2025-02-27,DOW,43813.8,43879.9,43318.9,43809.3
+
+## KOSDAQ Data
+Date,Name,Open,High,Low,Close
+2025-02-24,KOSDAQ,766.9,772.5,764.5,766.8
+2025-02-25,KOSDAQ,766.8,773.9,765.3,769.0
+2025-02-26,KOSDAQ,769.0,774.2,766.7,774.1
+2025-02-27,KOSDAQ,774.1,776.6,760.1,760.1</pre>
+        </div>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5">News Data</h4>
+          <p>
+            Simple numerical data alone may have limitations in predicting exchange rates. Therefore, to improve prediction accuracy, we integrate relevant news data that reflects major economic issues. The news data includes daily summaries of global economic news, changes in key economic indicators, asset market trends, policy announcements, and geopolitical issues that could influence exchange rate fluctuations.
+          </p>
+          <p>
+            The input news consists of both the original articles and summaries. News from the day before the prediction is input as the article titles, while news from the previous 4 days, including the day before, is summarized. The news data is entered with the article from the previous day first, followed by the summarized articles from older dates. The format of the news data is as follows.
+          </p>
+          <pre style="overflow-y: auto;">
+## 2025-02-27 USD News
+Dollar bolstered as Trump's mixed tariff messages stir uncertainty
+The U.S. dollar firmed above an 11-week trough on Thursday as vague pledges from U.S. President Donald Trump to impose tariffs on Europe and further delays...
+The People's Bank of China decided on Thursday morning to set the exchange rate of the yuan against the US dollar at 7.1740 yuan per dollar,...
+EUR/USD: Euro remains on hold below 1.0500 level as Trump's imposition of tariffs on EU was no surprise
+## 2025-02-27 KRW News
+코스피 0.73% 하락...원/달러 환율 0.67% 상승 마감
+[서울=뉴스핌] 양윤모 기자 = 27일 오후 코스피 지수가 전 거래일 종가보다 19.34포인트(0.73%) 내린 2,621.75로, 코스닥 지수는 0.56포인트(0.07%) 내린 770.85로...
+트럼프 ‘EU 관세’ 발언에… 원·달러 환율, 9.9원 오른 1443원 마감 - 조선비즈
+## 2025-02-27 KOSDAQ News
+코스피 하락 출발·코스닥 상승 출발
+어제 미국 경제 우려에도 3거래일 만에 반등한 코스피는 오늘은 하락 출발했습니다....
+코스닥, 외인과 기관 매도에 하락 마감...클래시스, HLB 상승 VS 에코프로비엠, 에코프로 하락
+## 2025-02-27 Gold News
+- **금, 은 가격 하락**: 2월 27일 기준 국제 금값과 은값이 약세를 보이며 각각 $2900/온스 아래로 떨어짐. 달러 강세와 인플레이션 데이터 등 경제 요인들이 영향.
+- **금값 변동과 투자자 주목**: MCX 금 선물은 최근 11거래일 동안 좁은 범위에 머물렀으며, 향후 추세는 주요 경제 데이터와 글로벌 시장 변화에 따라 달라질 전망.
+## 2025-02-27 Oil News
+- **원유 시장:** 미국의 클레론 베네수엘라 면허 취소로 원유 공급 우려가 커지며 유가 상승.
+- **팜유 및 대두:** 팜유는 약세 전망과 경쟁 오일 가격 하락으로 하락, 대두 또한 수요 약화로 약세.
+- **면화 및 목화씨유:** 면화 가격은 반등했지만 목화씨유는 수요 약화로 하락세.
+... </pre>
+        </div>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4">Output Data</h3>
+          <p>
+            The model predicts the exchange rates for the next day based on the provided data. The prediction results are output in CSV format, including the following columns: <code>Date</code>, <code>Name</code>, <code>Open</code>, <code>High</code>, <code>Low</code>, <code>Close</code>.
+          </p>
+          <pre>
+Date,Name,Open,High,Low,Close
+2025-02-28,USD,1446.3,1463.8,1445.4,1461.8</pre>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">Evaluation</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            All evaluations were conducted using USD/KRW exchange rate data from Yahoo Finance.
+          </p>
+        </div>
+
+          <div class="content has-text-justified">
+          <h3 class="title is-4">Ranking</h3>
+          <p>
+            Ranking refers to the process of listing multiple values to assess their relative magnitude. During March 2025, the accuracy of the High and Low values predicted by other banks and Exchange for USD exchange rates was calculated to determine rankings. The accuracy for High and Low values was determined by calculating the average MAPE (Mean Absolute Percentage Error) for each and using it to rank the predictions. The MAPE for the model represents the average of 4 runs conducted in different environments. MAPE calculates the average error between the predicted and actual exchange rates as a percentage, where a lower value indicates higher prediction accuracy.
+          </p>
+          <p>
+              The <code>Rank</code> column represents each <code>Site</code> accuracy ranking based on MAPE values. The <code>Site</code> column lists the names of various banking sites and models providing exchange rate predictions. The date-specific columns show <strong>the average MAPE for High and Low</strong> values calculated for each date, and the <code>Average</code> column presents the overall mean of these values. The date columns contain only the dates for which all sites provided prediction results.
+          </p>
+        </div>
+
+        <div style="overflow-y: auto;">
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
               <tr>
-                <th>Model</th>
-                <th>Time</th>
-                <th>USD MAPE(high,low,close)</th>
-<!--                 <th>02/03</th>
-                <th>02/04</th>
-                <th>02/05</th>
-                <th>02/06</th>
-                <th>02/07</th>
-                <th>02/10</th>
-                <th>02/11</th>
-                <th>02/12</th>
-                <th>02/13</th>
-                <th>02/14</th>
-                <th>02/17</th>
-                <th>02/18</th>
-                <th>02/19</th>
-                <th>02/20</th>
-                <th>02/21</th>
-                <th>02/24</th>
-                <th>02/25</th>
-                <th>02/26</th>
-                <th>02/27</th>
-                <th>02/28</th> -->
+                <th style="text-align: left;">Rank</th>
+                <th style="text-align: left;">Site</th>
+                <th style="text-align: left;">Average</th>
+                <th style="text-align: left;">03/05</th>
+                <th style="text-align: left;">03/06</th>
+                <th style="text-align: left;">03/07</th>
+                <th style="text-align: left;">03/11</th>
+                <th style="text-align: left;">03/12</th>
+                <th style="text-align: left;">03/13</th>
+                <th style="text-align: left;">03/14</th>
+                <th style="text-align: left;">03/19</th>
+                <th style="text-align: left;">03/20</th>
+                <th style="text-align: left;">03/21</th>
+                <th style="text-align: left;">03/25</th>
+                <th style="text-align: left;">03/26</th>
+                <th style="text-align: left;">03/27</th>
+                <th style="text-align: left;">03/28</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Exchange-Price</td>
-                <td>00-24</td>
-                <td>0.34</td>
-<!--                 <td>0.33</td>
-                <td>0.63</td>
-                <td>0.45</td>
-                <td>0.04</td>
-                <td>0.40</td>
-                <td>0.45</td>
-                <td>0.25</td>
-                <td>0.18</td>
-                <td>0.80</td>
-                <td>0.21</td>
-                <td>0.18</td>
-                <td>0.18</td>
-                <td>0.22</td>
-                <td>0.39</td>
-                <td>0.18</td>
-                <td>0.58</td>
-                <td>0.06</td>
-                <td>0.27</td>
-                <td>0.58</td>
-                <td>0.51</td> -->
+                <td style="text-align: left;">1</td>
+                <td style="text-align: left;"><strong>Exchange-12B (Ours)</strong></td>
+                <td style="text-align: left;">0.17</td>
+                <td style="text-align: left;">0.4</td>
+                <td style="text-align: left;"><strong>0.09</strong></td>
+                <td style="text-align: left;"><strong>0.05</strong></td>
+                <td style="text-align: left;">0.36</td>
+                <td style="text-align: left;"><strong>0.05</strong></td>
+                <td style="text-align: left;">0.1</td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;">0.32</td>
+                <td style="text-align: left;"><strong>0.09</strong></td>
+                <td style="text-align: left;"><strong>0.05</strong></td>
+                <td style="text-align: left;">0.16</td>
+                <td style="text-align: left;">0.14</td>
+                <td style="text-align: left;">0.29</td>
+                <td style="text-align: left;">0.15</td>
               </tr>
               <tr>
-                <td>Exchange</td>
-                <td>00-24</td>
-                <td>0.34</td>
-<!--                 <td>0.48</td>
-                <td>0.26</td>
-                <td>0.22</td>
-                <td>0.40</td>
-                <td>0.52</td>
-                <td>0.16</td>
-                <td>0.32</td>
-                <td>0.13</td>
-                <td>0.15</td>
-                <td>0.19</td>
-                <td>0.16</td>
-                <td>0.13</td>
-                <td>0.42</td>
-                <td>0.30</td>
-                <td>0.29</td>
-                <td>0.80</td>
-                <td>0.56</td>
-                <td>0.30</td>
-                <td>0.52</td>
-                <td>0.50</td> -->
+                <td style="text-align: left;">1</td>
+                <td style="text-align: left;">Korea Trade Insurance Corp.</td>
+                <td style="text-align: left;">0.17</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.13</td>
+                <td style="text-align: left;">0.11</td>
+                <td style="text-align: left;">0.26</td>
+                <td style="text-align: left;">0.08</td>
+                <td style="text-align: left;">0.11</td>
+                <td style="text-align: left;">0.16</td>
+                <td style="text-align: left;">0.41</td>
+                <td style="text-align: left;">0.32</td>
+                <td style="text-align: left;">0.13</td>
+                <td style="text-align: left;">0.11</td>
+                <td style="text-align: left;"><strong>0.06</strong></td>
+                <td style="text-align: left;">0.13</td>
+                <td style="text-align: left;">0.14</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">3</td>
+                <td style="text-align: left;">Shinhan Bank</td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.26</td>
+                <td style="text-align: left;">0.13</td>
+                <td style="text-align: left;"><strong>0.09</strong></td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;"><strong>0.28</strong></td>
+                <td style="text-align: left;">0.24</td>
+                <td style="text-align: left;">0.28</td>
+                <td style="text-align: left;">0.14</td>
+                <td style="text-align: left;">0.1</td>
+                <td style="text-align: left;"><strong>0.09</strong></td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">3</td>
+                <td style="text-align: left;">Woori Bank</td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;">0.28</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.13</td>
+                <td style="text-align: left;">0.12</td>
+                <td style="text-align: left;"><strong>0.15</strong></td>
+                <td style="text-align: left;">0.45</td>
+                <td style="text-align: left;">0.3</td>
+                <td style="text-align: left;">0.11</td>
+                <td style="text-align: left;"><strong>0.04</strong></td>
+                <td style="text-align: left;">0.13</td>
+                <td style="text-align: left;">0.14</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">3</td>
+                <td style="text-align: left;">KOOKMIN BANK</td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;"><strong>0.09</strong></td>
+                <td style="text-align: left;">0.24</td>
+                <td style="text-align: left;">0.26</td>
+                <td style="text-align: left;">0.07</td>
+                <td style="text-align: left;">0.16</td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;">0.42</td>
+                <td style="text-align: left;">0.3</td>
+                <td style="text-align: left;">0.14</td>
+                <td style="text-align: left;">0.14</td>
+                <td style="text-align: left;">0.1</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">6</td>
+                <td style="text-align: left;">iM Bank</td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;"><strong>0.09</strong></td>
+                <td style="text-align: left;">0.25</td>
+                <td style="text-align: left;">0.33</td>
+                <td style="text-align: left;">0.13</td>
+                <td style="text-align: left;">0.16</td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;">0.42</td>
+                <td style="text-align: left;">0.26</td>
+                <td style="text-align: left;">0.14</td>
+                <td style="text-align: left;">0.13</td>
+                <td style="text-align: left;"><strong>0.06</strong></td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">7</td>
+                <td style="text-align: left;"><strong>Exchange-8B (Ours)</strong></td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.46</td>
+                <td style="text-align: left;">0.16</td>
+                <td style="text-align: left;">0.16</td>
+                <td style="text-align: left;"><strong>0.14</strong></td>
+                <td style="text-align: left;">0.27</td>
+                <td style="text-align: left;">0.13</td>
+                <td style="text-align: left;">0.18</td>
+                <td style="text-align: left;">0.41</td>
+                <td style="text-align: left;">0.3</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.1</td>
+                <td style="text-align: left;">0.08</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.12</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">8</td>
+                <td style="text-align: left;">Toss Securities</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;"><strong>0.13</strong></td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;">0.31</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.13</td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;">0.33</td>
+                <td style="text-align: left;">0.42</td>
+                <td style="text-align: left;">0.27</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.13</td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;"><strong>0.09</strong></td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">8</td>
+                <td style="text-align: left;">KEB Hana Bank</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;"><strong>0.09</strong></td>
+                <td style="text-align: left;">0.25</td>
+                <td style="text-align: left;">0.46</td>
+                <td style="text-align: left;">0.13</td>
+                <td style="text-align: left;">0.16</td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;">0.55</td>
+                <td style="text-align: left;">0.37</td>
+                <td style="text-align: left;">0.14</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.1</td>
+                <td style="text-align: left;"><strong>0.09</strong></td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">10</td>
+                <td style="text-align: left;"><strong>Exchange-3B (Ours)</strong></td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.43</td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;">0.16</td>
+                <td style="text-align: left;">0.14</td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;">0.33</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.18</td>
+                <td style="text-align: left;">0.32</td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;">0.26</td>
+                <td style="text-align: left;">0.2</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">11</td>
+                <td style="text-align: left;"><strong>Exchange-1B (Ours)</strong></td>
+                <td style="text-align: left;">0.27</td>
+                <td style="text-align: left;">0.61</td>
+                <td style="text-align: left;">0.25</td>
+                <td style="text-align: left;">0.16</td>
+                <td style="text-align: left;">0.47</td>
+                <td style="text-align: left;">0.47</td>
+                <td style="text-align: left;">0.12</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.29</td>
+                <td style="text-align: left;">0.32</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.11</td>
+                <td style="text-align: left;">0.15</td>
+                <td style="text-align: left;">0.15</td>
+                <td style="text-align: left;">0.17</td>
               </tr>
             </tbody>
           </table>
@@ -610,317 +588,943 @@
         </br>
 
         <div class="content has-text-justified">
-          <h4 class="title is-5">Global Currencies</h4>
+          <h4 class="title is-5">Comparison of Evaluation Results Using Different Exchange Rate Sources</h4>
+          <p>
+            To evaluate the model’s performance under varying data conditions, we compare results using exchange rate data from Yahoo Finance, KEB Hana Bank, and SMBS(Seoul Money Brokerage Services). The <code>Yahoo Finance</code>, <code>KEB Hana Bank</code>, and <code>SMBS</code> columns represent <strong>the average MAPE for High and Low</strong> values calculated using each respective data source. The <code>Average</code> column represents the overall average MAPE across all data sources.
+          </p>
+        </div>
+
+        <div style="overflow-y: auto;">
           <table class="table is-bordered is-striped is-hoverable">
             <thead>
               <tr>
-                <th>Site</th>
-                <th>Time</th>
-                <th>EUR MAPE(high,low,close)</th>
-                <th>JPY MAPE(high,low,close)</th>
+                <th style="text-align: left;">Rank</th>
+                <th style="text-align: left;">Site</th>
+                <th style="text-align: left;">Average</th>
+                <th style="text-align: left;">Yahoo Finance</th>
+                <th style="text-align: left;">KEB Hana Bank</th>
+                <th style="text-align: left;">SMBS</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Exchange-Price</td>
-                <td>00-24</td>
-                <td>0.26</td>
-                <td>0.57</td>
+                <td style="text-align: left;">1</td>
+                <td style="text-align: left;">Korea Trade Insurance Corp.</td>
+                <td style="text-align: left;">0.18</td>
+                <td style="text-align: left;">0.17</td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;">0.18</td>
               </tr>
               <tr>
-                <td>Exchange</td>
-                <td>00-24</td>
-                <td>0.40</td>
-                <td>0.54</td>
+                <td style="text-align: left;">2</td>
+                <td style="text-align: left;"><strong>Exchange-12B (Ours)</strong></td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;">0.17</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.2</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">3</td>
+                <td style="text-align: left;">Shinhan Bank</td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;">0.2</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">4</td>
+                <td style="text-align: left;">iM Bank</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.21</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">4</td>
+                <td style="text-align: left;">KOOKMIN BANK</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.21</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">4</td>
+                <td style="text-align: left;">Woori Bank</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.21</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">7</td>
+                <td style="text-align: left;"><strong>Exchange-8B (Ours)</strong></td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.24</td>
+                <td style="text-align: left;">0.22</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">8</td>
+                <td style="text-align: left;"><strong>Exchange-3B (Ours)</strong></td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.23</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">8</td>
+                <td style="text-align: left;">KEB Hana Bank</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.24</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">8</td>
+                <td style="text-align: left;">Toss Securities</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.24</td>
+                <td style="text-align: left;">0.23</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">11</td>
+                <td style="text-align: left;"><strong>Exchange-1B (Ours)</strong></td>
+                <td style="text-align: left;">0.25</td>
+                <td style="text-align: left;">0.25</td>
+                <td style="text-align: left;">0.26</td>
+                <td style="text-align: left;">0.24</td>
               </tr>
             </tbody>
           </table>
         </div>
+        </br>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4">Accuracy</h3>
+          <p>
+            Accuracy is a metric used to assess how close the predicted values are to the actual values, and the accuracy is determined by calculating the MAPE. Since other bank sites do not provide Close values, only the exchange model was used to calculate <strong>the average MAPE for High, Low, and Close</strong> values for each currency and assess the accuracy.
+          </p>
+        </div>
+
+        <div style="overflow-x: auto;">
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th style="text-align: left;">Model</th>
+                <th style="text-align: left;">Average</th>
+                <th style="text-align: left;">03/05</th>
+                <th style="text-align: left;">03/06</th>
+                <th style="text-align: left;">03/07</th>
+                <th style="text-align: left;">03/11</th>
+                <th style="text-align: left;">03/12</th>
+                <th style="text-align: left;">03/13</th>
+                <th style="text-align: left;">03/14</th>
+                <th style="text-align: left;">03/19</th>
+                <th style="text-align: left;">03/20</th>
+                <th style="text-align: left;">03/21</th>
+                <th style="text-align: left;">03/25</th>
+                <th style="text-align: left;">03/26</th>
+                <th style="text-align: left;">03/27</th>
+                <th style="text-align: left;">03/28</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align: left;"><strong>Exchange-12B</strong></td>
+                <td style="text-align: left;">0.24</td>
+                <td style="text-align: left;">0.68</td>
+                <td style="text-align: left;"><strong>0.08</strong></td>
+                <td style="text-align: left;"><strong>0.14</strong></td>
+                <td style="text-align: left;">0.42</td>
+                <td style="text-align: left;"><strong>0.05</strong></td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;"><strong>0.13</strong></td>
+                <td style="text-align: left;">0.52</td>
+                <td style="text-align: left;"><strong>0.15</strong></td>
+                <td style="text-align: left;"><strong>0.05</strong></td>
+                <td style="text-align: left;"><strong>0.12</strong></td>
+                <td style="text-align: left;">0.27</td>
+                <td style="text-align: left;">0.36</td>
+                <td style="text-align: left;">0.28</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;"><strong>Exchange-8B</strong></td>
+                <td style="text-align: left;">0.25</td>
+                <td style="text-align: left;">0.62</td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;"><strong>0.12</strong></td>
+                <td style="text-align: left;">0.31</td>
+                <td style="text-align: left;"><strong>0.11</strong></td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.53</td>
+                <td style="text-align: left;">0.4</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.14</td>
+                <td style="text-align: left;"><strong>0.06</strong></td>
+                <td style="text-align: left;">0.26</td>
+                <td style="text-align: left;"><strong>0.14</strong></td>
+              </tr>
+              <tr>
+                <td style="text-align: left;"><strong>Exchange-3B</strong></td>
+                <td style="text-align: left;">0.27</td>
+                <td style="text-align: left;"><strong>0.58</strong></td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;">0.26</td>
+                <td style="text-align: left;">0.24</td>
+                <td style="text-align: left;">0.16</td>
+                <td style="text-align: left;">0.12</td>
+                <td style="text-align: left;">0.15</td>
+                <td style="text-align: left;">0.5</td>
+                <td style="text-align: left;">0.27</td>
+                <td style="text-align: left;">0.26</td>
+                <td style="text-align: left;">0.35</td>
+                <td style="text-align: left;">0.16</td>
+                <td style="text-align: left;">0.3</td>
+                <td style="text-align: left;">0.23</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;"><strong>Exchange-1B</strong></td>
+                <td style="text-align: left;">0.31</td>
+                <td style="text-align: left;">0.77</td>
+                <td style="text-align: left;">0.27</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.56</td>
+                <td style="text-align: left;">0.48</td>
+                <td style="text-align: left;"><strong>0.11</strong></td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;"><strong>0.4</strong></td>
+                <td style="text-align: left;">0.3</td>
+                <td style="text-align: left;">0.26</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;"><strong>0.17</strong></td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </br>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4">Robustness</h3>
+          <p>
+            Robustness refers to a model’s ability to perform reliably under various environmental changes and exceptional situations. In other words, it reflects the capability to maintain performance despite uncertainties, noise, errors, or unexpected changes in the data. In the Input Data section, we introduced the input datasets used in our analysis. However, this does not imply that the selected combination is optimal. To evaluate the model’s robustness, we systematically modified the input data and examined its effects.
+          </p>
+          <p>
+            To assess robustness, we applied various data transformation methods to exchange rate predictions for March 2025. Specifically, we analyzed changes in MAPE by adjusting the input window size and evaluating the effect of removing specific data types.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5">Impact of Input Window Size</h4>
+          <p>
+            By default, the models predict the next day's exchange rate using data and news from the past four days. To evaluate robustness, we varied the input range from one to six days and analyzed the corresponding changes in MAPE.
+          </p>
+          <p>
+            Among the models, Exchange-12B exhibited the highest robustness, maintaining stable performance across different input lengths with minimal MAPE fluctuations, while other models showed more variation depending on the input window size. A 2- to 4-day input window yielded the lowest average MAPE (0.22), suggesting that this range is optimal for Exchange models. These findings highlight the importance of selecting an appropriate input length to enhance accuracy while ensuring robustness across different model sizes.
+          </p>
+        </div>
+
+        <div style="overflow-y: auto;">
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+                <tr>
+                <th style="text-align: left;">Model \ Days</th>
+                <th style="text-align: left;">1</th>
+                <th style="text-align: left;">2</th>
+                <th style="text-align: left;">3</th>
+                <th style="text-align: left;">(Default) 4</th>
+                <th style="text-align: left;">5</th>
+                <th style="text-align: left;">6</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="text-align: left;">Exchange-12B</td>
+                  <td style="text-align: left;"><strong>0.15</strong></td>
+                  <td style="text-align: left;">0.17</td>
+                  <td style="text-align: left;">0.17</td>
+                  <td style="text-align: left;">0.17</td>
+                  <td style="text-align: left;">0.18</td>
+                  <td style="text-align: left;">0.22</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left;">Exchange-8B</td>
+                  <td style="text-align: left;">0.22</td>
+                  <td style="text-align: left;"><strong>0.21</strong></td>
+                  <td style="text-align: left;">0.23</td>
+                  <td style="text-align: left;"><strong>0.21</strong></td>
+                  <td style="text-align: left;">0.28</td>
+                  <td style="text-align: left;">0.29</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left;">Exchange-3B</td>
+                  <td style="text-align: left;">0.31</td>
+                  <td style="text-align: left;">0.24</td>
+                  <td style="text-align: left;">0.26</td>
+                  <td style="text-align: left;"><strong>0.23</strong></td>
+                  <td style="text-align: left;">0.3</td>
+                  <td style="text-align: left;">0.57</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left;">Exchange-1B</td>
+                  <td style="text-align: left;">0.39</td>
+                  <td style="text-align: left;">0.26</td>
+                  <td style="text-align: left;">0.24</td>
+                  <td style="text-align: left;">0.27</td>
+                  <td style="text-align: left;"><strong>0.23</strong></td>
+                  <td style="text-align: left;">0.24</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left;">Average</td>
+                  <td style="text-align: left;">0.27</td>
+                  <td style="text-align: left;">0.22</td>
+                  <td style="text-align: left;">0.22</td>
+                  <td style="text-align: left;">0.22</td>
+                  <td style="text-align: left;">0.25</td>
+                  <td style="text-align: left;">0.33</td>
+                </tr>
+              </tbody>
+          </table>
+        </div>
+        </br>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5">Impact of Removing Specific Data Types</h4>
+          <p>
+            The input data consists of the USD/KRW exchange rate, financial indicators (such as stock indices like DOW, commodity prices like Gold, and market indices like KOSDAQ), as well as related news and news summaries. We tested two experimental settings to analyze how different data compositions impact prediction accuracy. Since the goal is to predict USD exchange rates, USD/KRW exchange rate data and USD-related news were always included in all experiments:
+          </p>
+          <ol>
+            <li><strong>Complete Removal</strong>: Excluding a specific indicator from the entire input data (e.g., removing <code>DOW</code> completely).</li>
+            <li><strong>Category-Specific Removal</strong>: Excluding a specific indicator from only one category of data (e.g., removing <code>DOW</code> from stock indices while retaining it in other sources).</li>
+          </ol>
+        </div>
+
+        <div class="content has-text-justified">
+          <h5 class="title is-6">1. Complete Removal of a Specific Indicator</h5>
+          <p>
+            The table presents the impact of completely removing specific financial indicators from the input data on model performance. Each value represents <strong>the mean MAPE (High, Low)</strong> for different indicator exclusion scenarios across the Exchange models.
+          </p>
+          <p>
+            Interestingly, some cases show a lower MAPE after removing certain indicators, suggesting that specific combinations may introduce unnecessary noise rather than enhancing predictive accuracy. The accuracy exhibits sensitive to input composition changes. The optimal combination of indicators may vary across model sizes, highlighting the complexity of selecting the most effective input features.
+          </p>
+        </div>
+
+        <div style="overflow-y: auto; max-height: 500px;">
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th style="text-align: left;">Included Indicators</th>
+                <th style="text-align: left;">Exchange-1B</th>
+                <th style="text-align: left;">Exchange-3B</th>
+                <th style="text-align: left;">Exchange-8B</th>
+                <th style="text-align: left;">Exchange-12B</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align: left;">(Default) USD DOW KOSDAQ Oil Gold KRW</td>
+                <td style="text-align: left;">0.27</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD Gold</td>
+                <td style="text-align: left;">0.17</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;"><strong>0.15</strong></td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD DOW Oil KRW</td>
+                <td style="text-align: left;">0.17</td>
+                <td style="text-align: left;"><strong>0.17</strong></td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD DOW KOSDAQ Gold KRW</td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.17</td>
+                <td style="text-align: left;">0.16</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD</td>
+                <td style="text-align: left;">0.17</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;"><strong>0.15</strong></td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD KRW</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;"><strong>0.15</strong></td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD Gold KRW</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;"><strong>0.15</strong></td>
+                <td style="text-align: left;">0.19</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD DOW Oil Gold</td>
+                <td style="text-align: left;"><strong>0.16</strong></td>
+                <td style="text-align: left;">0.25</td>
+                <td style="text-align: left;">0.18</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD DOW KRW</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.16</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD KOSDAQ Gold</td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;">0.24</td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;">0.18</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD KOSDAQ Oil</td>
+                <td style="text-align: left;">0.18</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD Oil Gold</td>
+                <td style="text-align: left;">0.17</td>
+                <td style="text-align: left;">0.18</td>
+                <td style="text-align: left;">0.26</td>
+                <td style="text-align: left;">0.2</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD Oil KRW</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD DOW Gold KRW</td>
+                <td style="text-align: left;">0.17</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.18</td>
+                <td style="text-align: left;">0.2</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD DOW KOSDAQ Oil</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.18</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD KOSDAQ Gold KRW</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;"><strong>0.15</strong></td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD DOW KOSDAQ Oil Gold</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD DOW Oil Gold KRW</td>
+                <td style="text-align: left;">0.17</td>
+                <td style="text-align: left;">0.26</td>
+                <td style="text-align: left;">0.17</td>
+                <td style="text-align: left;">0.18</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD KOSDAQ Oil Gold KRW</td>
+                <td style="text-align: left;">0.24</td>
+                <td style="text-align: left;"><strong>0.17</strong></td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD DOW</td>
+                <td style="text-align: left;">0.18</td>
+                <td style="text-align: left;">0.26</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD Oil</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.17</td>
+                <td style="text-align: left;">0.23</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD DOW Oil</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.18</td>
+                <td style="text-align: left;">0.25</td>
+                <td style="text-align: left;">0.19</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD DOW KOSDAQ KRW</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.28</td>
+                <td style="text-align: left;">0.18</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD KOSDAQ Oil KRW</td>
+                <td style="text-align: left;">0.24</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;"><strong>0.15</strong></td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD Oil Gold KRW</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD KOSDAQ</td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;">0.24</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.21</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD DOW Gold</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.26</td>
+                <td style="text-align: left;">0.18</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD KOSDAQ KRW</td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;">0.26</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.19</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD DOW KOSDAQ Gold</td>
+                <td style="text-align: left;">0.28</td>
+                <td style="text-align: left;">0.24</td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;">0.16</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD KOSDAQ Oil Gold</td>
+                <td style="text-align: left;">0.24</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.18</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD DOW KOSDAQ Oil KRW</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.27</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD DOW KOSDAQ</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.28</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.21</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </br>
+
+        <div class="content has-text-justified">
+          <h5 class="title is-6">2. Category-Specific Indicator Removal</h5>
+        </div>
+
+        <div class="content has-text-justified">
+          <h5 class="title is-6">2.1 Input Component: Data</h5>
+          <p>
+            This component consists of OHLC (Open, High, Low, Close) format financial data, where USD data is always included as a mandatory component. Other indicators, such as <code>DOW</code> and <code>KOSDAQ</code>, are selectively included or removed to analyze their influence on predictive accuracy.
+          </p>
+          <p>
+            The following table evaluates the impact of including the <code>DOW</code> and <code>KOSDAQ</code> indicators in the input data on model performance (the average of High, Low MAPE). On the whole, when both DOW and KOSDAQ are included, MAPE is the lowest, indicating that incorporating multiple indicators improves stability. In particular, the Exchange-12B model maintains relatively stable performance across different configurations, demonstrating greater robustness to changes in included indicators.
+          </p>
+        </div>
+
+        <div style="overflow-y: auto; max-height: 500px;">
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+            <tr>
+              <th style="text-align: left;">Model \ Included Indicators</th>
+              <th style="text-align: left;">(Default) DOW KOSDAQ</th>
+              <th style="text-align: left;">DOW</th>
+              <th style="text-align: left;">KOSDAQ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align: left;">Exchange-12B</td>
+                <td style="text-align: left;"><strong>0.17</strong></td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;"><strong>0.17</strong></td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Exchange-8B</td>
+                <td style="text-align: left;"><strong>0.21</strong></td>
+                <td style="text-align: left;">0.25</td>
+                <td style="text-align: left;">0.23</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Exchange-3B</td>
+                <td style="text-align: left;"><strong>0.23</strong></td>
+                <td style="text-align: left;">0.31</td>
+                <td style="text-align: left;">0.26</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Exchange-1B</td>
+                <td style="text-align: left;">0.27</td>
+                <td style="text-align: left;"><strong>0.21</strong></td>
+                <td style="text-align: left;">0.27</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </br>
+
+        <div class="content has-text-justified">
+          <h5 class="title is-6">2.2 Input Component: News</h5>
+          <p>
+            This component examines the influence of news-based indicators (<code>KRW</code>, <code>DOW</code>, <code>KOSDAQ</code>) on model performance. The table below presents the average of High, Low MAPE values for different indicator combinations, where USD data is always included as a mandatory component.
+          </p>
+          <p>
+            Overall, the results indicate that no single indicator consistently improves performance across all model sizes. Exchange-12B achieves the lowest MAPE when only <code>DOW</code> is included, while Exchange-1B performs best with <code>KRW</code> alone. Meanwhile, Exchange-8B and Exchange-3B show minimal variation across different indicator sets. The average MAPE remains relatively stable across configurations, implying that incorporating multiple indicators does not necessarily guarantee better predictive accuracy.
+          </p>
+        </div>
+
+        <div style="overflow-y: auto; max-height: 500px;">
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th style="text-align: left;">Model \ Included Indicators</th>
+                <th style="text-align: left;">(Default) KRW DOW KOSDAQ</th>
+                <th style="text-align: left;">DOW</th>
+                <th style="text-align: left;">KOSDAQ</th>
+                <th style="text-align: left;">KRW</th>
+                <th style="text-align: left;">KRW DOW</th>
+                <th style="text-align: left;">KRW KOSDAQ</th>
+                <th style="text-align: left;">DOW KOSDAQ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align: left;">Exchange-12B</td>
+                <td style="text-align: left;">0.17</td>
+                <td style="text-align: left;"><strong>0.16</strong></td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;">0.17</td>
+                <td style="text-align: left;">0.19</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Exchange-8B</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;"><strong>0.2</strong></td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.24</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.22</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Exchange-3B</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;"><strong>0.21</strong></td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;"><strong>0.21</strong></td>
+                <td style="text-align: left;">0.22</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Exchange-1B</td>
+                <td style="text-align: left;">0.27</td>
+                <td style="text-align: left;">0.25</td>
+                <td style="text-align: left;">0.26</td>
+                <td style="text-align: left;"><strong>0.18</strong></td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;">0.24</td>
+                <td style="text-align: left;">0.22</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </br>
+
+        <div class="content has-text-justified">
+          <h5 class="title is-6">2.3 Input Component: News Summary</h5>
+          <p>
+            This section explores the impact of summarized news indicators on model performance. The table below presents the average of High, Low MAPE values for different indicator combinations, with various configurations incorporating <code>KRW</code>, <code>DOW</code>, <code>KOSDAQ</code>, <code>Gold</code>, and <code>Oil</code>.
+          </p>
+          <p>
+            Just like in the News section, no single combination consistently yields the lowest MAPE across all model sizes. Exchange-12B achieves the lowest error with <code>KRW DOW Gold Oil</code>, while Exchange-3B performs best when only <code>DOW</code> is included. In contrast, Exchange-1B achieves its lowest MAPE with <code>KRW</code>, and Exchange-8B performs best with <code>KRW DOW</code>. These variations indicate that the effectiveness of news-summary indicators depends on model scale and configuration. While certain combinations enhance performance for specific models, their benefits do not generalize across all architectures.
+          </p>
+        </div>
+
+        <div style="overflow-y: auto; max-height: 500px;">
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th style="text-align: left;">Included Indicators</th>
+                <th style="text-align: left;">Exchange-1B</th>
+                <th style="text-align: left;">Exchange-3B</th>
+                <th style="text-align: left;">Exchange-8B</th>
+                <th style="text-align: left;">Exchange-12B</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align: left;">(Default) KRW DOW KOSDAQ Gold Oil</td>
+                <td style="text-align: left;">0.27</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">DOW</td>
+                <td style="text-align: left;">0.24</td>
+                <td style="text-align: left;"><strong>0.18</strong></td>
+                <td style="text-align: left;">0.16</td>
+                <td style="text-align: left;">0.18</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">KRW DOW</td>
+                <td style="text-align: left;">0.18</td>
+                <td style="text-align: left;">0.25</td>
+                <td style="text-align: left;"><strong>0.15</strong></td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">KRW KOSDAQ Gold</td>
+                <td style="text-align: left;">0.18</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;">0.16</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Oil</td>
+                <td style="text-align: left;">0.18</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.17</td>
+                <td style="text-align: left;">0.21</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">KRW Gold</td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">DOW KOSDAQ Oil</td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;">0.26</td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;">0.16</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">KOSDAQ Gold Oil</td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.18</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">KRW DOW KOSDAQ</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.18</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">DOW KOSDAQ Gold Oil</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.18</td>
+                <td style="text-align: left;">0.18</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">KRW KOSDAQ Gold Oil</td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;">0.24</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">KOSDAQ</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.2</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">KRW</td>
+                <td style="text-align: left;"><strong>0.17</strong></td>
+                <td style="text-align: left;">0.26</td>
+                <td style="text-align: left;">0.24</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">DOW KOSDAQ</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.2</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">DOW Oil</td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;">0.27</td>
+                <td style="text-align: left;">0.18</td>
+                <td style="text-align: left;">0.21</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">DOW Gold Oil</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.25</td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">KRW DOW Gold</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">KRW DOW Oil</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;">0.2</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">KRW DOW Gold Oil</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.24</td>
+                <td style="text-align: left;"><strong>0.15</strong></td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">KRW DOW KOSDAQ Gold</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.24</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.16</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">KRW DOW KOSDAQ Oil</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">DOW Gold</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.26</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.2</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Gold Oil</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.26</td>
+                <td style="text-align: left;">0.24</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">KOSDAQ Gold</td>
+                <td style="text-align: left;">0.18</td>
+                <td style="text-align: left;">0.27</td>
+                <td style="text-align: left;">0.24</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">KOSDAQ Oil</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.24</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.16</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">KRW KOSDAQ</td>
+                <td style="text-align: left;">0.26</td>
+                <td style="text-align: left;">0.27</td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">KRW Oil</td>
+                <td style="text-align: left;">0.2</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.24</td>
+                <td style="text-align: left;">0.2</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">DOW KOSDAQ Gold</td>
+                <td style="text-align: left;">0.22</td>
+                <td style="text-align: left;">0.25</td>
+                <td style="text-align: left;">0.24</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">KRW Gold Oil</td>
+                <td style="text-align: left;">0.26</td>
+                <td style="text-align: left;">0.3</td>
+                <td style="text-align: left;">0.19</td>
+                <td style="text-align: left;"><strong>0.15</strong></td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">KRW KOSDAQ Oil</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.26</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Gold</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.26</td>
+                <td style="text-align: left;">0.24</td>
+                <td style="text-align: left;">0.2</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </br>
 
       </div>
     </div>
   </div>
 </section>
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-
-        <div class="content has-text-justified">
-          <h3 class="title is-4">Robustness Evaluation</h3>
-          <p>
-            Robustness evaluation is the process of verifying whether a system or model operates reliably in the face of various environmental changes or exceptional situations. It tests whether the developed model can maintain performance without being affected by data uncertainties, noise, errors, or unexpected changes.
-          </p>
-          <p>
-            To evaluate the robustness of the Exchange and Exchange-Price models, various data transformation methods were applied to the exchange rate predictions in February 2025. By analyzing how MAPE (Mean Absolute Percentage Error) changes depending on the input data transformation methods, the robustness of the models was assessed.
-          </p>
-          <ul>
-            <li><strong>Task</strong>: Represents the applied input data transformation methods. The impact of data transformation on exchange rate prediction performance was analyzed using three methods.</li>
-            <ul>
-              <li><strong>Normal</strong>: The model is trained and evaluated using data from a fixed period (default: 7 days).</li>
-              <li><strong>Random date</strong>: The model is trained and evaluated by randomly setting the input data period (3–7 days).</li>
-              <li><strong>Masking</strong>: The model is trained and evaluated by randomly excluding items from certain categories of input data. However, at least one item from each category (e.g., products, economic indicators) is guaranteed to be included.</li>
-            </ul>
-            <li><strong>MAPE(high, low)</strong>: Represents the average MAPE for high and low predictions.</li>
-            <li><strong>MAPE(high, low, close)</strong>: Represents the average MAPE for high, low, and close predictions.</li>
-            <li><strong>high</strong>: MAPE for high predictions.</li>
-            <li><strong>low</strong>: MAPE for low predictions.</li>
-            <li><strong>close</strong>: MAPE for close predictions.</li>
-          </ul>
-        </div>
-
-        <div class="content has-text-justified">
-          <h4 class="title is-5">USD Currency</h4>
-          <table class="table is-bordered is-striped is-hoverable">
-            <thead>
-              <tr>
-                <th>Model</th>
-                <th>Task</th>
-                <th>MAPE(high,low)</th>
-                <th>MAPE(high,low,close)</th>
-                <th>high</th>
-                <th>low</th>
-                <th>close</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Exchange-Price</td>
-                <td>Normal</td>
-                <td>0.26</td>
-                <td>0.34</td>
-                <td>0.28</td>
-                <td>0.24</td>
-                <td>0.51</td>
-              </tr>
-              <tr>
-                <td>Exchange-Price</td>
-                <td>Random date</td>
-                <td>0.29</td>
-                <td>0.37</td>
-                <td>0.29</td>
-                <td>0.29</td>
-                <td>0.53</td>
-              </tr>
-              <tr>
-                <td>Exchange-Price</td>
-                <td>Masking</td>
-                <td>0.31</td>
-                <td>0.41</td>
-                <td>0.38</td>
-                <td>0.24</td>
-                <td>0.60</td>
-              </tr>
-              <tr>
-                <td>Exchange</td>
-                <td>Normal</td>
-                <td>0.28</td>
-                <td>0.34</td>
-                <td>0.31</td>
-                <td>0.25</td>
-                <td>0.46</td>
-              </tr>
-              <tr>
-                <td>Exchange</td>
-                <td>Random date</td>
-                <td>0.23</td>
-                <td>0.32</td>
-                <td>0.28</td>
-                <td>0.19</td>
-                <td>0.50</td>
-              </tr>
-              <tr>
-                <td>Exchange</td>
-                <td>Masking</td>
-                <td>0.28</td>
-                <td>0.34</td>
-                <td>0.20</td>
-                <td>0.37</td>
-                <td>0.46</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="content has-text-justified">
-          <h4 class="title is-5">EUR Currency</h4>
-          <table class="table is-bordered is-striped is-hoverable">
-            <thead>
-              <tr>
-                <th>Model</th>
-                <th>Task</th>
-                <th>MAPE(high,low)</th>
-                <th>MAPE(high,low,close)</th>
-                <th>high</th>
-                <th>low</th>
-                <th>close</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Exchange-Price</td>
-                <td>Normal</td>
-                <td>0.23</td>
-                <td>0.26</td>
-                <td>0.27</td>
-                <td>0.19</td>
-                <td>0.33</td>
-              </tr>
-              <tr>
-                <td>Exchange-Price</td>
-                <td>Random date</td>
-                <td>0.26</td>
-                <td>0.29</td>
-                <td>0.30</td>
-                <td>0.23</td>
-                <td>0.34</td>
-              </tr>
-              <tr>
-                <td>Exchange-Price</td>
-                <td>Masking</td>
-                <td>0.32</td>
-                <td>0.38</td>
-                <td>0.39</td>
-                <td>0.24</td>
-                <td>0.51</td>
-              </tr>
-              <tr>
-                <td>Exchange</td>
-                <td>Normal</td>
-                <td>0.34</td>
-                <td>0.40</td>
-                <td>0.34</td>
-                <td>0.33</td>
-                <td>0.54</td>
-              </tr>
-              <tr>
-                <td>Exchange</td>
-                <td>Random date</td>
-                <td>0.29</td>
-                <td>0.35</td>
-                <td>0.31</td>
-                <td>0.26</td>
-                <td>0.47</td>
-              </tr>
-              <tr>
-                <td>Exchange</td>
-                <td>Masking</td>
-                <td>0.29</td>
-                <td>0.34</td>
-                <td>0.31</td>
-                <td>0.26</td>
-                <td>0.45</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="content has-text-justified">
-          <h4 class="title is-5">JPY Currency</h4>
-          <table class="table is-bordered is-striped is-hoverable">
-            <thead>
-              <tr>
-                <th>Model</th>
-                <th>Task</th>
-                <th>MAPE(high,low)</th>
-                <th>MAPE(high,low,close)</th>
-                <th>high</th>
-                <th>low</th>
-                <th>close</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Exchange-Price</td>
-                <td>Normal</td>
-                <td>0.34</td>
-                <td>0.42</td>
-                <td>0.29</td>
-                <td>0.40</td>
-                <td>0.58</td>
-              </tr>
-              <tr>
-                <td>Exchange-Price</td>
-                <td>Random date</td>
-                <td>0.36</td>
-                <td>0.44</td>
-                <td>0.33</td>
-                <td>0.38</td>
-                <td>0.62</td>
-              </tr>
-              <tr>
-                <td>Exchange-Price</td>
-                <td>Masking</td>
-                <td>0.31</td>
-                <td>0.40</td>
-                <td>0.31</td>
-                <td>0.31</td>
-                <td>0.57</td>
-              </tr>
-              <tr>
-                <td>Exchange</td>
-                <td>Normal</td>
-                <td>0.44</td>
-                <td>0.54</td>
-                <td>0.42</td>
-                <td>0.46</td>
-                <td>0.75</td>
-              </tr>
-              <tr>
-                <td>Exchange</td>
-                <td>Random date</td>
-                <td>0.47</td>
-                <td>0.58</td>
-                <td>0.48</td>
-                <td>0.46</td>
-                <td>0.80</td>
-              </tr>
-              <tr>
-                <td>Exchange</td>
-                <td>Masking</td>
-                <td>0.38</td>
-                <td>0.47</td>
-                <td>0.36</td>
-                <td>0.39</td>
-                <td>0.65</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- <section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <div class="content has-text-justified">
-          <h2 class="title is-3 has-text-left">Model Outputs</h2>
-          <p>
-            When the <strong>prompt</strong>, <strong>exchange rate data</strong>, <strong>key forex market-related data</strong>, and <strong>summarized daily forex market and global economic news</strong> are input into the models, the <strong>Exchange model</strong> outputs a report that includes market analysis explanations and exchange rate predictions, while the <strong>Exchange-Price model</strong> outputs the exchange rate prediction results. Below, you can see the actual output results from the models.
-          </p>
-        </div>
-
-        <div class="content has-text-justified">
-          <h4 class="title is-5">Exchange Model</h4>
-          <img src="./static/images/ai_exchange_dealer/exchange_output.jpg"/>
-        </div>
-
-        <div class="content has-text-justified">
-          <h4 class="title is-5">Exchange-Price Model</h4>
-          <img src="./static/images/ai_exchange_dealer/exchange-price_output.jpg"/>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section> -->
 
 
 <section class="section">
@@ -931,16 +1535,10 @@
 
         <div class="content has-text-justified">
           <p>
-            The Exchange and Exchange-Price models, built on the generative AI model Llama 3.1 8B, would bring a highly innovative introduction of Generative AI to the financial market if applied to the real-world financial industry. Since the models use integrated time-series datasets during training, it maximizes the efficiency of model training and inference, enabling fast learning and achieving the following effects.
+            The Exchange models demonstrated performance comparable to that of traditional foreign exchange dealers in predicting exchange rates, highlighting the effectiveness of LLM-based data processing and training techniques. By integrating diverse financial data and news information, these models capture market volatility more effectively, enhancing the reliability of exchange rate forecasts. Among the different Exchange models, the 12B model demonstrated particularly strong performance and robustness. This study demonstrates the practical viability of AI-driven financial forecasting.
           </p>
           <p>
-            Unlike traditional services that rely on past experiences and are limited in volatile environments, the LLM-based AI forex trader can analyze vast global data in real-time with high data analysis capabilities and make precise predictions. Furthermore, it provides user-friendly financial services by explaining predictions in a way that even non-experts can easily understand.
-          </p>
-          <p>
-            Being an AI-based service rather than human-based, it can be automated and operated 24/7, providing financial information whenever users need it, anywhere. The model can quickly adapt to market volatility by learning various patterns and swiftly capturing changes in real-time data regarding exchange rate fluctuations through multiple leading indicators.
-          </p>
-          <p>
-            The model has also demonstrated performance that surpasses traditional human-based predictions in evaluation metrics, making the <strong>Exchange</strong> and <strong>Exchange-Price</strong> models highly applicable and valuable.
+            Moving forward, we plan to further improve model performance by integrating additional datasets and financial indicators, reinforcing AI’s role as a powerful decision-making tool in financial markets.
           </p>
         </div>
 
@@ -957,25 +1555,490 @@
         <h2 class="title is-3 has-text-left">References</h2>
 
         <div class="content has-text-justified">
-          <ul>
-            <li>[1] <a href="https://huggingface.co/meta-llama/Llama-3.1-8B">meta-llama/Llama-3.1-8B (Model)</a></li>
-            <li>[2] <a href="https://huggingface.co/davidkim205/exchange">davidkim205/exchange (Model)</a></li>
-            <li>[3] <a href="https://huggingface.co/davidkim205/exchange-price">davidkim205/exchange-price (Model)</a></li>
+            <ul>
+                <li>[1] <a href="https://huggingface.co/meta-llama/Llama-3.2-1B-Instruct">meta-llama/Llama-3.2-1B-Instruct (Base Model)</a></li>
+                <li>[2] <a href="https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct">meta-llama/Llama-3.2-3B-Instruct (Base Model)</a></li>
+                <li>[3] <a href="https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct">meta-llama/Llama-3.1-8B-Instruct (Base Model)</a></li>
+                <li>[4] <a href="https://huggingface.co/google/gemma-3-12b-it">google/gemma-3-12b-it (Base Model)</a></li>
+                <li>[5] <a href="https://huggingface.co/davidkim205/exchange-1b">davidkim205/exchange-1b (Model)</a></li>
+                <li>[6] <a href="https://huggingface.co/davidkim205/exchange-3b">davidkim205/exchange-3b (Model)</a></li>
+                <li>[7] <a href="https://huggingface.co/davidkim205/exchange-8b">davidkim205/exchange-8b (Model)</a></li>
+                <li>[8] <a href="https://huggingface.co/davidkim205/exchange-12b">davidkim205/exchange-12b (Model)</a></li>
           </ul>
         </div>
-
-<!--         <div class="content has-text-justified">
-          <ul>
-            <li><strong>[1]</strong> meta-llama/Llama-3.1-8B(Model): <a href="https://huggingface.co/meta-llama/Llama-3.1-8B"></li>
-            <li><strong>[2]</strong> davidkim205/exchange(Model): https://huggingface.co/davidkim205/exchange</li>
-            <li><strong>[3]</strong> davidkim205/exchange-price(Model): https://huggingface.co/davidkim205/exchange-price</li>
-          </ul>
-        </div> -->
 
       </div>
     </div>
   </div>
 </section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">Appendix</h2>
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4">Prediction Data</h3>
+          <p>
+            We present the High and Low prediction values for each bank and model, based on data from March 2025. The table below presents the daily predictions for USD exchange rates (High, Low) made by various banks and the Exchange model, which were used in the evaluation. Note that sites only provide predictions for the High and Low values. Since the Evaluation section reports the average results from running the Exchange models in various environments, the MAPE calculated using this dataset may differ from the reported values.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5">High</h4>
+        </div>
+
+        <div style="overflow-y: auto;">
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th style="text-align: left;">Date</th>
+                <th style="text-align: left;">Exchange-12B</th>
+                <th style="text-align: left;">Exchange-1B</th>
+                <th style="text-align: left;">Exchange-3B</th>
+                <th style="text-align: left;">Exchange-8B</th>
+                <th style="text-align: left;">KEB Hana Bank</th>
+                <th style="text-align: left;">iM Bank</th>
+                <th style="text-align: left;">KOOKMIN BANK</th>
+                <th style="text-align: left;">Korea Trade Insurance Corp.</th>
+                <th style="text-align: left;">Shinhan Bank</th>
+                <th style="text-align: left;">Toss Securities</th>
+                <th style="text-align: left;">Woori Bank</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align: left;">03/05</td>
+                <td style="text-align: left;">1463.9</td>
+                <td style="text-align: left;">1465.2</td>
+                <td style="text-align: left;">1460</td>
+                <td style="text-align: left;">1462.5</td>
+                <td style="text-align: left;">1459</td>
+                <td style="text-align: left;">1457.0</td>
+                <td style="text-align: left;">1458</td>
+                <td style="text-align: left;">1457.8</td>
+                <td style="text-align: left;">1458.0</td>
+                <td style="text-align: left;">1458.0</td>
+                <td style="text-align: left;">1457</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">03/06</td>
+                <td style="text-align: left;">1450.1</td>
+                <td style="text-align: left;">1453</td>
+                <td style="text-align: left;">1449.9</td>
+                <td style="text-align: left;">1445.7</td>
+                <td style="text-align: left;">1448</td>
+                <td style="text-align: left;">1449.0</td>
+                <td style="text-align: left;">1449</td>
+                <td style="text-align: left;">1446.6</td>
+                <td style="text-align: left;">1445.0</td>
+                <td style="text-align: left;">1447.0</td>
+                <td style="text-align: left;">1445</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">03/07</td>
+                <td style="text-align: left;">1448.4</td>
+                <td style="text-align: left;">1446.8</td>
+                <td style="text-align: left;">1452.2</td>
+                <td style="text-align: left;">1445.8</td>
+                <td style="text-align: left;">1453</td>
+                <td style="text-align: left;">1453.0</td>
+                <td style="text-align: left;">1447</td>
+                <td style="text-align: left;">1450.8</td>
+                <td style="text-align: left;">1452.0</td>
+                <td style="text-align: left;">1455.0</td>
+                <td style="text-align: left;">1453</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">03/11</td>
+                <td style="text-align: left;">1466.5</td>
+                <td style="text-align: left;">1458.9</td>
+                <td style="text-align: left;">1458.9</td>
+                <td style="text-align: left;">1465.5</td>
+                <td style="text-align: left;">1467</td>
+                <td style="text-align: left;">1465.0</td>
+                <td style="text-align: left;">1464</td>
+                <td style="text-align: left;">1463.8</td>
+                <td style="text-align: left;">1464.0</td>
+                <td style="text-align: left;">1463.0</td>
+                <td style="text-align: left;">1463</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">03/12</td>
+                <td style="text-align: left;">1456.5</td>
+                <td style="text-align: left;">1465.7</td>
+                <td style="text-align: left;">1458.2</td>
+                <td style="text-align: left;">1466.8</td>
+                <td style="text-align: left;">1456</td>
+                <td style="text-align: left;">1457.0</td>
+                <td style="text-align: left;">1455</td>
+                <td style="text-align: left;">1455.8</td>
+                <td style="text-align: left;">1457.0</td>
+                <td style="text-align: left;">1455.0</td>
+                <td style="text-align: left;">1454</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">03/13</td>
+                <td style="text-align: left;">1455.2</td>
+                <td style="text-align: left;">1454.5</td>
+                <td style="text-align: left;">1459.1</td>
+                <td style="text-align: left;">1455.1</td>
+                <td style="text-align: left;">1455</td>
+                <td style="text-align: left;">1455.0</td>
+                <td style="text-align: left;">1455</td>
+                <td style="text-align: left;">1455.2</td>
+                <td style="text-align: left;">1456.0</td>
+                <td style="text-align: left;">1455.0</td>
+                <td style="text-align: left;">1454</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">03/14</td>
+                <td style="text-align: left;">1456.8</td>
+                <td style="text-align: left;">1456.8</td>
+                <td style="text-align: left;">1458.4</td>
+                <td style="text-align: left;">1457</td>
+                <td style="text-align: left;">1458</td>
+                <td style="text-align: left;">1459.0</td>
+                <td style="text-align: left;">1460</td>
+                <td style="text-align: left;">1458.4</td>
+                <td style="text-align: left;">1458.0</td>
+                <td style="text-align: left;">1459.0</td>
+                <td style="text-align: left;">1459</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">03/19</td>
+                <td style="text-align: left;">1453.9</td>
+                <td style="text-align: left;">1453.7</td>
+                <td style="text-align: left;">1455</td>
+                <td style="text-align: left;">1453.7</td>
+                <td style="text-align: left;">1452</td>
+                <td style="text-align: left;">1454.0</td>
+                <td style="text-align: left;">1453</td>
+                <td style="text-align: left;">1453.6</td>
+                <td style="text-align: left;">1455.0</td>
+                <td style="text-align: left;">1455.0</td>
+                <td style="text-align: left;">1453</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">03/20</td>
+                <td style="text-align: left;">1468.2</td>
+                <td style="text-align: left;">1461.8</td>
+                <td style="text-align: left;">1468</td>
+                <td style="text-align: left;">1464</td>
+                <td style="text-align: left;">1462</td>
+                <td style="text-align: left;">1464.0</td>
+                <td style="text-align: left;">1462</td>
+                <td style="text-align: left;">1462.2</td>
+                <td style="text-align: left;">1465.0</td>
+                <td style="text-align: left;">1463.0</td>
+                <td style="text-align: left;">1462</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">03/21</td>
+                <td style="text-align: left;">1469</td>
+                <td style="text-align: left;">1469.2</td>
+                <td style="text-align: left;">1472.1</td>
+                <td style="text-align: left;">1473</td>
+                <td style="text-align: left;">1472</td>
+                <td style="text-align: left;">1472.0</td>
+                <td style="text-align: left;">1471</td>
+                <td style="text-align: left;">1471</td>
+                <td style="text-align: left;">1474.0</td>
+                <td style="text-align: left;">1475.0</td>
+                <td style="text-align: left;">1470</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">03/25</td>
+                <td style="text-align: left;">1469.4</td>
+                <td style="text-align: left;">1469.6</td>
+                <td style="text-align: left;">1473.7</td>
+                <td style="text-align: left;">1475.2</td>
+                <td style="text-align: left;">1470</td>
+                <td style="text-align: left;">1474.0</td>
+                <td style="text-align: left;">1473</td>
+                <td style="text-align: left;">1471.6</td>
+                <td style="text-align: left;">1474.0</td>
+                <td style="text-align: left;">1470.0</td>
+                <td style="text-align: left;">1472</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">03/26</td>
+                <td style="text-align: left;">1466.9</td>
+                <td style="text-align: left;">1468.3</td>
+                <td style="text-align: left;">1469</td>
+                <td style="text-align: left;">1466.7</td>
+                <td style="text-align: left;">1470</td>
+                <td style="text-align: left;">1467.0</td>
+                <td style="text-align: left;">1470</td>
+                <td style="text-align: left;">1468.4</td>
+                <td style="text-align: left;">1470.0</td>
+                <td style="text-align: left;">1469.0</td>
+                <td style="text-align: left;">1465</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">03/27</td>
+                <td style="text-align: left;">1466.5</td>
+                <td style="text-align: left;">1472.9</td>
+                <td style="text-align: left;">1466.5</td>
+                <td style="text-align: left;">1474.8</td>
+                <td style="text-align: left;">1473</td>
+                <td style="text-align: left;">1474.0</td>
+                <td style="text-align: left;">1475</td>
+                <td style="text-align: left;">1473.6</td>
+                <td style="text-align: left;">1473.0</td>
+                <td style="text-align: left;">1473.0</td>
+                <td style="text-align: left;">1473</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">03/28</td>
+                <td style="text-align: left;">1468.2</td>
+                <td style="text-align: left;">1469.2</td>
+                <td style="text-align: left;">1471.2</td>
+                <td style="text-align: left;">1472.1</td>
+                <td style="text-align: left;">1468</td>
+                <td style="text-align: left;">1468.0</td>
+                <td style="text-align: left;">1467</td>
+                <td style="text-align: left;">1468</td>
+                <td style="text-align: left;">1468.0</td>
+                <td style="text-align: left;">1470.0</td>
+                <td style="text-align: left;">1467</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </br>
+
+        <div class="content has-text-justified">
+          <h4 class="title is-5">Low</h4>
+        </div>
+
+        <div style="overflow-y: auto;">
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th style="text-align: left;">Date</th>
+                <th style="text-align: left;">Exchange-12B</th>
+                <th style="text-align: left;">Exchange-1B</th>
+                <th style="text-align: left;">Exchange-3B</th>
+                <th style="text-align: left;">Exchange-8B</th>
+                <th style="text-align: left;">KEB Hana Bank</th>
+                <th style="text-align: left;">iM Bank</th>
+                <th style="text-align: left;">KOOKMIN BANK</th>
+                <th style="text-align: left;">Korea Trade Insurance Corp.</th>
+                <th style="text-align: left;">Shinhan Bank</th>
+                <th style="text-align: left;">Toss Securities</th>
+                <th style="text-align: left;">Woori Bank</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align: left;">03/05</td>
+                <td style="text-align: left;">1451.4</td>
+                <td style="text-align: left;">1457</td>
+                <td style="text-align: left;">1454.8</td>
+                <td style="text-align: left;">1451.3</td>
+                <td style="text-align: left;">1449</td>
+                <td style="text-align: left;">1447.0</td>
+                <td style="text-align: left;">1448</td>
+                <td style="text-align: left;">1447.8</td>
+                <td style="text-align: left;">1448.0</td>
+                <td style="text-align: left;">1445.0</td>
+                <td style="text-align: left;">1447</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">03/06</td>
+                <td style="text-align: left;">1440.1</td>
+                <td style="text-align: left;">1440.5</td>
+                <td style="text-align: left;">1441.2</td>
+                <td style="text-align: left;">1438.9</td>
+                <td style="text-align: left;">1438</td>
+                <td style="text-align: left;">1439.0</td>
+                <td style="text-align: left;">1439</td>
+                <td style="text-align: left;">1437.8</td>
+                <td style="text-align: left;">1436.0</td>
+                <td style="text-align: left;">1435.0</td>
+                <td style="text-align: left;">1438</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">03/07</td>
+                <td style="text-align: left;">1440</td>
+                <td style="text-align: left;">1440.4</td>
+                <td style="text-align: left;">1437</td>
+                <td style="text-align: left;">1440.5</td>
+                <td style="text-align: left;">1443</td>
+                <td style="text-align: left;">1443.0</td>
+                <td style="text-align: left;">1435</td>
+                <td style="text-align: left;">1440.6</td>
+                <td style="text-align: left;">1439.0</td>
+                <td style="text-align: left;">1443.0</td>
+                <td style="text-align: left;">1444</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">03/11</td>
+                <td style="text-align: left;">1454.4</td>
+                <td style="text-align: left;">1452.5</td>
+                <td style="text-align: left;">1449</td>
+                <td style="text-align: left;">1452.7</td>
+                <td style="text-align: left;">1457</td>
+                <td style="text-align: left;">1455.0</td>
+                <td style="text-align: left;">1454</td>
+                <td style="text-align: left;">1454.4</td>
+                <td style="text-align: left;">1454.0</td>
+                <td style="text-align: left;">1454.0</td>
+                <td style="text-align: left;">1454</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">03/12</td>
+                <td style="text-align: left;">1448.8</td>
+                <td style="text-align: left;">1461.1</td>
+                <td style="text-align: left;">1446.4</td>
+                <td style="text-align: left;">1445.8</td>
+                <td style="text-align: left;">1446</td>
+                <td style="text-align: left;">1447.0</td>
+                <td style="text-align: left;">1447</td>
+                <td style="text-align: left;">1447.2</td>
+                <td style="text-align: left;">1447.0</td>
+                <td style="text-align: left;">1445.0</td>
+                <td style="text-align: left;">1446</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">03/13</td>
+                <td style="text-align: left;">1448.9</td>
+                <td style="text-align: left;">1448.7</td>
+                <td style="text-align: left;">1449.4</td>
+                <td style="text-align: left;">1447.8</td>
+                <td style="text-align: left;">1445</td>
+                <td style="text-align: left;">1445.0</td>
+                <td style="text-align: left;">1445</td>
+                <td style="text-align: left;">1446.2</td>
+                <td style="text-align: left;">1446.0</td>
+                <td style="text-align: left;">1444.0</td>
+                <td style="text-align: left;">1447</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">03/14</td>
+                <td style="text-align: left;">1446.9</td>
+                <td style="text-align: left;">1447</td>
+                <td style="text-align: left;">1449.2</td>
+                <td style="text-align: left;">1447.4</td>
+                <td style="text-align: left;">1448</td>
+                <td style="text-align: left;">1449.0</td>
+                <td style="text-align: left;">1450</td>
+                <td style="text-align: left;">1449.2</td>
+                <td style="text-align: left;">1448.0</td>
+                <td style="text-align: left;">1445.0</td>
+                <td style="text-align: left;">1450</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">03/19</td>
+                <td style="text-align: left;">1446.9</td>
+                <td style="text-align: left;">1448.2</td>
+                <td style="text-align: left;">1444.9</td>
+                <td style="text-align: left;">1448.9</td>
+                <td style="text-align: left;">1442</td>
+                <td style="text-align: left;">1444.0</td>
+                <td style="text-align: left;">1445</td>
+                <td style="text-align: left;">1444.6</td>
+                <td style="text-align: left;">1447.0</td>
+                <td style="text-align: left;">1443.0</td>
+                <td style="text-align: left;">1444</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">03/20</td>
+                <td style="text-align: left;">1454</td>
+                <td style="text-align: left;">1458</td>
+                <td style="text-align: left;">1459.8</td>
+                <td style="text-align: left;">1451.6</td>
+                <td style="text-align: left;">1452</td>
+                <td style="text-align: left;">1455.0</td>
+                <td style="text-align: left;">1454</td>
+                <td style="text-align: left;">1453.2</td>
+                <td style="text-align: left;">1453.0</td>
+                <td style="text-align: left;">1454.0</td>
+                <td style="text-align: left;">1454</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">03/21</td>
+                <td style="text-align: left;">1461.9</td>
+                <td style="text-align: left;">1456.6</td>
+                <td style="text-align: left;">1459.9</td>
+                <td style="text-align: left;">1457.3</td>
+                <td style="text-align: left;">1462</td>
+                <td style="text-align: left;">1462.0</td>
+                <td style="text-align: left;">1463</td>
+                <td style="text-align: left;">1462.6</td>
+                <td style="text-align: left;">1464.0</td>
+                <td style="text-align: left;">1460.0</td>
+                <td style="text-align: left;">1463</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">03/25</td>
+                <td style="text-align: left;">1461.9</td>
+                <td style="text-align: left;">1464.7</td>
+                <td style="text-align: left;">1459.7</td>
+                <td style="text-align: left;">1466.5</td>
+                <td style="text-align: left;">1460</td>
+                <td style="text-align: left;">1466.0</td>
+                <td style="text-align: left;">1463</td>
+                <td style="text-align: left;">1462.4</td>
+                <td style="text-align: left;">1464.0</td>
+                <td style="text-align: left;">1460.0</td>
+                <td style="text-align: left;">1465</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">03/26</td>
+                <td style="text-align: left;">1456.8</td>
+                <td style="text-align: left;">1460.9</td>
+                <td style="text-align: left;">1458.3</td>
+                <td style="text-align: left;">1463.5</td>
+                <td style="text-align: left;">1460</td>
+                <td style="text-align: left;">1459.0</td>
+                <td style="text-align: left;">1460</td>
+                <td style="text-align: left;">1459.6</td>
+                <td style="text-align: left;">1460.0</td>
+                <td style="text-align: left;">1458.0</td>
+                <td style="text-align: left;">1459</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">03/27</td>
+                <td style="text-align: left;">1458.8</td>
+                <td style="text-align: left;">1463.7</td>
+                <td style="text-align: left;">1459.3</td>
+                <td style="text-align: left;">1461.7</td>
+                <td style="text-align: left;">1463</td>
+                <td style="text-align: left;">1466.0</td>
+                <td style="text-align: left;">1465</td>
+                <td style="text-align: left;">1464</td>
+                <td style="text-align: left;">1463.0</td>
+                <td style="text-align: left;">1460.0</td>
+                <td style="text-align: left;">1465</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">03/28</td>
+                <td style="text-align: left;">1458.4</td>
+                <td style="text-align: left;">1464.7</td>
+                <td style="text-align: left;">1456.9</td>
+                <td style="text-align: left;">1463.8</td>
+                <td style="text-align: left;">1458</td>
+                <td style="text-align: left;">1458.0</td>
+                <td style="text-align: left;">1459</td>
+                <td style="text-align: left;">1458.8</td>
+                <td style="text-align: left;">1458.0</td>
+                <td style="text-align: left;">1460.0</td>
+                <td style="text-align: left;">1459</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </br>
+
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <footer class="footer">
     <div class="content has-text-centered">
@@ -984,6 +2047,7 @@
         </p>
     </div>
 </footer>
+
 
 </body>
 </html>
