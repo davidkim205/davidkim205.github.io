@@ -897,16 +897,8 @@ Date,Name,Open,High,Low,Close
         <div class="content has-text-justified">
           <h4 class="title is-5">Impact of Removing Specific Data Types</h4>
           <p>
-            The input data consists of the USD/KRW exchange rate, financial indicators (such as stock indices like DOW, commodity prices like Gold, and market indices like KOSDAQ), as well as related news and news summaries. We tested two experimental settings to analyze how different data compositions impact prediction accuracy. Since the goal is to predict USD exchange rates, USD/KRW exchange rate data and USD-related news were always included in all experiments:
+            To analyze the impact of different data compositions on prediction accuracy, we adopted a setting called Complete Removal, where a specific indicator was excluded from the entire input data. The input data consists of the USD/KRW exchange rate, financial indicators (such as stock indices like DOW, commodity prices like Gold, and market indices like KOSDAQ), as well as related news and news summaries. Since the goal is to predict USD exchange rates, USD/KRW exchange rate data and USD-related news were always included in all experiments.
           </p>
-          <ol>
-            <li><strong>Complete Removal</strong>: Excluding a specific indicator from the entire input data (e.g., removing <code>DOW</code> completely).</li>
-            <li><strong>Category-Specific Removal</strong>: Excluding a specific indicator from only one category of data (e.g., removing <code>DOW</code> from stock indices while retaining it in other sources).</li>
-          </ol>
-        </div>
-
-        <div class="content has-text-justified">
-          <h5 class="title is-6">1. Complete Removal of a Specific Indicator</h5>
           <p>
             The table presents the impact of completely removing specific financial indicators from the input data on model performance. Each value represents <strong>the mean MAPE (High, Low)</strong> for different indicator exclusion scenarios across the Exchange models.
           </p>
@@ -928,23 +920,16 @@ Date,Name,Open,High,Low,Close
             </thead>
             <tbody>
               <tr>
-                <td style="text-align: left;">USD DOW KOSDAQ Oil Gold KRW*</td>
-                <td style="text-align: left;">0.27</td>
-                <td style="text-align: left;">0.23</td>
-                <td style="text-align: left;">0.21</td>
-                <td style="text-align: left;">0.17</td>
-              </tr>
-              <tr>
                 <td style="text-align: left;">USD Gold</td>
                 <td style="text-align: left;">0.17</td>
                 <td style="text-align: left;">0.23</td>
-                <td style="text-align: left;"><strong>0.15</strong></td>
+                <td style="text-align: left;">0.15</td>
                 <td style="text-align: left;">0.17</td>
               </tr>
               <tr>
                 <td style="text-align: left;">USD DOW Oil KRW</td>
                 <td style="text-align: left;">0.17</td>
-                <td style="text-align: left;"><strong>0.17</strong></td>
+                <td style="text-align: left;">0.17</td>
                 <td style="text-align: left;">0.2</td>
                 <td style="text-align: left;">0.17</td>
               </tr>
@@ -960,25 +945,25 @@ Date,Name,Open,High,Low,Close
                 <td style="text-align: left;">0.17</td>
                 <td style="text-align: left;">0.23</td>
                 <td style="text-align: left;">0.21</td>
-                <td style="text-align: left;"><strong>0.15</strong></td>
+                <td style="text-align: left;">0.15</td>
               </tr>
               <tr>
                 <td style="text-align: left;">USD KRW</td>
                 <td style="text-align: left;">0.21</td>
                 <td style="text-align: left;">0.2</td>
                 <td style="text-align: left;">0.21</td>
-                <td style="text-align: left;"><strong>0.15</strong></td>
+                <td style="text-align: left;">0.15</td>
               </tr>
               <tr>
                 <td style="text-align: left;">USD Gold KRW</td>
                 <td style="text-align: left;">0.21</td>
                 <td style="text-align: left;">0.19</td>
-                <td style="text-align: left;"><strong>0.15</strong></td>
+                <td style="text-align: left;">0.15</td>
                 <td style="text-align: left;">0.19</td>
               </tr>
               <tr>
                 <td style="text-align: left;">USD DOW Oil Gold</td>
-                <td style="text-align: left;"><strong>0.16</strong></td>
+                <td style="text-align: left;">0.16</td>
                 <td style="text-align: left;">0.25</td>
                 <td style="text-align: left;">0.18</td>
                 <td style="text-align: left;">0.17</td>
@@ -1037,7 +1022,7 @@ Date,Name,Open,High,Low,Close
                 <td style="text-align: left;">0.21</td>
                 <td style="text-align: left;">0.23</td>
                 <td style="text-align: left;">0.22</td>
-                <td style="text-align: left;"><strong>0.15</strong></td>
+                <td style="text-align: left;">0.15</td>
               </tr>
               <tr>
                 <td style="text-align: left;">USD DOW KOSDAQ Oil Gold</td>
@@ -1056,7 +1041,7 @@ Date,Name,Open,High,Low,Close
               <tr>
                 <td style="text-align: left;">USD KOSDAQ Oil Gold KRW</td>
                 <td style="text-align: left;">0.24</td>
-                <td style="text-align: left;"><strong>0.17</strong></td>
+                <td style="text-align: left;">0.17</td>
                 <td style="text-align: left;">0.21</td>
                 <td style="text-align: left;">0.17</td>
               </tr>
@@ -1093,7 +1078,7 @@ Date,Name,Open,High,Low,Close
                 <td style="text-align: left;">0.24</td>
                 <td style="text-align: left;">0.23</td>
                 <td style="text-align: left;">0.23</td>
-                <td style="text-align: left;"><strong>0.15</strong></td>
+                <td style="text-align: left;">0.15</td>
               </tr>
               <tr>
                 <td style="text-align: left;">USD Oil Gold KRW</td>
@@ -1142,6 +1127,13 @@ Date,Name,Open,High,Low,Close
                 <td style="text-align: left;">0.23</td>
                 <td style="text-align: left;">0.22</td>
                 <td style="text-align: left;">0.27</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">USD DOW KOSDAQ Oil Gold KRW*</td>
+                <td style="text-align: left;">0.27</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.21</td>
                 <td style="text-align: left;">0.17</td>
               </tr>
               <tr>
