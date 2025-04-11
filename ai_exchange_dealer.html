@@ -897,16 +897,8 @@ Date,Name,Open,High,Low,Close
         <div class="content has-text-justified">
           <h4 class="title is-5">Impact of Removing Specific Data Types</h4>
           <p>
-            The input data consists of the USD/KRW exchange rate, financial indicators (such as stock indices like DOW, commodity prices like Gold, and market indices like KOSDAQ), as well as related news and news summaries. We tested two experimental settings to analyze how different data compositions impact prediction accuracy. Since the goal is to predict USD exchange rates, USD/KRW exchange rate data and USD-related news were always included in all experiments:
+            To analyze the impact of different data compositions on prediction accuracy, we adopted a setting called Complete Removal, where a specific indicator was excluded from the entire input data. The input data consists of the USD/KRW exchange rate, financial indicators (such as stock indices like DOW, commodity prices like Gold, and market indices like KOSDAQ), as well as related news and news summaries. Since the goal is to predict USD exchange rates, USD/KRW exchange rate data and USD-related news were always included in all experiments.
           </p>
-          <ol>
-            <li><strong>Complete Removal</strong>: Excluding a specific indicator from the entire input data (e.g., removing <code>DOW</code> completely).</li>
-            <li><strong>Category-Specific Removal</strong>: Excluding a specific indicator from only one category of data (e.g., removing <code>DOW</code> from stock indices while retaining it in other sources).</li>
-          </ol>
-        </div>
-
-        <div class="content has-text-justified">
-          <h5 class="title is-6">1. Complete Removal of a Specific Indicator</h5>
           <p>
             The table presents the impact of completely removing specific financial indicators from the input data on model performance. Each value represents <strong>the mean MAPE (High, Low)</strong> for different indicator exclusion scenarios across the Exchange models.
           </p>
@@ -928,23 +920,16 @@ Date,Name,Open,High,Low,Close
             </thead>
             <tbody>
               <tr>
-                <td style="text-align: left;">USD DOW KOSDAQ Oil Gold KRW*</td>
-                <td style="text-align: left;">0.27</td>
-                <td style="text-align: left;">0.23</td>
-                <td style="text-align: left;">0.21</td>
-                <td style="text-align: left;">0.17</td>
-              </tr>
-              <tr>
                 <td style="text-align: left;">USD Gold</td>
                 <td style="text-align: left;">0.17</td>
                 <td style="text-align: left;">0.23</td>
-                <td style="text-align: left;"><strong>0.15</strong></td>
+                <td style="text-align: left;">0.15</td>
                 <td style="text-align: left;">0.17</td>
               </tr>
               <tr>
                 <td style="text-align: left;">USD DOW Oil KRW</td>
                 <td style="text-align: left;">0.17</td>
-                <td style="text-align: left;"><strong>0.17</strong></td>
+                <td style="text-align: left;">0.17</td>
                 <td style="text-align: left;">0.2</td>
                 <td style="text-align: left;">0.17</td>
               </tr>
@@ -960,25 +945,25 @@ Date,Name,Open,High,Low,Close
                 <td style="text-align: left;">0.17</td>
                 <td style="text-align: left;">0.23</td>
                 <td style="text-align: left;">0.21</td>
-                <td style="text-align: left;"><strong>0.15</strong></td>
+                <td style="text-align: left;">0.15</td>
               </tr>
               <tr>
                 <td style="text-align: left;">USD KRW</td>
                 <td style="text-align: left;">0.21</td>
                 <td style="text-align: left;">0.2</td>
                 <td style="text-align: left;">0.21</td>
-                <td style="text-align: left;"><strong>0.15</strong></td>
+                <td style="text-align: left;">0.15</td>
               </tr>
               <tr>
                 <td style="text-align: left;">USD Gold KRW</td>
                 <td style="text-align: left;">0.21</td>
                 <td style="text-align: left;">0.19</td>
-                <td style="text-align: left;"><strong>0.15</strong></td>
+                <td style="text-align: left;">0.15</td>
                 <td style="text-align: left;">0.19</td>
               </tr>
               <tr>
                 <td style="text-align: left;">USD DOW Oil Gold</td>
-                <td style="text-align: left;"><strong>0.16</strong></td>
+                <td style="text-align: left;">0.16</td>
                 <td style="text-align: left;">0.25</td>
                 <td style="text-align: left;">0.18</td>
                 <td style="text-align: left;">0.17</td>
@@ -1037,7 +1022,7 @@ Date,Name,Open,High,Low,Close
                 <td style="text-align: left;">0.21</td>
                 <td style="text-align: left;">0.23</td>
                 <td style="text-align: left;">0.22</td>
-                <td style="text-align: left;"><strong>0.15</strong></td>
+                <td style="text-align: left;">0.15</td>
               </tr>
               <tr>
                 <td style="text-align: left;">USD DOW KOSDAQ Oil Gold</td>
@@ -1056,7 +1041,7 @@ Date,Name,Open,High,Low,Close
               <tr>
                 <td style="text-align: left;">USD KOSDAQ Oil Gold KRW</td>
                 <td style="text-align: left;">0.24</td>
-                <td style="text-align: left;"><strong>0.17</strong></td>
+                <td style="text-align: left;">0.17</td>
                 <td style="text-align: left;">0.21</td>
                 <td style="text-align: left;">0.17</td>
               </tr>
@@ -1093,7 +1078,7 @@ Date,Name,Open,High,Low,Close
                 <td style="text-align: left;">0.24</td>
                 <td style="text-align: left;">0.23</td>
                 <td style="text-align: left;">0.23</td>
-                <td style="text-align: left;"><strong>0.15</strong></td>
+                <td style="text-align: left;">0.15</td>
               </tr>
               <tr>
                 <td style="text-align: left;">USD Oil Gold KRW</td>
@@ -1145,6 +1130,13 @@ Date,Name,Open,High,Low,Close
                 <td style="text-align: left;">0.17</td>
               </tr>
               <tr>
+                <td style="text-align: left;">USD DOW KOSDAQ Oil Gold KRW*</td>
+                <td style="text-align: left;">0.27</td>
+                <td style="text-align: left;">0.23</td>
+                <td style="text-align: left;">0.21</td>
+                <td style="text-align: left;">0.17</td>
+              </tr>
+              <tr>
                 <td style="text-align: left;">USD DOW KOSDAQ</td>
                 <td style="text-align: left;">0.21</td>
                 <td style="text-align: left;">0.28</td>
@@ -1158,384 +1150,6 @@ Date,Name,Open,High,Low,Close
             * default Included Indicators
         </p>
         </br>
-
-        <div class="content has-text-justified">
-          <h5 class="title is-6">2. Category-Specific Indicator Removal</h5>
-        </div>
-
-        <div class="content has-text-justified">
-          <h5 class="title is-6">2.1 Input Component: Data</h5>
-          <p>
-            This component consists of OHLC (Open, High, Low, Close) format financial data, where USD data is always included as a mandatory component. Other indicators, such as <code>DOW</code> and <code>KOSDAQ</code>, are selectively included or removed to analyze their influence on predictive accuracy.
-          </p>
-          <p>
-            The following table evaluates the impact of including the <code>DOW</code> and <code>KOSDAQ</code> indicators in the input data on model performance (the average of High, Low MAPE). On the whole, when both DOW and KOSDAQ are included, MAPE is the lowest, indicating that incorporating multiple indicators improves stability. In particular, the Exchange-12B model maintains relatively stable performance across different configurations, demonstrating greater robustness to changes in included indicators.
-          </p>
-        </div>
-
-        <div style="overflow-y: auto; max-height: 500px;">
-          <table class="table is-bordered is-striped is-hoverable">
-            <thead>
-            <tr>
-              <th style="text-align: left;">Model \ Included Indicators</th>
-              <th style="text-align: left;">DOW KOSDAQ*</th>
-              <th style="text-align: left;">DOW</th>
-              <th style="text-align: left;">KOSDAQ</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style="text-align: left;">Exchange-12B</td>
-                <td style="text-align: left;"><strong>0.17</strong></td>
-                <td style="text-align: left;">0.2</td>
-                <td style="text-align: left;"><strong>0.17</strong></td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">Exchange-8B</td>
-                <td style="text-align: left;"><strong>0.21</strong></td>
-                <td style="text-align: left;">0.25</td>
-                <td style="text-align: left;">0.23</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">Exchange-3B</td>
-                <td style="text-align: left;"><strong>0.23</strong></td>
-                <td style="text-align: left;">0.31</td>
-                <td style="text-align: left;">0.26</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">Exchange-1B</td>
-                <td style="text-align: left;">0.27</td>
-                <td style="text-align: left;"><strong>0.21</strong></td>
-                <td style="text-align: left;">0.27</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="has-text-left">
-            * default Included Indicators
-        </p>
-        </br>
-
-        <div class="content has-text-justified">
-          <h5 class="title is-6">2.2 Input Component: News</h5>
-          <p>
-            This component examines the influence of news-based indicators (<code>KRW</code>, <code>DOW</code>, <code>KOSDAQ</code>) on model performance. The table below presents the average of High, Low MAPE values for different indicator combinations, where USD data is always included as a mandatory component.
-          </p>
-          <p>
-            Overall, the results indicate that no single indicator consistently improves performance across all model sizes. Exchange-12B achieves the lowest MAPE when only <code>DOW</code> is included, while Exchange-1B performs best with <code>KRW</code> alone. Meanwhile, Exchange-8B and Exchange-3B show minimal variation across different indicator sets. The average MAPE remains relatively stable across configurations, implying that incorporating multiple indicators does not necessarily guarantee better predictive accuracy.
-          </p>
-        </div>
-
-        <div style="overflow-y: auto; max-height: 500px;">
-          <table class="table is-bordered is-striped is-hoverable">
-            <thead>
-              <tr>
-                <th style="text-align: left;">Model \ Included Indicators</th>
-                <th style="text-align: left;">KRW DOW KOSDAQ*</th>
-                <th style="text-align: left;">DOW</th>
-                <th style="text-align: left;">KOSDAQ</th>
-                <th style="text-align: left;">KRW</th>
-                <th style="text-align: left;">KRW DOW</th>
-                <th style="text-align: left;">KRW KOSDAQ</th>
-                <th style="text-align: left;">DOW KOSDAQ</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style="text-align: left;">Exchange-12B</td>
-                <td style="text-align: left;">0.17</td>
-                <td style="text-align: left;"><strong>0.16</strong></td>
-                <td style="text-align: left;">0.19</td>
-                <td style="text-align: left;">0.2</td>
-                <td style="text-align: left;">0.2</td>
-                <td style="text-align: left;">0.17</td>
-                <td style="text-align: left;">0.19</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">Exchange-8B</td>
-                <td style="text-align: left;">0.21</td>
-                <td style="text-align: left;">0.23</td>
-                <td style="text-align: left;"><strong>0.2</strong></td>
-                <td style="text-align: left;">0.22</td>
-                <td style="text-align: left;">0.24</td>
-                <td style="text-align: left;">0.21</td>
-                <td style="text-align: left;">0.22</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">Exchange-3B</td>
-                <td style="text-align: left;">0.23</td>
-                <td style="text-align: left;">0.22</td>
-                <td style="text-align: left;"><strong>0.21</strong></td>
-                <td style="text-align: left;">0.23</td>
-                <td style="text-align: left;">0.22</td>
-                <td style="text-align: left;"><strong>0.21</strong></td>
-                <td style="text-align: left;">0.22</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">Exchange-1B</td>
-                <td style="text-align: left;">0.27</td>
-                <td style="text-align: left;">0.25</td>
-                <td style="text-align: left;">0.26</td>
-                <td style="text-align: left;"><strong>0.18</strong></td>
-                <td style="text-align: left;">0.2</td>
-                <td style="text-align: left;">0.24</td>
-                <td style="text-align: left;">0.22</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="has-text-left">
-            * default Included Indicators
-        </p>
-        </br>
-
-        <div class="content has-text-justified">
-          <h5 class="title is-6">2.3 Input Component: News Summary</h5>
-          <p>
-            This section explores the impact of summarized news indicators on model performance. The table below presents the average of High, Low MAPE values for different indicator combinations, with various configurations incorporating <code>KRW</code>, <code>DOW</code>, <code>KOSDAQ</code>, <code>Gold</code>, and <code>Oil</code>.
-          </p>
-          <p>
-            Just like in the News section, no single combination consistently yields the lowest MAPE across all model sizes. Exchange-12B achieves the lowest error with <code>KRW DOW Gold Oil</code>, while Exchange-3B performs best when only <code>DOW</code> is included. In contrast, Exchange-1B achieves its lowest MAPE with <code>KRW</code>, and Exchange-8B performs best with <code>KRW DOW</code>. These variations indicate that the effectiveness of news-summary indicators depends on model scale and configuration. While certain combinations enhance performance for specific models, their benefits do not generalize across all architectures.
-          </p>
-        </div>
-
-        <div style="overflow-y: auto; max-height: 500px;">
-          <table class="table is-bordered is-striped is-hoverable">
-            <thead>
-              <tr>
-                <th style="text-align: left;">Included Indicators</th>
-                <th style="text-align: left;">Exchange-1B</th>
-                <th style="text-align: left;">Exchange-3B</th>
-                <th style="text-align: left;">Exchange-8B</th>
-                <th style="text-align: left;">Exchange-12B</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style="text-align: left;">KRW DOW KOSDAQ Gold Oil*</td>
-                <td style="text-align: left;">0.27</td>
-                <td style="text-align: left;">0.23</td>
-                <td style="text-align: left;">0.21</td>
-                <td style="text-align: left;">0.17</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">DOW</td>
-                <td style="text-align: left;">0.24</td>
-                <td style="text-align: left;"><strong>0.18</strong></td>
-                <td style="text-align: left;">0.16</td>
-                <td style="text-align: left;">0.18</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">KRW DOW</td>
-                <td style="text-align: left;">0.18</td>
-                <td style="text-align: left;">0.25</td>
-                <td style="text-align: left;"><strong>0.15</strong></td>
-                <td style="text-align: left;">0.17</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">KRW KOSDAQ Gold</td>
-                <td style="text-align: left;">0.18</td>
-                <td style="text-align: left;">0.22</td>
-                <td style="text-align: left;">0.2</td>
-                <td style="text-align: left;">0.16</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">Oil</td>
-                <td style="text-align: left;">0.18</td>
-                <td style="text-align: left;">0.23</td>
-                <td style="text-align: left;">0.17</td>
-                <td style="text-align: left;">0.21</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">KRW Gold</td>
-                <td style="text-align: left;">0.2</td>
-                <td style="text-align: left;">0.22</td>
-                <td style="text-align: left;">0.19</td>
-                <td style="text-align: left;">0.17</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">DOW KOSDAQ Oil</td>
-                <td style="text-align: left;">0.2</td>
-                <td style="text-align: left;">0.26</td>
-                <td style="text-align: left;">0.2</td>
-                <td style="text-align: left;">0.16</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">KOSDAQ Gold Oil</td>
-                <td style="text-align: left;">0.2</td>
-                <td style="text-align: left;">0.23</td>
-                <td style="text-align: left;">0.21</td>
-                <td style="text-align: left;">0.18</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">KRW DOW KOSDAQ</td>
-                <td style="text-align: left;">0.22</td>
-                <td style="text-align: left;">0.23</td>
-                <td style="text-align: left;">0.18</td>
-                <td style="text-align: left;">0.17</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">DOW KOSDAQ Gold Oil</td>
-                <td style="text-align: left;">0.21</td>
-                <td style="text-align: left;">0.23</td>
-                <td style="text-align: left;">0.18</td>
-                <td style="text-align: left;">0.18</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">KRW KOSDAQ Gold Oil</td>
-                <td style="text-align: left;">0.19</td>
-                <td style="text-align: left;">0.24</td>
-                <td style="text-align: left;">0.21</td>
-                <td style="text-align: left;">0.17</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">KOSDAQ</td>
-                <td style="text-align: left;">0.21</td>
-                <td style="text-align: left;">0.23</td>
-                <td style="text-align: left;">0.21</td>
-                <td style="text-align: left;">0.2</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">KRW</td>
-                <td style="text-align: left;"><strong>0.17</strong></td>
-                <td style="text-align: left;">0.26</td>
-                <td style="text-align: left;">0.24</td>
-                <td style="text-align: left;">0.17</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">DOW KOSDAQ</td>
-                <td style="text-align: left;">0.21</td>
-                <td style="text-align: left;">0.21</td>
-                <td style="text-align: left;">0.21</td>
-                <td style="text-align: left;">0.2</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">DOW Oil</td>
-                <td style="text-align: left;">0.19</td>
-                <td style="text-align: left;">0.27</td>
-                <td style="text-align: left;">0.18</td>
-                <td style="text-align: left;">0.21</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">DOW Gold Oil</td>
-                <td style="text-align: left;">0.22</td>
-                <td style="text-align: left;">0.25</td>
-                <td style="text-align: left;">0.19</td>
-                <td style="text-align: left;">0.17</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">KRW DOW Gold</td>
-                <td style="text-align: left;">0.23</td>
-                <td style="text-align: left;">0.23</td>
-                <td style="text-align: left;">0.21</td>
-                <td style="text-align: left;">0.17</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">KRW DOW Oil</td>
-                <td style="text-align: left;">0.22</td>
-                <td style="text-align: left;">0.23</td>
-                <td style="text-align: left;">0.19</td>
-                <td style="text-align: left;">0.2</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">KRW DOW Gold Oil</td>
-                <td style="text-align: left;">0.21</td>
-                <td style="text-align: left;">0.23</td>
-                <td style="text-align: left;">0.24</td>
-                <td style="text-align: left;"><strong>0.15</strong></td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">KRW DOW KOSDAQ Gold</td>
-                <td style="text-align: left;">0.23</td>
-                <td style="text-align: left;">0.24</td>
-                <td style="text-align: left;">0.21</td>
-                <td style="text-align: left;">0.16</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">KRW DOW KOSDAQ Oil</td>
-                <td style="text-align: left;">0.22</td>
-                <td style="text-align: left;">0.23</td>
-                <td style="text-align: left;">0.22</td>
-                <td style="text-align: left;">0.17</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">DOW Gold</td>
-                <td style="text-align: left;">0.21</td>
-                <td style="text-align: left;">0.26</td>
-                <td style="text-align: left;">0.21</td>
-                <td style="text-align: left;">0.2</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">Gold Oil</td>
-                <td style="text-align: left;">0.23</td>
-                <td style="text-align: left;">0.26</td>
-                <td style="text-align: left;">0.24</td>
-                <td style="text-align: left;">0.17</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">KOSDAQ Gold</td>
-                <td style="text-align: left;">0.18</td>
-                <td style="text-align: left;">0.27</td>
-                <td style="text-align: left;">0.24</td>
-                <td style="text-align: left;">0.17</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">KOSDAQ Oil</td>
-                <td style="text-align: left;">0.23</td>
-                <td style="text-align: left;">0.24</td>
-                <td style="text-align: left;">0.23</td>
-                <td style="text-align: left;">0.16</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">KRW KOSDAQ</td>
-                <td style="text-align: left;">0.26</td>
-                <td style="text-align: left;">0.27</td>
-                <td style="text-align: left;">0.19</td>
-                <td style="text-align: left;">0.17</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">KRW Oil</td>
-                <td style="text-align: left;">0.2</td>
-                <td style="text-align: left;">0.23</td>
-                <td style="text-align: left;">0.24</td>
-                <td style="text-align: left;">0.2</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">DOW KOSDAQ Gold</td>
-                <td style="text-align: left;">0.22</td>
-                <td style="text-align: left;">0.25</td>
-                <td style="text-align: left;">0.24</td>
-                <td style="text-align: left;">0.17</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">KRW Gold Oil</td>
-                <td style="text-align: left;">0.26</td>
-                <td style="text-align: left;">0.3</td>
-                <td style="text-align: left;">0.19</td>
-                <td style="text-align: left;"><strong>0.15</strong></td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">KRW KOSDAQ Oil</td>
-                <td style="text-align: left;">0.23</td>
-                <td style="text-align: left;">0.26</td>
-                <td style="text-align: left;">0.21</td>
-                <td style="text-align: left;">0.17</td>
-              </tr>
-              <tr>
-                <td style="text-align: left;">Gold</td>
-                <td style="text-align: left;">0.21</td>
-                <td style="text-align: left;">0.26</td>
-                <td style="text-align: left;">0.24</td>
-                <td style="text-align: left;">0.2</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="has-text-left">
-            * default Included Indicators
-        </p>
-        </br>
-
       </div>
     </div>
   </div>
