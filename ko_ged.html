@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ko-GED</title>
+    <meta name="description" content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+    <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .footer-social a {
+            color: #fff;
+            padding: 10px;
+            border-radius: 50%;
+            background-color: #4a4a4a;
+        }
+    </style>
+</head>
+
+<body>
+<header class="navbar">
+    <div class="navbar-brand">
+        <a class="navbar-item logo" href="/">Research Blog</a>
+    </div>
+</header>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Ko-GED: A Benchmark Aligned with Korean Educational Standards for Evaluating LLMs</h1>
+
+          <div class="column has-text-centered">
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a href="https://github.com/davidkim205">ChangYeon Kim</a><sup>1</sup>
+                </span>
+                <span class="author-block">
+                  <a href="https://github.com/Doleeee">YeHee Lim</a><sup>1</sup>
+                </span>
+                <span class="author-block">
+                  <a href="https://github.com/sudog1">BumSu Jung</a><sup>1</sup>
+                </span>
+                <span class="author-block">
+                  <a href="https://github.com/hoysu">YeonSu Ho</a><sup>1</sup>
+                </span>
+                <span class="author-block">
+                  <a href="">YoungJun Hwang</a><sup>1</sup>
+                </span>
+              </div>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <sup>1</sup>2Digit AI Research
+                </span>
+              </div>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- Model Link. -->
+<!--              <span class="link-block">-->
+<!--                <a href="https://huggingface.co/collections/davidkim205/keval-2-67ac5400f5eef4984cc5dbbb"-->
+<!--                  class="external-link button is-normal is-rounded is-dark">-->
+<!--                  <span class="icon">-->
+<!--                      <i class="far fa-images"></i>-->
+<!--                  </span>-->
+<!--                  <span>Model</span>-->
+<!--                  </a>-->
+<!--              </span>-->
+              <!-- Paper Link. -->
+              <span class="link-block">
+                <a href="https://davidkim205.github.io/ko_ged.html"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+             <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/davidkim205/ko-bench"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">1. Introduction</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            This report presents <strong>ko-ged</strong>, a benchmark dataset developed to evaluate large language models (LLMs) in Korean language comprehension and reasoning. The dataset is derived from authentic exam questions of Korea’s official elementary, middle, and high school General Equivalency Diploma (GED) tests, administered by the Korean Ministry of Education.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">2. Motivation and Goals</h2>
+
+        <h3 class="title is-4 has-text-left">2.1 Official Exam-Based Question Sources</h3>
+
+        <div class="content has-text-justified">
+          <p>
+            ko-ged is constructed using authentic test items authored by official exam committees, including those responsible for national equivalency exams and public education assessments in Korea. All questions are carefully selected to align with the curriculum and evaluation standards of each grade level in elementary, middle, and high school as closely as possible.
+          </p>
+        </div>
+
+        <h3 class="title is-4 has-text-left">2.2 Broad and Balanced Coverage</h3>
+
+        <div class="content has-text-justified">
+          <p>
+            The dataset spans a wide range of subjects, including:
+          </p>
+          <ul>
+            <li><strong>Korean</strong> | reading comprehension, writing, grammar</li>
+            <li><strong>Mathematics</strong> | arithmetic, algebra, geometry, probability</li>
+            <li><strong>Social Studies</strong> | history, politics, economics, geography</li>
+            <li><strong>Science</strong> | physics, chemistry, biology, earth science</li>
+            <li><strong>English</strong>| reading, writing, grammar</li>
+          </ul>
+          <p>
+            Within each subject area, questions are distributed to ensure a balanced range of difficulty levels as well as cognitive processes, reflecting the variety of reasoning skills assessed across Korea’s elementary, middle, and high school equivalency and standardized exams.
+          </p>
+        </div>
+
+        <h3 class="title is-4 has-text-left">2.3 Fine-Grained Annotations with Answers and Explanations</h3>
+
+        <div class="content has-text-justified">
+          <p>
+            Most items are designed as short-answer questions to support automated scoring. A subset includes generative formats to evaluate language models’ ability to produce coherent written responses. Each item is annotated with a reference answer and, when applicable, an annotated rationale. These annotations enable flexible evaluation strategies, such as exact match, partial credit, and qualitative assessment.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">3. Dataset Structure</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            The ko-ged dataset consists of two versions: the original <strong>ko-ged</strong> and the extended <strong>ko-ged-2501</strong>.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <p>
+            The original <strong>ko-ged</strong> is based on actual past Korean equivalency exams—similar to the GED but separately administered for elementary, middle, and high school levels. It covers five core subjects—Korean, English, Mathematics, Science, and Social Studies—across all three school levels, with 10 questions per subject per level, totaling 150 questions. A uniform sampling strategy ensures balanced coverage, making it ideal for targeted benchmarking.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <p>
+            In contrast, the extended version, <strong>ko-ged-2501</strong>, comprises 293 questions drawn from the 2025 first-round Korean GED exam. It expands coverage to additional subjects and offers a broader variety of question types, better reflecting real exam complexity and enabling comprehensive model evaluation.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <p>
+            All exam items in ko-ged are stored as JSON objects with fields such as <code>question_id</code>, <code>category</code> (indicating grade level and subject), <code>turns</code> (containing the question text), and <code>reference</code> (including reference answers and, when applicable, explanations). For example, a question might be represented as:
+          </p>
+          <pre>
+{
+  "question_id": 33,
+  "category": "초등-수학",
+  "turns": ["사각뿔이 있다. 이 사각뿔의 밑면과 만나는 면의 개수는?"],
+  "reference": ["4개"]
+}</pre>
+          <pre>
+{
+  "question_id": 2,
+  "category": "초등-국어",
+  "turns": [
+    "다음 내용에서 괄호 부분에 어울리는 한국 속담을 쓰세요. \"민수 : 어제 자전거를 타다가 넘어져서 다쳤어. 수빈 : 많이 다쳤어? (자전거를 정말 잘 타는 사람도 넘어질 수가 있어.) 그러니 항상 조심해.\""
+  ],
+  "reference": [
+    "속담으로는 \"원숭이도 나무에서 떨어질 때가 있다\"가 적절합니다. 따라서 문장은 \"원숭이도 나무에서 떨어질 때가 있어.\"로 완성될 수 있습니다."
+  ]
+}</pre>
+          <p>
+            All exam items in ko-ged are sourced from the official archive maintained by the <span><a href="https://www.gumsi.or.kr">Korean Ministry of Education</a></span>. These materials are publicly accessible and provided for educational use. We curated text-based questions suitable for language model evaluation and excluded items relying on images, charts, or oral instructions. The collected items were transcribed and standardized through minimal preprocessing, including text normalization, converting multiple-choice questions into short-answer formats to better fit LLM evaluation, and manual formatting verification. Quality assurance steps included manual review to correct transcription errors and ensure consistency across items.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">4. Task Design and Evaluation Protocol</h2>
+
+        <h3 class="title is-4 has-text-left">4.1. Unified Prompt Design</h3>
+
+        <div class="content has-text-justified">
+          <p>
+            In the ko-ged evaluation setup, a single, fixed-format prompt was used to assess all model outputs, regardless of subject, question type (short-answer or generative), or difficulty. Each prompt consisted of three main components: evaluation criteria, the original question, and the model-generated answer. The evaluation criteria were defined explicitly to guide the scoring language model, while the other two components were filled with the corresponding input and output.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <p>
+            Using a unified prompt across all items offered several advantages. First, it ensured fairness, as all responses were judged under the same conditions, reducing potential bias toward specific formats or domains. Second, it enabled automation and scalability, allowing large-scale evaluations to be conducted efficiently using a consistent framework. Third, it promoted reproducibility, as the fixed evaluation structure made it easier to replicate the process or apply it in future experiments with minimal adjustments.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <p>
+            To ensure clarity, we briefly define the LLM-as-a-judge paradigm: it refers to the approach where large language models themselves are employed as evaluators to assess the quality and correctness of generated responses, enabling scalable and automated scoring without human intervention.
+          </p>
+        </div>
+
+        <h3 class="title is-4 has-text-left">4.2. Evaluation Flow</h3>
+
+        <div class="content has-text-justified">
+          <p>
+            The ko-ged evaluation procedure follows a three-step flow: (1) generating model responses for each question from the target language model, (2) submitting these answers within a fixed evaluation prompt to GPT-4o for scoring, and (3) collecting and organizing the evaluation outputs.
+          </p>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            The process is fully automated, with each model answer and its corresponding evaluation result (model judgment) stored separately. The model judgment includes both a qualitative assessment of the response and an integer score ranging from 0 to 10. This enables not only detailed qualitative feedback for individual answers but also quantitative comparisons across different models.
+          </p>
+        </div>
+
+        <h3 class="title is-4 has-text-left">4.3. Scoring Rubric</h3>
+
+        <div class="content has-text-justified">
+          <p>
+            A fundamental scoring criterion in ko-ged is the consistency of language between the question and the response. If the main language of the response differs from that of the question, the response is assigned a score of 0. This rule ensures fairness and consistency in evaluation, and reflects the practical limitations of using LLMs that do not respond in the expected language in real Korean-language settings. An exception is made for English subject questions, where the expected response language (Korean or English) is explicitly indicated in the question.
+          </p>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            Beyond simple correctness, the evaluation considers multiple qualitative factors including the usefulness, relevance to the question, factual accuracy, depth of content, creativity, and level of detail in the response. This rubric is designed to differentiate the quality of both short-answer and generative responses.
+          </p>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            The overall performance of each model is measured by the average judgment score across all evaluated items. This approach enables quantitative comparisons between models and ensures consistent evaluation across diverse question types.
+          </p>
+        </div>
+        <h3 class="title is-4 has-text-left">4.4. Model Evaluation Setting</h3>
+
+        <div class="content has-text-justified">
+          <p>
+            All model generations were conducted with <code>temperature=0.7</code> and <code>max_new_tokens=1024</code> to allow for varied but relevant responses. For evaluation, GPT-4o was used as the scoring model with <code>temperature=0</code> and <code>max_tokens=2048</code>, ensuring deterministic and consistent judgments across all responses.
+          </p>
+        </div>
+
+        <div style="overflow-y: auto;">
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+                  <th>Category</th>
+                  <th>Model Source</th>
+                  <th>Models Evaluated</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align: left;">General-purpose LLMs</td>
+                <td style="text-align: left;">OpenAI</td>
+                <td style="text-align: left;">GPT-4.1, GPT-4o</td>
+              </tr>
+              <tr>
+                <td style="text-align: left;"></td>
+                <td style="text-align: left;">Google</td>
+                <td style="text-align: left;"><a href="https://huggingface.co/collections/google/gemma-2-release-667d6600fd5220e7b967f315">Gemma 2</a>, <a href="https://huggingface.co/collections/google/gemma-3-release-67c6c6f89c4f76621268bb6d">Gemma 3</a>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align: left;"></td>
+                <td style="text-align: left;">Qwen</td>
+                <td style="text-align: left;"><a href="https://huggingface.co/collections/Qwen/qwen2-6659360b33528ced941e557f">Qwen 2</a>, <a href="https://huggingface.co/collections/Qwen/qwen25-66e81a666513e518adb90d9e">Qwen 2.5</a></td>
+              </tr>
+              <tr>
+                <td style="text-align: left;"></td>
+                <td style="text-align: left;">Meta (LLaMA)</td>
+                <td style="text-align: left;"><a href="https://huggingface.co/collections/meta-llama/llama-31-669fc079a0c406a149a5738f">LLaMA 3.1</a>, <a href="https://huggingface.co/collections/meta-llama/llama-32-66f448ffc8c32f949b04c8cf">LLaMA 3.2</a>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align: left;">Korean-developed LLMs</td>
+                <td style="text-align: left;">Kakao</td>
+                <td style="text-align: left;"><a href="https://huggingface.co/collections/kakaocorp/kanana-15-682d75c83b5f51f4219a17fb">kanana 1.5</a>
+                </td>
+              </tr>
+              <tr>
+                <td style="text-align: left;"></td>
+                <td style="text-align: left;">LGAI-EXAONE</td>
+                <td style="text-align: left;"><a href="https://huggingface.co/collections/LGAI-EXAONE/exaone-30-674d0dc94c5e222c9525eb34">EXAONE 3.0</a>, <a href="https://huggingface.co/collections/LGAI-EXAONE/exaone-35-674d0e1bb3dcd2ab6f39dbb4">EXAONE 3.5</a>, <a href="https://huggingface.co/collections/LGAI-EXAONE/exaone-deep-67d119918816ec6efa79a4aa">EXAONE
+                        Deep</a></td>
+              </tr>
+              <tr>
+                <td style="text-align: left;"></td>
+                <td style="text-align: left;">davidkim205</td>
+                <td style="text-align: left;">ko-Gemma 2, ko-Gemma 3 (Ours)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <br>
+
+        <div class="content has-text-justified">
+          <p>
+            To ensure fairness and reproducibility, all models were evaluated under the same generation and scoring configuration. This uniform setup enables direct comparison across a diverse range of LLMs, including globally recognized general-purpose models, Korean-language specialized systems, and our fine-tuned variants trained on ko-ged.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">5. Benchmarking Results</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            All benchmarking experiments were conducted under a unified evaluation framework described in Section 4, using a fixed prompt format and GPT-4o as the scoring model. Each model was evaluated with identical generation settings to ensure fairness and reproducibility. The results reported below reflect average scores on a 0–10 scale, derived from automated LLM-as-a-judge assessments.
+          </p>
+        </div>
+
+        <h3 class="title is-4 has-text-left">5.1 Overall Average Scores by Model</h3>
+
+        <div class="content has-text-justified">
+          <p>
+            The performance comparison of seven representative models—GPT-4.1, Gemma-1.1-7B, Qwen-2-7B, LLaMA-3.1-8B, EXAONE-3.5, Ko-Gemma-3, and Kanana-1.5-8B—on both ko-ged and ko-ged-2501 datasets is summarized in Figure 1. Average scores were computed by aggregating results across all subjects and school levels.
+          </p>
+        </div>
+
+        <img src="static/images/ko_ged/figure1.png" alt="[Figure 1] Model Performance on ko-ged and ko-ged-2501" />
+        [Figure 1] Model Performance on ko-ged and ko-ged-2501
+        <br>
+        <br>
+
+        <div class="content has-text-justified">
+          <p>
+            Figure 1 illustrates that most models experienced a performance decrease on the extended ko-ged-2501 compared to the original ko-ged, likely due to the broader subject coverage and higher difficulty of the expanded dataset. GPT-4.1 consistently demonstrated strong performance with average scores above 9 on both datasets, substantially surpassing other models. Conversely, LLaMA-3.1-8B-Instruct scored notably lower, reflecting limited effectiveness under these evaluation conditions.
+          </p>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            Of particular interest, Kanana-1.5-8B outperformed its original ko-ged scores on ko-ged-2501, suggesting enhanced adaptability to the expanded range of subjects and the more authentic exam-like format of the extended dataset. This may be attributed to its training on a larger volume of Korean-specific data, which likely improved its capacity to handle diverse Korean language tasks reflected in ko-ged-2501.
+          </p>
+        </div>
+
+
+        <h3 class="title is-4 has-text-left">5.2 Performance by School Level (Elementary, Middle, High)</h3>
+
+        <div class="content has-text-justified">
+          <p>
+            A detailed breakdown by school difficulty levels is presented in Figure 2, which compares model performances on ko-ged and ko-ged-2501.
+          </p>
+        </div>
+
+        <img src="static/images/ko_ged/figure2.png" alt="[Figure 2] Model Performance by Difficulty on ko-ged and ko-ged-2501" />
+        [Figure 2] Model Performance by Difficulty on ko-ged and ko-ged-2501
+        <br>
+        <br>
+
+        <div class="content has-text-justified">
+          <p>
+            Figure 2 reveals that on the original ko-ged dataset, model scores were generally higher on middle school questions compared to elementary level. In contrast, the extended ko-ged-2501 dataset exhibited a trend of decreasing scores with increasing difficulty across most models. Notably, the Qwen model maintained relatively stronger performance on middle and high school levels compared to elementary, warranting further study to elucidate underlying factors.
+          </p>
+        </div>
+
+        <h3 class="title is-4 has-text-left">5.3 Subject-Wise Performance Comparison</h3>
+
+        <div class="content has-text-justified">
+          <p>
+            Subject-specific performance results on the ko-ged dataset are depicted in Figure 3.
+          </p>
+        </div>
+
+        <img src="static/images/ko_ged/figure3.png" alt="[Figure 3] Model Performance by Difficulty on ko-ged" />
+        [Figure 3] Model Performance by Difficulty on ko-ged
+        <br>
+        <br>
+
+        <div class="content has-text-justified">
+          <p>
+            Figure 3 shows that models tend to perform best in Mathematics and English, with relatively lower scores in Korean language tasks. GPT-4.1, EXAONE, and Kanana—models with either large-scale or Korean-specialized training—demonstrate superior results in Social Studies. The combination of GPT-4.1’s extensive model capacity and Kanana’s intensive Korean language exposure likely accounts for their advantage in this subject area.
+          </p>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            For the ko-ged-2501 dataset, subject-wise performance distributions are shown in Figure 4.
+          </p>
+        </div>
+
+        <img src="static/images/ko_ged/figure4.png" alt="[Figure 4] Model Performance by Difficulty on ko-ged-2501" />
+        [Figure 4] Model Performance by Difficulty on ko-ged-2501
+        <br>
+        <br>
+
+        <div class="content has-text-justified">
+          <p>
+            Figure 4 highlights that Mathematics consistently achieves high scores, accompanied by strong performance in Information Technology (IT). Except for GPT-4.1 and Kanana, models generally exhibit weaker results in Korean History, which may reflect limited Korean-centric training data or less domain familiarity. This contrast underscores the value of Korean-specialized training in improving performance on culturally and linguistically specific subjects.
+          </p>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            Together, these results emphasize distinct model strengths and weaknesses by subject and demonstrate the suitability of the ko-ged and ko-ged-2501 datasets for comprehensive evaluation of language models on diverse academic topics and difficulty levels.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">6. Limitations and Future Work</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            While the ko-ged benchmark provides a valuable and authentic evaluation resource aligned with Korean educational standards, several limitations remain. First, the dataset excludes exam items relying on images, graphs, or oral components, which limits the scope of skills evaluated to text-based understanding and reasoning. Second, despite careful curation, some subject areas and question types are underrepresented, especially in the extended ko-ged-2501 version, which may affect the generalizability of evaluation results. Third, using an LLM (GPT-4o) as an automated judge, although efficient and scalable, may introduce biases or inconsistencies compared to human evaluation.
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <p>
+            To address these limitations, the ko-ged benchmark needs to expand beyond text-based evaluation to include multimodal questions. By incorporating items with various non-textual materials such as charts, graphs, images, and audio, it can better assess multimodal comprehension and complex reasoning skills. Additionally, the automatic scoring system for generative answers should be improved through comparative analysis with human evaluators to enhance reliability. It is also necessary to supplement currently underrepresented subjects and question types to achieve a more balanced distribution across educational levels. Furthermore, diversifying the LLM evaluator models used for scoring and thoroughly analyzing potential biases and consistency issues should be actively pursued. These efforts will help ko-ged evolve into a comprehensive and reliable evaluation tool that more accurately reflects the real educational environment in Korea.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">7. Conclusion</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            This report presented the ko-ged benchmark, a valuable resource for evaluating large language models’ understanding and reasoning in Korean based on authentic exam questions aligned with the national curriculum. By covering diverse subjects and difficulty levels, ko-ged provides a fair and systematic framework to compare both domestic and international LLMs. Evaluation results show that models like GPT-4.1 and Korean-specialized LLMs perform strongly. The unified, automated evaluation protocol enables scalable and reproducible assessments. Looking ahead, expanding ko-ged to include multimodal questions, improving the evaluation framework, and incorporating a variety of evaluator models will enhance its comprehensiveness and reliability. These efforts will further advance research at the intersection of Korean education and artificial intelligence.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">Appendix</h2>
+        <h4 class="title is-5 has-text-left">Subject Distribution in ko-ged</h4>
+
+        <div style="overflow-y: auto;">
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+            <tr>
+              <th style="text-align:left">Subject</th>
+              <th style="text-align:right">Elementary</th>
+              <th style="text-align:right">Middle</th>
+              <th style="text-align:right">High</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td style="text-align:left">Korean</td>
+              <td style="text-align:right">10</td>
+              <td style="text-align:right">10</td>
+              <td style="text-align:right">10</td>
+            </tr>
+            <tr>
+              <td style="text-align:left">Math</td>
+              <td style="text-align:right">10</td>
+              <td style="text-align:right">10</td>
+              <td style="text-align:right">10</td>
+            </tr>
+            <tr>
+              <td style="text-align:left">Social Studies</td>
+              <td style="text-align:right">10</td>
+              <td style="text-align:right">10</td>
+              <td style="text-align:right">10</td>
+            </tr>
+            <tr>
+              <td style="text-align:left">Science</td>
+              <td style="text-align:right">10</td>
+              <td style="text-align:right">10</td>
+              <td style="text-align:right">10</td>
+            </tr>
+            <tr>
+              <td style="text-align:left">English</td>
+              <td style="text-align:right">10</td>
+              <td style="text-align:right">10</td>
+              <td style="text-align:right">10</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <br>
+
+        <h4 class="title is-5 has-text-left">Subject Distribution in ko-ged-2501</h4>
+
+        <div style="overflow-y: auto;">
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+            <tr>
+              <th style="text-align:left">Subject</th>
+              <th style="text-align:left">Elementary</th>
+              <th style="text-align:left">Middle</th>
+              <th style="text-align:left">High</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td style="text-align:left">Korean</td>
+              <td style="text-align:left">2</td>
+              <td style="text-align:left">2</td>
+              <td style="text-align:left">-</td>
+            </tr>
+            <tr>
+              <td style="text-align:left">Math</td>
+              <td style="text-align:left">15</td>
+              <td style="text-align:left">16</td>
+              <td style="text-align:left">20</td>
+            </tr>
+            <tr>
+              <td style="text-align:left">Social Studies</td>
+              <td style="text-align:left">10</td>
+              <td style="text-align:left">21</td>
+              <td style="text-align:left">10</td>
+            </tr>
+            <tr>
+              <td style="text-align:left">Science</td>
+              <td style="text-align:left">10</td>
+              <td style="text-align:left">13</td>
+              <td style="text-align:left">13</td>
+            </tr>
+            <tr>
+              <td style="text-align:left">English</td>
+              <td style="text-align:left">7</td>
+              <td style="text-align:left">5</td>
+              <td style="text-align:left">7</td>
+            </tr>
+            <tr>
+              <td style="text-align:left">Art</td>
+              <td style="text-align:left">5</td>
+              <td style="text-align:left">13</td>
+              <td style="text-align:left">12</td>
+            </tr>
+            <tr>
+              <td style="text-align:left">Music</td>
+              <td style="text-align:left">5</td>
+              <td style="text-align:left">6</td>
+              <td style="text-align:left">10</td>
+            </tr>
+            <tr>
+              <td style="text-align:left">Physical Education</td>
+              <td style="text-align:left">3</td>
+              <td style="text-align:left">13</td>
+              <td style="text-align:left">12</td>
+            </tr>
+            <tr>
+              <td style="text-align:left">Ethics</td>
+              <td style="text-align:left">-</td>
+              <td style="text-align:left">5</td>
+              <td style="text-align:left">10</td>
+            </tr>
+            <tr>
+              <td style="text-align:left">Technology &amp; Home Economics</td>
+              <td style="text-align:left">-</td>
+              <td style="text-align:left">10</td>
+              <td style="text-align:left">9</td>
+            </tr>
+            <tr>
+              <td style="text-align:left">Korean History</td>
+              <td style="text-align:left">-</td>
+              <td style="text-align:left">-</td>
+              <td style="text-align:left">17</td>
+            </tr>
+            <tr>
+              <td style="text-align:left">Information Technology</td>
+              <td style="text-align:left">-</td>
+              <td style="text-align:left">8</td>
+              <td style="text-align:left">-</td>
+            </tr>
+            <tr>
+              <td style="text-align:left">Practical Arts</td>
+              <td style="text-align:left">4</td>
+              <td style="text-align:left">-</td>
+              <td style="text-align:left">-</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <br>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</body>
+</html>
