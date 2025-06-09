@@ -112,6 +112,8 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">1. Introduction</h2>
+
         <div class="content has-text-justified">
           <p>
               With the emergence of various large language models (LLMs) such as GPT, Gemma, and LLaMA, effectively leveraging these models has become crucial for improving work efficiency and other key aspects. However, to utilize LLMs for different tasks, it is necessary to have models optimized for specific requirements. As a result, evaluating and comparing the capabilities of LLMs across various categories has become an increasingly important issue.
@@ -120,6 +122,7 @@
               This report introduces <strong>Ko-Bench</strong>, a benchmark dataset designed to evaluate different LLMs. Ko-Bench provides a new set of criteria for assessing LLMs' proficiency in the Korean language, enabling more objective and reliable evaluations in the context of the Korean language.
           </p>
         </div>
+
       </div>
     </div>
   </div>
@@ -130,7 +133,7 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3 has-text-left">Existing Datasets</h2>
+        <h2 class="title is-3 has-text-left">2. Existing Datasets</h2>
 
         <div class="content has-text-justified">
           <p>
@@ -139,28 +142,28 @@
         </div>
 
         <div class="content has-text-justified">
-          <h3 class="title is-4 has-text-left">1. MT-Bench (Multi-Turn Benchmark)</h3>
+          <h3 class="title is-4 has-text-left">2-1. MT-Bench (Multi-Turn Benchmark)</h3>
           <p>
             MT-Bench is a benchmark designed to evaluate the conversational capabilities of LLMs, with a focus on multi-turn dialogues. It assesses the logical consistency, creativity, and reasoning abilities of models in extended conversations. The multi-turn dialogue format is used to reflect real-world interactions more accurately, providing a more comprehensive evaluation of LLMs' capabilities.
           </p>
         </div>
 
         <div class="content has-text-justified">
-          <h3 class="title is-4 has-text-left">2. MMLU (Massive Multitask Language Understanding)</h3>
+          <h3 class="title is-4 has-text-left">2-2. MMLU (Massive Multitask Language Understanding)</h3>
           <p>
             MMLU is a benchmark that evaluates LLMs' knowledge and comprehension across a wide range of academic fields, including science, history, law, and mathematics. It consists of 57 diverse categories, covering both simple factual questions and complex problems requiring deep understanding, making it a widely used standard for general language model evaluation.
           </p>
         </div>
 
         <div class="content has-text-justified">
-          <h3 class="title is-4 has-text-left">3. HELM (Holistic Evaluation of Language Models)</h3>
+          <h3 class="title is-4 has-text-left">2-3. HELM (Holistic Evaluation of Language Models)</h3>
           <p>
             HELM is a benchmark that provides a comprehensive evaluation of LLMs, incorporating multiple key metrics such as accuracy, fairness, bias, and efficiency. Additionally, it assesses model performance across specific domains such as news, healthcare, and law, emphasizing real-world applicability.
           </p>
         </div>
 
         <div class="content has-text-justified">
-          <h3 class="title is-4 has-text-left">4. Other Benchmarks</h3>
+          <h3 class="title is-4 has-text-left">2-4. Other Benchmarks</h3>
           <ul>
               <li>ARC (AI2 Reasoning Challenge): Evaluates the logical reasoning abilities of LLMs using elementary and middle school science problems.</li>
               <li>TruthfulQA: Measures how well a model generates factually accurate responses.</li>
@@ -178,45 +181,158 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3 has-text-left">Ko-Bench Dataset</h2>
+        <h2 class="title is-3 has-text-left">3. Ko-Bench Dataset</h2>
 
         <div class="content has-text-justified">
-          <h3 class="title is-4 has-text-left">What is Ko-Bench?</h3>
+          <h3 class="title is-4 has-text-left">3-1. What is Ko-Bench?</h3>
           <p>
             Ko-Bench is a benchmark designed to evaluate the performance of Korean language models. It was developed to address the limitations of existing LLM evaluation datasets, which often fail to provide accurate assessments in the Korean context. By establishing more objective and finely-tuned evaluation criteria for Korean LLMs, Ko-Bench enables more reliable performance comparisons. It is based on the <a href="https://github.com/lm-sys/FastChat/blob/main/fastchat/llm_judge/data/mt_bench/question.jsonl">MT-Bench</a> dataset, but has been translated into Korean and enhanced by modifying and adding questions to reflect the characteristics of the Korean language and culture. This makes it possible to more accurately evaluate LLMs in the Korean-language environment. Similar to MT-Bench, Ko-Bench consists of 8 categories, with 10 questions per category, totaling 80 questions. Each question follows a multi-turn format, meaning all interactions are structured in two consecutive turns, just like MT-Bench.
           </p>
         </div>
 
         <div class="content has-text-justified">
-          <h3 class="title is-4 has-text-left">How Ko-Bench Was Created</h3>
+          <h3 class="title is-4 has-text-left">3-2. How Ko-Bench Was Created</h3>
           <p>
             Ko-Bench is based on MT-Bench but has been restructured with evaluation criteria optimized for the Korean language environment. To achieve this, the following modifications were applied.
           </p>
-          <ol>
+          <ul>
               <li>Incorporating Geographical and Cultural Elements: Foreign place names, such as "Hawaii," were replaced with Korean landmarks like "Jeju Island" to ensure that Korean LLMs can naturally reflect geographical and cultural aspects in their responses.</li>
               <li>Enhancing Linguistic Naturalness: Foreign words and expressions such as "casual" and "limerick" were adapted to better fit Korean linguistic conventions, ensuring that questions sound natural in a Korean-language context.</li>
               <li>Localization of Roleplay Scenarios: Well-known international figures like "Elon Musk" and "Sheldon" were replaced with Korean celebrities such as "Cheon Song-yi" (from the drama My Love from the Star) and "Yoo Jae-suk", allowing the model to be evaluated on its ability to mimic Korean personalities' speech patterns and styles.</li>
               <li>Applying Korean Standards: Elements such as currency units, names, variable names, company names, and job titles were adjusted to align with Korean conventions, ensuring that models generate contextually appropriate responses in a Korean setting.</li>
-          </ol>
+          </ul>
         </div>
 
         <div class="content has-text-justified">
-          <h3 class="title is-4 has-text-left">Ko-Bench Examples</h3>
+          <h3 class="title is-4 has-text-left">3-3. Ko-Bench Examples</h3>
           <p>
             The following provides a description of each category along with example tasks from the Ko-Bench dataset.
           </p>
           <ol>
-              <li>Coding: Evaluates the LLM’s coding ability by requiring it to interpret Korean-language instructions and generate the corresponding code that aligns with the given intent.</li>
-              <li>Extraction: Assesses the LLM’s ability to extract and process data according to the given Korean-language prompt, ensuring that the output is correctly formatted.</li>
-              <li>Humanities: Tests the model’s comprehension of various humanities-related questions in Korean, requiring it to understand and provide detailed explanations.</li>
-              <li>Math: Measures the LLM’s ability to understand Korean-language math problems, explain the appropriate solution method, and provide the correct answer.</li>
-              <li>Reasoning: Evaluates the model’s logical reasoning skills by requiring it to infer hidden meanings and respond accordingly in Korean.</li>
-              <li>Roleplay: Assesses the model’s ability to accurately mimic well-known Korean personalities and their distinct speech styles, ensuring it can effectively engage in roleplay scenarios based on Korean linguistic and cultural characteristics.</li>
-              <li>STEM: Tests the model’s understanding of science, technology, engineering, and mathematics (STEM) topics, requiring it to provide clear and accurate explanations in Korean.</li>
-              <li>Writing: Examines the model’s ability to Utilize Korean grammar structures effectively in writing, Produce fact-based content related to Korea, Demonstrate creativity and wit in written responses using Korean.</li>
+              <li><strong>Coding</strong>: Evaluates the LLM’s coding ability by requiring it to interpret Korean-language instructions and generate the corresponding code that aligns with the given intent.</li>
+              <li><strong>Extraction</strong>: Assesses the LLM’s ability to extract and process data according to the given Korean-language prompt, ensuring that the output is correctly formatted.</li>
+              <li><strong>Humanities</strong>: Tests the model’s comprehension of various humanities-related questions in Korean, requiring it to understand and provide detailed explanations.</li>
+              <li><strong>Math</strong>: Measures the LLM’s ability to understand Korean-language math problems, explain the appropriate solution method, and provide the correct answer.</li>
+              <li><strong>vReasoning</strong>: Evaluates the model’s logical reasoning skills by requiring it to infer hidden meanings and respond accordingly in Korean.</li>
+              <li><strong>Roleplay</strong>: Assesses the model’s ability to accurately mimic well-known Korean personalities and their distinct speech styles, ensuring it can effectively engage in roleplay scenarios based on Korean linguistic and cultural characteristics.</li>
+              <li><strong>STEM</strong>: Tests the model’s understanding of science, technology, engineering, and mathematics (STEM) topics, requiring it to provide clear and accurate explanations in Korean.</li>
+              <li><strong>Writing</strong>: Utilize Korean grammar structures effectively in writing, produce fact-based content related to Korea and demonstrate creativity and wit in written responses using Korean.</li>
+              </li>
           </ol>
         </div>
 
+        <div style="overflow-y: auto;">
+          <table class="table is-bordered is-striped is-hoverable">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Turn</th>
+              <th>MT-Bench</th>
+              <th>Ko-Bench</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Coding</td>
+              <td>Turn 1</td>
+              <td>You are given two sorted lists of size m and n. Implement a function to find the kth smallest element in the union of the two lists with linear complexity.</td>
+              <td>크기가 m과 n인 두 개의 정렬된 리스트가 제공됩니다. 선형 복잡도를 갖는 두 리스트의 합집합에서 k번째로 작은 요소를 찾는 함수를 구현해 보세요.</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Turn 2</td>
+              <td>Does there exist an algorithm with better time complexity? If so, implement it.</td>
+              <td>시간 복잡도가 더 좋은 알고리즘이 있나요? 그렇다면 구현하십시오.</td>
+            </tr>
+            <tr>
+              <td>Extraction</td>
+              <td>Turn 1</td>
+              <td>Please read the paragraph below and count how many times the words \"Amazon\", \"river\", and \"you\" appear. Please present the results in the format of \"word, number of appearances\" with each word on a separate line. Sort the lines in order of the number of appearances.\nThe Amazon, a mesmerizing expanse of nature's wonders, is home to the legendary Amazon River. Flowing through awe-inspiring landscapes like the Amazon rainforest, the river weaves its way through Brazil, Colombia, and Peru, giving life to countless creatures. From the mighty jaguars prowling the Amazon jungle to the vibrant macaws soaring above the canopy, this remarkable region teems with biodiversity. Deep within the river's currents, magnificent pink river dolphins gracefully glide alongside piranhas and electric eels. Along the riverbanks, you'll find bustling cities like Manaus, where the urban meets the wild, and Iquitos, a gateway to the heart of the Amazon rainforest. As you venture further, the Amazon River reveals hidden gems like the captivating Anavilhanas Archipelago, a mosaic of islands brimming with rare species. Embark on an adventure, explore the enchanting Amazon River, and immerse yourself in a world teeming with life and untamed beauty.</td>
+              <td>아래 문단을 읽고 \"아마존\", \"강\", \"같은\"라는 단어가 몇 번 나오는지 세어보세요. 결과는 \"단어, 출현 횟수\" 형식으로 각 단어를 별도의 줄에 표시해 주세요. 나타나는 횟수 순으로 줄을 정렬하세요.\n자연의 경이로움이 넋을 잃게 만드는 광활한 아마존에는 전설적인 아마존 강이 있습니다. 아마존 열대우림과 같은 장엄한 풍경을 흐르는 강은 브라질, 콜롬비아, 페루를 거쳐 셀 수 없이 많은 생물에게 생명을 불어넣습니다. 아마존 정글을 돌아다니는 강력한 재규어부터 천개 위로 솟아오르는 생기 넘치는 마코앵무새까지, 이 놀라운 지역은 생물 다양성으로 가득 차 있습니다. 강물 깊은 곳에서 웅장한 분홍돌고래가 피라냐, 전기뱀장어와 함께 우아하게 활공합니다. 강둑을 따라 도시와 야생이 만나는 마나우스와 아마존 열대우림 중심부로 향하는 관문인 이키토스와 같은 번화한 도시를 만나실 수 있습니다. 더 멀리 모험을 떠나면 아마존 강에는 희귀종이 가득한 섬들의 모자이크인 매혹적인 아나빌하나 군도(Anavilhanas Archipelago)와 같은 숨겨진 보석이 드러납니다. 모험을 떠나고, 매혹적인 아마존 강을 탐험하며, 생명력과 길들여지지 않은 아름다움이 가득한 세계에 빠져보세요.</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Turn 2</td>
+              <td>Please repeat the same task using the words 'the', 'and', and 'to'</td>
+              <td>'모험', '생물', '에게'라는 단어를 사용하여 같은 작업을 반복하세요.</td>
+            </tr>
+            <tr>
+              <td>Humanities</td>
+              <td>Turn 1</td>
+              <td>Create a lesson plan that integrates drama, mime or theater techniques into a history class. Duration: 3 class periods (each lasts for 45 minutes) for 3 days\nTopic: Opium Wars between China and Britain\nGrade level: 9-10</td>
+              <td>드라마, 몸짓극, 연극 기술을 역사 수업에 통합하는 수업 계획을 만듭니다. 기간: 3일 동안 3개의 수업 시간(각 수업 시간은 45분)\n주제: 중국과 영국 간의 아편 전쟁\n학년 수준: 대한민국의 고등학교 1학년</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Turn 2</td>
+              <td>Provide more details for Day 1 and include three homework questions.</td>
+              <td>1일차에 대한 자세한 수업 계획을 제공하고 세 가지 숙제를 생성하세요.</td>
+            </tr>
+            <tr>
+              <td>Math</td>
+              <td>Turn 1</td>
+              <td>Benjamin went to a bookstore and purchased a variety of books. He bought 5 copies of a sci-fi novel, each priced at $20, 3 copies of a history book priced at $30 each, and 2 copies of a philosophy book for $45 each.\nWhat was the total cost of his purchases?</td>
+              <td>지민은 서점에 가서 다양한 책을 구입했습니다. 그는 각 권당 20000원인 공상과학 소설 5권, 각 30000원인 역사서 3권, 각 45000원에 철학 책 2권을 구입했습니다. 그가 구입한 총 비용은 얼마입니까?</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Turn 2</td>
+              <td>Suppose Benjamin decides to sell each of these books at a 25% markup from the price he purchased them. What would be his total revenue if he sold all the books he bought?</td>
+              <td>지민이 각 책을 구입한 가격에서 25% 인상된 금액으로 판매하기로 결정했다고 가정해 보겠습니다. 만일 그가 구입한 책을 모두 판매한다면 그의 총 수익은 얼마일까요?</td>
+            </tr>
+            <tr>
+              <td>Reasoning</td>
+              <td>Turn 1</td>
+              <td>Thomas is very healthy, but he has to go to the hospital every day. What could be the reasons?</td>
+              <td>지민은 매우 건강하지만 매일 병원에 가야 합니다. 이유는 무엇입니까?</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Turn 2</td>
+              <td>Can you explain why the above question is interesting?</td>
+              <td>위의 질문이 왜 흥미로운지 설명해주실 수 있나요?</td>
+            </tr>
+            <tr>
+              <td>Roleplay</td>
+              <td>Turn 1</td>
+              <td>Pretend yourself to be Elon Musk in all the following conversations. Speak like Elon Musk as much as possible. Why do we need to go to Mars?</td>
+              <td>다음 대화에서 자신이 유재석인 척해보세요. 가능한 한 유재석처럼 말하십시오. 우리가 왜 즐겁게 살아야 하나요?</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Turn 2</td>
+              <td>How do you like dancing? Can you teach me?</td>
+              <td>춤추는 걸 좋아해요? 가르쳐 주실 수 있나요?</td>
+            </tr>
+            <tr>
+              <td>Stem</td>
+              <td>Turn 1</td>
+              <td>ou have been tasked with designing a solar-powered water heating system for a residential building. Describe the key components and considerations you would include in your design. Design a five-step workflow.</td>
+              <td>당신은 주거용 건물을 위한 태양열 온수 난방 시스템을 설계하는 임무를 맡았습니다. 설계에 포함할 주요 구성 요소와 고려 사항을 설명하세요. 5단계의 작업흐름도를 설계하십시오.</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Turn 2</td>
+              <td>If the system is intended for a building with a capacity of 100 individuals, what would be the estimated budget for implementing this system?</td>
+              <td>100명을 수용할 수 있는 건물을 대상으로 시스템을 설계한다면 이 시스템을 구현하는 데 드는 예상 예산은 얼마입니까?</td>
+            </tr>
+            <tr>
+              <td>Writing</td>
+              <td>Turn 1</td>
+              <td>Compose an engaging travel blog post about a recent trip to Hawaii, highlighting cultural experiences and must-see attractions.</td>
+              <td>최근 제주도 여행을 다녀오면서 꼭 가봐야 할 명소를 강조하는 재미있는 여행 블로그 글을 작성하시오.</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>Turn 2</td>
+              <td>Rewrite your previous response. Start every sentence with the letter A.</td>
+              <td>이전 응답을 다시 작성하시오. 모든 문장은 '제'로 시작하도록 하시오.</td>
+            </tr>
+          </tbody>
+          </table>
+        </div>
+        </br>
+
       </div>
     </div>
   </div>
@@ -227,14 +343,47 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3 has-text-left">Evaluating LLMs Using the Ko-Bench Dataset</h2>
+        <h2 class="title is-3 has-text-left">4. Evaluating LLMs Using the Ko-Bench Dataset</h2>
+
+        <div class="content has-text-justified">
+          <p>The responses obtained from various LLMs by querying the Ko-Bench dataset can be viewed as quantitative evaluation results on the Ko-Bench leaderboard <a href="https://huggingface.co/spaces/davidkim205/ko-bench">here</a>. The evaluation models used to assess the answers from the various LLMs are OpenAI's <a href="https://platform.openai.com/docs/models/gpt-4o">gpt-4o</a> and <a href="https://huggingface.co/collections/davidkim205/k-eval-6660063dd66e21cbdcc4fbf1">Keval</a>. The detailed evaluation process is described in the <a href="https://davidkim205.github.io/k_judge.html">K-judge</a> Technical Report.</p>
+        </div>
+
+        <div class="content has-text-justified">
+            <p>The following figures present a visualization of model performance comparisons as shown on the Ko-Bench Leaderboard. <strong>[Figure 1]</strong> illustrates the evaluation results of various LLMs based on the Ko-Bench dataset, using both the gpt-4o and keval metrics. This allows for a clear overview of each model's overall performance.</p>
+        </div>
+
+        <img src="static/images/ko_bench/tr_ko_bench_figure1.png" alt="[Figure 1] Overall performance scores of each model as shown on the Kb Leaderboard" />
+        <strong>[Figure 1] Overall performance scores of each model as shown on the Kb Leaderboard</strong>
+        <br>
+        <br>
 
         <div class="content has-text-justified">
           <p>
-              Ko-Bench is a benchmark designed to evaluate the performance of Korean language models. It was developed to address the limitations of existing LLM evaluation datasets, which often fail to provide accurate assessments in the Korean context. By establishing more objective and finely-tuned evaluation criteria for Korean LLMs, Ko-Bench enables more reliable performance comparisons. It is based on the <a href="https://github.com/lm-sys/FastChat/blob/main/fastchat/llm_judge/data/mt_bench/question.jsonl">MT-Bench</a> dataset, but has been translated into Korean and enhanced by modifying and adding questions to reflect the characteristics of the Korean language and culture. This makes it possible to more accurately evaluate LLMs in the Korean-language environment. Similar to MT-Bench, Ko-Bench consists of 8 categories, with 10 questions per category, totaling 80 questions. Each question follows a multi-turn format, meaning all interactions are structured in two consecutive turns, just like MT-Bench.
+              Additionally, the leaderboard provides a detailed breakdown of category-wise scores, enabling a more granular analysis of model performance across diverse evaluation criteria. <strong>[Figure 2]</strong> displays the score distribution of each model across specific evaluation categories.
           </p>
+        </div>
+
+        <img src="static/images/ko_bench/tr_ko_bench_figure2.png" alt="[Figure 2] Category-wise performance scores for each model" />
+        <strong>[Figure 2] Category-wise performance scores for each model</strong>
+        <br>
+        <br>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">5. Conclusion</h2>
+
+        <div class="content has-text-justified">
           <p>
-              Additionally, the leaderboard provides a detailed breakdown of category-wise scores, allowing for an in-depth comparison of each model's performance across different evaluation metrics.
+              Ko-Bench provides an objective framework for evaluating LLMs in a Korean-language environment, enabling researchers and developers to identify and select models best suited for various applications. Additionally, it establishes a new standard for quantitatively comparing the performance of Korean LLMs, contributing to the advancement of more sophisticated Korean-language AI models in the future.
           </p>
         </div>
 
@@ -248,7 +397,7 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3 has-text-left">References</h2>
+        <h2 class="title is-3 has-text-left">6. References</h2>
 
         <div class="content has-text-justified">
           <ul>
