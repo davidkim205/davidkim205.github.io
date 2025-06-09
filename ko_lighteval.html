@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KO-GED</title>
+    <meta name="description" content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+    <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .footer-social a {
+            color: #fff;
+            padding: 10px;
+            border-radius: 50%;
+            background-color: #4a4a4a;
+        }
+    </style>
+</head>
+
+
+<body>
+<header class="navbar">
+    <div class="navbar-brand">
+        <a class="navbar-item logo" href="/">Research Blog</a>
+    </div>
+</header>
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">KoLightEval: Korean Evaluation Datasets and Task Integration for LLMs Using Lighteval</h1>
+
+          <div class="column has-text-centered">
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a href="https://github.com/Doleeee">YeHee Lim</a><sup>1</sup>
+                </span>
+                <span class="author-block">
+                  <a href="https://github.com/hoysu">YeonSu Ho</a><sup>1</sup>
+                </span>
+                <span class="author-block">
+                  <a href="https://github.com/davidkim205">ChangYeon Kim</a><sup>2</sup>
+                </span>
+              </div>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <sup>1</sup>2Digit AI Research
+                </span>
+              </div>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- Model Link. -->
+<!--              <span class="link-block">-->
+<!--                <a href="https://huggingface.co/collections/davidkim205/keval-2-67ac5400f5eef4984cc5dbbb"-->
+<!--                  class="external-link button is-normal is-rounded is-dark">-->
+<!--                  <span class="icon">-->
+<!--                      <i class="far fa-images"></i>-->
+<!--                  </span>-->
+<!--                  <span>Model</span>-->
+<!--                  </a>-->
+<!--              </span>-->
+              <!-- Paper Link. -->
+              <span class="link-block">
+                <a href="https://davidkim205.github.io/ko_lighteval.html"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+             <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/davidkim205/ko-lighteval"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">1. Introduction</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Evaluating the performance of large language models (LLMs) is essential for enabling objective comparisons and identifying areas for improvement. However, most existing benchmarks—such as MMLU, HellaSwag, and BIG-bench—are primarily designed for English, making it difficult to assess the practical utility and limitations of LLMs in Korean. To address this gap, this report presents a case study in which we <strong>construct a Korean-specific evaluation dataset</strong> and <strong>customize Hugging Face’s Lighteval framework</strong> for efficient evaluation of Korean LLMs.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">2. Challenges in Korean LLM Evaluation and the Necessity of Lighteval</h2>
+
+        <h3 class="title is-4 has-text-left">2.1 Existing Challenges</h3>
+
+        <div class="content has-text-justified">
+          <ul>
+            <li><strong>Lack of Korean Benchmarks</strong> There is a significant shortage of standardized benchmarks and datasets optimized for Korean. In particular, evaluation datasets covering STEM fields, including mathematics and science problems, are relatively scarce, making it difficult to comprehensively assess the capabilities of Korean LLMs.</li>
+            <li><strong>Difficulty in Applying Custom Data</strong> Most existing evaluation frameworks are designed around English-specific formats and prompts. Korean, as an agglutinative language with unique syntactic order and honorifics, cannot be accurately evaluated by simply translating English prompts. Therefore, a custom evaluation framework tailored to the linguistic characteristics of Korean is necessary.</li>
+            <li><strong>Lack of Efficient Backend and Automation Support</strong> Evaluating large-scale datasets and the latest LLMs requires efficient use of multiple GPUs, API calls, and various backend environments. However, existing systems often lack sufficient support for such automated and scalable evaluation.</li>
+          </ul>
+        </div>
+
+        <h3 class="title is-4 has-text-left">2.2 Advantages of Lighteval</h3>
+
+        <div class="content has-text-justified">
+          <ul>
+            <li><strong>Flexible Benchmark Extensibility</strong> Lighteval’s modular code architecture based on HuggingFace’s Datasets and Tasks abstraction allows easy addition and modification of various evaluation datasets and tasks. This enables researchers to quickly apply their own custom datasets, facilitating evaluation tailored to non-English languages like Korean.</li>
+            <li><strong>Support for Diverse Backends and Acceleration</strong> It supports multiple execution backends including Hugging Face Transformers, vLLM, and Accelerate libraries. By leveraging parallel processing and hardware acceleration on large GPU clusters, it significantly improves evaluation speed. Additionally, it can integrate external API-based models such as OpenAI’s API, enabling flexible evaluation of the latest LLMs.</li>
+            <li><strong>User-Friendly Interfaces and Automation</strong> Both Command Line Interface (CLI) and Python API are provided, allowing users to easily build and run evaluation pipelines. Detailed sample-level result storage and log management features support systematic analysis of evaluation processes and outcomes.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">3. Construction of Korean Evaluation Datasets</h2>
+
+        <div style="overflow-y: auto;">
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th style="width: 30%;">Dataset</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="vertical-align: middle; text-align: left;"><a href="https://huggingface.co/datasets/davidkim205/ko_math_500">ko-math-500</a></td>
+                <td style="vertical-align: middle; text-align: left;">A Korean-translated subset of 500 high school-level math problems from the MATH dataset, including detailed solutions with LaTeX expressions.</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle; text-align: left;"><a href="https://huggingface.co/datasets/davidkim205/ko_gpqa">ko-gpqa</a></td>
+                <td style="vertical-align: middle; text-align: left;">Korean version of GPQA containing challenging physics questions designed to test deep understanding and logical reasoning.</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle; text-align: left;"><a href="https://huggingface.co/datasets/davidkim205/ko_ged_elementary">ko-ged:elementary</a><br/><a href="https://huggingface.co/datasets/davidkim205/ko_ged_middle">ko-ged:middle</a><br/><a href="https://huggingface.co/datasets/davidkim205/ko_ged_high">ko-ged:high</a></td>
+                <td style="vertical-align: middle; text-align: left;">Korean GED exam questions spanning multiple subjects at elementary, middle, and high school levels to evaluate language comprehension and reasoning.</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle; text-align: left;"><a href="https://huggingface.co/datasets/davidkim205/ko_ged_2501_elementary">ko-ged-2501:elementary</a><br/><a href="https://huggingface.co/datasets/davidkim205/ko_ged_2501_middle">ko-ged-2501:middle</a><br/><a href="https://huggingface.co/datasets/davidkim205/ko_ged_2501_high">ko-ged-2501:high</a><p></td>
+                <td style="vertical-align: middle; text-align: left;">Updated 2025 GED exam datasets structured by education level and subject, extending ko-ged with new questions for broader evaluation.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <br>
+        [Table 1] Overview of Korean Evaluation Datasets in KoLightEval
+        <br>
+        <br>
+
+        <h3 class="title is-4 has-text-left">ko-math-500</h3>
+
+        <div class="content has-text-justified">
+          <p>
+            <strong>ko-math-500</strong> is a Korean-translated subset of 500 representative problems from the widely used <strong>MATH (Mathematics Aptitude Test of Heuristics)</strong> dataset, designed to evaluate the mathematical reasoning abilities of large language models.
+          </p>
+          <p>
+            The original MATH dataset consists of over 12,500 high school-level math problems and serves as a challenging math benchmark, containing problem statements and detailed solutions written in English natural language.
+            The ko-math-500 subset is based on the standard evaluation set of 500 problems used in the 2023 paper <em>Let’s Verify Step by Step</em> for model performance comparison. The original dataset is publicly available at <a href="https://huggingface.co/datasets/HuggingFaceH4/MATH-500">HuggingFaceH4/MATH-500</a>.
+          </p>
+          <p>
+            The Korean translation was performed using the GPT-4o model. The data is structured in JSON format and includes LaTeX math expressions. Each entry contains the following keys:
+          </p>
+          <div class="content has-text-justified">
+            <ul>
+              <li><code>problem</code> : the math question</li>
+              <li><code>solution</code> : the detailed solution</li>
+              <li><code>answer</code> : the final answer</li>
+              <li><code>subject</code> : the math domain (one of seven subjects: Algebra, Counting & Probability, Geometry, Intermediate Algebra, Number Theory, Prealgebra, Precalculus)</li>
+              <li><code>level</code> : difficulty level represented by an integer from 1 to 5, where a subject’s easiest problems are assigned a level of 1 and the hardest problems are assigned a level of 5</li>
+              <li><code>id</code> : a unique identifier for each problem</li>
+            </ul>
+          </div>
+
+          <pre>{
+  "problem": "직교 좌표 $(0,3)$를 극 좌표로 변환하시오. 답은 $r > 0$ 및 $0 \\leq \\theta < 2 \\pi$를 만족하는 형식 $(r,\\theta)$로 나타내시오.",
+  "solution": "주어진 점 $(0,3)$에 대해 $r$은 다음과 같이 계산된다:\n\\[ r = \\sqrt{0^2 + 3^2} = 3. \\]  \n또한, 원점을 $(0,3)$과 연결하는 선은 양의 $x$축에 대해 $\\frac{\\pi}{2}$의 각도를 형성한다는 것을 알 수 있다.\n\n[asy]  \nunitsize(0.8 cm);  \n\ndraw((-0.5,0)--(3.5,0));  \ndraw((0,-0.5)--(0,3.5));  \ndraw(arc((0,0),3,0,90),red,Arrow(6));  \n\ndot((0,3), red);  \nlabel(\"$(0,3)$\", (0,3), W);  \ndot((3,0), red);  \n[/asy]  \n\n따라서, 극 좌표는 $\\boxed{\\left( 3, \\frac{\\pi}{2} \\right)}$이다.",
+  "answer": "\\left( 3, \\frac{\\pi}{2} \\right)",
+  "subject": "미적분학 준비",
+  "level": 2,
+  "id": "test/precalculus/807.json"
+}</pre>
+        </div>
+
+        <h3 class="title is-4 has-text-left">ko-gpqa</h3>
+
+        <div class="content has-text-justified">
+          <p>
+            <strong>ko-gpqa</strong> is a Korean-translated version of the <strong>GPQA (Graduate-Level Google‑Proof Q&A)</strong> benchmark dataset, which consists of high-difficulty science questions. Introduced in <a href="https://arxiv.org/pdf/2311.12022">this paper</a>, GPQA is designed to go beyond simple fact retrieval and instead test an AI system’s ability to perform deep understanding and logical reasoning. It is particularly useful for evaluating true comprehension and inference capabilities in language models.
+          </p>
+          <p>
+            As specified in the original paper, the dataset is intended <strong>strictly for evaluation purposes</strong> and should <strong>not be used for training</strong>. The original dataset is available at <a href="https://huggingface.co/datasets/Idavidrein/gpqa">Hugging Face: Idavidrein/gpqa</a>.
+          </p>
+          <p>
+            The Korean translation was performed using GPT-4o, and the dataset is formatted in JSON structure. Each entry includes the following keys:
+          </p>
+          <div class="content has-text-justified">
+            <ul>
+              <li><code>id</code> : a unique identifier for each problem</li>
+              <li><code>Question</code> : the question prompt</li>
+              <li><code>Correct Answer</code> : the correct answer</li>
+              <li><code>Incorrect Answer 1</code>, <code>Incorrect Answer 2</code>, <code>Incorrect Answer 3</code> : three incorrect choices</li>
+            </ul>
+          </div>
+          <pre>{
+  "id": "rec06pnAkLOr2t2mp",
+  "Question": "에너지 E1과 E2를 가지는 두 양자 상태의 수명이 각각 10^-9초와 10^-8초입니다. 이 두 에너지 준위를 명확히 구분하고자 합니다. 이들이 명확히 구분될 수 있도록 하는 에너지 차이는 다음 보기 중 어느 것입니까?",
+  "Correct Answer": "10^-4 eV",
+  "Incorrect Answer 1": "10^-11 eV",
+  "Incorrect Answer 2": "10^-8 eV",
+  "Incorrect Answer 3": "10^-9 eV"
+}</pre>
+        </div>
+
+        <h3 class="title is-4 has-text-left">ko-ged</h3>
+
+        <div class="content has-text-justified">
+          <p>
+            <strong>ko-ged</strong> is a benchmark dataset designed to evaluate the comprehension and reasoning capabilities of large language models (LLMs) in the Korean language. The dataset comprises questions extracted from the General Equivalency Diploma (GED) exams administered at three distinct educational levels: elementary, middle, and high school. Specifically, the <strong>ko-ged</strong> dataset contains questions from the second GED exam of 2024, while <strong>ko-ged-2501</strong> corresponds to the first GED exam of 2025. All exam items are sourced from the official archives managed by the <a href="https://www.gumsi.or.kr/">Korean Ministry of Education</a>.
+          </p>
+          <p>
+            Table 2 summarizes the subject domains covered by the ko-ged dataset across the three educational tiers. For each level, <code>Common Subjects</code> denote the core curriculum assessed uniformly across all exams, whereas <code>Additional Subjects</code> represent specialized topics tested depending on the specific educational stage.
+          </p>
+        </div>
+
+        <div style="overflow-y: auto;">
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th style="text-align: center;">Level</th>
+                <th style="text-align: center; width: 50%;">Common Subjects</th>
+                <th style="text-align: center;">Additional Subjects</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="vertical-align: middle;">Elementary</td>
+                <td rowspan="3" style="vertical-align: middle; text-align: left">
+                  <ul style="margin: 0; padding-left: 16px; columns: 2; list-style-type: disc;">
+                    <li>Korean</li>
+                    <li>English</li>
+                    <li>Mathematics</li>
+                    <li>Science</li>
+                    <li>Social Studies</li>
+                    <li>Ethics</li>
+                    <li>Art</li>
+                    <li>Physical Education</li>
+                    <li>Music</li>
+                  </ul>
+                </td>
+                <td style="vertical-align: middle;">
+                  <ul style="margin: 0; padding-left: 16px; text-align: left; list-style-type: disc;"><li>Practical Arts</li></ul>
+                </td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;">Middle</td>
+                <td rowspan="2" style="vertical-align: middle;">
+                  <ul style="margin: 0; padding-left: 16px; text-align: left; list-style-type: disc;">
+                    <li>Technology &amp; Home Economics</li>
+                    <li>Information Technology</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td style="vertical-align: middle;">High</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <br>
+        [Table 2] Subject Areas Included in the ko-ged Dataset by Educational Level
+        <br>
+        <br>
+
+        <div class="content has-text-justified">
+          <p>
+            Each dataset is structured in JSON format and contains the following keys:
+          </p>
+
+          <ul>
+            <li><code>id</code> : a unique positive integer identifier for each question</li>
+            <li><code>Domain</code> : subject name</li>
+            <li><code>Question</code> : the question prompt</li>
+            <li><code>Correct Answer</code> : the correct answer</li>
+            <li><code>Incorrect Answer 1</code>, <code>Incorrect Answer 2</code> <code>Incorrect Answer 3</code> : three incorrect choices</li>
+          </ul>
+
+          <p>
+            The datasets are separated by version (ko-ged / ko-ged-2501), educational level (E/M/H), and subject.
+          </p>
+
+          <h5 class="title is-6 has-text-left">ko-ged:elementary</h5>
+          <pre>{
+  "id": 1,
+  "Domain": "영어",
+  "Question": "다음 중 모두 소문자로 쓴 낱말은?",
+  "Correct Answer": "jump",
+  "Incorrect Answer 1": "Hat",
+  "Incorrect Answer 2": "RED",
+  "Incorrect Answer 3": "Grapes"
+}</pre>
+          <br>
+          <h5 class="title is-6 has-text-left">ko-ged:middle</h5>
+          <pre>{
+  "id": 209,
+  "Domain": "도덕",
+  "Question": "(가)에 들어갈 인물은?\n\n◦(가) → 평화, 비폭력, 인도 독립, 시민 불복종",
+  "Correct Answer": "간디",
+  "Incorrect Answer 1": "공자",
+  "Incorrect Answer 2": "노자",
+  "Incorrect Answer 3": "칸트"
+}</pre>
+          <br>
+          <h5 class="title is-6 has-text-left">ko-ged:high</h5>
+          <pre>{
+  "id": 46,
+  "Domain": "수학",
+  "Question": "다항식 x³ - 3³ 을 인수분해한 식이 (x-3)(x²+ax+9) 일 때, 상수 a의 값은?",
+  "Correct Answer": "3",
+  "Incorrect Answer 1": "1",
+  "Incorrect Answer 2": "5",
+  "Incorrect Answer 3": "7"
+}</pre>
+          <br>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">4. Evaluation Setup Using Lighteval</h2>
+
+        <h3 class="title is-4 has-text-left">4.1 Prompt Format Design</h3>
+
+        <div class="content has-text-justified">
+          <p>
+            As described in Chapter 3, all datasets—except ko-math-500, which requires LaTeX-formatted answers—follow a multiple-choice structure, where the model must select the correct option among predefined choices. Accordingly, two distinct prompt templates were designed: one for <strong>mathematical reasoning tasks</strong> and another for <strong>multiple-choice</strong> questions.
+          </p>
+          <p>
+            These templates were adapted from the <a href="https://github.com/openai/simple-evals">OpenAI simple-evals</a> repository and translated into Korean to ensure consistency with the language used in the evaluation tasks.
+          </p>
+        </div>
+
+        <h4 class="title is-5 has-text-left">Prompt for Mathematical Reasoning Tasks</h4>
+        <div class="content has-text-justified">
+          <p>
+            For math-related tasks, the prompt enforces a consistent output format to facilitate reliable parsing and automatic evaluation. The following template was used:
+          </p>
+          <pre>주어진 수학 문제를 효율적이고 명확하게 풀어보세요. 응답의 마지막 줄은 다음 형식이어야 합니다: '따라서, 최종 답은: $\\boxed{{ANSWER}}$입니다. 이 답이 맞기를 바랍니다.' (따옴표 없이) 이때 ANSWER는 문제를 푸는 최종 숫자나 식이 되어야 합니다. 답하기 전에 한 단계씩 생각해 보세요.
+
+{Question}</pre>
+          <p>
+            This format allows the evaluation system to extract the model’s final answer from the boxed expression (e.g., <code>$\\boxed{42}$</code>) for automatic comparison with the reference answer.
+          </p>
+        </div>
+
+        <h4 class="title is-5 has-text-left">Prompt for Multiple-Choice Questions</h4>
+        <div class="content has-text-justified">
+          <p>
+            For multiple-choice tasks, the correct answer is randomly assigned to one of four options labeled A through D. The remaining three options are filled with incorrect answers. The model is instructed to select one of the options and indicate its response using a standardized format. The prompt is structured as follows:
+          </p>
+          <pre>다음의 객관식 질문에 답하세요. 답변의 마지막 줄은 'Answer: $LETTER' (without quotes) 형식이어야 하며, 여기서 LETTER는 ABCD 중 하나입니다. 답변하기 전에 단계별로 생각하세요.
+
+{Question}
+
+A) {A}
+B) {B}
+C) {C}
+D) {D}</pre>
+          <p>
+            This format enables straightforward extraction of the model’s predicted answer and ensures compatibility with automatic evaluation scripts.
+          </p>
+        </div>
+
+        <h3 class="title is-4 has-text-left">4.2 Evaluation Metrics</h3>
+        <div class="content has-text-justified">
+          <p>
+            To evaluate model performance, we used extractive match-based metrics tailored to each task type: math and multiple-choice. For math tasks, the evaluation extracts the final boxed answer from the model’s LaTeX-formatted output and compares it to the reference. This method is more robust than string matching, as it tolerates variation in mathematical notation while focusing on the actual solution. For multiple-choice questions, the model's predicted letter (A–D) is extracted and compared with the correct option. To reduce positional bias, choices are randomly shuffled, and only the final answer letter is considered during evaluation.
+          </p>
+          <p>
+            Both metrics use a precision of five decimal places and include a fallback mode to handle minor formatting inconsistencies in model outputs. Although the datasets and model responses are in Korean, the evaluation language is set to English to align with the LaTeX syntax and alphabet-based answer formats used in the parsing logic. This ensures the correct functioning of extraction and comparison processes. Overall, extractive matching improves reliability by focusing on the core answer elements and supports scalable, automated evaluation.
+          </p>
+        </div>
+
+        <h3 class="title is-4 has-text-left">4.3 Task Implementation with LightevalTaskConfig</h3>
+        <div class="content has-text-justified">
+          <p>
+            Building on the prompt and metric designs introduced above, task definitions were implemented using the <code>LightevalTaskConfig</code> class provided by Huggingface’s Lighteval framework. This class allows for seamless integration of custom tasks by encapsulating dataset loading, prompt formatting, and metric configuration into a single, reusable structure.
+          </p>
+          <p>
+            We defined new task instances tailored for Korean-language datasets, including both LaTeX-formatted math problems and multiple-choice questions. The modular nature of <code>LightevalTaskConfig</code> allowed us to incorporate task-specific behaviors—such as randomizing answer positions in multiple-choice prompts—without altering the core framework. This setup promotes clarity and reproducibility while supporting extensibility for future additions.
+          </p>
+          <p>
+            KoLightEval can be run with models served via the vLLM backend. For example, the following command evaluates the model on a single Korean task:
+          </p>
+          <pre>lighteval vllm \
+    "model_name=davidkim205/ko-gemma-3-12b,dtype=bfloat16" \
+    "custom|ko_ged:elementary|0|0" \
+    --custom-tasks path/to/custom_tasks.py \
+    --use-chat-template</pre>
+          <p>
+            The task definitions are provided via the <code>--custom-tasks</code> option and are part of the KoLightEval framework.
+          </p>
+          <p>
+            By leveraging the existing Lighteval infrastructure and contributing Korean-language evaluation tasks in a self-contained way, our implementation demonstrates a practical use case for adapting multilingual benchmarks within a unified evaluation system.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">5. Experimental Evaluation</h2>
+
+        <h3 class="title is-4 has-text-left">5.1 Model Selection</h3>
+
+        <div class="content has-text-justified">
+          <p>
+            To evaluate performance, six large language models with diverse characteristics and sizes were selected. OpenAI’s GPT-4.1 represents one of the most advanced commercial models, while Google’s Gemma-3 and Qwen-2.5 were included as publicly available multilingual models. Additionally, Korean-specialized models developed domestically—EXAONE-3.5 and Kakao’s Kanana-1.5—were chosen to assess Korean-optimized performance. A fine-tuned variant, Ko-Gemma-3, based on the Gemma architecture, was also included to examine the effect of fine-tuning within the same model family.
+          </p>
+          <p>
+            These models vary in size from approximately 7 billion to 12 billion parameters. Although GPT-4.1’s exact size is undisclosed, it is known to be significantly larger and trained on extensive data. Ko-Gemma-3 and Gemma-3 have around 12 billion parameters, while EXAONE and Kanana have about 7.8 to 8 billion. GPT-4.1, Qwen-2.5, and Gemma-3 are designed as multilingual models, whereas EXAONE, Kanana, and Ko-Gemma focus exclusively on Korean. This setup allows for a balanced and comprehensive comparison of how design choices affect performance in Korean large language models.
+          </p>
+        </div>
+
+        <h3 class="title is-4 has-text-left">5.2 Score Comparison</h3>
+
+        <div class="content has-text-justified">
+          <p>
+            Figure 1 visualizes the performance scores of each model across benchmark datasets using radar charts, with accuracy normalized on a 0 to 10 scale to facilitate comparison among models.
+          </p>
+          <p>
+            As shown in Figure 1, scores for ko-gpqa and ko-math-500 were lower than those for ko-ged across all models, reflecting the higher difficulty of these datasets. In particular, ko-gpqa consists of question-answering tasks that require multi-document information aggregation, multi-step reasoning, and understanding of long contexts, which have been identified as challenging for general language models.
+          </p>
+          <p>
+            GPT-4.1 achieved the highest average scores across all benchmarks; however, on the ko-math-500 dataset, Gemma-3 and Ko-Gemma-3 models scored 0.78 points higher than GPT-4.1. These two models share the same architecture, and while Ko-Gemma-3 is a fine-tuned variant of Gemma-3, the performance difference between them was minimal. This indicates that while GPT-4.1 is generally the strongest model overall, domain-specific or fine-tuned models can outperform it on specialized tasks such as mathematical reasoning.
+          </p>
+          <p>
+            Interestingly, Korean-specialized models such as EXAONE and Kanana performed comparably to Gemma-3 on the ko-ged dataset, demonstrating their effectiveness in Korean grammar error detection tasks. However, on the ko-math-500 dataset, they showed a significant performance gap compared to multilingual models like Gemma-3 and Ko-Gemma-3, suggesting limitations in mathematical reasoning or general-domain training coverage.
+          </p>
+        </div>
+
+        <img src="static/images/ko_lighteval/figure1.png" alt="[Figure 1] Performance Comparison by Benchmark Dataset" />
+        <br>
+        [Figure 1] Performance Comparison by Benchmark Dataset
+        <br>
+        <br>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">6. Discussion</h2>
+
+        <h3 class="title is-4 has-text-left">Insights into the Performance of Korean LLMs</h3>
+
+        <div class="content has-text-justified">
+          <p>
+            A key finding of this evaluation is the minimal performance difference observed between Ko-Gemma-3 (the fine-tuned version) and Gemma-3. This suggests that either Gemma-3 has robust multilingual Korean capabilities or that the current fine-tuning process has limited impact. However, further investigation is required. However, this outcome may vary depending on the quantity and quality of the fine-tuning data as well as the applied methodology, indicating the need for further experiments under diverse conditions.
+          </p>
+          <p>
+            Although GPT-4.1 consistently demonstrated the highest overall performance, Gemma-based models slightly outperformed GPT-4.1 on more challenging mathematical tasks (e.g., *ko-math-500*). This result illustrates that in certain domains or task types, factors such as model architecture and training data characteristics can influence performance outcomes.
+          </p>
+        </div>
+
+        <h3 class="title is-4 has-text-left">Future Improvements and Research Directions</h3>
+
+        <div class="content has-text-justified">
+          <p>
+            Enhancing the realism and reliability of Korean LLM evaluations requires expanding the scope and diversity of benchmark datasets. Existing benchmarks primarily consist of short-answer tasks with well-defined answers, which fall short of capturing the complex language demands encountered in real-world user interactions—such as long-form generation, style adaptation, multi-document summarization, and context-aware question answering.
+          </p>
+          <p>
+            Addressing these limitations will require the inclusion of more realistic benchmarks, such as scenario-based tasks across specific domains, generative tasks, and evaluations incorporating user feedback. In parallel, evaluation metrics should evolve beyond accuracy-focused approaches to incorporate multi-dimensional indicators of fluency, contextual coherence, and informational completeness. These enhancements will help provide a clearer picture of both the practical capabilities and the limitations of current models.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">7. Conclusion</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            We introduced the KoLightEval framework, designed to provide a more realistic and multifaceted evaluation of Korean large language models (LLMs). Utilizing this framework, we conducted a systematic comparison of Korean comprehension and generation capabilities across various domestic and international models. Our results indicate limited improvement from fine-tuning, while revealing distinct performance characteristics among models. A key observation is the minimal performance difference between Ko-Gemma-3 and Gemma-3. Moreover, Gemma-based models showed comparable or slightly superior performance to commercial large-scale models on certain challenging tasks.
+          </p>
+          <p>
+            In addition, this study highlighted certain limitations of existing Korean benchmark datasets and evaluation metrics, emphasizing the need for an evaluation framework that better reflects realistic and diverse user scenarios. Future work includes expanding evaluation datasets and developing composite metrics to improve Korean LLM assessment.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">Appendix</h2>
+
+        <h3 class="title is-4 has-text-left">Detailed Benchmark Scores by Model</h3>
+
+        <div class="content has-text-justified">
+          <p>
+            Table A.1 presents detailed scores for each model across the benchmark datasets. For brevity, <code>ko-</code> prefixes (e.g., <em>ko-ged</em>, <em>ko-gpqa</em>) are omitted from column names. The subscripts E, M, and H denote the educational levels of the questions: Elementary, Middle, and High.
+          </p>
+        </div>
+
+        <div style="overflow-y: auto;">
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th style="text-align:center">Model</th>
+                <th style="text-align:center">ged:E</th>
+                <th style="text-align:center">ged:M</th>
+                <th style="text-align:center">ged:H</th>
+                <th style="text-align:center">ged2:E</th>
+                <th style="text-align:center">ged2:M</th>
+                <th style="text-align:center">ged2:H</th>
+                <th style="text-align:center">gpqa</th>
+                <th style="text-align:center">math-500</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="text-align:left">GPT-4.1</td>
+                <td style="text-align:left"><strong>10</strong></td>
+                <td style="text-align:left"><strong>9.88</strong></td>
+                <td style="text-align:left"><strong>10</strong></td>
+                <td style="text-align:left"><strong>10</strong></td>
+                <td style="text-align:left"><strong>9.92</strong></td>
+                <td style="text-align:left"><strong>9.88</strong></td>
+                <td style="text-align:left"><strong>6.31</strong></td>
+                <td style="text-align:left">7</td>
+              </tr>
+              <tr>
+                <td style="text-align:left"><a href="https://huggingface.co/google/gemma-3-12b-it">Gemma-3-12b-it</a></td>
+                <td style="text-align:left">9.58</td>
+                <td style="text-align:left">9.47</td>
+                <td style="text-align:left">9.12</td>
+                <td style="text-align:left">9.77</td>
+                <td style="text-align:left">9.62</td>
+                <td style="text-align:left">9.32</td>
+                <td style="text-align:left">3.94</td>
+                <td style="text-align:left"><strong>7.78</strong></td>
+              </tr>
+              <tr>
+                <td style="text-align:left"><a href="https://huggingface.co/davidkim205/ko-gemma-3-12b">Ko-Gemma-3-12b</a> (Ours)</td>
+                <td style="text-align:left">9.65</td>
+                <td style="text-align:left">9.67</td>
+                <td style="text-align:left">9.24</td>
+                <td style="text-align:left">9.6</td>
+                <td style="text-align:left">9.5</td>
+                <td style="text-align:left">9.24</td>
+                <td style="text-align:left">3.84</td>
+                <td style="text-align:left"><strong>7.78</strong></td>
+              </tr>
+              <tr>
+                <td style="text-align:left"><a href="https://huggingface.co/LGAI-EXAONE/EXAONE-3.5-7.8B-Instruct">EXAONE-3.5-7.8B-Instruct</a></td>
+                <td style="text-align:left">9.58</td>
+                <td style="text-align:left">9.55</td>
+                <td style="text-align:left">9.2</td>
+                <td style="text-align:left">9.25</td>
+                <td style="text-align:left">9.04</td>
+                <td style="text-align:left">9.08</td>
+                <td style="text-align:left">3.64</td>
+                <td style="text-align:left">6.26</td>
+              </tr>
+              <tr>
+                <td style="text-align:left"><a href="https://huggingface.co/kakaocorp/kanana-1.5-8b-instruct-2505">Kanana-1.5-8b-instruct-2505</a></td>
+                <td style="text-align:left">9.72</td>
+                <td style="text-align:left">9.02</td>
+                <td style="text-align:left">9.6</td>
+                <td style="text-align:left">9.25</td>
+                <td style="text-align:left">9.21</td>
+                <td style="text-align:left">9</td>
+                <td style="text-align:left">3.08</td>
+                <td style="text-align:left">5.14</td>
+              </tr>
+              <tr>
+                <td style="text-align:left"><a href="https://huggingface.co/Qwen/Qwen2.5-7B-Instruct">Qwen2.5-7B-Instruct</a></td>
+                <td style="text-align:left">8.75</td>
+                <td style="text-align:left">8.78</td>
+                <td style="text-align:left">8.67</td>
+                <td style="text-align:left">9.02</td>
+                <td style="text-align:left">9.04</td>
+                <td style="text-align:left">8.27</td>
+                <td style="text-align:left">3.43</td>
+                <td style="text-align:left">6.26</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <br>
+        [Table A.1] Model performance scores across benchmark datasets (normalized to 0–10 scale)
+        <br>
+        <br>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</body>
+</html>
