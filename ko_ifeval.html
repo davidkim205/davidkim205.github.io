@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ko-IFEval</title>
+    <meta name="description" content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+    <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .footer-social a {
+            color: #fff;
+            padding: 10px;
+            border-radius: 50%;
+            background-color: #4a4a4a;
+        }
+    </style>
+</head>
+
+
+<body>
+<header class="navbar">
+    <div class="navbar-brand">
+        <a class="navbar-item logo" href="/">Research Blog</a>
+    </div>
+</header>
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Ko-IFEval: A Human-Verified Instruction-Following Benchmark for Korean LLMs</h1>
+
+          <div class="column has-text-centered">
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a href="https://github.com/Doleeee">YeHee Lim</a><sup>1</sup>
+                </span>
+                <span class="author-block">
+                  <a href="https://github.com/sudog1">BumSu Jung</a><sup>1</sup>
+                </span>
+                <span class="author-block">
+                  <a href="https://github.com/davidkim205">ChangYeon Kim</a><sup>2</sup>
+                </span>
+              </div>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <sup>1</sup>2Digit AI Research
+                </span>
+              </div>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- Model Link. -->
+<!--              <span class="link-block">-->
+<!--                <a href="https://huggingface.co/collections/davidkim205/keval-2-67ac5400f5eef4984cc5dbbb"-->
+<!--                  class="external-link button is-normal is-rounded is-dark">-->
+<!--                  <span class="icon">-->
+<!--                      <i class="far fa-images"></i>-->
+<!--                  </span>-->
+<!--                  <span>Model</span>-->
+<!--                  </a>-->
+<!--              </span>-->
+              <!-- Paper Link. -->
+              <span class="link-block">
+                <a href="https://davidkim205.github.io/ko_ifeval.html"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+             <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/davidkim205/ifeval"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">1. Introduction</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Instruction-following capability is a critical factor in evaluating the usability, reliability, and practical effectiveness of large language models (LLMs). IFEval is a benchmark designed to assess this capability in a quantifiable manner by evaluating a model's compliance with various types of automatically verifiable instructions. However, since IFEval is entirely constructed in English, it poses challenges to fair and accurate evaluation of Korean LLMs. This report introduces <strong>Ko-IFEval</strong>, a new benchmark developed to address these issues. Ko-IFEval consists of a human-verified dataset in which IFEval’s instructions have been translated and adapted to reflect Korean linguistic and cultural characteristics. It also includes an automatic evaluation tool tailored for Korean text. Together, they provide a more reliable and culturally appropriate benchmark for evaluating the instruction-following ability of Korean LLMs with greater precision.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">2. Importance and Challenges of Instruction-Following Evaluation for Korean LLMs</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Evaluating instruction-following ability is essential for measuring the practical effectiveness and user trustworthiness of LLMs. How accurately a model understands and executes diverse user instructions across various contexts directly impacts its reliability and quality in real-world applications. Therefore, developing benchmarks that quantitatively evaluate instruction-following performance plays a vital role in advancing LLM research and development.
+          </p>
+          <p>
+            <a href="https://arxiv.org/abs/2311.07911"><strong>IFEval</strong></a> is an English-based benchmark that covers diverse types of instructions and features an automatic scoring system, enabling relatively fair evaluation of a model’s instruction-following ability. However, directly applying IFEval to Korean LLMs compromises evaluation accuracy and fairness due to linguistic structural differences, cultural mismatches, and limitations of automatic scoring tools designed around English grammar.
+          </p>
+          <ul>
+            <li><strong>Linguistic differences</strong> | Korean sentence boundaries can be ambiguous due to particles and morphological variations, unlike English, which has clearer sentence demarcations and intuitive word counts.</li>
+            <li><strong>Cultural mismatch</strong> | Direct translations often retain unfamiliar names and cultural references irrelevant to Korean contexts, reducing evaluation fairness.</li>
+            <li><strong>Automated evaluation accuracy</strong> | English-based scoring tools struggle with Korean grammar and syntax, causing evaluation inconsistencies.</li>
+          </ul>
+          <p>
+            Currently, there is a lack of publicly available instruction-following benchmarks tailored specifically for Korean. Ko-IFEval addresses this gap by incorporating linguistic and cultural adaptations, with all data verified by human reviewers to ensure reliable evaluation.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">3. Dataset Construction</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            <strong>IFEval</strong> is a benchmark consisting of diverse instruction types, with an automatic scoring mechanism based on predefined logic. Applying this framework to Korean LLMs requires not only accurate translation but also adaptation of evaluation logic suited to Korean language characteristics. <strong>Ko-IFEval</strong> is a Korean instruction-following benchmark constructed through this process, with all data manually verified to ensure linguistic accuracy and logical consistency. The full list of categories and instance counts is provided in Appendix Table A.1.
+          </p>
+          <p>
+            Ko-IFEval was constructed through the following three steps:
+          </p>
+          <ol>
+            <li>translation of prompts using GPT-4o</li>
+            <li>removal and modification of conditions incompatible with Korean linguistic structures</li>
+            <li>adaptation of prompts to reflect Korean cultural context</li>
+          </ol>
+        </div>
+
+        <h3 class="title is-4 has-text-left">3.1 Removed Categories</h3>
+
+        <div class="content has-text-justified">
+          <p>
+            We excluded categories relying on English-specific linguistic features or irrelevant for Korean evaluation:
+          </p>
+          <ul style="text-align: left">
+            <li><strong>English-dependent categories</strong>: <code>change_case:capital_word_frequency</code>, <code>change_case:english_capital</code>, <code>change_case:english_lowercase</code></li>
+            <li><strong>Korean-irrelevant category</strong>: <code>language:response_language</code></li>
+          </ul>
+        </div>
+
+        <h3 class="title is-4 has-text-left">3.2 Post-translation Adjustments</h3>
+
+        <div class="content has-text-justified">
+          <p>
+            Several modifications were applied to ensure instructions are linguistically clear and culturally relevant for Korean:
+          </p>
+          <ul style="text-align: left">
+            <li><strong>Clarifying word count vs. character count</strong>: The <code>length_constraints:number_words</code> category was translated to refer to "어절" (space-separated word units in Korean). To support character-based constraints, a separate condition, <code>length_constraints:number_letters</code>, was introduced.</li>
+            <li><strong>Adjusting paragraph and quotation conditions</strong>: When both <code>length_constraints:nth_paragraph_first_word</code> and <code>startend:quotation</code> conditions co-occur, the paragraph indices were adjusted to avoid logical conflicts.</li>
+            <li><strong>Refining letter frequency constraints</strong>: In <code>keywords:letter_frequency</code>, thresholds were calibrated to better fit the distribution of characters in Korean. When literal application would cause excessive difficulty, thresholds were adjusted. For example, a prompt requiring a high frequency of the letter "o" was adapted as follows: <pre># Original
+Write a letter to your friend who recently moved away. Your entire response should be in English, and in all capital letters. The letter o should appear at least 40 times.
+
+# Modified
+최근 이사 간 친구에게 편지를 써주세요. 글자 '오'를 최소 13번 이상 포함해야 합니다.</pre></li>
+            <li><strong>Restricting constraint combinations</strong>: The <code>combination:repeat_prompt</code> condition enforces that the response must begin with the prompt itself. Therefore, it is only paired with <code>length_constraints:number_sentences</code>, <code>length_constraints:number_words</code>, or <code>length_constraints:number_letters</code> constraints.</li>
+            <li><strong>Adapting to Korean cultural context</strong>: Unfamiliar names and culturally irrelevant topics in prompts were replaced with localized content. <pre># Original
+Write a 300+ word summary of the wikipedia page "https://en.wikipedia.org/wiki/Raymond_III,_Count_of_Tripoli".
+
+# Modified
+위키백과 페이지 "https://ko.wikipedia.org/wiki/이순신"의 내용을 요약하여 300자 이상으로 작성하시오.</pre></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">4. Evaluation Framework</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            The IFEval framework evaluates model responses along two axes: Strict vs. Loose and Prompt-level vs. Instruction-level.
+          </p>
+          <ul>
+            <li><strong>Strict</strong> scoring determines correctness based on the model’s raw answer exactly matching the instruction.</li>
+            <li><strong>Loose</strong> scoring applies post-processing—such as removing markdown symbols or introductory/closing phrases—to avoid false alarms caused by formatting or non-substantive content.</li>
+          </ul>
+          <p>
+            Strict evaluation may lead to <strong>false negatives</strong> (correct responses judged as incorrect), while Loose evaluation can cause <strong>false positives</strong> (incorrect responses judged as correct).
+          </p>
+          <p>
+            Additionally, a single prompt may contain multiple instructions:
+          </p>
+          <ul>
+            <li><strong>Prompt-level</strong> evaluation considers a response correct only if <strong>all</strong> instructions are satisfied.</li>
+            <li><strong>Instruction-level</strong> evaluation judges each instruction <strong>independently</strong>.</li>
+          </ul>
+          <p>
+            To ensure reliable and consistent evaluation, <strong>Ko-IFEval uses only Strict criteria</strong>, applied at both the prompt and instruction levels.
+          </p>
+        </div>
+
+        <h3 class="title is-4 has-text-left">Sentence Counting Logic</h3>
+
+        <div class="content has-text-justified">
+          <p>
+            Each evaluation rule was implemented independently for each <code>instruction_id</code>. Since the logic for each condition is intuitive and well-documented in the IFEval paper, we focus here only on the adjustments made to sentence counting in Korean.
+          </p>
+          <p>
+            The original IFEval implementation uses the <code>nltk</code> tokenizer to segment English sentences. However, this tool is not suitable for Korean due to its English-centric design. Although Korean-specific tokenizers exist, we opted to <strong>implement a rule-based sentence segmentation logic</strong> to maximize control over boundary conditions and eliminate dependencies on external packages.
+          </p>
+          <p>
+            The sentence counting procedure for model outputs is as follows:
+          </p>
+          <ol>
+            <li>Split the text into paragraphs based on line breaks.</li>
+            <li>If a paragraph ends with a comma, merge it with the following paragraph.</li>
+            <li>Within each paragraph, segment sentences based on the pattern of a Korean character followed by a sentence-ending punctuation mark (<code>.</code>, <code>?</code>, or <code>!</code>).</li>
+            <li style="list-style-type: none">
+              <ul>
+                <li>A space following the punctuation mark is required to consider it a sentence boundary.</li>
+                <li>Quoted text is ignored for boundary detection.</li>
+                <li>Examples:</li>
+                <li style="list-style-type: none">
+                  <ul>
+                    <li>`그냥...왜 그럴까?` → 1 sentence</li>
+                    <li>`철수는 "언제 집에 갈까?"라고 물었습니다.` → 1 sentence</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">5. Benchmarking Results</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            We evaluated the performance of the following models using Ko-IFEval: GPT-4.1, Gemma-3 (12B, 9B, 4B), Trillion-7B-Preview, and Kanana-nano-2.1B.  GPT-4.1 represents a general-purpose LLM, while the Gemma-3 series allows size-wise comparison. Trillion-7B and Kanana-nano are Korean-specialized models and serve as the primary focus of this benchmark.  We report both prompt-level and instruction-level accuracy results.
+          </p>
+        </div>
+
+        <h3 class="title is-4 has-text-left">5.1 Comparison by Evaluation Level</h3>
+
+        <div class="content has-text-justified">
+          <p>
+            Figure 1 presents prompt-level and instruction-level accuracy for each model. As expected, prompt-level scores are lower due to stricter conditions, but the ranking trend among models remains consistent across evaluation levels.
+          </p>
+          <p>
+            GPT-4.1 achieved the highest prompt-level accuracy, exceeding <strong>0.88</strong>, significantly outperforming all others. The Gemma-3 series exhibited a clear size-performance trend: <strong>12B (0.72)</strong> > <strong>9B (0.62)</strong> > <strong>4B (0.55)</strong>, suggesting larger models better handle formatting constraints.
+          </p>
+          <p>
+            Korean-specialized models outperformed general models of similar size. Trillion-7B scored <strong>0.76</strong>, and Kanana-nano-2.1B scored <strong>0.65</strong>, both surpassing their Gemma counterparts by over 0.1. This highlights the importance of Korean linguistic and cultural alignment, which Ko-IFEval emphasizes.
+          </p>
+        </div>
+
+        <img src="static/images/ko_ifeval/figure1.png" alt="[Figure 1] Accuracy of LLMs Evaluated on the Ko-IFEval Benchmark"/>
+        [Figure 1] Accuracy of LLMs Evaluated on the Ko-IFEval Benchmark
+        <br>
+        <br>
+
+        <h3 class="title is-4 has-text-left">5.2 Comparison by Instruction Group</h3>
+
+        <div class="content has-text-justified">
+          <p>
+            Among the seven instruction groups, <strong>combination</strong> showed the greatest performance variance across models. Smaller models struggled with following <strong>multiple constraints simultaneously</strong>, while Trillion-7B performed comparably to GPT-4.1 in this group.
+          </p>
+          <p>
+            By contrast, simpler instruction groups such as <code>startend</code> and <code>punctuation</code> showed relatively small performance differences—except for Gemma-3-4B, which lagged behind.
+          </p>
+        </div>
+
+        <img src="static/images/ko_ifeval/figure2.png" alt="[Figure 2] Accuracy by Instruction Group on Ko-IFEval"/>
+        [Figure 2] Accuracy by Instruction Group on Ko-IFEval
+        <br>
+        <br>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">Discussion</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Korean LLMs demonstrate better performance in instruction-following when they reflect linguistic and cultural specificity. While they respond more precisely to elements such as particles and sentence endings, they still struggle with complex instructions and numerical constraints. This indicates that instruction-following goes beyond simple language understanding and requires adherence to structural and logical requirements. This highlights the need for a more refined evaluation framework to better analyze Korean LLM performance.
+          </p>
+          <p>
+            Ko-IFEval represents the first major adaptation of an English-based benchmark for Korean, but it still faces limitations as a rule-based evaluation system. It is difficult to quantify exceptions in sentence structure or meaning-driven responses, and the difficulty of conditions varies considerably. Additionally, since the benchmark is based on translations, it may not fully reflect the distribution of real Korean user instructions. Future improvements should focus on enhancing evaluation scripts and diversifying data sources.
+          </p>
+          <p>
+            Instruction-following evaluation will become increasingly important in the multilingual LLM era, requiring language-specific criteria and the ability to assess handling of multiple or conflicting constraints. Evaluation must extend beyond simple correctness to include contextual understanding and prioritization of user intent. Moreover, feedback-driven performance measurement in real-world use cases could become a future benchmark direction. Ko-IFEval lays the groundwork for such long-term developments.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">7. Conclusion</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            This report introduces <strong>Ko-IFEval</strong>, a benchmark designed to more accurately evaluate the instruction-following ability of Korean LLMs. By adapting an English-centric framework through linguistic and cultural modifications, and implementing Korean-specific evaluation logic, Ko-IFEval addresses the limitations of existing benchmarks. Our experiments show that Korean-specialized models outperform general-purpose models, demonstrating the importance of language-tailored evaluation.
+          </p>
+          <p>
+            Ko-IFEval provides a foundational tool for the development and validation of Korean LLMs. With further data expansion and refinement of the evaluation framework, it can evolve into a benchmark that captures more realistic and diverse instruction scenarios. Moving forward, instruction-following evaluation should go beyond task completion to assess models’ flexible understanding and responsiveness to user intent. Ko-IFEval represents an important starting point for such multidimensional assessment.
+          </p>
+          <p>
+            As multilingual models continue to advance, benchmarks like Ko-IFEval will play a key role in enabling rigorous, fair, and language-specific evaluation. By offering a structured, automated, and culturally aware framework, Ko-IFEval contributes to more equitable and accurate assessment of LLM capabilities in Korean.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">8. Appendix</h2>
+
+        <h3 class="title is-4 has-text-left">Comparison of Instruction Groups: IFEval vs. Ko-IFEval</h3>
+
+        <div class="content has-text-justified">
+
+          <div style="overflow-y: auto;">
+            <table class="table is-bordered is-striped is-hoverable">
+              <thead>
+                <tr>
+                  <th style="text-align:center">Instruction Group</th>
+                  <th style="text-align:center">Instruction</th>
+                  <th style="text-align:center">IFEval</th>
+                  <th style="text-align:center">Ko-IFEval</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="text-align:left">Change Case</td>
+                  <td style="text-align:left">Capital Word Frequency</td>
+                  <td style="text-align:right">25</td>
+                  <td style="text-align:right">-</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left">Change Case</td>
+                  <td style="text-align:left">English Capital</td>
+                  <td style="text-align:right">25</td>
+                  <td style="text-align:right">-</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left">Change Case</td>
+                  <td style="text-align:left">English Lowercase</td>
+                  <td style="text-align:right">39</td>
+                  <td style="text-align:right">-</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left">Combination</td>
+                  <td style="text-align:left">Repeat Prompt</td>
+                  <td style="text-align:right">41</td>
+                  <td style="text-align:right">40</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left">Combination</td>
+                  <td style="text-align:left">Two Responses</td>
+                  <td style="text-align:right">24</td>
+                  <td style="text-align:right">21</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left">Detectable Content</td>
+                  <td style="text-align:left">Number Placeholders</td>
+                  <td style="text-align:right">27</td>
+                  <td style="text-align:right">25</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left">Detectable Content</td>
+                  <td style="text-align:left">Postscript</td>
+                  <td style="text-align:right">26</td>
+                  <td style="text-align:right">26</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left">Detectable Format</td>
+                  <td style="text-align:left">Constrained Response</td>
+                  <td style="text-align:right">10</td>
+                  <td style="text-align:right">10</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left">Detectable Format</td>
+                  <td style="text-align:left">JSON Format</td>
+                  <td style="text-align:right">17</td>
+                  <td style="text-align:right">18</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left">Detectable Format</td>
+                  <td style="text-align:left">Multiple Sections</td>
+                  <td style="text-align:right">14</td>
+                  <td style="text-align:right">14</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left">Detectable Format</td>
+                  <td style="text-align:left">Number Bullet Lists</td>
+                  <td style="text-align:right">31</td>
+                  <td style="text-align:right">30</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left">Detectable Format</td>
+                  <td style="text-align:left">Number Highlighted Sections</td>
+                  <td style="text-align:right">48</td>
+                  <td style="text-align:right">48</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left">Detectable Format</td>
+                  <td style="text-align:left">Title</td>
+                  <td style="text-align:right">37</td>
+                  <td style="text-align:right">27</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left">Keywords</td>
+                  <td style="text-align:left">Existence</td>
+                  <td style="text-align:right">39</td>
+                  <td style="text-align:right">34</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left">Keywords</td>
+                  <td style="text-align:left">Forbidden Words</td>
+                  <td style="text-align:right">49</td>
+                  <td style="text-align:right">47</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left">Keywords</td>
+                  <td style="text-align:left">Frequency</td>
+                  <td style="text-align:right">42</td>
+                  <td style="text-align:right">38</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left">Keywords</td>
+                  <td style="text-align:left">Letter Frequency</td>
+                  <td style="text-align:right">33</td>
+                  <td style="text-align:right">30</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left">Language</td>
+                  <td style="text-align:left">Response Language</td>
+                  <td style="text-align:right">31</td>
+                  <td style="text-align:right">-</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left">Length Constraints</td>
+                  <td style="text-align:left">n-th Paragraph First Word</td>
+                  <td style="text-align:right">12</td>
+                  <td style="text-align:right">12</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left">Length Constraints</td>
+                  <td style="text-align:left">Number Letters</td>
+                  <td style="text-align:right">-</td>
+                  <td style="text-align:right">46</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left">Length Constraints</td>
+                  <td style="text-align:left">Number Paragraphs</td>
+                  <td style="text-align:right">27</td>
+                  <td style="text-align:right">23</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left">Length Constraints</td>
+                  <td style="text-align:left">Number Sentences</td>
+                  <td style="text-align:right">52</td>
+                  <td style="text-align:right">50</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left">Length Constraints</td>
+                  <td style="text-align:left">Number Words</td>
+                  <td style="text-align:right">52</td>
+                  <td style="text-align:right">6</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left">Punctuation</td>
+                  <td style="text-align:left">No Comma</td>
+                  <td style="text-align:right">66</td>
+                  <td style="text-align:right">45</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left">Startend</td>
+                  <td style="text-align:left">End Checker</td>
+                  <td style="text-align:right">26</td>
+                  <td style="text-align:right">26</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left">Startend</td>
+                  <td style="text-align:left">Quotation</td>
+                  <td style="text-align:right">41</td>
+                  <td style="text-align:right">36</td>
+                </tr>
+                <tr>
+                  <td style="text-align:left"></td>
+                  <td style="text-align:left"></td>
+                  <td style="text-align:right">834</td>
+                  <td style="text-align:right">652</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        [Table A.1] Comparison of Instruction Groups: IFEval vs. Ko-IFEval
+        <br>
+        <br>
+
+        <div class="content has-text-justified">
+          <p>
+            <strong>Note</strong>: One missing instruction ID in the original IFEval dataset was corrected in Ko-IFEval, resulting in one additional data point. Ko-IFEval includes 464 prompts, adapted from the original 541 in IFEval by removing or modifying prompts incompatible with Korean linguistic evaluation.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>
+            <strong>Research Blog</strong> by <a href="https://github.com/davidkim205">davidkim205</a>.
+        </p>
+    </div>
+</footer>
+</body>
+</html>
