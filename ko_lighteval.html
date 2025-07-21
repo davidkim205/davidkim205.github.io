@@ -184,12 +184,8 @@
                 <td style="vertical-align: middle; text-align: left;">Korean version of GPQA containing challenging physics questions designed to test deep understanding and logical reasoning.</td>
               </tr>
               <tr>
-                <td style="vertical-align: middle; text-align: left;"><a href="https://huggingface.co/datasets/davidkim205/ko_ged_elementary">ko-ged:elementary</a><br/><a href="https://huggingface.co/datasets/davidkim205/ko_ged_middle">ko-ged:middle</a><br/><a href="https://huggingface.co/datasets/davidkim205/ko_ged_high">ko-ged:high</a></td>
+                <td style="vertical-align: middle; text-align: left;"><a href="https://huggingface.co/datasets/davidkim205/ko_ged_mc_elementary">ko-ged-mc:elementary</a><br/><a href="https://huggingface.co/datasets/davidkim205/ko_ged_mc_middle">ko-ged-mc:middle</a><br/><a href="https://huggingface.co/datasets/davidkim205/ko_ged_mc_high">ko-ged-mc:high</a></td>
                 <td style="vertical-align: middle; text-align: left;">Korean GED exam questions spanning multiple subjects at elementary, middle, and high school levels to evaluate language comprehension and reasoning.</td>
-              </tr>
-              <tr>
-                <td style="vertical-align: middle; text-align: left;"><a href="https://huggingface.co/datasets/davidkim205/ko_ged_2501_elementary">ko-ged-2501:elementary</a><br/><a href="https://huggingface.co/datasets/davidkim205/ko_ged_2501_middle">ko-ged-2501:middle</a><br/><a href="https://huggingface.co/datasets/davidkim205/ko_ged_2501_high">ko-ged-2501:high</a><p></td>
-                <td style="vertical-align: middle; text-align: left;">Updated 2025 GED exam datasets structured by education level and subject, extending ko-ged with new questions for broader evaluation.</td>
               </tr>
             </tbody>
           </table>
@@ -263,14 +259,14 @@
 }</pre>
         </div>
 
-        <h3 class="title is-4 has-text-left">ko-ged</h3>
+        <h3 class="title is-4 has-text-left">ko-ged-mc</h3>
 
         <div class="content has-text-justified">
           <p>
-            <strong>ko-ged</strong> is a benchmark dataset designed to evaluate the comprehension and reasoning capabilities of large language models (LLMs) in the Korean language. The dataset comprises questions extracted from the General Equivalency Diploma (GED) exams administered at three distinct educational levels: elementary, middle, and high school. Specifically, the <strong>ko-ged</strong> dataset contains questions from the second GED exam of 2024, while <strong>ko-ged-2501</strong> corresponds to the first GED exam of 2025. All exam items are sourced from the official archives managed by the <a href="https://www.gumsi.or.kr/">Korean Ministry of Education</a>.
+            <strong>ko-ged-mc</strong> is a benchmark dataset designed to evaluate the comprehension and reasoning capabilities of large language models (LLMs) in the Korean language. The dataset comprises <strong>multiple-choice</strong> questions extracted from the General Equivalency Diploma (GED) exams administered at three distinct educational levels: elementary, middle, and high school. Specifically, the ko-ged dataset contains questions from the second GED exam of 2024. All exam items are sourced from the official archives managed by the <a href="https://www.gumsi.or.kr/">Korean Ministry of Education</a>.
           </p>
           <p>
-            Table 2 summarizes the subject domains covered by the ko-ged dataset across the three educational tiers. For each level, <code>Common Subjects</code> denote the core curriculum assessed uniformly across all exams, whereas <code>Additional Subjects</code> represent specialized topics tested depending on the specific educational stage.
+            Table 2 summarizes the subject domains covered by the ko-ged-mc dataset across the three educational tiers. For each level, <code>Common Subjects</code> denote the core curriculum assessed uniformly across all exams, whereas <code>Additional Subjects</code> represent specialized topics tested depending on the specific educational stage.
           </p>
         </div>
 
@@ -305,7 +301,7 @@
               </tr>
               <tr>
                 <td style="vertical-align: middle;">Middle</td>
-                <td rowspan="2" style="vertical-align: middle;">
+                <td style="vertical-align: middle;">
                   <ul style="margin: 0; padding-left: 16px; text-align: left; list-style-type: disc;">
                     <li>Technology &amp; Home Economics</li>
                     <li>Information Technology</li>
@@ -314,12 +310,18 @@
               </tr>
               <tr>
                 <td style="vertical-align: middle;">High</td>
+                <td style="vertical-align: middle;">
+                  <ul style="margin: 0; padding-left: 16px; text-align: left; list-style-type: disc;">
+                    <li>Technology &amp; Home Economics</li>
+                    <li>Korean History</li>
+                  </ul>
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
         <br>
-        [Table 2] Subject Areas Included in the ko-ged Dataset by Educational Level
+        [Table 2] Subject Areas Included in the ko-ged-mc Dataset by Educational Level
         <br>
         <br>
 
@@ -337,10 +339,10 @@
           </ul>
 
           <p>
-            The datasets are separated by version (ko-ged / ko-ged-2501), educational level (E/M/H), and subject.
+            The datasets are separated by educational level (E/M/H), and subject.
           </p>
 
-          <h5 class="title is-6 has-text-left">ko-ged:elementary</h5>
+          <h5 class="title is-6 has-text-left">ko-ged-mc:elementary</h5>
           <pre>{
   "id": 1,
   "Domain": "영어",
@@ -351,7 +353,7 @@
   "Incorrect Answer 3": "Grapes"
 }</pre>
           <br>
-          <h5 class="title is-6 has-text-left">ko-ged:middle</h5>
+          <h5 class="title is-6 has-text-left">ko-ged-mc:middle</h5>
           <pre>{
   "id": 209,
   "Domain": "도덕",
@@ -362,7 +364,7 @@
   "Incorrect Answer 3": "칸트"
 }</pre>
           <br>
-          <h5 class="title is-6 has-text-left">ko-ged:high</h5>
+          <h5 class="title is-6 has-text-left">ko-ged-mc:high</h5>
           <pre>{
   "id": 46,
   "Domain": "수학",
@@ -493,13 +495,13 @@ D) {D}</pre>
             Figure 1 visualizes the performance scores of each model across benchmark datasets using radar charts, with accuracy normalized on a 0 to 10 scale to facilitate comparison among models.
           </p>
           <p>
-            As shown in Figure 1, scores for ko-gpqa and ko-math-500 were lower than those for ko-ged across all models, reflecting the higher difficulty of these datasets. In particular, ko-gpqa consists of question-answering tasks that require multi-document information aggregation, multi-step reasoning, and understanding of long contexts, which have been identified as challenging for general language models.
+            As shown in Figure 1, scores for ko-gpqa and ko-math-500 were lower than those for ko-ged-mc across all models, reflecting the higher difficulty of these datasets. In particular, ko-gpqa consists of question-answering tasks that require multi-document information aggregation, multi-step reasoning, and understanding of long contexts, which have been identified as challenging for general language models.
           </p>
           <p>
             GPT-4.1 achieved the highest average scores across all benchmarks; however, on the ko-math-500 dataset, Gemma-3 and Ko-Gemma-3 models scored 0.78 points higher than GPT-4.1. These two models share the same architecture, and while Ko-Gemma-3 is a fine-tuned variant of Gemma-3, the performance difference between them was minimal. This indicates that while GPT-4.1 is generally the strongest model overall, domain-specific or fine-tuned models can outperform it on specialized tasks such as mathematical reasoning.
           </p>
           <p>
-            Interestingly, Korean-specialized models such as EXAONE and Kanana performed comparably to Gemma-3 on the ko-ged dataset, demonstrating their effectiveness in Korean grammar error detection tasks. However, on the ko-math-500 dataset, they showed a significant performance gap compared to multilingual models like Gemma-3 and Ko-Gemma-3, suggesting limitations in mathematical reasoning or general-domain training coverage.
+            Interestingly, Korean-specialized models such as EXAONE and Kanana performed comparably to Gemma-3 on the ko-ged-mc dataset, demonstrating their effectiveness in Korean grammar error detection tasks. However, on the ko-math-500 dataset, they showed a significant performance gap compared to multilingual models like Gemma-3 and Ko-Gemma-3, suggesting limitations in mathematical reasoning or general-domain training coverage.
           </p>
         </div>
 
@@ -585,17 +587,14 @@ D) {D}</pre>
           </p>
         </div>
 
-        <div style="overflow-y: auto;">
+        <div class="content has-text-justified" style="overflow-y: auto;">
           <table class="table is-bordered is-striped is-hoverable">
             <thead>
               <tr>
                 <th style="text-align:center">Model</th>
-                <th style="text-align:center">ged:E</th>
-                <th style="text-align:center">ged:M</th>
-                <th style="text-align:center">ged:H</th>
-                <th style="text-align:center">ged2:E</th>
-                <th style="text-align:center">ged2:M</th>
-                <th style="text-align:center">ged2:H</th>
+                <th style="text-align:center">ged-mc:E</th>
+                <th style="text-align:center">ged-mc:M</th>
+                <th style="text-align:center">ged-mc:H</th>
                 <th style="text-align:center">gpqa</th>
                 <th style="text-align:center">math-500</th>
               </tr>
@@ -606,9 +605,6 @@ D) {D}</pre>
                 <td style="text-align:left"><strong>10</strong></td>
                 <td style="text-align:left"><strong>9.88</strong></td>
                 <td style="text-align:left"><strong>10</strong></td>
-                <td style="text-align:left"><strong>10</strong></td>
-                <td style="text-align:left"><strong>9.92</strong></td>
-                <td style="text-align:left"><strong>9.88</strong></td>
                 <td style="text-align:left"><strong>6.31</strong></td>
                 <td style="text-align:left">7</td>
               </tr>
@@ -617,9 +613,6 @@ D) {D}</pre>
                 <td style="text-align:left">9.58</td>
                 <td style="text-align:left">9.47</td>
                 <td style="text-align:left">9.12</td>
-                <td style="text-align:left">9.77</td>
-                <td style="text-align:left">9.62</td>
-                <td style="text-align:left">9.32</td>
                 <td style="text-align:left">3.94</td>
                 <td style="text-align:left"><strong>7.78</strong></td>
               </tr>
@@ -627,9 +620,6 @@ D) {D}</pre>
                 <td style="text-align:left"><a href="https://huggingface.co/davidkim205/ko-gemma-3-12b">Ko-Gemma-3-12b</a> (Ours)</td>
                 <td style="text-align:left">9.65</td>
                 <td style="text-align:left">9.67</td>
-                <td style="text-align:left">9.24</td>
-                <td style="text-align:left">9.6</td>
-                <td style="text-align:left">9.5</td>
                 <td style="text-align:left">9.24</td>
                 <td style="text-align:left">3.84</td>
                 <td style="text-align:left"><strong>7.78</strong></td>
@@ -639,9 +629,6 @@ D) {D}</pre>
                 <td style="text-align:left">9.58</td>
                 <td style="text-align:left">9.55</td>
                 <td style="text-align:left">9.2</td>
-                <td style="text-align:left">9.25</td>
-                <td style="text-align:left">9.04</td>
-                <td style="text-align:left">9.08</td>
                 <td style="text-align:left">3.64</td>
                 <td style="text-align:left">6.26</td>
               </tr>
@@ -650,9 +637,6 @@ D) {D}</pre>
                 <td style="text-align:left">9.72</td>
                 <td style="text-align:left">9.02</td>
                 <td style="text-align:left">9.6</td>
-                <td style="text-align:left">9.25</td>
-                <td style="text-align:left">9.21</td>
-                <td style="text-align:left">9</td>
                 <td style="text-align:left">3.08</td>
                 <td style="text-align:left">5.14</td>
               </tr>
@@ -661,9 +645,6 @@ D) {D}</pre>
                 <td style="text-align:left">8.75</td>
                 <td style="text-align:left">8.78</td>
                 <td style="text-align:left">8.67</td>
-                <td style="text-align:left">9.02</td>
-                <td style="text-align:left">9.04</td>
-                <td style="text-align:left">8.27</td>
                 <td style="text-align:left">3.43</td>
                 <td style="text-align:left">6.26</td>
               </tr>
