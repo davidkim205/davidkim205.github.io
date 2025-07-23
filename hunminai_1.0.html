@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hunminai-1.0</title>
+    <meta name="description" content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+    <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .footer-social a {
+            color: #fff;
+            padding: 10px;
+            border-radius: 50%;
+            background-color: #4a4a4a;
+        }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <div class="navbar-brand">
+        <a class="navbar-item logo" href="/">Research Blog</a>
+    </div>
+</header>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Hunminai-1.0: A Korean-Specialized Language Model with Balanced Multilingual Performance</h1>
+
+          <div class="column has-text-centered">
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a href="https://github.com/davidkim205">ChangYeon Kim</a><sup>1</sup>
+                </span>
+                <span class="author-block">
+                  <a href="https://github.com/Doleeee">YeHee Lim</a><sup>1</sup>
+                </span>
+                <span class="author-block">
+                  <a href="https://github.com/sudog1">BumSu Jung</a><sup>1</sup>
+                </span>
+                <span class="author-block">
+                  <a href="https://github.com/hoysu">YeonSu Ho</a><sup>1</sup>
+                </span>
+              </div>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <sup>1</sup>2Digit AI Research
+                </span>
+              </div>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- Model Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/collections/davidkim205/hunminai-10-687902924a63de886059f0dc"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Model</span>
+                  </a>
+              </span>
+              <!-- Paper Link. -->
+              <span class="link-block">
+                <a href="https://davidkim205.github.io/hunminai_1.0.html"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+             <!-- Code Link. -->
+<!--              <span class="link-block">-->
+<!--                <a href="https://huggingface.co/collections/davidkim205/k-bench-687902c55590cfefdf2a864c"-->
+<!--                  class="external-link button is-normal is-rounded is-dark">-->
+<!--                  <span class="icon">-->
+<!--                      <i class="fab fa-github"></i>-->
+<!--                  </span>-->
+<!--                  <span>Code</span>-->
+<!--                  </a>-->
+<!--              </span>-->
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/collections/davidkim205/k-bench-687902c55590cfefdf2a864c"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Dataset(K-BENCH)</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            <strong>Hunminai-1.0</strong> is a language model specifically designed to address the unique challenges of Korean natural language processing (NLP). Korean’s complex grammatical structures—such as particles, verb endings, and honorifics—pose difficulties for models largely trained on English. Additionally, the limited availability of large-scale, high-quality Korean training data further restricts the performance of general multilingual models on Korean tasks. In addition to these linguistic factors, capturing cultural nuances and social honorifics is essential for practical applications, making it essential to develop models that are carefully tailored to the Korean linguistic and cultural context.
+          </p>
+          <p>
+            To meet these demands, Hunminai-1.0 was developed based on the Gemma-3 architecture and aims to achieve superior performance compared to existing models in both quantitative benchmarks and qualitative evaluations. It excels in a variety of Korean language understanding and generation tasks, including dialogue generation, question answering, and long-form text creation. The model is publicly available on <a href="https://huggingface.co/collections/davidkim205/hunminai-10-687902924a63de886059f0dc">Huggingface</a> in two sizes—12B and 27B parameters—under the <a href="https://ai.google.dev/gemma/terms#3.1-distribution">Gemma license</a>, facilitating easy access and customization by researchers and developers.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">Key Advantages of Hunminai-1.0</h2>
+
+        <div class="content has-text-justified">
+          <ol>
+            <li><strong>High Performance Specialized for Korean</strong> : Hunminai-1.0 demonstrates superior performance tailored specifically for Korean natural language processing, outperforming existing models in both quantitative benchmarks and qualitative assessments.</li>
+            <li><strong>Public Availability and Accessibility</strong> : The model is openly accessible on the Huggingface in two sizes—12B and 27B parameters—allowing researchers and developers to easily utilize and customize it for various applications.</li>
+            <li><strong>Developed based on the advanced Gemma-3 architecture</strong> : Leveraging the latest advances in the Gemma-3 architecture, Hunminai-1.0 incorporates cutting-edge NLP techniques and optimizations, ensuring robust and efficient language understanding and generation.</li>
+            <li><strong>Broad applicability to Korean-specific NLP tasks</strong> : The model exhibits strong applicability and effectiveness in a wide range of Korean language tasks, including dialogue generation, question answering, and long-form text generation, making it highly adaptable to different practical use cases.</li>
+          </ol>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">Training</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            The model was fine-tuned on a carefully curated corpus of 100,000 high-quality Korean instruction examples using Supervised Fine-Tuning (SFT), followed by Direct Preference Optimization (DPO). This two-stage training approach enables better alignment with user intents in Korean and improves performance on downstream tasks such as dialogue generation, question answering, and long-form text generation. The dataset encompasses a wide variety of Korean language contexts and tasks, emphasizing alignment with user intent and natural language generation. The dataset is not currently public but is planned for future release.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">Evaluation</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Hunminai-1.0 was objectively evaluated using LM-Evaluation-Harness across a variety of Korean and multilingual benchmarks to assess its overall performance. However, such quantitative benchmarks primarily focus on short-form, closed-ended questions, limiting their ability to fully capture the capabilities of modern language models in complex instruction following and multi-turn dialogue scenarios. To address this limitation, we additionally conducted qualitative evaluations based on the K-BENCH dataset. Using GPT-4o and K-Judge as evaluators, we assessed the model’s fluency, factual accuracy, and alignment with user intent across a range of Korean downstream tasks.
+          </p>
+          <p>
+            For a fair comparison, Hunminai-1.0 was evaluated alongside publicly available Korean-specialized models of similar scale, including SKT’s <a href="https://huggingface.co/skt/A.X-4.0-Light">A.X-4.0-Light</a> and <a href="https://huggingface.co/skt/A.X-3.1-Light">A.X-3.1-Light</a>, KT’s <a href="https://huggingface.co/K-intelligence/Midm-2.0-Base-Instruct">Midm-2.0-Base-Instruct</a>, LG’s <a href="https://huggingface.co/LGAI-EXAONE/EXAONE-4.0-32B">EXAONE-4.0-32B</a> and <a href="https://huggingface.co/LGAI-EXAONE/EXAONE-3.5-7.8B-Instruct">EXAONE-3.5-7.8B-Instruct</a>, Kakao’s <a href="https://huggingface.co/kakaocorp/kanana-1.5-8b-instruct-2505">kanana-1.5-8b-instruct-2505</a>, and Naver’s <a href="https://huggingface.co/naver-hyperclovax/HyperCLOVAX-SEED-Text-Instruct-1.5B">HyperCLOVAX-SEED-Text-Instruct-1.5B</a> and <a href="https://huggingface.co/naver-hyperclovax/HyperCLOVAX-SEED-Think-14B">HyperCLOVAX-SEED-Think-14B</a>.
+          </p>
+        </div>
+
+
+        <h4 class="title is-5 has-text-left">Evaluation Setup and Environment</h4>
+        <div class="content has-text-justified">
+          <p>
+            All LM Evaluation Harness benchmarks were evaluated on an NVIDIA RTX 3090 24GB GPU. The models were loaded with 4-bit quantization (<code>load_in_4bit=True</code>) and evaluated using <code>bfloat16</code> precision. The maximum sequence length was set to 4096 tokens.
+          </p>
+          <p>
+            For the instruction-following evaluation on the IFEval benchmark, we adopted the Strict scoring criterion, which requires exact matches to the instruction for correctness. Furthermore, evaluation was conducted at the instruction level by judging each instruction independently rather than the entire prompt. The final score was calculated as the average across all instruction groups to provide a detailed and reliable assessment of model performance.
+          </p>
+        </div>
+
+
+        <h3 class="title is-4 has-text-left">LM Evaluation Harness</h3>
+        <div class="content has-text-justified">
+          <p>
+            LM Evaluation Harness is a standardized framework designed to evaluate the performance of large language models across a wide range of established benchmarks. It facilitates consistent, automated, and reproducible comparisons between models. The benchmarks used to evaluate Hunminai-1.0 are listed in Table 1.
+          </p>
+        </div>
+
+        <div style="overflow-x: auto;">
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th>Benchmark</th>
+                <th>Language</th>
+                <th>Category</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="https://arxiv.org/abs/2402.11548">KMMLU</a></td>
+                <td>ko</td>
+                <td>General Knowledge</td>
+                <td style="text-align:left">A Korean adaptation of MMLU that evaluates models across diverse academic and professional subjects in the Korean language.</td>
+              </tr>
+              <tr>
+                <td><a href="https://arxiv.org/abs/2309.02706">HAE-RAE</a></td>
+                <td>ko</td>
+                <td>Society &amp; Culture</td>
+                <td style="text-align:left">A Korean language benchmark assessing knowledge and reasoning in a multiple-choice QA format, modeled after MMLU but tailored to local contexts.</td>
+              </tr>
+              <tr>
+                <td><a href="https://arxiv.org/abs/2009.03300">MMLU</a></td>
+                <td>en</td>
+                <td>General Knowledge</td>
+                <td style="text-align:left">A benchmark testing knowledge and reasoning across 57 tasks in various domains, designed to assess multitask accuracy in English.</td>
+              </tr>
+              <tr>
+                <td><a href="https://arxiv.org/abs/2311.07911">IFEval</a></td>
+                <td>en</td>
+                <td>Instruction Following</td>
+                <td style="text-align:left">A Korean benchmark focused on instruction-following ability, evaluating how well models respond to open-ended prompts in a user-aligned way.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <br>
+        [Table 1] Benchmarks used in the LM Evaluation Harness assessment
+        <br>
+        <br>
+
+        <div class="content has-text-justified">
+          <p>
+            The following analysis presents the results across these benchmarks, with a particular focus on language-specific performance. Table 2 presents scores across benchmarks, which were used to compute both language-specific and overall averages.
+          </p>
+        </div>
+
+        <div style="overflow-x: auto;">
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+              <th style="text-align:right"></th>
+              <th>Model</th>
+              <th>Average</th>
+              <th>KMMLU</th>
+              <th>HAE-RAE</th>
+              <th>MMLU</th>
+              <th>IFEval</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+              <td style="text-align:right">1</td>
+              <td style="text-align:left">davidkim205/Hunminai-1.0-27b</td>
+              <td>70.96</td>
+              <td>53.79</td>
+              <td>72.23</td>
+              <td>73.89</td>
+              <td><strong>83.93</strong></td>
+              </tr>
+              <tr>
+              <td style="text-align:right">2</td>
+              <td style="text-align:left">skt/A.X-4.0-Light</td>
+              <td>68.93</td>
+              <td><strong>54.2</strong></td>
+              <td>73.69</td>
+              <td>67.6</td>
+              <td>80.22</td>
+              </tr>
+              <tr>
+              <td style="text-align:right">3</td>
+              <td style="text-align:left">LGAI-EXAONE/EXAONE-4.0-32B</td>
+              <td>67.3</td>
+              <td>50.77</td>
+              <td>75.62</td>
+              <td>74.08</td>
+              <td>68.71</td>
+              </tr>
+              <tr>
+              <td style="text-align:right">4</td>
+              <td style="text-align:left">davidkim205/Hunminai-1.0-12b</td>
+              <td>65.78</td>
+              <td>45.35</td>
+              <td>67</td>
+              <td>68.54</td>
+              <td>82.25</td>
+              </tr>
+              <tr>
+              <td style="text-align:right">5</td>
+              <td style="text-align:left">skt/A.X-3.1-Light</td>
+              <td>63.28</td>
+              <td>48.02</td>
+              <td>72.59</td>
+              <td>55.53</td>
+              <td>76.98</td>
+              </tr>
+              <tr>
+              <td style="text-align:right">6</td>
+              <td style="text-align:left">LGAI-EXAONE/EXAONE-3.5-7.8B-Instruct</td>
+              <td>63.04</td>
+              <td>44.58</td>
+              <td>71.68</td>
+              <td>61.91</td>
+              <td>73.98</td>
+              </tr>
+              <tr>
+              <td style="text-align:right">7</td>
+              <td style="text-align:left">K-intelligence/Midm-2.0-Base-Instruct</td>
+              <td>62.77</td>
+              <td>42.59</td>
+              <td><strong>77.45</strong></td>
+              <td>67.74</td>
+              <td>63.31</td>
+              </tr>
+              <tr>
+              <td style="text-align:right">8</td>
+              <td style="text-align:left">kakaocorp/kanana-1.5-8b-instruct-2505</td>
+              <td>58.77</td>
+              <td>40.72</td>
+              <td>76.08</td>
+              <td>60.38</td>
+              <td>57.91</td>
+              </tr>
+              <tr>
+              <td style="text-align:right">9</td>
+              <td style="text-align:left">naver-hyperclovax/HyperCLOVAX-SEED-Text-Instruct-1.5B</td>
+              <td>43.5</td>
+              <td>37.63</td>
+              <td>50.14</td>
+              <td>44.76</td>
+              <td>41.49</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <br>
+        [Table 2] LM Evaluation Harness Scores by Benchmark and Model
+        <br>
+        <br>
+
+        <div class="content has-text-justified">
+          <p>
+            Figure 1 illustrates the language-specific performance of Hunminai-1.0 and other Korean-specialized models. For each model, the bars represent benchmark scores in Korean and English, while the dot indicates the overall average.
+          </p>
+          <p>
+            While several models exhibit strong performance on Korean benchmarks, often with reduced results in English, Hunminai-1.0 maintains competitive performance in both languages. This balanced outcome underscores its robustness in multilingual contexts while retaining its strength in Korean-specific tasks.
+          </p>
+        </div>
+
+        <img src="static/images/hunminai_1.0/figure1.png" alt="[Figure 1] Language-specific benchmark scores for Hunminai-1.0 and comparable Korean-specialized models" />
+        <br>
+        [Figure 1] Language-specific benchmark scores for Hunminai-1.0 and comparable Korean-specialized models. Bars represent Korean and English scores; dots indicate overall averages.
+        <br>
+        <br>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">K-BENCH</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            <a href="https://huggingface.co/collections/davidkim205/k-bench-687902c55590cfefdf2a864c"><strong>K-BENCH</strong></a> is a comprehensive benchmark suite designed to evaluate both the qualitative and quantitative performance of Korean language models. It encompasses a diverse range of tasks that assess models from multiple perspectives, including their real-world applicability and linguistic capabilities. The composition and evaluation protocols are summarized in Table 3 below.
+          </p>
+        </div>
+
+        <div style="overflow-x: auto;">
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th>Benchmark</th>
+                <th>Category</th>
+                <th>Evaluation Protocol</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="https://huggingface.co/datasets/davidkim205/ko-bench">ko-bench</a></td>
+                <td>Multi-turn Dialogue</td>
+                <td style="text-align:left"><em>LLM-as-a-judge</em> (GPT-4o, K-judge) scoring on a 0–10 scale based on quality and relevance of multi-turn responses.</td>
+              </tr>
+              <tr>
+                <td><a href="https://huggingface.co/datasets/davidkim205/ko-ged">ko-ged</a></td>
+                <td>Subjective QA (Reading &amp; Reasoning)</td>
+                <td style="text-align:left"><em>LLM-as-a-judge</em> (GPT-4o, K-judge) scoring on a 0–10 scale based on response quality.</td>
+              </tr>
+              <tr>
+                <td><a href="https://huggingface.co/datasets/davidkim205/ko-gpqa">ko-gpqa</a></td>
+                <td>Multiple-Choice Science Reasoning</td>
+                <td style="text-align:left">Auto-scored by comparing the model’s selected choice with the ground truth.</td>
+              </tr>
+              <tr>
+                <td><a href="https://huggingface.co/datasets/davidkim205/ko-math-500">ko-math-500</a></td>
+                <td>Math (Boxed Answer Extraction)</td>
+                <td style="text-align:left">Auto-scored by extracting the boxed answer and matching it to the correct solution.</td>
+              </tr>
+              <tr>
+                <td><a href="https://huggingface.co/datasets/davidkim205/ko-ged-mc-elementary">ko-ged-mc:elementary</a><br><a href="https://huggingface.co/datasets/davidkim205/ko-ged-mc-middle">ko-ged-mc:middle</a><br><a href="https://huggingface.co/datasets/davidkim205/ko-ged-mc-high">ko-ged-mc:high</a></td>
+                <td>Multiple-Choice GED</td>
+                <td style="text-align:left">Auto-scored by matching the model’s selected option to the correct answer.</td>
+              </tr>
+              <tr>
+                <td><a href="https://huggingface.co/datasets/davidkim205/ko-ifeval">ko-ifeval</a></td>
+                <td>Instruction Following</td>
+                <td style="text-align:left">Strict rule-based scoring based on correct interpretation and execution of explicit instructions.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <br>
+        [Table 3] Overview of K-BENCH Datasets and Evaluation Protocols
+        <br>
+        <br>
+
+
+        <div class="content has-text-justified">
+          <p>
+            For tasks that require qualitative evaluation, such as ko-bench and ko-ged, we employed GPT-4o and <a href="https://huggingface.co/collections/davidkim205/k-judge-67ac5400f5eef4984cc5dbbb"><strong>K-Judge</strong></a> as judge models. K-Judge is based on keval, a lightweight Korean language model optimized for offline use. keval is significantly smaller than GPT-4o, yet delivers comparable evaluation results in practice. This makes it a cost-effective and scalable alternative to GPT-4o in offline or resource-constrained environments. In this study, we used the keval-12b model for evaluation.
+          </p>
+          <p>
+            Figure 2 visualizes the differences in evaluation scores when using GPT-4o and keval as judge models for ko-bench, ko-ged, and their overall average. Overall, keval tends to assign slightly higher scores than GPT-4o, particularly for smaller models. According to the Average Benchmark Scores, model rankings remained largely consistent across both judges, with the exception of two changes: Hunminai-1.0-27B and EXAONE-4.0-32B swapped places at ranks 1 and 2, while Midm-2.0-Base-Instruct and EXAONE-3.5-7.8B-Instruct swapped places at ranks 5 and 6.
+          </p>
+          <p>
+            Accordingly, in the following sections, we report ko-bench and ko-ged results based solely on keval scores.
+          </p>
+        </div>
+
+        <img src="static/images/hunminai_1.0/figure2.png" alt="[Figure 2] Comparison of Evaluation Results: GPT-4o vs. keval as Judge Models" />
+        <br>
+        [Figure 2] Comparison of Evaluation Results: GPT-4o vs. keval as Judge Models
+        <br>
+        <br>
+
+        <div class="content has-text-justified">
+          <p>
+            In the K-BENCH evaluation, Hunminai-1.0-27B and EXAONE-4.0-32B, which ranked first and third respectively in the quantitative evaluation, achieved the top two positions in the qualitative assessment as well. Hunminai-1.0-27B performed particularly well on ko-ged and ko-math, while EXAONE-4.0-32B scored highest on ko-bench, ko-gpqa, and ko-ifeval.
+          </p>
+          <p>
+            In contrast, A.X-4.0-Light, which ranked 2nd in the LM-Evaluation-Harness results, dropped two spots in the K-BENCH scores and performed similarly to Hunminai-1.0-12B. The detailed scores for each benchmark and model are provided in Table 4.
+          </p>
+          <p>
+            These results highlight how model performance can vary across benchmark types and demonstrate the value of incorporating qualitative evaluations for a more comprehensive understanding of language model capabilities.
+          </p>
+        </div>
+
+
+        <div style="overflow-x: auto;">
+          <table class="table is-bordered is-striped is-hoverable">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Model</th>
+                <th>Avg</th>
+                <th>ko-bench</th>
+                <th>ko-ged</th>
+                <th>ko-ged:E</th>
+                <th>ko-ged:M</th>
+                <th>ko-ged:H</th>
+                <th>ko-gpqa</th>
+                <th>ko-math-500</th>
+                <th>ko-ifeval</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td>1</td>
+            <td>davidkim205/<br/>Hunminai-1.0-27b</td>
+            <td><strong>8.52</strong></td>
+            <td>8.22</td>
+            <td>9.31</td>
+            <td><strong>9.86</strong></td>
+            <td><strong>9.67</strong></td>
+            <td>9.6</td>
+            <td>4.55</td>
+            <td><strong>8.56</strong></td>
+            <td>8.41</td>
+            </tr>
+            <tr>
+            <td>2</td>
+            <td>LGAI-EXAONE/<br/>EXAONE-4.0-32B</td>
+            <td>8.21</td>
+            <td><strong>8.56</strong></td>
+            <td><strong>9.35</strong></td>
+            <td>9.38</td>
+            <td>9.22</td>
+            <td>9.12</td>
+            <td><strong>5.25</strong></td>
+            <td>6.32</td>
+            <td><strong>8.49</strong></td>
+            </tr>
+            <tr>
+            <td>3</td>
+            <td>skt/<br/>A.X-4.0-Light</td>
+            <td>7.88</td>
+            <td>8.2</td>
+            <td>8.95</td>
+            <td>9.65</td>
+            <td>9.55</td>
+            <td><strong>9.64</strong></td>
+            <td>3.38</td>
+            <td>5.56</td>
+            <td>8.08</td>
+            </tr>
+            <tr>
+            <td>4</td>
+            <td>davidkim205/<br/>Hunminai-1.0-12b</td>
+            <td>7.88</td>
+            <td>8.15</td>
+            <td>9.03</td>
+            <td>9.72</td>
+            <td>9.63</td>
+            <td>9.32</td>
+            <td>3.18</td>
+            <td>5.6</td>
+            <td>8.37</td>
+            </tr>
+            <tr>
+            <td>5</td>
+            <td>K-intelligence/<br/>Midm-2.0-Base-Instruct</td>
+            <td>7.57</td>
+            <td>8.19</td>
+            <td>8.16</td>
+            <td>9.72</td>
+            <td>9.31</td>
+            <td>9.48</td>
+            <td>2.68</td>
+            <td>4.8</td>
+            <td>8.24</td>
+            </tr>
+            <tr>
+            <td>6</td>
+            <td>LGAI-EXAONE/<br/>EXAONE-3.5-7.8B-Instruct</td>
+            <td>7.42</td>
+            <td>8.22</td>
+            <td>8.58</td>
+            <td>9.65</td>
+            <td>9.1</td>
+            <td>9</td>
+            <td>3.13</td>
+            <td>4.88</td>
+            <td>6.76</td>
+            </tr>
+            <tr>
+            <td>7</td>
+            <td>kakaocorp/<br/>kanana-1.5-8b-instruct-2505</td>
+            <td>7.22</td>
+            <td>7.7</td>
+            <td>8.87</td>
+            <td>9.1</td>
+            <td>9.02</td>
+            <td>9.08</td>
+            <td>2.83</td>
+            <td>3.72</td>
+            <td>7.47</td>
+            </tr>
+            <tr>
+            <td>8</td>
+            <td>naver-hyperclovax/<br/>HyperCLOVAX-SEED<br/>-Text-Instruct-1.5B</td>
+            <td>5.11</td>
+            <td>4.46</td>
+            <td>4.53</td>
+            <td>8.4</td>
+            <td>7.63</td>
+            <td>7.31</td>
+            <td>1.87</td>
+            <td>2.94</td>
+            <td>3.75</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <br>
+        [Table 4] K-BENCH Scores by Benchmark and Model
+        <br>
+        <br>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">Conclusion</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            Hunminai-1.0 is a Korean-specialized language model that demonstrates strong performance in both quantitative and qualitative evaluations. Based on the Gemma-3 architecture and fine-tuned on a curated Korean instruction dataset, it delivers stable and superior results across various tasks such as instruction understanding, dialogue generation, and open-ended reasoning. Notably, in both the LM Evaluation Harness and K-BENCH assessments, Hunminai-1.0 maintains a well-balanced performance in Korean and English, outperforming existing Korean-specialized models and highlighting its potential for multilingual applications.
+          </p>
+          <p>
+            However, Hunminai-1.0 has several limitations. First, the training data is not publicly available, which limits transparency and reproducibility. Second, the qualitative evaluations utilize the cost-effective keval judge model, which tends to yield slightly higher scores, especially for smaller models, requiring caution when comparing absolute scores.
+          </p>
+          <p>
+            Through high-quality instruction tuning and public release, Hunminai-1.0 plays a pivotal role in advancing the Korean LLM ecosystem. Its balanced multilingual capabilities make it suitable for a wide range of applications, from search and education to customer support. By enabling practical deployments, it also fosters broader AI adoption and drives innovation in Korean language technology.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>
+            <strong>Research Blog</strong> by <a href="https://github.com/davidkim205">davidkim205</a>.
+        </p>
+    </div>
+</footer>
+</body>
+</html>
