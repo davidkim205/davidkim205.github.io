@@ -227,6 +227,11 @@ class MarkdownToHTMLConverter:
         # Bold
         text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
         
+        # Italic: *italic* or _italic_ -> <em>italic</em>
+        # 주의: 굵게(**) 처리를 먼저 한 뒤에 기울임체(*)를 처리해야 겹치지 않습니다.
+        text = re.sub(r'\*([^\*]+)\*', r'<em>\1</em>', text)
+        text = re.sub(r'_([^_]+)_', r'<em>\1</em>', text)
+
         # Links
         text = re.sub(r'\[(.+?)\]\((.+?)\)', r'<a href="\2">\1</a>', text)
         
