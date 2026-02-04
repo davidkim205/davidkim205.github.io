@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FinNewsBench</title>
+    <meta name="description" content="A Multi-Aspect Benchmark for Structured Information Extraction from Korean Financial News">
+    <meta name="keywords" content="FinNewsBench">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .footer-social a {
+            color: #fff;
+            padding: 10px;
+            border-radius: 50%;
+            background-color: #4a4a4a;
+        }
+        .table-container {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <div class="navbar-brand">
+        <a class="navbar-item logo" href="/">Research Blog</a>
+    </div>
+</header>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">FinNewsBench: A Multi-Aspect Benchmark for Structured Information Extraction from Korean Financial News</h1>
+
+          <div class="column has-text-centered">
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a href="https://github.com/davidkim205">ChangYeon Kim</a><sup>1</sup>
+                </span>
+                <span class="author-block">
+                  <a href="https://github.com/Doleeee">YeHee Lim</a><sup>1</sup>
+                </span>
+                <span class="author-block">
+                  <a href="https://github.com/sudog1">BumSu Jung</a><sup>1</sup>
+                </span>
+                <span class="author-block">
+                  <a href="https://github.com/juneWoo910">JiYun Woo</a><sup>1</sup>
+                </span>
+              </div>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <sup>1</sup>2Digit AI Research
+                </span>
+              </div>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="#"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Dataset</span>
+                  </a>
+              </span>
+              <!-- Paper Link. -->
+              <span class="link-block">
+                <a href="https://davidkim205.github.io/finnewsbench.html"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/davidkim205/davidkim205.github.io"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">1. Introduction</h2>
+
+        <div class="content has-text-justified">
+<p>With the advancement of large language models (LLMs), extracting structured information—such as companies, people, themes, and sentiment—from financial news has become increasingly important. Financial news articles often describe multiple entities with distinct roles and mixed sentiment polarities within a single document, making their understanding more complex than single-task document-level analysis.</p>
+<p>This setting naturally leads to a <strong>document-level multi-aspect structured information extraction</strong> problem. However, existing financial NLP benchmarks largely focus on isolated tasks—such as named entity recognition, sentiment analysis, or question answering—often in English and at the task level. Consequently, they fail to capture the integrated information extraction challenges inherent in real Korean financial news.</p>
+<p>To address this gap, we propose <strong>FinNewsBench</strong>, a benchmark for evaluating multi-aspect structured information extraction from Korean financial news. FinNewsBench requires models to simultaneously extract five core information types—<strong>companies, people, keywords, themes, and central-company sentiment</strong>—from a single news document.</p>
+<ul>
+  <li><strong>Realistic Financial News Inputs</strong><p>The benchmark is constructed from Korean financial news texts used in practical financial information services, reflecting realistic content structures and information density.</p></li>
+</ul>
+<ul>
+  <li><strong>High-Quality Reference Annotations</strong><p>Reference labels are created through a hybrid labeling pipeline that combines LLM-based automatic extraction with expert human verification, ensuring both scalability and reliability.</p></li>
+</ul>
+<ul>
+  <li><strong>LLM-as-a-Judge–Based Evaluation</strong><p>Model outputs are evaluated based on semantic and contextual correctness rather than strict string matching, enabling fine-grained and cost-effective comparison across models.</p></li>
+</ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">2. Related Work</h2>
+
+        <div class="content has-text-justified">
+<p>Existing benchmarks for evaluating large language models in the financial domain span a wide range of languages, data sources, and task formulations. Table 1 summarizes representative financial benchmarks and highlights key differences in language coverage, input data, and evaluation targets. As shown in the table, most existing benchmarks are designed either for financial knowledge assessment through question–answering or for multi-task evaluation frameworks in which individual NLP tasks are evaluated independently.</p>
+<div class="table-container">
+  <table class="table is-bordered is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <th class="has-text-left">Benchmark</th>
+        <th class="has-text-left">Language</th>
+        <th class="has-text-left">Input Data Structure</th>
+        <th class="has-text-left">Primary Task Formulation & Evaluation Aspects</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="has-text-left"><a href="https://arxiv.org/abs/2306.05443"><strong>PIXIU (FLARE)</strong></a></td>
+        <td class="has-text-left">English</td>
+        <td class="has-text-left">Short financial texts (news snippets, statements)</td>
+        <td class="has-text-left">5 financial NLP tasks (Sentiment, NER, Classification, QA) + 1 prediction task (Stock movement)</td>
+      </tr>
+      <tr>
+        <td class="has-text-left"><a href="https://arxiv.org/abs/2311.11944"><strong>FinanceBench</strong></a></td>
+        <td class="has-text-left">English</td>
+        <td class="has-text-left">Long-form financial reports (10-K, 10-Q, 8-K) and earnings disclosures</td>
+        <td class="has-text-left">Open-book financial question answering requiring specific evidence strings and page-level citations</td>
+      </tr>
+      <tr>
+        <td class="has-text-left"><a href="https://arxiv.org/abs/2402.12659"><strong>FinBen</strong></a></td>
+        <td class="has-text-left">English / Spanish</td>
+        <td class="has-text-left">Diverse corpora (news, reports, synthetic cases, stock market data)</td>
+        <td class="has-text-left">Holistic evaluation across 24 tasks and 8 aspects: IE, TA, QA, TG, RM, FO, DM, and Multilingual</td>
+      </tr>
+      <tr>
+        <td class="has-text-left"><a href="https://arxiv.org/abs/2407.02301"><strong>CFinBench</strong></a></td>
+        <td class="has-text-left">Chinese</td>
+        <td class="has-text-left">Professional finance exam questions (99,100 items)</td>
+        <td class="has-text-left">Knowledge-oriented evaluation across Single-choice, Multiple-choice, and Judgment types</td>
+      </tr>
+      <tr>
+        <td class="has-text-left"><a href="https://arxiv.org/abs/2506.21591"><strong>FinEval-KR</strong></a></td>
+        <td class="has-text-left">Chinese</td>
+        <td class="has-text-left">Reasoning-focused financial QA with multi-layered annotations</td>
+        <td class="has-text-left">Decoupled assessment of Knowledge (K) and Reasoning (R) scores across 22 financial subfields</td>
+      </tr>
+      <tr>
+        <td class="has-text-left"><a href="https://arxiv.org/abs/2504.13216"><strong>KFinEval-Pilot</strong></a></td>
+        <td class="has-text-left">Korean</td>
+        <td class="has-text-left">Expert-validated prompts (1,145 instances) aligned with domestic regulations</td>
+        <td class="has-text-left">Evaluation of Financial Knowledge, Legal Reasoning, and Financial Toxicity/Safety</td>
+      </tr>
+      <tr>
+        <td class="has-text-left"><strong>FinNewsBench</strong> (Ours)</td>
+        <td class="has-text-left"><strong>Korean</strong></td>
+        <td class="has-text-left"><strong>Full-length financial news articles</strong></td>
+        <td class="has-text-left"><strong>Document-level multi-aspect structured information extraction</strong></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p class="has-text-centered"><strong>Table 1. Comparison of Financial Benchmarks</strong></p>
+<p>Benchmarks such as <strong>PIXIU (FLARE)</strong> and <strong>FinBen</strong> encompass multiple financial NLP tasks, including classification, named entity recognition, sentiment analysis, and question answering. However, as indicated in Table 1, their inputs are typically short financial texts, curated task-specific samples, or heterogeneous datasets, and their evaluation frameworks treat each task as a separate objective. These benchmarks are not designed to evaluate the joint extraction and organization of multiple interrelated information elements from a single full-length financial news article.</p>
+<p>Other benchmarks focus more narrowly on financial question answering and reasoning. <strong>FinanceBench</strong>, for example, evaluates open-book question answering over financial reports such as earnings disclosures and regulatory filings, emphasizing factual correctness and evidence grounding. While effective for assessing reasoning over structured financial documents, its task formulation—also summarized in Table 1—differs fundamentally from news-based information extraction, where multiple entities, themes, and sentiment cues co-occur within a single narrative. Benchmarks developed in non-English settings, such as <strong>CFinBench</strong> and <strong>KFinEval-Pilot</strong>, extend linguistic coverage to Chinese and Korean but similarly center on question–answering or prompt-based evaluations rather than structured information extraction from news articles.</p>
+<p>These characteristics highlight not only a task-level gap, but also an evaluation challenge. Document-level, multi-aspect structured information extraction from financial news requires assessing partially correct outputs, contextual relevance, and the relative importance of extracted elements—properties that are difficult to capture using conventional evaluation schemes. Consequently, while existing financial benchmarks cover a broad range of tasks and evaluation paradigms, they do not sufficiently focus on this setting, nor do they provide standardized evaluation protocols tailored to document-level financial news extraction in the Korean language.</p>
+<p>Traditional evaluation approaches have relied on human annotators or static automatic metrics such as exact match (EM) and F1 scores; however, these methods exhibit inherent limitations in scalability, cost efficiency, and evaluation consistency when applied to large-scale datasets. In particular, lexical overlap–based metrics fail to capture contextual appropriateness, judgment quality, and semantic adequacy in outputs where multiple companies, individuals, themes, and sentiment polarities co-occur within a single article. Although human evaluation can provide richer qualitative signals, it incurs substantial time and cost overhead and is subject to inter-annotator variability, making it difficult to apply consistently at scale.</p>
+<p>To address these limitations, the <strong>LLM-as-a-Judge</strong> evaluation paradigm has been introduced, in which large language models serve as automated evaluators that directly compare and score complex model outputs. Recent studies demonstrate that LLM-based evaluation enables <strong>scalable, cost-effective, and relatively consistent assessment</strong> across diverse generation and reasoning tasks. For example, Zheng et al. report that GPT-4–level evaluators achieve <strong>over 80% agreement with human preferences</strong> on open-ended generation benchmarks such as <a href="https://arxiv.org/abs/2306.05685"><strong>MT-Bench and Chatbot Arena</strong></a>, while substantially reducing evaluation cost and latency. These findings suggest that LLM-as-a-Judge–based evaluation constitutes a practical and reliable alternative to traditional metrics, particularly for tasks requiring nuanced qualitative judgment and contextual understanding. Accordingly, we adopt this paradigm as a core evaluation strategy for <strong>FinNewsBench</strong>.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">3. Dataset Construction</h2>
+
+        <div class="content has-text-justified">
+
+            <figure class="has-text-centered">
+            <img src="static/images/finnewsbench/figure1.png" alt="Figure 1. FinNewsBench dataset construction and annotation pipeline">
+            </figure>
+            
+<p class="has-text-centered"><strong>Figure 1. FinNewsBench dataset construction and annotation pipeline</strong></p>
+<h3 class="title is-4 has-text-left">3.1 Synthetic Financial News Source</h3>
+<p>FinNewsBench is designed to evaluate the structured information extraction capabilities of large language models from news text. For the construction of this benchmark, we utilize AI-generated Korean financial news provided by <strong>Nine Memos</strong>, a financial news service developed by 2Digit. The financial news articles from Nine Memos are generated in a format that summarizes and describes recent market trends, industry issues, and policy changes centered on specific company. As a result, each document densely contains information related to companies, people, themes, events, and sentiment. This structure closely resembles real-world investment information consumption environments while maintaining relatively consistent formats and clearly defined information units, making it well-suited as input data for an information extraction benchmark.</p>
+<p>During dataset construction, news articles were selected to cover a wide range of companies and industries. To prevent overrepresentation of specific companies and mitigate the risk of models overfitting to company-specific expressions, the dataset includes a maximum of one news document per company. Specifically, we adopted the single primary company tag provided by Nine Memos for each article and included at most one article per tagged company. This design maintains a balanced distribution of samples across companies, enabling fair performance evaluation even in a non-trivial dataset setting and facilitating efficient comparison and analysis of multiple large language models.</p>
+<p>As illustrated in Figure 2, the economic news articles within this benchmark dataset span 12 distinct industrial sectors based on the Global Industry Classification Standard (GICS). The dataset extensively represents major industry groups, particularly those with high visibility in economic reporting, such as Industrials (23.2%), Health Care(17.1%), Financials (11.3%), and Information Technology (12%). This composition effectively mirrors the data distribution found in real-world market environments, providing sufficient diversity to rigorously evaluate the generalizability of the model.</p>
+
+            <figure class="has-text-centered">
+            <img src="static/images/finnewsbench/figure2.png" alt="Figure 2. Distribution of Benchmark Entities by GICS Industrial Sector">
+            </figure>
+            
+<p class="has-text-centered"><strong>Figure 2. Distribution of Benchmark Entities by GICS Industrial Sector</strong></p>
+<h3 class="title is-4 has-text-left">3.2 Hybrid Labeling Pipeline</h3>
+<p>The reference annotations in FinNewsBench are constructed through a <strong>Hybrid Labeling Pipeline</strong> that combines LLM-based automatic extraction with human verification. This human-in-the-loop framework is designed to efficiently identify core metadata in generative financial news while incorporating domain-specific judgment criteria relevant to the financial sector.</p>
+<p>First, multiple LLMs—including GPT-5.2 and recent open-source models—are prompted to extract companies, people, themes, keywords, and central-company sentiment from each article. The outputs generated at this stage serve as initial annotation candidates, restricted to information explicitly mentioned in the news text. Candidate labels are first aggregated by taking the intersection of labels identified by multiple models. These candidate labels are then passed through GPT-5.2 to reassess their importance and reweight their relevance scores, producing a ranked set of salient, news-central entities. This step ensures that the final reference labels emphasize core information while remaining robust to variations and noise in initial model outputs.</p>
+<p>Subsequently, expert human annotators review all candidate labels to correct misclassifications, remove irrelevant items, and adjust missing or excessive information. A category balancing procedure is also applied to mitigate distributional imbalances across entity types, ensuring more stable and fair model comparisons.</p>
+<p>During this process, we acknowledge that the reference annotations are <strong>guiding signals rather than exhaustive ground truth lists</strong>. Due to annotation scope, ambiguity in financial narratives, or human oversight, some entities, themes, or keywords present in the article may not appear in the reference. Therefore, labels that are explicitly supported by the news text are considered valid, even if absent from the reference. This design principle allows the benchmark to focus on capturing news-central information while maintaining robustness to reasonable variations in candidate labels and human annotation decisions.</p>
+<p>By integrating automatic extraction with human verification and incorporating this reference-augmented perspective, the Hybrid Labeling Pipeline produces high-quality gold-standard annotations that reflect both domain expertise and the open-ended, information-dense nature of financial news.</p>
+<h3 class="title is-4 has-text-left">3.3 Dataset Statistics</h3>
+<p>FinNewsBench consists of 260 Korean financial news articles with moderate variation in length. As shown in Table 2, the average article length is 920 characters, with lengths ranging from 457 to 1,826 characters. This range provides sufficient contextual information for structured information extraction while avoiding extreme cases of overly short or excessively long documents.</p>
+<div class="table-container">
+  <table class="table is-bordered is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <th class="has-text-left"></th>
+        <th class="has-text-left">count</th>
+        <th class="has-text-left">mean</th>
+        <th class="has-text-left">min</th>
+        <th class="has-text-left">max</th>
+        <th class="has-text-left">std</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="has-text-left">length</td>
+        <td class="has-text-left">260.00</td>
+        <td class="has-text-left">920.73</td>
+        <td class="has-text-left">457.00</td>
+        <td class="has-text-left">1826.00</td>
+        <td class="has-text-left">207.52</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p class="has-text-centered"><strong>Table 2. Article Length Statistics of FinNewsBench</strong></p>
+<p>The density of annotated labels per article is summarized in Table 3. Each article contains a limited number of core entities, with an average of 2.2 company entities and 1.96 person entities, indicating that most news items focus on a small set of central actors. In contrast, semantic categories such as themes and keywords appear more frequently, reflecting the descriptive and multi-faceted nature of financial news. Sentiment annotations also exhibit a mixed distribution at the article level, with positive, negative, and neutral sentiment expressions co-occurring within individual articles. This highlights the nuanced and non-monolithic sentiment structure of financial news reporting. Notably, positive sentiment labels appear more frequently than negative or neutral ones in FinNewsBench. This skew can be partly attributed to the data source: the financial news articles are generated by an AI system used in the Nine Memos service, which is designed to summarize market trends, policy developments, and company-related outlooks for investment information delivery. As a result, the generated news tends to emphasize forward-looking perspectives, growth expectations, and interpretive context rather than purely adverse or incident-driven reporting, leading to a relatively higher prevalence of positive sentiment annotations.</p>
+<div class="table-container">
+  <table class="table is-bordered is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <th class="has-text-left"></th>
+        <th class="has-text-left">Avg per Article</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="has-text-left">Company</td>
+        <td class="has-text-left">2.20</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">People</td>
+        <td class="has-text-left">1.96</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Theme</td>
+        <td class="has-text-left">3.53</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Keyword</td>
+        <td class="has-text-left">7.68</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Positive</td>
+        <td class="has-text-left">1.98</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Negative</td>
+        <td class="has-text-left">0.64</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Neutral</td>
+        <td class="has-text-left">0.67</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p class="has-text-centered"><strong>Table 3. Average Annotation Density per Article</strong></p>
+<p>As shown in Table 4, each theme is associated with a substantially large and diverse set of companies, with certain themes—most notably AI—linking several dozen distinct firms. This reflects the fact that the benchmark draws on financial news from 2025, a period characterized by intensified research, commercialization, and investment activity in AI-related industries. As a result, AI functions as a broad market-level investment narrative that spans multiple sectors rather than a narrow, article-specific topic.</p>
+<p>This expanded many-to-many relationship between themes and companies further underscores that themes in FinNewsBench represent market-recognized constructs, reinforcing the need to identify news-central entities within each thematic context during annotation rather than treating themes as isolated topical labels.</p>
+<div class="table-container">
+  <table class="table is-bordered is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <th class="has-text-left">Theme</th>
+        <th class="has-text-left">AI</th>
+        <th class="has-text-left">바이오</th>
+        <th class="has-text-left">로봇</th>
+        <th class="has-text-left">반도체</th>
+        <th class="has-text-left">방산</th>
+        <th class="has-text-left">2차전지</th>
+        <th class="has-text-left">우주항공</th>
+        <th class="has-text-left">조선</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="has-text-left">Unique Company Count</td>
+        <td class="has-text-left">45</td>
+        <td class="has-text-left">23</td>
+        <td class="has-text-left">16</td>
+        <td class="has-text-left">15</td>
+        <td class="has-text-left">12</td>
+        <td class="has-text-left">11</td>
+        <td class="has-text-left">11</td>
+        <td class="has-text-left">9</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p class="has-text-centered"><strong>Table 4. Number of Unique Companies per Theme</strong></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">4. Methodology</h2>
+
+        <div class="content has-text-justified">
+<h3 class="title is-4 has-text-left">4.1 Limitations of Recall-Based Evaluation and LLM-as-a-Judge</h3>
+<p>In the initial experimental phase of FinNewsBench, a traditional <strong>recall-based evaluation</strong> was employed. This approach considers a model output correct only when it exactly matches a reference label. While simple and interpretable, this criterion often underestimates model performance in tasks with high lexical variability. For example, semantically equivalent outputs may differ due to spacing, abbreviations, compound keyword formations, or domain-specific variations. Such differences can systematically penalize correct outputs, particularly in keyword and theme extraction.</p>
+<p>To address these limitations, FinNewsBench adopts an <strong>LLM-as-a-Judge framework</strong>, which evaluates model outputs based on <strong>semantic equivalence</strong>, <strong>contextual appropriateness</strong>, and <strong>information validity</strong> rather than strict string matching. We employ <strong>GPT-5-mini</strong> as the LLM-based judge due to its demonstrated capability in semantic comparison and contextual reasoning tasks, ensuring reliable and reproducible assessments. This framework enables the evaluation to recognize outputs that convey the correct meaning even when lexical forms differ from the reference.</p>
+<h3 class="title is-4 has-text-left">4.2 Multi-Aspect Evaluation Rubric</h3>
+<p>Evaluation is conducted using a <strong>multi-aspect rubric</strong>, with category-specific criteria reflecting the characteristics of each information type:</p>
+<ul>
+  <li><strong>Company and Stock Name Extraction:</strong> Accuracy is assessed based on whether entities explicitly mentioned in the news are correctly identified.</li>
+  <li><strong>People Extraction:</strong> Identifiability is evaluated by determining whether individuals playing substantive roles in the financial news context are correctly distinguished.</li>
+  <li><strong>Theme and Keyword Extraction:</strong> Relevance to the overall news content and representativeness of the article are the primary criteria.</li>
+  <li><strong>Article-Centric Company Sentiment Analysis:</strong> Sentiment labels are evaluated for <strong>consistency with supporting evidence</strong> and alignment with the narrative flow of the article, going beyond binary polarity classification.</li>
+</ul>
+<p>Each category is scored on a <strong>continuous scale from 0 to 1</strong>, allowing partial correctness and incomplete extractions to be quantitatively reflected. This fine-grained scoring provides a nuanced measure of a model’s information selection capability and judgment quality, which are critical in financial news understanding tasks.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">5. Experiments</h2>
+
+        <div class="content has-text-justified">
+<h3 class="title is-4 has-text-left">5.1 Experimental Setup</h3>
+<p>FinNewsBench evaluates the structured information extraction performance of large language models on Korean financial news by jointly considering both commercial API–based models and open-source models. A total of eight LLMs were evaluated, covering both proprietary and open models to reflect practical deployment scenarios. Detailed model specifications and individual performance comparisons are presented in the results section.</p>
+<p>All models were evaluated using the same input news articles and an identical prompt. GPT-5 models were executed via the OpenAI API, while open-source models were deployed locally using a <strong>vLLM-based OpenAI-compatible inference server</strong>. This setup ensured a unified request–response interface across models and minimized experimental variance arising from differences in inference environments.</p>
+<h3 class="title is-4 has-text-left">5.2 Output Format and Prompt</h3>
+<p>All models were required to generate outputs in a unified structured format. Model outputs were standardized as a JSON-formatted <strong>NewsExtraction</strong> object consisting of five categories: companies, people, themes, keywords, and central-company sentiment. For each extracted item, models were instructed to provide the entity name, a relevance score ranging from 0 to 1, and a supporting sentence directly extracted from the original news article.</p>
+<div class="table-container">
+  <table class="table is-bordered is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <th class="has-text-left">Category</th>
+        <th class="has-text-left">Extracted Item</th>
+        <th class="has-text-left">Relevance Score</th>
+        <th class="has-text-left">Supporting Evidence (Source Sentence)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="has-text-left">Company</td>
+        <td class="has-text-left">HMM</td>
+        <td class="has-text-left">0.95</td>
+        <td class="has-text-left"><code>...HMM의 1만6000톤급 대형 컨테이너선에서 사고가 발생, 선원 1명이 현장에서 숨졌다.</code></td>
+      </tr>
+      <tr>
+        <td class="has-text-left"></td>
+        <td class="has-text-left">KCC</td>
+        <td class="has-text-left">0.60</td>
+        <td class="has-text-left"><code>이날 작업은 HMM 선체에 도료 작업을 한 KCC가 하부 세척작업 전문업체에 도급을 줘서 진행했다.</code></td>
+      </tr>
+      <tr>
+        <td class="has-text-left">People</td>
+        <td class="has-text-left">박성용</td>
+        <td class="has-text-left">0.25</td>
+        <td class="has-text-left"><code>박성용 전국해상선원노동조합연맹 위원장은 “...사고가 반복되는 원인이 될 수 있다”고 강조했다.</code></td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Theme</td>
+        <td class="has-text-left">조선</td>
+        <td class="has-text-left">0.80</td>
+        <td class="has-text-left"><code>작업자들의 안전을 보장할 수 있는 방식으로 선박을 설계하지 않으면 비슷한 유형의 사고가 또 발생할 수 있다.</code></td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Keyword</td>
+        <td class="has-text-left">홋줄 사고</td>
+        <td class="has-text-left">0.90</td>
+        <td class="has-text-left"><code>사고는 선박을 부두에 정박할 때 사용하는 홋줄을 감아 들이는 과정에서 발생했다.</code></td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Sentiment</td>
+        <td class="has-text-left">부정 (HMM)</td>
+        <td class="has-text-left">0.90</td>
+        <td class="has-text-left"><code>...대형 컨테이너선에서 사고가 발생, 선원 1명이 현장에서 숨졌다.</code></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p class="has-text-centered"><strong>Table 5. Example of Structured Information Extraction from a News Article</strong></p>
+<p>This schema-based output design reduces variability due to inconsistent output formats and enables stable category-wise comparison in the subsequent LLM-as-a-Judge evaluation stage. Moreover, by requiring both relevance scores and evidence sentences, the benchmark evaluates not only the presence of extracted information but also the <strong>appropriateness of information selection and the ability to ground outputs in the source text</strong>.</p>
+<p>A single prompt was consistently applied to all models. The prompt explicitly defines each extraction category and restricts outputs to information explicitly mentioned in the news text. It further requires models to assign relevance scores for each extracted item and to provide the corresponding source sentence from the original article. Finally, models are instructed to determine the sentiment polarity (positive, negative, or neutral) and impact score for the central company.</p>
+<p>To discourage the extraction of opinion-driven content, the prompt explicitly specifies that entities and keywords associated with securities firms, analysts, or investment opinions must always receive a relevance score of zero. This constraint helps distinguish informational content from investment commentary and reflects information selection criteria commonly required in real-world financial services.</p>
+<h3 class="title is-4 has-text-left">5.3 Evaluation Procedure</h3>
+<p>To apply the <strong>LLM-as-a-Judge framework</strong> introduced in Section 4, we employed a multi-aspect rubric to assess the quality of extracted information from each model. Specifically, the evaluation considered:</p>
+<p>1. <strong>Entity Accuracy:</strong> Evaluators assessed whether the extracted company and people names accurately reflected the entities mentioned in the news, focusing on semantic correctness rather than exact string matching.</p>
+<p>2. <strong>Theme and Keyword Appropriateness:</strong> Extracted themes and keywords were scored based on their relevance to the news content. Items not present in the reference but still appearing in the news were not penalized.</p>
+<p>3. <strong>Sentiment Correctness:</strong> For each central company, the evaluator compared the sentiment indicated in the model output with that expressed in the corresponding news sentences. Opposite polarities resulted in score reductions.</p>
+<p>4. <strong>Grounding Quality:</strong> Evaluators checked whether the model provided evidence sentences from the original article to justify its extraction and assigned relevance score.</p>
+<p>Each aspect was scored on a continuous scale from 0 to 1, allowing fine-grained comparison between models. In addition to numerical scoring, the evaluator was instructed to provide concise reasoning for each score, ensuring transparency and interpretability.</p>
+<p>This evaluation procedure was applied consistently across all news articles and models. By combining <strong>semantic matching, contextual relevance, sentiment verification, and evidence grounding</strong>, FinNewsBench ensures a <strong>robust and reproducible assessment</strong> of structured information extraction in Korean financial news.</p>
+<h3 class="title is-4 has-text-left">5.4 Experimental Results</h3>
+<h4 class ="title is-5 has-text-left">5.4.1 Task-dependent Effects of LLM-as-a-Judge Evaluation</h4>
+<p>This subsection examines how evaluation outcomes differ between traditional recall-based metrics and the proposed LLM-as-a-Judge framework, and why such differences arise. Table A compares recall and judge scores computed from identical model outputs across extraction categories.</p>
+<p>As shown in Figure 3, the impact of LLM-as-a-Judge evaluation is strongly task-dependent. For <strong>open-ended extraction tasks</strong>, namely keyword and theme extraction, all evaluated models exhibit a consistently positive score gap. This indicates that recall-based evaluation systematically underestimates model performance in these categories due to its reliance on strict lexical matching. In financial news, the same concept is frequently expressed through synonyms, abbreviations, domain-specific variants, or hierarchical refinements. Outputs that are semantically correct but lexically different from the reference—such as synonym substitutions or contextually more specific expressions—are therefore penalized under recall-based metrics.</p>
+<p>In contrast, <strong>sentiment analysis</strong>, which operates over a closed label set, exhibits a bipolar gap pattern. High-end models show little performance gain under judge-based evaluation and, in some cases, a slight decrease. This reflects a calibration effect: recall-based metrics overestimate performance by ignoring hallucinated or over-generated sentiment labels, as they only verify the presence of correct labels rather than their alignment with supporting evidence. The LLM-as-a-Judge framework corrects this bias by explicitly validating whether each predicted sentiment label is grounded in an appropriate source sentence.</p>
+<p>Conversely, mid-tier models benefit substantially from judge-based evaluation. In these cases, models often predict the correct overall polarity but receive excessive penalties under recall-based metrics due to missing auxiliary labels or minor format mismatches. The LLM-as-a-Judge framework rescues such outputs by recognizing semantic correctness and contextual alignment that are invisible to surface-form matching metrics.</p>
+<p>Quantitative evidence for this contrast between high-end and mid-tier models is provided in Table A in the Appendix, which reports recall-based and LLM-as-a-Judge scores and their corresponding gaps across all categories.</p>
+
+            <figure class="has-text-centered">
+            <img src="static/images/finnewsbench/figure3.png" alt="Figure 3. Comparison of Recall-based and LLM-as-a-Judge Evaluation Scores across Categories">
+            </figure>
+            
+<p class="has-text-centered"><strong>Figure 3. Comparison of Recall-based and LLM-as-a-Judge Evaluation Scores across Categories</strong></p>
+<p>Together, these results show that LLM-as-a-Judge does not uniformly inflate evaluation scores. Instead, it adaptively corrects metric bias depending on both task characteristics and model behavior, functioning as a dual mechanism for calibration and recovery. Representative cases illustrating semantic rigidity and set-based overestimation are presented in Table 6.</p>
+<div class="table-container">
+  <table class="table is-bordered is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <th class="has-text-left">Category</th>
+        <th class="has-text-left">Reference</th>
+        <th class="has-text-left">Model Output</th>
+        <th class="has-text-left">Recall (Exact)</th>
+        <th class="has-text-left">LLM-as-a-Judge</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="has-text-left">Theme</td>
+        <td class="has-text-left"><code>보톡스</code></td>
+        <td class="has-text-left"><code>보툴리눔톡신</code></td>
+        <td class="has-text-left">Incorrect</td>
+        <td class="has-text-left">Correct</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Theme</td>
+        <td class="has-text-left"><code>AI</code></td>
+        <td class="has-text-left"><code>생성형 AI</code></td>
+        <td class="has-text-left">Incorrect</td>
+        <td class="has-text-left">Correct</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Keyword</td>
+        <td class="has-text-left"><code>한미 관세 협상</code></td>
+        <td class="has-text-left"><code>관세 협상 타결</code></td>
+        <td class="has-text-left">Incorrect</td>
+        <td class="has-text-left">Correct</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Keyword</td>
+        <td class="has-text-left"><code>업무 협약</code></td>
+        <td class="has-text-left"><code>업무협약 체결</code></td>
+        <td class="has-text-left">Incorrect</td>
+        <td class="has-text-left">Correct</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Sentiment</td>
+        <td class="has-text-left">Context: <code>모화공장에도 동일한 서머타임제를 적용할 계획이라고 밝혔다.</code> <br> Gold: <code>긍정</code></td>
+        <td class="has-text-left"><code>중립</code></td>
+        <td class="has-text-left">Correct*</td>
+        <td class="has-text-left">Incorrect</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Sentiment</td>
+        <td class="has-text-left">Context: <code>라이프스타일 분과는 ... 대표이사 등으로 구성됐습니다.</code> <br> Gold: <code>중립</code></td>
+        <td class="has-text-left"><code>긍정</code></td>
+        <td class="has-text-left">Correct*</td>
+        <td class="has-text-left">Incorrect</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p class="has-text-centered"><strong>Table 6. Representative cases of evaluation refinement by LLM-as-a-Judge: Semantic recovery and logic calibration.</strong> In sentiment tasks, traditional recall often fails to penalize incorrect logic if the output falls within the predefined label set, whereas LLM-as-a-Judge identifies contextual inconsistencies.</p>
+<h4 class ="title is-5 has-text-left">5.4.2 Performance Comparison</h4>
+<p>Overall performance on FinNewsBench shows a clear but compact ranking structure among the top-performing models, as illustrated in Figure 4. OpenAI’s <strong>gpt-5.2</strong> forms a distinct leading tier with an overall score of 0.90, while several models—including <strong>openai/gpt-oss-20b</strong>, <strong>Qwen/Qwen3-14B</strong>, and <strong>openai/gpt-5-mini</strong>—cluster tightly around 0.83, indicating broadly comparable aggregate performance. Models such as <strong>CohereLabs/aya-expanse-32b</strong> (0.82) and <strong>HyperCLOVAX-SEED-Think-32B</strong> (0.80) occupy the mid-range of this group, with <strong>Qwen/Qwen3-8B</strong> and <strong>google/gemma-3-27b-it</strong> (both 0.78) defining the lower bound of the top-8 set.</p>
+<p>Despite these rank differences, the overall score range remains relatively narrow, suggesting that aggregate metrics alone obscure meaningful variation in model behavior. This motivates a closer examination of performance composition at the category level, where differences become more pronounced.</p>
+
+            <figure class="has-text-centered">
+            <img src="static/images/finnewsbench/figure4.png" alt="Figure 4. Overall performance scores of the top 8 models on FinNewsBench">
+            </figure>
+            
+<p class="has-text-centered"><strong>Figure 4. Overall performance scores of the top 8 models on FinNewsBench</strong></p>
+<p>A category-wise breakdown in Table 7 reveals that <strong>entity-centric extraction tasks</strong>, such as <em>Company</em> and <em>People</em>, are handled robustly across all evaluated models. Scores in these categories consistently exceed 0.90, with minimal dispersion, indicating that extracting well-defined named entities from financial news has largely stabilized and contributes little to differentiation among high-performing systems.</p>
+<p>In contrast, <strong>open-ended extraction tasks</strong>, particularly <em>Theme</em> and <em>Keyword</em>, account for most of the observed performance divergence. Theme extraction scores vary widely—from 0.529 to 0.840—even among models with similar overall performance, and keyword extraction exhibits a comparable spread. These tasks require abstract concept identification and normalization beyond surface-form matching, making them inherently more challenging and more sensitive to model-specific extraction strategies.</p>
+<p>Sentiment analysis shows moderate variability across models but does not dominate overall score differences to the same extent as theme and keyword extraction. Taken together, this breakdown indicates that <strong>aggregate FinNewsBench rankings are primarily driven by performance on semantically open information extraction tasks</strong>, rather than by closed-set entity recognition.</p>
+<div class="table-container">
+  <table class="table is-bordered is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <th class="has-text-left"></th>
+        <th class="has-text-left">Overall</th>
+        <th class="has-text-left">Company</th>
+        <th class="has-text-left">People</th>
+        <th class="has-text-left">Theme</th>
+        <th class="has-text-left">Keyword</th>
+        <th class="has-text-left">Sentiment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="has-text-left"><strong>openai/gpt-5.2</strong></td>
+        <td class="has-text-left"><strong>0.900</strong></td>
+        <td class="has-text-left">0.981</td>
+        <td class="has-text-left"><strong>0.964</strong></td>
+        <td class="has-text-left"><strong>0.840</strong></td>
+        <td class="has-text-left"><strong>0.868</strong></td>
+        <td class="has-text-left"><strong>0.847</strong></td>
+      </tr>
+      <tr>
+        <td class="has-text-left">openai/gpt-oss-20b</td>
+        <td class="has-text-left">0.834</td>
+        <td class="has-text-left">0.963</td>
+        <td class="has-text-left">0.932</td>
+        <td class="has-text-left">0.677</td>
+        <td class="has-text-left">0.802</td>
+        <td class="has-text-left">0.798</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Qwen/Qwen3-14B</td>
+        <td class="has-text-left">0.829</td>
+        <td class="has-text-left">0.899</td>
+        <td class="has-text-left">0.950</td>
+        <td class="has-text-left">0.703</td>
+        <td class="has-text-left">0.755</td>
+        <td class="has-text-left">0.839</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">openai/gpt-5-mini</td>
+        <td class="has-text-left">0.826</td>
+        <td class="has-text-left">0.975</td>
+        <td class="has-text-left">0.926</td>
+        <td class="has-text-left">0.760</td>
+        <td class="has-text-left">0.794</td>
+        <td class="has-text-left">0.676</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">CohereLabs/aya-expanse-32b</td>
+        <td class="has-text-left">0.820</td>
+        <td class="has-text-left">0.926</td>
+        <td class="has-text-left">0.895</td>
+        <td class="has-text-left">0.726</td>
+        <td class="has-text-left">0.741</td>
+        <td class="has-text-left">0.811</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">naver-hyperclovax/HyperCLOVAX-SEED-Think-32B</td>
+        <td class="has-text-left">0.799</td>
+        <td class="has-text-left">0.951</td>
+        <td class="has-text-left">0.904</td>
+        <td class="has-text-left">0.675</td>
+        <td class="has-text-left">0.640</td>
+        <td class="has-text-left">0.825</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Qwen/Qwen3-8B</td>
+        <td class="has-text-left">0.781</td>
+        <td class="has-text-left">0.890</td>
+        <td class="has-text-left">0.798</td>
+        <td class="has-text-left">0.725</td>
+        <td class="has-text-left">0.735</td>
+        <td class="has-text-left">0.759</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">google/gemma-3-27b-it</td>
+        <td class="has-text-left">0.778</td>
+        <td class="has-text-left"><strong>0.984</strong></td>
+        <td class="has-text-left">0.904</td>
+        <td class="has-text-left">0.529</td>
+        <td class="has-text-left">0.675</td>
+        <td class="has-text-left">0.796</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p class="has-text-centered"><strong>Table 7. Model Performance Comparison Across Information Extraction Categories</strong></p>
+<p>Further insight into these differences emerges when examining extraction failures summarized in Table 8. Because all evaluated articles were pre-filtered to ensure metadata availability, missing outputs directly reflect cases where a model failed to extract a required field. Under this criterion, <strong>google/gemma-3-27b-it exhibits a highly asymmetric failure pattern across categories</strong>.</p>
+<p>Although <strong>gemma-3-27b-it achieves the highest company extraction score among all evaluated models (0.984), surpassing even openai/gpt-5.2</strong>, it shows a pronounced tendency to fail in <em>Theme</em> extraction, with 59 missing cases corresponding to 23% of applicable articles. This imbalance indicates that the model is highly reliable when extracting concrete, well-defined entities, yet frequently omits abstract or high-level thematic labels. As a result, its strong performance in company extraction does not translate into a higher overall rank, and the model appears lower in the benchmark primarily due to systematic theme extraction failures rather than broad extraction weakness.</p>
+<div class="table-container">
+  <table class="table is-bordered is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <th class="has-text-left">model</th>
+        <th class="has-text-left">company</th>
+        <th class="has-text-left">people</th>
+        <th class="has-text-left">theme</th>
+        <th class="has-text-left">keyword</th>
+        <th class="has-text-left">sentiment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="has-text-left">openai/gpt-5.2</td>
+        <td class="has-text-left">0</td>
+        <td class="has-text-left">3 (1%)</td>
+        <td class="has-text-left">0</td>
+        <td class="has-text-left">0</td>
+        <td class="has-text-left">0</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">openai/gpt-oss-20b</td>
+        <td class="has-text-left">1 (0%)</td>
+        <td class="has-text-left">13 (5%)</td>
+        <td class="has-text-left">6 (2%)</td>
+        <td class="has-text-left">0</td>
+        <td class="has-text-left">1 (0%)</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">openai/gpt-5-mini</td>
+        <td class="has-text-left">1 (0%)</td>
+        <td class="has-text-left">14 (5%)</td>
+        <td class="has-text-left">0</td>
+        <td class="has-text-left">0</td>
+        <td class="has-text-left">4 (2%)</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Qwen/Qwen3-14B</td>
+        <td class="has-text-left">0</td>
+        <td class="has-text-left">3 (1%)</td>
+        <td class="has-text-left">23 (9%)</td>
+        <td class="has-text-left">0</td>
+        <td class="has-text-left">0</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">CohereLabs/aya-expanse-32b</td>
+        <td class="has-text-left">0</td>
+        <td class="has-text-left">15 (6%)</td>
+        <td class="has-text-left">3 (1%)</td>
+        <td class="has-text-left">0</td>
+        <td class="has-text-left">0</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">naver-hyperclovax/HyperCLOVAX-SEED-Think-32B</td>
+        <td class="has-text-left">0</td>
+        <td class="has-text-left">12 (5%)</td>
+        <td class="has-text-left">15 (6%)</td>
+        <td class="has-text-left">2 (1%)</td>
+        <td class="has-text-left">0</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">google/gemma-3-27b-it</td>
+        <td class="has-text-left">0</td>
+        <td class="has-text-left">22 (8%)</td>
+        <td class="has-text-left"><strong>59 (23%)</strong></td>
+        <td class="has-text-left">0</td>
+        <td class="has-text-left">0</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Qwen/Qwen3-8B</td>
+        <td class="has-text-left">0</td>
+        <td class="has-text-left">36 (14%)</td>
+        <td class="has-text-left">1 (0%)</td>
+        <td class="has-text-left">1 (0%)</td>
+        <td class="has-text-left">0</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p class="has-text-centered"><strong>Table 8. Number of Missing Extractions by Category across Models</strong> Percentages indicate the proportion of articles where the corresponding metadata field was not extracted.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">6. Discussion</h2>
+
+        <div class="content has-text-justified">
+<p>Although FinNewsBench provides a systematic framework for evaluating core information extraction from Korean financial news, it has several limitations. First, due to the AI-generated nature of the data source, certain complex narrative structures or highly unstructured expressions commonly found in real-world journalism may be underrepresented. Second, sentiment analysis is conducted only for a single central company per article, which limits the benchmark’s ability to capture multi-company sentiment dynamics that frequently arise in financial news.</p>
+<p>Another potential concern relates to the use of large language models in both the annotation pipeline and the evaluation stage, which may raise questions about self-referential bias in an LLM-as-a-Judge setting. In FinNewsBench, GPT-5–family models are involved in reference refinement and judge-based evaluation; however, this design does not imply direct preference toward specific generators. The judge model (<strong>GPT-5-mini</strong>) is distinct from the primary evaluated model (<strong>GPT-5.2</strong>) and operates under a fixed evaluation rubric that emphasizes semantic alignment, contextual appropriateness, and evidence grounding rather than stylistic similarity. Moreover, the evaluation framework explicitly penalizes hallucinated or weakly grounded outputs, including those produced by high-capacity models, as reflected in the negative score gaps observed in sentiment analysis for top-tier systems. In addition, open-source models exhibit comparable patterns of score adjustment under LLM-as-a-Judge evaluation, indicating that the framework consistently corrects metric bias across model families rather than amplifying the performance of any single provider. Taken together, these observations suggest that the LLM-as-a-Judge framework in FinNewsBench functions as a calibration mechanism for semantic and contextual correctness, rather than as a self-reinforcing evaluation loop.</p>
+<p>Future research can further address the remaining limitations of FinNewsBench through several directions.</p>
+<p>First, <strong>multi-aspect and inter-task analysis</strong> could be explored to examine dependencies among extracted information elements, such as relationships between entities, themes, and sentiment, or the evolution of financial issues over time.</p>
+<p>Second, <strong>enhanced evaluation metrics</strong>, including ranking-based evaluation, relevance-weighted scoring, or partial-match measures, may further improve the ability to capture nuanced extraction quality beyond current rubric-based scoring.</p>
+<p>These directions aim to extend the scope of FinNewsBench and advance the evaluation of document-level financial news understanding, ultimately improving the practical applicability of structured information extraction models in real-world financial analysis settings.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">7. Conclusion</h2>
+
+        <div class="content has-text-justified">
+<p>This study introduces <strong>FinNewsBench</strong>, a benchmark for evaluating Korean financial news understanding from a document-level, multi-aspect information extraction perspective. By jointly assessing core elements—companies, people, themes, keywords, and central-company sentiment—FinNewsBench enables systematic and reproducible comparison of large language models’ information recognition capabilities.</p>
+<p>The benchmark contributes a practical evaluation framework that reduces experimental cost while maintaining assessment rigor. It provides a foundation for future research on financial news information extraction, model comparison, and multi-aspect understanding. Future extensions may include multi-company sentiment evaluation, inter-task reasoning, and the adoption of more sophisticated scoring metrics to further enhance the benchmark’s coverage and analytical depth.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">Appendix</h2>
+
+        <div class="content has-text-justified">
+<div class="table-container">
+  <table class="table is-bordered is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <th class="has-text-left">Model</th>
+        <th class="has-text-left">Total</th>
+        <th class="has-text-left">Company</th>
+        <th class="has-text-left">People</th>
+        <th class="has-text-left">Theme</th>
+        <th class="has-text-left">Keyword</th>
+        <th class="has-text-left">Sentiment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="has-text-left">openai/gpt-5.2</td>
+        <td class="has-text-left">0.77 / 0.90 (<strong>+0.13</strong>)</td>
+        <td class="has-text-left">0.96 / 0.98 (<strong>+0.02</strong>)</td>
+        <td class="has-text-left">0.92 / 0.96 (<strong>+0.05</strong>)</td>
+        <td class="has-text-left">0.67 / 0.84 (<strong>+0.17</strong>)</td>
+        <td class="has-text-left">0.39 / 0.87 (<strong>+0.47</strong>)</td>
+        <td class="has-text-left">0.92 / 0.85 (-0.07)</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">openai/gpt-oss-20b</td>
+        <td class="has-text-left">0.61 / 0.83 (<strong>+0.23</strong>)</td>
+        <td class="has-text-left">0.88 / 0.96 (<strong>+0.09</strong>)</td>
+        <td class="has-text-left">0.78 / 0.93 (<strong>+0.15</strong>)</td>
+        <td class="has-text-left">0.40 / 0.68 (<strong>+0.28</strong>)</td>
+        <td class="has-text-left">0.36 / 0.80 (<strong>+0.44</strong>)</td>
+        <td class="has-text-left">0.62 / 0.80 (<strong>+0.18</strong>)</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Qwen/Qwen3-14B</td>
+        <td class="has-text-left">0.60 / 0.83 (<strong>+0.22</strong>)</td>
+        <td class="has-text-left">0.85 / 0.90 (<strong>+0.05</strong>)</td>
+        <td class="has-text-left">0.94 / 0.95 (<strong>+0.01</strong>)</td>
+        <td class="has-text-left">0.31 / 0.70 (<strong>+0.40</strong>)</td>
+        <td class="has-text-left">0.23 / 0.75 (<strong>+0.53</strong>)</td>
+        <td class="has-text-left">0.70 / 0.84 (<strong>+0.14</strong>)</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">openai/gpt-5-mini</td>
+        <td class="has-text-left">0.62 / 0.83 (<strong>+0.20</strong>)</td>
+        <td class="has-text-left">0.86 / 0.97 (<strong>+0.12</strong>)</td>
+        <td class="has-text-left">0.82 / 0.93 (<strong>+0.11</strong>)</td>
+        <td class="has-text-left">0.44 / 0.76 (<strong>+0.32</strong>)</td>
+        <td class="has-text-left">0.21 / 0.79 (<strong>+0.59</strong>)</td>
+        <td class="has-text-left">0.80 / 0.68 (-0.12)</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">CohereLabs/aya-expanse-32b</td>
+        <td class="has-text-left">0.62 / 0.82 (<strong>+0.20</strong>)</td>
+        <td class="has-text-left">0.87 / 0.93 (<strong>+0.06</strong>)</td>
+        <td class="has-text-left">0.87 / 0.89 (<strong>+0.03</strong>)</td>
+        <td class="has-text-left">0.29 / 0.73 (<strong>+0.44</strong>)</td>
+        <td class="has-text-left">0.17 / 0.74 (<strong>+0.57</strong>)</td>
+        <td class="has-text-left">0.91 / 0.81 (-0.10)</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">naver-hyperclovax/HyperCLOVAX-SEED-Think-32B</td>
+        <td class="has-text-left">0.52 / 0.80 (<strong>+0.28</strong>)</td>
+        <td class="has-text-left">0.83 / 0.95 (<strong>+0.13</strong>)</td>
+        <td class="has-text-left">0.78 / 0.90 (<strong>+0.12</strong>)</td>
+        <td class="has-text-left">0.28 / 0.67 (<strong>+0.40</strong>)</td>
+        <td class="has-text-left">0.13 / 0.64 (<strong>+0.51</strong>)</td>
+        <td class="has-text-left">0.60 / 0.83 (<strong>+0.23</strong>)</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Qwen/Qwen3-8B</td>
+        <td class="has-text-left">0.57 / 0.78 (<strong>+0.21</strong>)</td>
+        <td class="has-text-left">0.82 / 0.89 (<strong>+0.07</strong>)</td>
+        <td class="has-text-left">0.79 / 0.80 (<strong>+0.01</strong>)</td>
+        <td class="has-text-left">0.34 / 0.73 (<strong>+0.38</strong>)</td>
+        <td class="has-text-left">0.14 / 0.73 (<strong>+0.60</strong>)</td>
+        <td class="has-text-left">0.77 / 0.76 (-0.01)</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">google/gemma-3-27b-it</td>
+        <td class="has-text-left">0.66 / 0.78 (<strong>+0.12</strong>)</td>
+        <td class="has-text-left">0.96 / 0.98 (<strong>+0.02</strong>)</td>
+        <td class="has-text-left">0.90 / 0.90 (<strong>+0.01</strong>)</td>
+        <td class="has-text-left">0.35 / 0.53 (<strong>+0.18</strong>)</td>
+        <td class="has-text-left">0.17 / 0.68 (<strong>+0.50</strong>)</td>
+        <td class="has-text-left">0.90 / 0.80 (-0.11)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p><strong>Table A. Comparison of Recall-based and LLM-as-a-Judge Evaluation Scores across Categories</strong></p>
+<p>Each cell reports the average score under Recall and LLM-as-a-Judge evaluation (Recall / LLM Judge), with the parenthesized value indicating the Δ (LLM-as-a-Judge score minus Recall). Positive Δ values indicate instances where the LLM Judge recognized correct outputs that were not captured by simple Recall.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>
+            <strong>Research Blog</strong> by <a href="https://github.com/davidkim205">davidkim205</a>.
+        </p>
+    </div>
+</footer>
+</body>
+</html>
