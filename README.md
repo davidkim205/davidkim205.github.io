@@ -39,5 +39,5 @@ static/
 #### 3. index.html에 프로젝트 추가
 `report-container` 안의 `report-box box` class로 프로젝트를 추가합니다.
 
-#### 4. 기울임체 반영
-`<em></em>` 으로 직접 설정합니다.
+#### 4. 마크다운 문법 추가
+`apply_inline_formatting` 함수 안에 마크다운 문법을 추가하여 사용합니다.
