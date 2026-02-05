@@ -221,12 +221,18 @@ class MarkdownToHTMLConverter:
     def apply_inline_formatting(self, text: str) -> str:
         """Apply inline markdown formatting"""
 
-        # Code
+        # Code (`code`)
         text = re.sub(r'`([^`]+)`', r'<code>\1</code>',text)
         
-        # Bold
+        # Bold (**bold** __bold__)
         text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
         
+        # 기울임 Italic (*Italic* _italic_)
+        text = re.sub(r'(\*|_)(.*?)\1', r'<em>\2</em>', text)
+
+        # 취소 선 Strikethrough
+        text = re.sub(r'~~(.+?)~~', r'<del>\1</del>', text)
+
         # Links
         text = re.sub(r'\[(.+?)\]\((.+?)\)', r'<a href="\2">\1</a>', text)
         
