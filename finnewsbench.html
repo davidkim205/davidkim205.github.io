@@ -60,7 +60,7 @@
                   <a href="https://github.com/juneWoo910">JiYun Woo</a><sup>1</sup>
                 </span>
                 <span class="author-block">
-                  <a href="">YoungJun Hwang</a><sup>1</sup>
+                  <a href="#">YoungJun Hwang</a><sup>1</sup>
                 </span>
               </div>
 
@@ -75,7 +75,7 @@
             <div class="publication-links">
               <!-- Dataset Link. -->
               <span class="link-block">
-                <a href=""
+                <a href="#"
                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="far fa-images"></i>
@@ -95,7 +95,7 @@
               </span>
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/davidkim205/davidkim205.github.io"
+                <a href="https://github.com/davidkim205/FinNewsBench"
                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -232,7 +232,7 @@
 <h3 class="title is-4 has-text-left">3.1 Synthetic Financial News Source</h3>
 <p>FinNewsBench is designed to evaluate the structured information extraction capabilities of large language models from news text. For the construction of this benchmark, we utilize AI-generated Korean financial news provided by <strong>Nine Memos</strong>, a financial news service developed by 2Digit. The financial news articles from Nine Memos are generated in a format that summarizes and describes recent market trends, industry issues, and policy changes centered on specific company. As a result, each document densely contains information related to companies, people, themes, events, and sentiment. This structure closely resembles real-world investment information consumption environments while maintaining relatively consistent formats and clearly defined information units, making it well-suited as input data for an information extraction benchmark.</p>
 <p>During dataset construction, news articles were selected to cover a wide range of companies and industries. To prevent overrepresentation of specific companies and mitigate the risk of models overfitting to company-specific expressions, the dataset includes a maximum of one news document per company. Specifically, we adopted the single primary company tag provided by Nine Memos for each article and included at most one article per tagged company. This design maintains a balanced distribution of samples across companies, enabling fair performance evaluation even in a non-trivial dataset setting and facilitating efficient comparison and analysis of multiple large language models.</p>
-<p>As illustrated in Figure 2, the economic news articles within this benchmark dataset span 12 distinct industrial sectors based on the Global Industry Classification Standard (GICS). The dataset extensively represents major industry groups, particularly those with high visibility in economic reporting, such as Industrials (23.2%), Health Care(17.1%), Financials (11.3%), and Information Technology (12%). This composition effectively mirrors the data distribution found in real-world market environments, providing sufficient diversity to rigorously evaluate the generalizability of the model.</p>
+<p>As illustrated in Figure 2, the economic news articles within this benchmark dataset span 12 distinct industrial sectors based on the Global Industry Classification Standard (GICS). The dataset extensively represents major industry groups, particularly those with high visibility in economic reporting, such as Industrials (24.5%), Health Care(16.4%), Financials (12.4%), and Information Technology (12.3%). This composition effectively mirrors the data distribution found in real-world market environments, providing sufficient diversity to rigorously evaluate the generalizability of the model.</p>
 
             <figure class="has-text-centered">
             <img src="static/images/finnewsbench/figure2.png" alt="Figure 2. Distribution of Benchmark Entities by GICS Industrial Sector">
@@ -246,7 +246,7 @@
 <p>During this process, we acknowledge that the reference annotations are <strong>guiding signals rather than exhaustive ground truth lists</strong>. Due to annotation scope, ambiguity in financial narratives, or human oversight, some entities, themes, or keywords present in the article may not appear in the reference. Therefore, labels that are explicitly supported by the news text are considered valid, even if absent from the reference. This design principle allows the benchmark to focus on capturing news-central information while maintaining robustness to reasonable variations in candidate labels and human annotation decisions.</p>
 <p>By integrating automatic extraction with human verification and incorporating this reference-augmented perspective, the Hybrid Labeling Pipeline produces high-quality gold-standard annotations that reflect both domain expertise and the open-ended, information-dense nature of financial news.</p>
 <h3 class="title is-4 has-text-left">3.3 Dataset Statistics</h3>
-<p>FinNewsBench consists of 260 Korean financial news articles with moderate variation in length. As shown in Table 2, the average article length is 920 characters, with lengths ranging from 457 to 1,826 characters. This range provides sufficient contextual information for structured information extraction while avoiding extreme cases of overly short or excessively long documents.</p>
+<p>FinNewsBench consists of 310 Korean financial news articles with moderate variation in length. As shown in Table 2, the average article length is 937 characters, with lengths ranging from 458 to 1,827 characters. This range provides sufficient contextual information for structured information extraction while avoiding extreme cases of overly short or excessively long documents.</p>
 <div class="table-container">
   <table class="table is-bordered is-striped is-fullwidth">
     <thead>
@@ -262,17 +262,17 @@
     <tbody>
       <tr>
         <td class="has-text-left">length</td>
-        <td class="has-text-left">260.00</td>
-        <td class="has-text-left">920.73</td>
-        <td class="has-text-left">457.00</td>
-        <td class="has-text-left">1826.00</td>
-        <td class="has-text-left">207.52</td>
+        <td class="has-text-left">310.00</td>
+        <td class="has-text-left">937.14</td>
+        <td class="has-text-left">458.00</td>
+        <td class="has-text-left">1827.00</td>
+        <td class="has-text-left">215.89</td>
       </tr>
     </tbody>
   </table>
 </div>
 <p class="has-text-centered"><strong>Table 2. Article Length Statistics of FinNewsBench</strong></p>
-<p>The density of annotated labels per article is summarized in Table 3. Each article contains a limited number of core entities, with an average of 2.2 company entities and 1.96 person entities, indicating that most news items focus on a small set of central actors. In contrast, semantic categories such as themes and keywords appear more frequently, reflecting the descriptive and multi-faceted nature of financial news. Sentiment annotations also exhibit a mixed distribution at the article level, with positive, negative, and neutral sentiment expressions co-occurring within individual articles. This highlights the nuanced and non-monolithic sentiment structure of financial news reporting. Notably, positive sentiment labels appear more frequently than negative or neutral ones in FinNewsBench. This skew can be partly attributed to the data source: the financial news articles are generated by an AI system used in the Nine Memos service, which is designed to summarize market trends, policy developments, and company-related outlooks for investment information delivery. As a result, the generated news tends to emphasize forward-looking perspectives, growth expectations, and interpretive context rather than purely adverse or incident-driven reporting, leading to a relatively higher prevalence of positive sentiment annotations.</p>
+<p>The density of annotated labels per article is summarized in Table 3. Each article contains a limited number of core entities, with an average of 2.2 company entities and 1.86 person entities, indicating that most news items focus on a small set of central actors. In contrast, semantic categories such as themes and keywords appear more frequently, reflecting the descriptive and multi-faceted nature of financial news. Sentiment annotations also exhibit a mixed distribution at the article level, with positive, negative, and neutral sentiment expressions co-occurring within individual articles. This highlights the nuanced and non-monolithic sentiment structure of financial news reporting. Notably, positive sentiment labels appear more frequently than negative or neutral ones in FinNewsBench. This skew can be partly attributed to the data source: the financial news articles are generated by an AI system used in the Nine Memos service, which is designed to summarize market trends, policy developments, and company-related outlooks for investment information delivery. As a result, the generated news tends to emphasize forward-looking perspectives, growth expectations, and interpretive context rather than purely adverse or incident-driven reporting, leading to a relatively higher prevalence of positive sentiment annotations.</p>
 <div class="table-container">
   <table class="table is-bordered is-striped is-fullwidth">
     <thead>
@@ -288,27 +288,27 @@
       </tr>
       <tr>
         <td class="has-text-left">People</td>
-        <td class="has-text-left">1.96</td>
+        <td class="has-text-left">1.86</td>
       </tr>
       <tr>
         <td class="has-text-left">Theme</td>
-        <td class="has-text-left">3.53</td>
+        <td class="has-text-left">3.37</td>
       </tr>
       <tr>
         <td class="has-text-left">Keyword</td>
-        <td class="has-text-left">7.68</td>
+        <td class="has-text-left">7.55</td>
       </tr>
       <tr>
         <td class="has-text-left">Positive</td>
-        <td class="has-text-left">1.98</td>
+        <td class="has-text-left">1.95</td>
       </tr>
       <tr>
         <td class="has-text-left">Negative</td>
-        <td class="has-text-left">0.64</td>
+        <td class="has-text-left">0.65</td>
       </tr>
       <tr>
         <td class="has-text-left">Neutral</td>
-        <td class="has-text-left">0.67</td>
+        <td class="has-text-left">0.72</td>
       </tr>
     </tbody>
   </table>
@@ -324,24 +324,24 @@
         <th class="has-text-left">AI</th>
         <th class="has-text-left">바이오</th>
         <th class="has-text-left">로봇</th>
+        <th class="has-text-left">조선</th>
         <th class="has-text-left">반도체</th>
         <th class="has-text-left">방산</th>
         <th class="has-text-left">2차전지</th>
         <th class="has-text-left">우주항공</th>
-        <th class="has-text-left">조선</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td class="has-text-left">Unique Company Count</td>
-        <td class="has-text-left">45</td>
-        <td class="has-text-left">23</td>
+        <td class="has-text-left">Count</td>
+        <td class="has-text-left">57</td>
+        <td class="has-text-left">30</td>
+        <td class="has-text-left">19</td>
+        <td class="has-text-left">18</td>
         <td class="has-text-left">16</td>
-        <td class="has-text-left">15</td>
-        <td class="has-text-left">12</td>
-        <td class="has-text-left">11</td>
-        <td class="has-text-left">11</td>
-        <td class="has-text-left">9</td>
+        <td class="has-text-left">16</td>
+        <td class="has-text-left">13</td>
+        <td class="has-text-left">13</td>
       </tr>
     </tbody>
   </table>
@@ -527,7 +527,7 @@
 </div>
 <p class="has-text-centered"><strong>Table 6. Representative cases of evaluation refinement by LLM-as-a-Judge: Semantic recovery and logic calibration.</strong> In sentiment tasks, traditional recall often fails to penalize incorrect logic if the output falls within the predefined label set, whereas LLM-as-a-Judge identifies contextual inconsistencies.</p>
 <h4 class ="title is-5 has-text-left">5.4.2 Performance Comparison</h4>
-<p>Overall performance on FinNewsBench shows a clear but compact ranking structure among the top-performing models, as illustrated in Figure 4. OpenAI’s <strong>gpt-5.2</strong> forms a distinct leading tier with an overall score of 0.90, while several models—including <strong>openai/gpt-oss-20b</strong>, <strong>Qwen/Qwen3-14B</strong>, and <strong>openai/gpt-5-mini</strong>—cluster tightly around 0.83, indicating broadly comparable aggregate performance. Models such as <strong>CohereLabs/aya-expanse-32b</strong> (0.82) and <strong>HyperCLOVAX-SEED-Think-32B</strong> (0.80) occupy the mid-range of this group, with <strong>Qwen/Qwen3-8B</strong> and <strong>google/gemma-3-27b-it</strong> (both 0.78) defining the lower bound of the top-8 set.</p>
+<p>Overall performance on FinNewsBench shows a clear but compact ranking structure among the top-performing models, as illustrated in Figure 4. OpenAI’s <strong>gpt-5.2</strong> forms a distinct leading tier with an overall score of 0.90, while several models—including <strong>openai/gpt-oss-20b</strong>, <strong>Qwen/Qwen3-14B</strong>, and <strong>openai/gpt-5-mini</strong>—cluster tightly around 0.83, indicating broadly comparable aggregate performance. Models such as <strong>CohereLabs/aya-expanse-32b</strong> (0.82) and <strong>HyperCLOVAX-SEED-Think-32B</strong> (0.80) occupy the mid-range of this group, with <strong>Qwen/Qwen3-8B</strong> and <strong>google/gemma-3-27b-it</strong> (0.78) defining the lower bound of the top-8 set.</p>
 <p>Despite these rank differences, the overall score range remains relatively narrow, suggesting that aggregate metrics alone obscure meaningful variation in model behavior. This motivates a closer examination of performance composition at the category level, where differences become more pronounced.</p>
 
             <figure class="has-text-centered">
@@ -536,7 +536,7 @@
             
 <p class="has-text-centered"><strong>Figure 4. Overall performance scores of the top 8 models on FinNewsBench</strong></p>
 <p>A category-wise breakdown in Table 7 reveals that <strong>entity-centric extraction tasks</strong>, such as <em>Company</em> and <em>People</em>, are handled robustly across all evaluated models. Scores in these categories consistently exceed 0.90, with minimal dispersion, indicating that extracting well-defined named entities from financial news has largely stabilized and contributes little to differentiation among high-performing systems.</p>
-<p>In contrast, <strong>open-ended extraction tasks</strong>, particularly <em>Theme</em> and <em>Keyword</em>, account for most of the observed performance divergence. Theme extraction scores vary widely—from 0.529 to 0.840—even among models with similar overall performance, and keyword extraction exhibits a comparable spread. These tasks require abstract concept identification and normalization beyond surface-form matching, making them inherently more challenging and more sensitive to model-specific extraction strategies.</p>
+<p>In contrast, <strong>open-ended extraction tasks</strong>, particularly <em>Theme</em> and <em>Keyword</em>, account for most of the observed performance divergence. Theme extraction scores vary widely—from 0.545 to 0.855—even among models with similar overall performance, and keyword extraction exhibits a comparable spread. These tasks require abstract concept identification and normalization beyond surface-form matching, making them inherently more challenging and more sensitive to model-specific extraction strategies.</p>
 <p>Sentiment analysis shows moderate variability across models but does not dominate overall score differences to the same extent as theme and keyword extraction. Taken together, this breakdown indicates that <strong>aggregate FinNewsBench rankings are primarily driven by performance on semantically open information extraction tasks</strong>, rather than by closed-set entity recognition.</p>
 <div class="table-container">
   <table class="table is-bordered is-striped is-fullwidth">
@@ -554,75 +554,75 @@
     <tbody>
       <tr>
         <td class="has-text-left"><strong>openai/gpt-5.2</strong></td>
-        <td class="has-text-left"><strong>0.900</strong></td>
-        <td class="has-text-left">0.981</td>
-        <td class="has-text-left"><strong>0.964</strong></td>
-        <td class="has-text-left"><strong>0.840</strong></td>
-        <td class="has-text-left"><strong>0.868</strong></td>
-        <td class="has-text-left"><strong>0.847</strong></td>
+        <td class="has-text-left"><strong>0.904</strong></td>
+        <td class="has-text-left">0.975</td>
+        <td class="has-text-left"><strong>0.965</strong></td>
+        <td class="has-text-left"><strong>0.855</strong></td>
+        <td class="has-text-left"><strong>0.874</strong></td>
+        <td class="has-text-left"><strong>0.850</strong></td>
       </tr>
       <tr>
         <td class="has-text-left">openai/gpt-oss-20b</td>
-        <td class="has-text-left">0.834</td>
-        <td class="has-text-left">0.963</td>
-        <td class="has-text-left">0.932</td>
-        <td class="has-text-left">0.677</td>
-        <td class="has-text-left">0.802</td>
-        <td class="has-text-left">0.798</td>
-      </tr>
-      <tr>
-        <td class="has-text-left">Qwen/Qwen3-14B</td>
-        <td class="has-text-left">0.829</td>
-        <td class="has-text-left">0.899</td>
-        <td class="has-text-left">0.950</td>
-        <td class="has-text-left">0.703</td>
-        <td class="has-text-left">0.755</td>
-        <td class="has-text-left">0.839</td>
+        <td class="has-text-left">0.836</td>
+        <td class="has-text-left">0.961</td>
+        <td class="has-text-left">0.930</td>
+        <td class="has-text-left">0.700</td>
+        <td class="has-text-left">0.794</td>
+        <td class="has-text-left">0.794</td>
       </tr>
       <tr>
         <td class="has-text-left">openai/gpt-5-mini</td>
         <td class="has-text-left">0.826</td>
-        <td class="has-text-left">0.975</td>
-        <td class="has-text-left">0.926</td>
-        <td class="has-text-left">0.760</td>
-        <td class="has-text-left">0.794</td>
-        <td class="has-text-left">0.676</td>
+        <td class="has-text-left">0.968</td>
+        <td class="has-text-left">0.925</td>
+        <td class="has-text-left">0.773</td>
+        <td class="has-text-left">0.788</td>
+        <td class="has-text-left">0.677</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Qwen/Qwen3-14B</td>
+        <td class="has-text-left">0.825</td>
+        <td class="has-text-left">0.893</td>
+        <td class="has-text-left">0.953</td>
+        <td class="has-text-left">0.696</td>
+        <td class="has-text-left">0.745</td>
+        <td class="has-text-left">0.839</td>
       </tr>
       <tr>
         <td class="has-text-left">CohereLabs/aya-expanse-32b</td>
-        <td class="has-text-left">0.820</td>
-        <td class="has-text-left">0.926</td>
-        <td class="has-text-left">0.895</td>
-        <td class="has-text-left">0.726</td>
-        <td class="has-text-left">0.741</td>
-        <td class="has-text-left">0.811</td>
+        <td class="has-text-left">0.817</td>
+        <td class="has-text-left">0.924</td>
+        <td class="has-text-left">0.902</td>
+        <td class="has-text-left">0.728</td>
+        <td class="has-text-left">0.730</td>
+        <td class="has-text-left">0.801</td>
       </tr>
       <tr>
         <td class="has-text-left">naver-hyperclovax/HyperCLOVAX-SEED-Think-32B</td>
-        <td class="has-text-left">0.799</td>
-        <td class="has-text-left">0.951</td>
-        <td class="has-text-left">0.904</td>
-        <td class="has-text-left">0.675</td>
-        <td class="has-text-left">0.640</td>
-        <td class="has-text-left">0.825</td>
+        <td class="has-text-left">0.797</td>
+        <td class="has-text-left">0.950</td>
+        <td class="has-text-left">0.910</td>
+        <td class="has-text-left">0.681</td>
+        <td class="has-text-left">0.638</td>
+        <td class="has-text-left">0.808</td>
       </tr>
       <tr>
         <td class="has-text-left">Qwen/Qwen3-8B</td>
-        <td class="has-text-left">0.781</td>
-        <td class="has-text-left">0.890</td>
-        <td class="has-text-left">0.798</td>
-        <td class="has-text-left">0.725</td>
-        <td class="has-text-left">0.735</td>
-        <td class="has-text-left">0.759</td>
+        <td class="has-text-left">0.784</td>
+        <td class="has-text-left">0.888</td>
+        <td class="has-text-left">0.817</td>
+        <td class="has-text-left">0.728</td>
+        <td class="has-text-left">0.726</td>
+        <td class="has-text-left">0.764</td>
       </tr>
       <tr>
         <td class="has-text-left">google/gemma-3-27b-it</td>
-        <td class="has-text-left">0.778</td>
-        <td class="has-text-left"><strong>0.984</strong></td>
-        <td class="has-text-left">0.904</td>
-        <td class="has-text-left">0.529</td>
-        <td class="has-text-left">0.675</td>
-        <td class="has-text-left">0.796</td>
+        <td class="has-text-left">0.781</td>
+        <td class="has-text-left"><strong>0.981</strong></td>
+        <td class="has-text-left">0.907</td>
+        <td class="has-text-left">0.545</td>
+        <td class="has-text-left">0.672</td>
+        <td class="has-text-left">0.802</td>
       </tr>
     </tbody>
   </table>
@@ -646,7 +646,7 @@
       <tr>
         <td class="has-text-left">openai/gpt-5.2</td>
         <td class="has-text-left">0</td>
-        <td class="has-text-left">3 (1%)</td>
+        <td class="has-text-left">4 (1%)</td>
         <td class="has-text-left">0</td>
         <td class="has-text-left">0</td>
         <td class="has-text-left">0</td>
@@ -654,7 +654,7 @@
       <tr>
         <td class="has-text-left">openai/gpt-oss-20b</td>
         <td class="has-text-left">1 (0%)</td>
-        <td class="has-text-left">13 (5%)</td>
+        <td class="has-text-left">15 (5%)</td>
         <td class="has-text-left">6 (2%)</td>
         <td class="has-text-left">0</td>
         <td class="has-text-left">1 (0%)</td>
@@ -662,49 +662,49 @@
       <tr>
         <td class="has-text-left">openai/gpt-5-mini</td>
         <td class="has-text-left">1 (0%)</td>
-        <td class="has-text-left">14 (5%)</td>
+        <td class="has-text-left">17 (5%)</td>
         <td class="has-text-left">0</td>
         <td class="has-text-left">0</td>
-        <td class="has-text-left">4 (2%)</td>
+        <td class="has-text-left">4 (1%)</td>
       </tr>
       <tr>
         <td class="has-text-left">Qwen/Qwen3-14B</td>
         <td class="has-text-left">0</td>
-        <td class="has-text-left">3 (1%)</td>
-        <td class="has-text-left">23 (9%)</td>
+        <td class="has-text-left">4 (1%)</td>
+        <td class="has-text-left">26 (8%)</td>
         <td class="has-text-left">0</td>
         <td class="has-text-left">0</td>
       </tr>
       <tr>
         <td class="has-text-left">CohereLabs/aya-expanse-32b</td>
         <td class="has-text-left">0</td>
-        <td class="has-text-left">15 (6%)</td>
-        <td class="has-text-left">3 (1%)</td>
+        <td class="has-text-left">16 (5%)</td>
+        <td class="has-text-left">4 (1%)</td>
         <td class="has-text-left">0</td>
         <td class="has-text-left">0</td>
       </tr>
       <tr>
         <td class="has-text-left">naver-hyperclovax/HyperCLOVAX-SEED-Think-32B</td>
         <td class="has-text-left">0</td>
-        <td class="has-text-left">12 (5%)</td>
-        <td class="has-text-left">15 (6%)</td>
+        <td class="has-text-left">13 (4%)</td>
+        <td class="has-text-left">18 (6%)</td>
         <td class="has-text-left">2 (1%)</td>
-        <td class="has-text-left">0</td>
-      </tr>
-      <tr>
-        <td class="has-text-left">google/gemma-3-27b-it</td>
-        <td class="has-text-left">0</td>
-        <td class="has-text-left">22 (8%)</td>
-        <td class="has-text-left"><strong>59 (23%)</strong></td>
-        <td class="has-text-left">0</td>
         <td class="has-text-left">0</td>
       </tr>
       <tr>
         <td class="has-text-left">Qwen/Qwen3-8B</td>
         <td class="has-text-left">0</td>
-        <td class="has-text-left">36 (14%)</td>
+        <td class="has-text-left">39 (13%)</td>
         <td class="has-text-left">1 (0%)</td>
         <td class="has-text-left">1 (0%)</td>
+        <td class="has-text-left">0</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">google/gemma-3-27b-it</td>
+        <td class="has-text-left">0</td>
+        <td class="has-text-left">26 (8%)</td>
+        <td class="has-text-left"><strong>67 (22%)</strong></td>
+        <td class="has-text-left">0</td>
         <td class="has-text-left">0</td>
       </tr>
     </tbody>
@@ -778,74 +778,74 @@
       <tr>
         <td class="has-text-left">openai/gpt-5.2</td>
         <td class="has-text-left">0.77 / 0.90 (<strong>+0.13</strong>)</td>
-        <td class="has-text-left">0.96 / 0.98 (<strong>+0.02</strong>)</td>
-        <td class="has-text-left">0.92 / 0.96 (<strong>+0.05</strong>)</td>
-        <td class="has-text-left">0.67 / 0.84 (<strong>+0.17</strong>)</td>
-        <td class="has-text-left">0.39 / 0.87 (<strong>+0.47</strong>)</td>
-        <td class="has-text-left">0.92 / 0.85 (-0.07)</td>
+        <td class="has-text-left">0.95 / 0.98 (<strong>+0.02</strong>)</td>
+        <td class="has-text-left">0.92 / 0.97 (<strong>+0.05</strong>)</td>
+        <td class="has-text-left">0.69 / 0.85 (<strong>+0.17</strong>)</td>
+        <td class="has-text-left">0.40 / 0.87 (<strong>+0.47</strong>)</td>
+        <td class="has-text-left">0.91 / 0.85 (-0.06)</td>
       </tr>
       <tr>
         <td class="has-text-left">openai/gpt-oss-20b</td>
-        <td class="has-text-left">0.61 / 0.83 (<strong>+0.23</strong>)</td>
-        <td class="has-text-left">0.88 / 0.96 (<strong>+0.09</strong>)</td>
-        <td class="has-text-left">0.78 / 0.93 (<strong>+0.15</strong>)</td>
-        <td class="has-text-left">0.40 / 0.68 (<strong>+0.28</strong>)</td>
-        <td class="has-text-left">0.36 / 0.80 (<strong>+0.44</strong>)</td>
-        <td class="has-text-left">0.62 / 0.80 (<strong>+0.18</strong>)</td>
-      </tr>
-      <tr>
-        <td class="has-text-left">Qwen/Qwen3-14B</td>
-        <td class="has-text-left">0.60 / 0.83 (<strong>+0.22</strong>)</td>
-        <td class="has-text-left">0.85 / 0.90 (<strong>+0.05</strong>)</td>
-        <td class="has-text-left">0.94 / 0.95 (<strong>+0.01</strong>)</td>
-        <td class="has-text-left">0.31 / 0.70 (<strong>+0.40</strong>)</td>
-        <td class="has-text-left">0.23 / 0.75 (<strong>+0.53</strong>)</td>
-        <td class="has-text-left">0.70 / 0.84 (<strong>+0.14</strong>)</td>
+        <td class="has-text-left">0.63 / 0.84 (<strong>+0.21</strong>)</td>
+        <td class="has-text-left">0.91 / 0.96 (<strong>+0.05</strong>)</td>
+        <td class="has-text-left">0.81 / 0.93 (<strong>+0.12</strong>)</td>
+        <td class="has-text-left">0.42 / 0.70 (<strong>+0.28</strong>)</td>
+        <td class="has-text-left">0.38 / 0.79 (<strong>+0.41</strong>)</td>
+        <td class="has-text-left">0.62 / 0.79 (<strong>+0.18</strong>)</td>
       </tr>
       <tr>
         <td class="has-text-left">openai/gpt-5-mini</td>
-        <td class="has-text-left">0.62 / 0.83 (<strong>+0.20</strong>)</td>
-        <td class="has-text-left">0.86 / 0.97 (<strong>+0.12</strong>)</td>
-        <td class="has-text-left">0.82 / 0.93 (<strong>+0.11</strong>)</td>
-        <td class="has-text-left">0.44 / 0.76 (<strong>+0.32</strong>)</td>
-        <td class="has-text-left">0.21 / 0.79 (<strong>+0.59</strong>)</td>
+        <td class="has-text-left">0.62 / 0.83 (<strong>+0.21</strong>)</td>
+        <td class="has-text-left">0.83 / 0.97 (<strong>+0.14</strong>)</td>
+        <td class="has-text-left">0.81 / 0.92 (<strong>+0.12</strong>)</td>
+        <td class="has-text-left">0.45 / 0.77 (<strong>+0.32</strong>)</td>
+        <td class="has-text-left">0.21 / 0.79 (<strong>+0.57</strong>)</td>
         <td class="has-text-left">0.80 / 0.68 (-0.12)</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Qwen/Qwen3-14B</td>
+        <td class="has-text-left">0.60 / 0.83 (<strong>+0.23</strong>)</td>
+        <td class="has-text-left">0.84 / 0.89 (<strong>+0.05</strong>)</td>
+        <td class="has-text-left">0.95 / 0.95 (<strong>+0.01</strong>)</td>
+        <td class="has-text-left">0.28 / 0.70 (<strong>+0.41</strong>)</td>
+        <td class="has-text-left">0.24 / 0.75 (<strong>+0.50</strong>)</td>
+        <td class="has-text-left">0.68 / 0.84 (<strong>+0.15</strong>)</td>
       </tr>
       <tr>
         <td class="has-text-left">CohereLabs/aya-expanse-32b</td>
         <td class="has-text-left">0.62 / 0.82 (<strong>+0.20</strong>)</td>
-        <td class="has-text-left">0.87 / 0.93 (<strong>+0.06</strong>)</td>
-        <td class="has-text-left">0.87 / 0.89 (<strong>+0.03</strong>)</td>
-        <td class="has-text-left">0.29 / 0.73 (<strong>+0.44</strong>)</td>
-        <td class="has-text-left">0.17 / 0.74 (<strong>+0.57</strong>)</td>
-        <td class="has-text-left">0.91 / 0.81 (-0.10)</td>
+        <td class="has-text-left">0.87 / 0.92 (<strong>+0.05</strong>)</td>
+        <td class="has-text-left">0.88 / 0.90 (<strong>+0.02</strong>)</td>
+        <td class="has-text-left">0.27 / 0.73 (<strong>+0.45</strong>)</td>
+        <td class="has-text-left">0.18 / 0.73 (<strong>+0.55</strong>)</td>
+        <td class="has-text-left">0.89 / 0.80 (-0.09)</td>
       </tr>
       <tr>
         <td class="has-text-left">naver-hyperclovax/HyperCLOVAX-SEED-Think-32B</td>
-        <td class="has-text-left">0.52 / 0.80 (<strong>+0.28</strong>)</td>
-        <td class="has-text-left">0.83 / 0.95 (<strong>+0.13</strong>)</td>
-        <td class="has-text-left">0.78 / 0.90 (<strong>+0.12</strong>)</td>
-        <td class="has-text-left">0.28 / 0.67 (<strong>+0.40</strong>)</td>
-        <td class="has-text-left">0.13 / 0.64 (<strong>+0.51</strong>)</td>
-        <td class="has-text-left">0.60 / 0.83 (<strong>+0.23</strong>)</td>
+        <td class="has-text-left">0.58 / 0.80 (<strong>+0.22</strong>)</td>
+        <td class="has-text-left">0.91 / 0.95 (<strong>+0.04</strong>)</td>
+        <td class="has-text-left">0.89 / 0.91 (<strong>+0.02</strong>)</td>
+        <td class="has-text-left">0.30 / 0.68 (<strong>+0.38</strong>)</td>
+        <td class="has-text-left">0.16 / 0.64 (<strong>+0.48</strong>)</td>
+        <td class="has-text-left">0.63 / 0.81 (<strong>+0.17</strong>)</td>
       </tr>
       <tr>
         <td class="has-text-left">Qwen/Qwen3-8B</td>
-        <td class="has-text-left">0.57 / 0.78 (<strong>+0.21</strong>)</td>
-        <td class="has-text-left">0.82 / 0.89 (<strong>+0.07</strong>)</td>
-        <td class="has-text-left">0.79 / 0.80 (<strong>+0.01</strong>)</td>
-        <td class="has-text-left">0.34 / 0.73 (<strong>+0.38</strong>)</td>
-        <td class="has-text-left">0.14 / 0.73 (<strong>+0.60</strong>)</td>
-        <td class="has-text-left">0.77 / 0.76 (-0.01)</td>
+        <td class="has-text-left">0.58 / 0.78 (<strong>+0.20</strong>)</td>
+        <td class="has-text-left">0.83 / 0.89 (<strong>+0.06</strong>)</td>
+        <td class="has-text-left">0.81 / 0.82 (<strong>+0.00</strong>)</td>
+        <td class="has-text-left">0.35 / 0.73 (<strong>+0.38</strong>)</td>
+        <td class="has-text-left">0.15 / 0.73 (<strong>+0.58</strong>)</td>
+        <td class="has-text-left">0.78 / 0.76 (-0.01)</td>
       </tr>
       <tr>
         <td class="has-text-left">google/gemma-3-27b-it</td>
         <td class="has-text-left">0.66 / 0.78 (<strong>+0.12</strong>)</td>
         <td class="has-text-left">0.96 / 0.98 (<strong>+0.02</strong>)</td>
-        <td class="has-text-left">0.90 / 0.90 (<strong>+0.01</strong>)</td>
-        <td class="has-text-left">0.35 / 0.53 (<strong>+0.18</strong>)</td>
-        <td class="has-text-left">0.17 / 0.68 (<strong>+0.50</strong>)</td>
-        <td class="has-text-left">0.90 / 0.80 (-0.11)</td>
+        <td class="has-text-left">0.91 / 0.91 (<strong>+0.00</strong>)</td>
+        <td class="has-text-left">0.35 / 0.54 (<strong>+0.19</strong>)</td>
+        <td class="has-text-left">0.19 / 0.67 (<strong>+0.48</strong>)</td>
+        <td class="has-text-left">0.90 / 0.80 (-0.10)</td>
       </tr>
     </tbody>
   </table>
