@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FinDartBench</title>
+    <meta name="description" content="A Korean Financial QA Benchmark Based on DART Filings">
+    <meta name="keywords" content="FinDartBench">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- highlight.js for code syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <!-- MathJax: $...$ 인라인 수식 활성화 설정 (스크립트 로드 전에 선언 필수) -->
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true
+        },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+    };
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+    <style>
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .footer-social a {
+            color: #fff;
+            padding: 10px;
+            border-radius: 50%;
+            background-color: #4a4a4a;
+        }
+        .table-container {
+            margin: 20px 0;
+        }
+        pre code {
+            border-radius: 6px;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            hljs.highlightAll();
+        });
+    </script>
+</head>
+<body>
+<header class="navbar">
+    <div class="navbar-brand">
+        <a class="navbar-item logo" href="/">Research Blog</a>
+    </div>
+</header>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">FinDartBench: A Korean Financial QA Benchmark Based on DART Filings</h1>
+
+          <div class="column has-text-centered">
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a href="https://github.com/davidkim205">ChangYeon Kim</a><sup>1</sup>
+                </span>
+                <span class="author-block">
+                  <a href="https://github.com/Doleeee">YeHee Lim</a><sup>1</sup>
+                </span>
+                <span class="author-block">
+                  <a href="https://github.com/sudog1">BumSu Jung</a><sup>1</sup>
+                </span>
+                <span class="author-block">
+                  <a href="https://github.com/juneWoo910">JiYun Woo</a><sup>1</sup>
+                </span>
+                <span class="author-block">
+                  <a href="#">YoungJun Hwang</a><sup>1</sup>
+                </span>
+              </div>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <sup>1</sup>2Digit AI Research
+                </span>
+              </div>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="#"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Dataset</span>
+                  </a>
+              </span>
+              <!-- Paper Link. -->
+              <span class="link-block">
+                <a href="https://davidkim205.github.io/findartbench.html"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/davidkim205/FinDartBench"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">Abstract</h2>
+
+        <div class="content has-text-justified">
+<p>FinDartBench is a Korean financial question answering benchmark built from disclosure documents in the Financial Supervisory Service’s electronic disclosure system (DART). Rather than simply generating synthetic QA pairs from filings, it aims to construct a curated dataset suitable for practical evaluation. We employ a multi-stage pipeline that combines document-structure-aware preprocessing, multi-LLM question and answer generation, question deduplication, and staged answer validation. Candidate answers are progressively filtered using LLM judges for factual correctness, Korean language quality, and cross-model agreement. FinDartBench is built from DART filings of 10 companies and contains 14,444 QA instances, with an average of 2.73 validated reference answer candidates per question. The resulting dataset provides a practical benchmark for evaluating Korean financial document understanding on real-world disclosure documents.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">1. Introduction</h2>
+
+        <div class="content has-text-justified">
+<p>Large language models have recently been applied to a wide range of financial tasks, including document summarization, question answering, and research assistance. However, publicly available benchmarks for systematically evaluating Korean financial document understanding remain limited. In particular, disclosure documents from listed companies involve an intricate combination of numerical information, tables, temporal information, regulatory context, and corporate decision-making background, making it difficult for general-purpose QA benchmarks alone to adequately assess real-world financial document understanding.</p>
+<p>To address this limitation, we propose <strong>FinDartBench</strong>, a Korean financial QA benchmark built from disclosure documents in the Financial Supervisory Service’s electronic disclosure system (DART). FinDartBench is an evaluation dataset constructed by automatically generating questions and answers from source filings, followed by deduplication and reference answer refinement. The core objective of this work is not simply to generate synthetic QA at scale, but to construct highly reliable questions and reference answers suitable for actual evaluation.</p>
+<p>The construction pipeline of FinDartBench consists of document-structure-preserving preprocessing, multi-LLM-based question and answer generation, duplicate question removal, and multi-stage quality filtering using LLM judges. We also design an additional verification step that checks agreement among top answer candidates, further improving the reliability of reference answers. Through this design, we aim to reduce the bias of relying on a single generation model while jointly controlling factuality and expression quality, both of which are critical in disclosure-document QA.</p>
+<p>The contributions of this work are as follows.</p>
+<p>1. Construction of FinDartBench, a Korean financial QA benchmark derived from DART filings.</p>
+<p>2. Development of an end-to-end pipeline for question generation, deduplication, and reference answer refinement.</p>
+<p>3. Design of a multi-stage LLM judge framework that performs factuality verification, Korean quality evaluation, and consensus-based validation.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">2. Related Work</h2>
+
+        <div class="content has-text-justified">
+<p>Benchmarks for financial document understanding have primarily evolved around financial-document question answering and broader financial evaluation frameworks. <a href="https://arxiv.org/abs/2109.00122">FinQA</a>, <a href="https://arxiv.org/abs/2105.07624">TAT-QA</a>, and <a href="https://arxiv.org/abs/2210.03849">ConvFinQA</a> are representative datasets for evaluating numerical reasoning and document understanding based on financial reports and tables. More recently, <a href="https://arxiv.org/abs/2401.06915">DocFinQA</a> expanded the evaluation scope to settings with full-document context, while <a href="https://arxiv.org/abs/2311.11944">FinanceBench</a> improved practical relevance through open-book QA over real public-company filings and reports. In addition, <a href="https://arxiv.org/abs/2402.12659">FinBen</a> introduced a comprehensive benchmark covering diverse financial tasks, including QA. However, most of these benchmarks are built around English financial documents, which makes them limited for directly evaluating Korean disclosure document understanding due to linguistic and institutional differences.</p>
+<p>Research on Korean financial benchmarks is still at an early stage. <a href="https://arxiv.org/abs/2503.17963">Won</a> presented a public leaderboard and benchmark operation case study for evaluating Korean financial LLMs, highlighting the need for a Korean financial NLP evaluation framework. That said, such work focuses on broadly measuring model performance across the financial domain, and therefore differs in both objective and design from a document-centered QA benchmark grounded in actual Korean corporate disclosure documents. In particular, Korean DART filings differ from English-language financial documents in disclosure systems, document formats, and writing conventions, which makes a dedicated dataset necessary.</p>
+<div class="table-container">
+  <table class="table is-bordered is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <th class="has-text-left">Benchmark</th>
+        <th class="has-text-left">Language</th>
+        <th class="has-text-left">Source Documents</th>
+        <th class="has-text-left">Reference Answer Construction</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="has-text-left">FinQA</td>
+        <td class="has-text-left">English</td>
+        <td class="has-text-left">Financial reports</td>
+        <td class="has-text-left">Human-annotated</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">TAT-QA</td>
+        <td class="has-text-left">English</td>
+        <td class="has-text-left">Financial reports (text + tables)</td>
+        <td class="has-text-left">Human-annotated</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">ConvFinQA</td>
+        <td class="has-text-left">English</td>
+        <td class="has-text-left">Financial reports</td>
+        <td class="has-text-left">Human-annotated</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">DocFinQA</td>
+        <td class="has-text-left">English</td>
+        <td class="has-text-left">Financial documents with full-document context</td>
+        <td class="has-text-left">Human-annotated</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">FinanceBench</td>
+        <td class="has-text-left">English</td>
+        <td class="has-text-left">Public company filings and reports</td>
+        <td class="has-text-left">Human-annotated</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">FinDartBench (Ours)</td>
+        <td class="has-text-left">Korean</td>
+        <td class="has-text-left">Korean DART filings</td>
+        <td class="has-text-left">LLM-curated</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p class="has-text-centered"><strong>Table 1. Comparison of FinDartBench with prior financial document QA benchmarks</strong></p>
+<p>Table 1 highlights the key differences between FinDartBench and prior financial QA benchmarks. While existing datasets rely on English financial documents and human-annotated answers, FinDartBench is built from Korean DART filings and constructs reference answers through a multi-LLM-based refinement pipeline. This distinction is important in two aspects: it enables evaluation on Korean disclosure documents that reflect real-world regulatory and reporting practices, and it demonstrates a practical alternative to fully manual annotation by combining large-scale automatic generation with structured quality control.</p>
+<p>In addition to benchmark construction, research on the LLM-as-a-Judge paradigm provides a foundation for automatic evaluation and filtering. <a href="https://arxiv.org/abs/2303.16634">G-Eval</a> showed that GPT-4-based evaluation can achieve high correlation with human judgments, and <a href="https://arxiv.org/abs/2306.05685">Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena</a> demonstrated the effectiveness of strong judge models in comparative evaluation settings. In addition, <a href="https://arxiv.org/abs/2310.08491">Prometheus</a> proposed an open-source judge model capable of fine-grained rubric-based evaluation. However, more recent work has reported biases such as position bias (<a href="https://aclanthology.org/2025.ijcnlp-long.18/">Investigating Position Bias in LLM-as-a-Judge</a>), suggesting that single-stage evaluation may be unreliable.</p>
+<p>Motivated by these findings, we incorporate a multi-stage LLM-judge framework into our pipeline, separating factuality verification from Korean language quality evaluation and introducing consensus-based validation to improve robustness.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">3. Dataset Construction</h2>
+
+        <div class="content has-text-justified">
+<p>FinDartBench is a Korean financial QA benchmark built from disclosure documents collected from the Financial Supervisory Service’s electronic disclosure system (OpenDART). In this work, we used approximately 200 disclosure documents as source data, from which evaluation questions and reference answer candidates were automatically generated and progressively refined. The core objective of the construction process is not simply to mass-produce synthetic QA, but to build a highly reliable question–answer set suitable for practical evaluation.</p>
+<p>The full construction process consists of three stages. First, the source disclosure documents are preprocessed, question candidates are generated for each document chunk, and semantically similar questions are consolidated into a representative question set. Next, multiple LLMs are used to generate answer candidates for each representative question. Finally, the generated answer candidates are sequentially filtered through factuality verification, Korean language quality evaluation, and consensus verification to finalize the reference answer set. Question and answer generation were carried out in a consistent manner using a vLLM-based serving environment with an OpenAI-compatible interface.</p>
+<p>The source data consists of disclosure documents from 10 companies: LG Electronics, SK Telecom, Samsung Electronics, Hyundai Motor, Korea Electric Power Corporation, SK hynix, KB Kookmin Bank, HMM, Kia, and Dunamu. The document types include not only periodic disclosures such as annual and quarterly reports, but also various event-driven disclosures such as material event reports, corporate governance reports, and voluntary disclosures. As a result, FinDartBench is designed to evaluate not only financial numerical QA, but also understanding of diverse financial documents involving corporate governance, capital policy, related-party transactions, and shareholder meeting agenda items.</p>
+<p>The overall construction pipeline is summarized in Figure 1.</p>
+
+            <figure class="has-text-centered">
+            <img src="static/images/findartbench/figure1.png" alt="Figure 1. FinDartBench dataset construction pipeline">
+            </figure>
+            
+<p class="has-text-centered"><strong>Figure 1. FinDartBench dataset construction pipeline</strong></p>
+<h3 class="title is-4 has-text-left">3.1 Question Generator</h3>
+<p>The Question Generator is the stage that produces question candidates from source disclosure documents and constructs a representative question set through deduplication. The goal of this stage is to secure a diverse set of questions grounded in document context while consolidating semantically equivalent questions into stable evaluation units. To achieve this, we first divide disclosure documents into input units suitable for question generation, then use multiple LLMs to generate structured QA candidates, and finally derive representative questions through similar-question clustering. For question generation and clustering, we used models such as Mistral-Large-3, GLM-4.7, and DeepSeek-V3.2-Exp.</p>
+<p>In the preprocessing stage, company name and document-type metadata were extracted from document titles, and the body text was segmented according to the title hierarchy. Long sections were further split to remain within the maximum length constraint, while tables were processed in a way that preserved header and row structure to minimize information loss. In addition, when only a heading remained in isolation, it was re-merged with adjacent paragraphs to reduce semantic fragmentation. Each resulting chunk was augmented with the company name, document type, title information, chunk index, and total number of chunks, and then used as the basic unit for downstream question generation and traceability. Let the set of preprocessed document chunks be defined as $\mathcal{S} = \{ s_1, s_2, \dots, s_M \}$.</p>
+<p>Question generation was performed using prompts that included few-shot examples. Given each chunk as input, the generation models were prompted to output a structured JSON list of QA pairs containing <code>question_type</code>, <code>question</code>, and <code>answer</code>. Here, the <code>answer</code> is not the final reference answer, but rather an initial draft used to check whether the generated question is appropriately grounded in the actual context. Based on this process, the initial question set is defined as</p>
+$$
+\mathcal{Q}_0 = \bigcup_{s \in \mathcal{S}} \mathrm{Gen}_Q(s),
+$$
+<p>where $\mathrm{Gen}_Q$ denotes the multi-LLM-based question generation process.</p>
+<p>To remove redundancy, the generated questions are clustered using their corresponding chunk context as auxiliary information. An LLM groups semantically identical or highly similar questions into clusters. Let the resulting cluster set be</p>
+$$
+\mathcal{C}_Q = \{ C_1, C_2, \dots, C_K \}, \quad
+\bigcup_{k=1}^{K} C_k = \mathcal{Q}_0, \quad
+C_i \cap C_j = \emptyset, \quad i \neq j.
+$$
+<p>For each cluster $C_k$, a representative question is generated as $q_k^{*} = \mathrm{Gen}_{\mathrm{repr}}(C_k)$, where $\mathrm{Gen}_{\mathrm{repr}}$ denotes the representative-question generation function that produces a single question capturing the core semantics of the cluster. The final representative question set is then defined as</p>
+$$
+\mathcal{Q}^{*} = \{ q_1^{*}, q_2^{*}, \dots, q_K^{*} \}.
+$$
+<p>Each representative question $q_k^{*}$ is paired with its corresponding source chunk $s_k \in \mathcal{S}$, inherited from the original generated-question instances in cluster $C_k$.</p>
+<p>Through this process, the number of questions is reduced from 29,810 to 21,377, corresponding to a compression rate of 28.29%. The resulting representative question--context pairs are then used as input to the Answer Generator.</p>
+<h3 class="title is-4 has-text-left">3.2 Answer Generator</h3>
+<p>The Answer Generator takes the representative questions produced during clustering, combines each question with its original document context, and collects candidate answers from multiple LLMs for each question. The purpose of this stage is to avoid reliance on a single model output and instead capture multiple perspectives and formulations for the same question, allowing more reliable reference answers to be selected in downstream verification.</p>
+<p>For answer generation, we used a diverse set of models including Kimi-K2.5, Mistral-Large-3, GLM-4.7, and DeepSeek-V3.2-Exp. Each model independently generates an answer given the same question and its associated context, and the outputs are stored grouped by question. Formally, for each representative question $q_k^{*} \in \mathcal{Q}^{*}$ paired with its source chunk $s_k \in \mathcal{S}$, the set of candidate answers is defined as</p>
+$$
+\mathcal{A}(q_k^{*}) = \{\, a_k^{(m)} \mid a_k^{(m)} = \mathrm{Gen}_A^{(m)}(q_k^{*}, s_k),\ m \in \mathcal{M} \,\},
+$$
+<p>where $\mathcal{M}$ denotes the set of answer generation models and $\mathrm{Gen}_A^{(m)}$ denotes the answer generation function of model $m$.</p>
+<p>Each candidate answer includes both the model identifier and the answer text, and is later used as input to the Quality Validator for factuality verification and Korean language quality evaluation. This approach reduces model-specific bias and enables systematic comparison across multiple answer candidates for the same question.</p>
+<h3 class="title is-4 has-text-left">3.3 Quality Validator</h3>
+<p>The Quality Validator selects the final reference answers from the pool of candidate answers generated by multiple models. While multi-LLM generation provides diverse candidates, these outputs are not directly suitable as evaluation references due to inconsistencies in factuality, expression quality, and conclusions. To address this, we construct a three-stage validation pipeline consisting of factuality verification, Korean language quality evaluation, and consensus verification.</p>
+<p>For each representative question $q_k^{*}$ paired with its source chunk $s_k$, we apply staged validation to the candidate answer set $\mathcal{A}(q_k^{*})$ defined in Section 3.2. The goal of the Quality Validator is to transform this raw candidate pool into a validated reference answer set through staged filtering.</p>
+<p>The first filtering stage is binary factuality verification. At this stage, $(q_k^{*}, s_k, a)$ is jointly provided as input, and each candidate answer $a \in \mathcal{A}(q_k^{*})$ is judged based on whether it satisfies the information need expressed by the question, whether its core facts, numbers, units, and temporal details are consistent with the context, and whether it avoids adding content not supported by the context. Let the binary factuality decision function be $\mathrm{Val}_{\mathrm{fact}}(q_k^{*}, s_k, a) \in \{0,1\}$. The factually valid candidate set is then defined as</p>
+$$
+\mathcal{A}_{\mathrm{fact}}(q_k^{*}) =
+\left\{
+a \in \mathcal{A}(q_k^{*})
+\;\middle|\;
+\mathrm{Val}_{\mathrm{fact}}(q_k^{*}, s_k, a)=1
+\right\}.
+$$
+<p>Only candidates judged as correct are passed to the next stage, establishing a factual lower bound for the entire candidate pool.</p>
+<p>The second stage performs listwise Korean language quality evaluation. Candidates that pass the first stage are jointly compared, ranked, and scored based on fluency, clarity, coherence, conciseness, and stylistic appropriateness. Let $\mathrm{Score}_{\mathrm{lang}}(q_k^{*}, s_k, a)$ denote the Korean language quality score assigned to candidate $a \in \mathcal{A}_{\mathrm{fact}}(q_k^{*})$. Given a predefined threshold $\tau$, the quality-filtered set is defined as</p>
+$$
+\mathcal{A}_{\mathrm{lang}}(q_k^{*}) =
+\left\{
+a \in \mathcal{A}_{\mathrm{fact}}(q_k^{*})
+\;\middle|\;
+\mathrm{Score}_{\mathrm{lang}}(q_k^{*}, s_k, a) \ge \tau
+\right\}.
+$$
+<p>This stage focuses on selecting the most natural and evaluation-suitable formulations among factually correct candidates, further removing low-quality expressions.</p>
+<p>The third stage performs consensus verification. Let $a_k^{(1)}$ and $a_k^{(2)}$ denote the top-1 and top-2 answers in $\mathcal{A}_{\mathrm{lang}}(q_k^{*})$ sorted by $\mathrm{Score}_{\mathrm{lang}}$ in descending order. These two answers are compared to determine whether they convey the same conclusion and core content. Let the consensus decision function be</p>
+$$
+\mathrm{Val}_{\mathrm{cons}}(q_k^{*}, s_k, a_k^{(1)}, a_k^{(2)}) \in \{0,1\}.
+$$
+<p>A question is retained only if both high-quality candidates are available and the consensus decision is positive. Formally, the final retained question set is</p>
+$$
+\mathcal{Q}_{\mathrm{final}} =
+\left\{
+q_k^{*} \in \mathcal{Q}^{*}
+\mid
+|\mathcal{A}_{\mathrm{lang}}(q_k^{*})| \ge 2
+\land
+\mathrm{Val}_{\mathrm{cons}}(q_k^{*}, s_k, a_k^{(1)}, a_k^{(2)}) = 1
+\right\}.
+$$
+<p>For each retained question $q_k^{*} \in \mathcal{Q}_{\mathrm{final}}$, the final validated answer set is defined as</p>
+$$
+\mathcal{A}^{*}(q_k^{*}) = \mathrm{Sort}_{\mathrm{lang}}\!\left(\mathcal{A}_{\mathrm{lang}}(q_k^{*})\right),
+$$
+<p>where $\mathrm{Sort}_{\mathrm{lang}}$ denotes sorting by Korean language quality score in descending order. Through this process, the number of questions is reduced from 19,537 to 14,444.</p>
+<p>Although multi-LLM generation provides a large pool of candidate answers, these are not directly suitable as evaluation references due to inconsistencies in grounding and expression quality. The Quality Validator addresses this by progressively enforcing factual correctness, linguistic quality, and inter-candidate agreement, resulting in a high-reliability reference answer set suitable for evaluation.</p>
+<p>The final dataset stores $(q_k^{*}, s_k, \mathcal{A}^{*}(q_k^{*}))$ for each retained question, where the validated answers are sorted by quality score and annotated with their source models.</p>
+<pre><code class="language-json">{
+  "id": 1,
+  "doc_id": 1001,
+  "company": "HMM",
+  "doc_type": "사업보고서",
+  "context": "[입력 문서] ...",
+  "question": "2024 년 누적 연결기준 사업부문별 매출액 및 비중을 정리하시오.",
+  "answers": [
+    {
+      "model": "K-EXAONE-236B-A23B",
+      "answer": "..."
+    }
+  ]
+}</code></pre>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">4. Experiments</h2>
+
+        <div class="content has-text-justified">
+<h3 class="title is-4 has-text-left">4.1 Dataset Construction Statistics</h3>
+<p>In this section, we analyze how data is progressively generated and refined throughout the FinDartBench construction pipeline. Starting from 29,810 initial question candidates generated from 902 input chunks, the dataset is gradually refined through clustering and multi-stage filtering. Question clustering reduces redundancy by 28.29%, while subsequent stages focus on answer-level refinement. Factuality filtering primarily removes incorrect answers, Korean quality filtering eliminates low-quality expressions, and consensus filtering further enforces agreement across top candidates, resulting in a final set of 14,444 high-reliability questions and 39,488 reference answers.</p>
+<p>Table 2 highlights that different stages of the pipeline contribute to distinct types of refinement. Question clustering removes a large portion of semantically redundant questions, while answer generation slightly reduces the question count due to additional filtering. Notably, factuality filtering primarily affects answer counts rather than questions, indicating that incorrect answers are selectively removed while preserving question coverage. In contrast, Korean quality filtering significantly reduces answer counts by removing low-quality formulations. Finally, consensus filtering leads to the largest reduction in questions, reflecting the strict requirement of agreement among top candidates.</p>
+<div class="table-container">
+  <table class="table is-bordered is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <th class="has-text-left">Step</th>
+        <th class="has-text-left">Question count</th>
+        <th class="has-text-left">Dropped (%)</th>
+        <th class="has-text-left">Answer count</th>
+        <th class="has-text-left">Dropped (%)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="has-text-left">1. Question Generation</td>
+        <td class="has-text-left">29,810</td>
+        <td class="has-text-left">-</td>
+        <td class="has-text-left">-</td>
+        <td class="has-text-left">-</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">2. Question Clustering</td>
+        <td class="has-text-left">21,377</td>
+        <td class="has-text-left">28.29</td>
+        <td class="has-text-left">-</td>
+        <td class="has-text-left">-</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">3. Answer Generation</td>
+        <td class="has-text-left">19,785</td>
+        <td class="has-text-left">7.45</td>
+        <td class="has-text-left">87,652</td>
+        <td class="has-text-left">-</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">4. Factuality Filtering</td>
+        <td class="has-text-left">19,784</td>
+        <td class="has-text-left">0.01</td>
+        <td class="has-text-left">71,525</td>
+        <td class="has-text-left">18.40</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">5. Korean Quality Filtering</td>
+        <td class="has-text-left">19,537</td>
+        <td class="has-text-left">1.25</td>
+        <td class="has-text-left">48,991</td>
+        <td class="has-text-left">31.51</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">6. Consensus Filtering</td>
+        <td class="has-text-left">14,444</td>
+        <td class="has-text-left">26.07</td>
+        <td class="has-text-left">39,488</td>
+        <td class="has-text-left">19.40</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p class="has-text-centered"><strong>Table 2. Stepwise statistics of the FinDartBench construction pipeline</strong></p>
+<p>Each question in the final dataset contains an average of 2.73 reference answers, with a median of 3, indicating the presence of multiple validated answer candidates per question. Figure 2 illustrates the distribution of FinDartBench instances by document type. Annual reports account for the largest share with 5,638 instances (39.03%), followed by corporate governance reports (18.69%), notices of shareholders’ meetings (12.11%), and investment prospectuses (7.05%). This distribution demonstrates that FinDartBench covers a diverse range of disclosure types, enabling evaluation beyond standard financial reporting to include governance, shareholder rights, and capital policy.</p>
+
+            <figure class="has-text-centered">
+            <img src="static/images/findartbench/figure2.png" alt="Figure 2. Distribution of FinDartBench instances by document type">
+            </figure>
+            
+<p class="has-text-centered"><strong>Figure 2. Distribution of FinDartBench instances by document type</strong></p>
+<h3 class="title is-4 has-text-left">4.2 Question Deduplication Analysis</h3>
+<p>Question deduplication is a core component of the Question Generator, as multi-LLM question generation often produces semantically overlapping questions from the same context. In this stage, generated question candidates are grouped into clusters based on semantic similarity, and a representative question is selected for each cluster. As a result, the number of questions decreases from 29,810 to 21,377, corresponding to a compression rate of 28.29%. This indicates that a substantial portion of generated questions are redundant or near-equivalent, highlighting the necessity of deduplication for constructing a stable evaluation set.</p>
+<div class="table-container">
+  <table class="table is-bordered is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <th class="has-text-left">Model</th>
+        <th class="has-text-left">Generated questions</th>
+        <th class="has-text-left">Representative questions</th>
+        <th class="has-text-left">Compression rate (%)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="has-text-left">Mistral-Large-3</td>
+        <td class="has-text-left">17,262</td>
+        <td class="has-text-left">8,304</td>
+        <td class="has-text-left">51.89</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">gpt-5-mini</td>
+        <td class="has-text-left">19,854</td>
+        <td class="has-text-left">5,969</td>
+        <td class="has-text-left">69.94</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">DeepSeek-V3.2-Exp</td>
+        <td class="has-text-left">7,107</td>
+        <td class="has-text-left">3,500</td>
+        <td class="has-text-left">50.75</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">GLM-4.7</td>
+        <td class="has-text-left">7,082</td>
+        <td class="has-text-left">3,604</td>
+        <td class="has-text-left">49.11</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p class="has-text-centered"><strong>Table 3. Model-wise statistics of question clustering results</strong></p>
+<div class="table-container">
+  <table class="table is-bordered is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <th class="has-text-left">Cluster size group</th>
+        <th class="has-text-left">Cluster count</th>
+        <th class="has-text-left">Share (%)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="has-text-left">Size 1</td>
+        <td class="has-text-left">8,488</td>
+        <td class="has-text-left">39.71</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Size 2</td>
+        <td class="has-text-left">5,383</td>
+        <td class="has-text-left">25.18</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Size 3</td>
+        <td class="has-text-left">3,433</td>
+        <td class="has-text-left">16.06</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Size >= 10</td>
+        <td class="has-text-left">126</td>
+        <td class="has-text-left">0.59</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p class="has-text-centered"><strong>Table 4. Distribution of cluster sizes in question clustering results</strong></p>
+<p>As shown in Table 3, each clustering model compresses its assigned question set into representative questions. While Mistral-Large-3, DeepSeek-V3.2-Exp, and GLM-4.7 exhibit similar compression rates around 50%, gpt-5-mini achieves a substantially higher compression rate of 69.94%. This suggests that different models exhibit distinct clustering behaviors, with some models grouping semantically similar questions more aggressively. Such variation highlights the importance of model selection in controlling the granularity of the resulting evaluation set.</p>
+<p>Table 4 shows that question redundancy is primarily concentrated in small clusters rather than a few large duplicate groups. Size-1 clusters are the most common (39.71%), while size-2 and size-3 clusters also account for substantial proportions (25.18% and 16.06%, respectively). In contrast, large clusters (size ≥ 10) are rare (0.59%). This indicates that question deduplication mainly consolidates many small sets of near-equivalent questions generated by different models from the same context, rather than removing a small number of extreme duplicates.</p>
+<p>In other words, question deduplication plays a critical role in consolidating near-equivalent questions across models, thereby establishing a stable and non-redundant evaluation set for downstream answer generation. In addition, a final cosine-similarity-based filtering step is applied to remove residual near-duplicate questions, further improving the consistency of the representative question set.</p>
+<h3 class="title is-4 has-text-left">4.3 Multi-LLM Answer Diversity</h3>
+<p>In the Answer Generator stage, multiple LLMs are independently prompted to generate answers for the same question, constructing a diverse pool of candidate answers. Based on the deduplicated representative question set, the average number of candidate answers per question is 4.41, and 18,429 out of 19,785 questions (93.15%) contain two or more distinct answers. This shows that the multi-LLM setup effectively produces diverse candidate answers for the same question.</p>
+<div class="table-container">
+  <table class="table is-bordered is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <th class="has-text-left">Model</th>
+        <th class="has-text-left">Unique answers</th>
+        <th class="has-text-left">Ratio (%)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="has-text-left">unsloth/GLM-4.7</td>
+        <td class="has-text-left">19,387</td>
+        <td class="has-text-left">23.50</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">unsloth/DeepSeek-V3.2-Exp</td>
+        <td class="has-text-left">18,191</td>
+        <td class="has-text-left">22.05</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">moonshotai/Kimi-K2.5</td>
+        <td class="has-text-left">14,727</td>
+        <td class="has-text-left">17.85</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">mistralai/Mistral-Large-3-675B-Instruct-2512</td>
+        <td class="has-text-left">14,022</td>
+        <td class="has-text-left">17.00</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Qwen/Qwen3.5-397B-A17B-FP8</td>
+        <td class="has-text-left">5,556</td>
+        <td class="has-text-left">6.73</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Qwen/Qwen3.5-27B</td>
+        <td class="has-text-left">3,219</td>
+        <td class="has-text-left">3.90</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">NC-AI-consortium-VAETKI/VAETKI</td>
+        <td class="has-text-left">2,298</td>
+        <td class="has-text-left">2.79</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">unsloth/GLM-5-GGUF:UD-Q6_K_XL</td>
+        <td class="has-text-left">1,388</td>
+        <td class="has-text-left">1.68</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Qwen/Qwen3.5-397B-A17B</td>
+        <td class="has-text-left">809</td>
+        <td class="has-text-left">0.98</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">unsloth/Qwen3.5-122B-A10B</td>
+        <td class="has-text-left">788</td>
+        <td class="has-text-left">0.96</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">Qwen/Qwen3.5-122B-A10B</td>
+        <td class="has-text-left">735</td>
+        <td class="has-text-left">0.89</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">LGAI-EXAONE/K-EXAONE-236B-A23B</td>
+        <td class="has-text-left">719</td>
+        <td class="has-text-left">0.87</td>
+      </tr>
+      <tr>
+        <td class="has-text-left">unsloth/Qwen3.5-397B-A17B</td>
+        <td class="has-text-left">658</td>
+        <td class="has-text-left">0.80</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p class="has-text-centered"><strong>Table 5. Model-wise counts of answer candidates on the deduplicated representative-question set</strong></p>
+<p>As shown in Table 5, answer candidates are broadly distributed across multiple models rather than dominated by a single source. Major contributors include GLM-4.7, DeepSeek-V3.2-Exp, Kimi-K2.5, and Mistral-Large-3, while additional models provide further diversity. In this aggregation, deployment variants or differently packaged versions are treated as distinct generation models, further increasing the heterogeneity of the candidate pool.</p>
+<p>To quantify answer diversity, we measure both lexical variation and numerical disagreement among candidate answers. The average pairwise lexical Jaccard similarity is 0.371, indicating substantial variation in phrasing and descriptive scope even for the same question. Furthermore, the numeric disagreement ratio—computed over questions containing numerical information—is as high as 90.10%, suggesting that models often differ not only in surface form but also in how key numerical values are selected or organized.</p>
+<p>These results demonstrate that the multi-answer design of FinDartBench captures substantial diversity across models and provides a strong basis for cross-checking agreement in downstream factuality filtering and consensus verification.</p>
+<h3 class="title is-4 has-text-left">4.4 Effect of Quality Filtering</h3>
+<p>The three-stage filtering pipeline of the Quality Validator progressively removes different types of errors and improves the reliability of the final reference answer set. While multi-LLM answer generation provides a diverse pool of candidates, these outputs are not directly suitable as evaluation references due to inconsistencies in factuality, expression quality, and conclusions. To address this, we apply a staged filtering process consisting of factuality verification, Korean language quality evaluation, and consensus verification.</p>
+<p>As shown in Table 2, 87,652 answer candidates were generated for 19,785 questions, and the numbers of answers and questions decrease step by step through each filtering stage. These reductions should not be viewed merely as data shrinkage, but as the outcome of verifying contextual consistency, expression quality, and inter-candidate agreement under distinct criteria.</p>
+<h4 class="title is-5 has-text-left">Factuality Filtering</h4>
+<p>In the factuality filtering stage, 19,785 questions and 87,652 answer candidates are used as input. After filtering, 19,784 questions and 71,525 answers remain, meaning that 18.40% of answers are removed. While the number of questions remains nearly unchanged, the number of answers decreases substantially, indicating that this stage primarily removes factually incorrect or unsupported answers rather than eliminating questions.</p>
+<p>The average number of candidate answers per question decreases from 4.43 to 3.62, preserving a sufficient candidate pool for downstream comparison while establishing a factual lower bound. As illustrated in Table 6, this stage removes answers that reconstruct numerical aggregates differently despite identical input tables. In other words, factuality filtering resolves cases where aggregation rules drift or unsupported interpretations are introduced during answer generation.</p>
+<div class="table-container">
+  <table class="table is-bordered is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <th class="has-text-left">Question</th>
+        <th class="has-text-left">Input</th>
+        <th class="has-text-left">Filtered answer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="has-text-left">LG전자의 상무급 임원 명단 중 여성 임원은 누구이며, 전체 명단에서 여성 임원의 비율 및 참여 현황은 어떠한가?</td>
+        <td class="has-text-left"><code>오혜원(여, 상무)</code>, <code>이소연(여, 상무)</code>, <code>이향은(여, 상무)</code>, <code>정수진(여, 상무)</code>, <code>조애나(여, 상무)</code>, <code>지인숙(여, 상무)</code>, <code>한은정(여, 상무)</code>, <code>황윤희(여, 상무)</code>, <code>박수현(여, 수석연구위원(상무))</code>...</td>
+        <td class="has-text-left">총 7명의 여성 상무급 임원이 포함되어 있습니다. ...</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p class="has-text-centered"><strong>Table 6. Illustrative example of factuality filtering</strong></p>
+<h4 class="title is-5 has-text-left">Korean Quality Filtering</h4>
+<p>In the Korean quality filtering stage, the number of questions decreases slightly by 1.25%, from 19,784 to 19,537, while the number of answers drops significantly by 31.51%, from 71,525 to 48,991. Accordingly, the average number of candidates per question decreases from 3.62 to 2.51, indicating that this stage primarily filters out low-quality formulations rather than removing questions.</p>
+<p>As shown in Table 7, the top-ranked answer presents information in a structured and concise manner, whereas lower-ranked answers, although factually similar, tend to be more verbose and repetitive. This stage therefore selects evaluation-suitable answers based on conciseness, coherence, and readability among candidates that have already passed factuality filtering.</p>
+<div class="table-container">
+  <table class="table is-bordered is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <th class="has-text-left">Question</th>
+        <th class="has-text-left">Top-1 answer</th>
+        <th class="has-text-left">Lowest-ranked answer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="has-text-left">제57기 현대자동차의 배당 규모는 얼마이며, 제56기 대비 증가액과 자본변동표상 자본에 미친 영향은 무엇인가?</td>
+        <td class="has-text-left">제57기(2024년) 배당금은 3,794,330백만원, 제56기(2023년) 배당금은 2,358,316백만원으로 증가액은 1,436,014백만원이다. 자본변동표에 따르면 배당은 이익잉여금에서 차감되어 자본총계를 감소시키며, 제57기에는 이익잉여금 및 자본총계가 각각 3,794,330백만원 감소하였다.</td>
+        <td class="has-text-left">제57기 배당금은 3,794,330백만원이고, 제56기 배당금은 2,358,316백만원이므로 증가액은 1,436,014백만원이다. 자본변동표의 ‘자본에 직접 반영된 소유주와의 거래’ 항목 중 ‘배당’ 행의 이익잉여금 및 총계 열을 근거로 배당이 자본에 미친 영향을 해석할 수 있으며, 근거 문장과 계산 과정을 함께 제시하면 …</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p class="has-text-centered"><strong>Table 7. Illustrative example of Korean quality filtering</strong></p>
+<h4 class="title is-5 has-text-left">Consensus Filtering</h4>
+<p>In the final consensus filtering stage, the number of questions decreases from 19,537 to 14,444 (−26.07%), while the number of answers decreases from 48,991 to 39,488 (−19.40%). Unlike the previous stages, which operate at the individual answer level, this stage evaluates agreement among top candidates at the question level.</p>
+<p>Even high-quality answers may differ in their final conclusions or interpretations. As illustrated in Table 8, top candidates may share similar key elements but diverge in how they interpret compensation structures or aggregation logic. This stage filters out such cases by retaining only questions where top answers exhibit semantic agreement, ensuring stability and consistency of the final reference answers.</p>
+<div class="table-container">
+  <table class="table is-bordered is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <th class="has-text-left">Question</th>
+        <th class="has-text-left">Top-1 answer</th>
+        <th class="has-text-left">Top-2 answer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="has-text-left">사외이사의 보수 구성은 어떻게 되는가? 지급하지 않는 항목(예: ‘급여 외 보수(상여금·퇴직금 등) 미지급’)과 보수 산출 근거(업계 평균·기여도·회의수당 등), 감사위원회 위원의 보수 산정 여부 및 차별 여부는 무엇인가?</td>
+        <td class="has-text-left"><code>unsloth/DeepSeek-V3.2-Exp</code>: “사외이사에게는 기본적인 보수(회의 수당 등)가 지급되며, 상여금과 퇴직금은 지급하지 않는다. 보수는 동종 업계 평균 수준, 기여도, 회의 수당 등을 종합 고려해 산정된다. 감사위원회 위원의 보수는 별도로 책정하지 않으며, 사외이사와 사내이사 간에는 고정 보수와 성과 연동 보수 체계라는 차이가 있다.”</td>
+        <td class="has-text-left"><code>unsloth/GLM-4.7</code>: “사외이사에게는 ‘급여 외 보수(상여금 및 퇴직금 포함)’를 지급하지 않으며, 보수는 동종 업계 평균 수준, 기여도, 직무수행을 위한 회의 수당 등을 내부 기준으로 산정한다. 감사위원회 위원의 보수는 별도로 책정하지 않으며, 별도 책정이 없으므로 감사위원회 위원으로서의 차등 지급은 없다.”</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<p class="has-text-centered"><strong>Table 8. Illustrative example of consensus filtering</strong></p>
+<p>Taken together, the three-stage filtering pipeline in FinDartBench serves three distinct purposes: securing factuality, improving expression quality, and establishing agreement-based reliability across candidates. When the stepwise reduction rates in Table 2 are considered alongside actual removal examples, the pipeline can be understood not as a simple candidate-pruning procedure, but as a refinement process for constructing a high-reliability reference answer set that satisfies both contextual consistency and evaluation suitability.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3 has-text-left">5. Conclusion</h2>
+
+        <div class="content has-text-justified">
+<p>FinDartBench is a Korean financial QA benchmark built from Korean DART filings through a pipeline that combines question generation, deduplication, multi-LLM answer generation, and staged quality refinement. Our results show that this multi-LLM-based construction approach can produce diverse question–answer candidates from the same context, while the subsequent filtering stages effectively enforce factual correctness, expression quality, and inter-candidate agreement.</p>
+<p>Despite these improvements, the benchmark still inherits limitations from LLM-based generation and automatic evaluation, which cannot fully eliminate potential errors or biases. Nevertheless, FinDartBench goes beyond a simple synthetic QA collection by providing a curated and high-reliability dataset for evaluating Korean financial document understanding.</p>
+<p>Future work includes expanding the benchmark to a broader range of companies and disclosure types, as well as incorporating human verification and additional consistency analysis to further improve reliability.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>
+            <strong>Research Blog</strong> by <a href="https://github.com/davidkim205">davidkim205</a>.
+        </p>
+    </div>
+</footer>
+</body>
+</html>

@@ -89,18 +89,55 @@ class MarkdownToHTMLConverter:
             if not line.strip():
                 i += 1
                 continue
-            
+
+            # Check for fenced code block (```lang ... ```)
+            if line.strip().startswith('```'):
+                lang = line.strip()[3:].strip()
+                code_lines = []
+                i += 1
+                while i < len(lines):
+                    if lines[i].strip() == '```':
+                        i += 1
+                        break
+                    code_lines.append(lines[i])
+                    i += 1
+                
+                code_content = '\n'.join(code_lines)
+                code_content = code_content.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+                lang_class = f' class="language-{lang}"' if lang else ''
+                result_blocks.append(f'<pre><code{lang_class}>{code_content}</code></pre>')
+                continue
+
+            # Block math ($$...$$) - 여는 $$ 단독 줄인 경우
+            if line.strip() == '$$':
+                math_lines = [line.strip()]
+                i += 1
+                while i < len(lines):
+                    math_lines.append(lines[i])
+                    if lines[i].strip() == '$$':
+                        i += 1
+                        break
+                    i += 1
+                result_blocks.append('\n'.join(math_lines))
+                continue
+
+            # Block math - $$...$$ 한 줄에 시작과 끝이 모두 있는 경우
+            if line.strip().startswith('$$') and line.strip().endswith('$$') and len(line.strip()) > 4:
+                result_blocks.append(line.strip())
+                i += 1
+                continue
+
             # Check for H3 subsection headings
             if line.strip().startswith('### '):
                 h3_title = line.strip()[4:]
                 result_blocks.append(f'<h3 class="title is-4 has-text-left">{h3_title}</h3>')
                 i += 1
                 continue
+
             # Figure / Table 문단 제목 중앙
             stripped = line.strip()
             text_to_check = stripped.lstrip('*').strip()
             # Figure 1, Table 2 등 번호가 있는 패턴만 매칭
-            import re
             if re.match(r'^(Figure|Table)\s+\d+[\.:)]', text_to_check):
                 formatted = self.apply_inline_formatting(stripped)
                 result_blocks.append(f'<p class="has-text-centered">{formatted}</p>')
@@ -109,10 +146,11 @@ class MarkdownToHTMLConverter:
 
             if line.strip().startswith('#### '):
                 h4_title = line.strip()[5:]
-                result_blocks.append(f'<h4 class ="title is-5 has-text-left">{h4_title}</h4>')
+                result_blocks.append(f'<h4 class="title is-5 has-text-left">{h4_title}</h4>')
                 i += 1
                 continue
             # 만약 마크다운 # 추가 시 이 행 아래에 추가
+
             # Markdown image: ![caption](src)
             image_match = re.match(r'!\[(.*?)\]\((.*?)\)', line.strip())
             if image_match:
@@ -174,7 +212,6 @@ class MarkdownToHTMLConverter:
             formatted = self.apply_inline_formatting(line.strip())
             result_blocks.append(f'<p>{formatted}</p>')
 
-
             i += 1
 
         return '\n'.join(result_blocks)
@@ -221,21 +258,40 @@ class MarkdownToHTMLConverter:
     def apply_inline_formatting(self, text: str) -> str:
         """Apply inline markdown formatting"""
 
-        # Code (`code`)
-        text = re.sub(r'`([^`]+)`', r'<code>\1</code>',text)
-        
-        # Bold (**bold** __bold__)
-        text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
-        
-        # 기울임 Italic (*Italic* _italic_)
-        text = re.sub(r'(\*|_)(.*?)\1', r'<em>\2</em>', text)
+        # 수식 보호: $$...$$, $...$ 를 먼저 추출해 placeholder로 대체
+        math_placeholders = {}
+        counter = [0]
 
-        # 취소 선 Strikethrough
+        def protect_math(m):
+            key = f"MATHPH{counter[0]}END"
+            math_placeholders[key] = m.group(0)
+            counter[0] += 1
+            return key
+
+        # 블록 수식 $$...$$ 먼저 (인라인 $보다 우선)
+        text = re.sub(r'\$\$.+?\$\$', protect_math, text, flags=re.DOTALL)
+        # 인라인 수식 $...$ — $와 줄바꿈을 내용에서 제외
+        text = re.sub(r'\$([^\$\n]+?)\$', protect_math, text)
+
+        # Code (`code`)
+        text = re.sub(r'`([^`]+)`', r'<code>\1</code>', text)
+
+        # Bold (**bold**)
+        text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
+
+        # Italic — * 만 처리, _ 는 수식 subscript와 충돌하므로 제외
+        text = re.sub(r'\*([^\*]+?)\*', r'<em>\1</em>', text)
+
+        # 취소선 Strikethrough
         text = re.sub(r'~~(.+?)~~', r'<del>\1</del>', text)
 
         # Links
         text = re.sub(r'\[(.+?)\]\((.+?)\)', r'<a href="\2">\1</a>', text)
-        
+
+        # 수식 복원
+        for key, val in math_placeholders.items():
+            text = text.replace(key, val)
+
         return text
     
     def process_tables_with_captions(self, text: str) -> Tuple[str, List[str]]:
@@ -311,10 +367,9 @@ class MarkdownToHTMLConverter:
         table_html.append('    </thead>')
         
         # Parse body (skip separator line at index 1)
-        # Parse body
         table_html.append('    <tbody>')
         for line in table_lines[2:]:
-            #정렬 구문 라인 건너뛰기
+            # 정렬 구문 라인 건너뛰기
             stripped = line.strip()
             if all(c in '|:-\t ' for c in stripped) and ':' in stripped:
                 continue
@@ -338,7 +393,6 @@ class MarkdownToHTMLConverter:
             table_html.append('      </tr>')
         table_html.append('    </tbody>')
 
-        
         table_html.append('  </table>')
         table_html.append('</div>')
         
@@ -363,6 +417,23 @@ class MarkdownToHTMLConverter:
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- highlight.js for code syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <!-- MathJax: $...$ 인라인 수식 활성화 설정 (스크립트 로드 전에 선언 필수) -->
+    <script>
+    MathJax = {{
+        tex: {{
+            inlineMath: [['$', '$'], ['\\\\(', '\\\\)']],
+            displayMath: [['$$', '$$'], ['\\\\[', '\\\\]']],
+            processEscapes: true
+        }},
+        options: {{
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }}
+    }};
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
     <style>
         .logo {{
             font-size: 24px;
@@ -382,7 +453,15 @@ class MarkdownToHTMLConverter:
         .table-container {{
             margin: 20px 0;
         }}
+        pre code {{
+            border-radius: 6px;
+        }}
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {{
+            hljs.highlightAll();
+        }});
+    </script>
 </head>
 <body>
 <header class="navbar">
@@ -452,7 +531,6 @@ class MarkdownToHTMLConverter:
         
         # Generate sections
         for section in data['sections']:
-            # All sections use h2 with is-3 (since subsections are now handled within content)
             section_html = f'''
 <section class="section">
   <div class="container is-max-desktop">
